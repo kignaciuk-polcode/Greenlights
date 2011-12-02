@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AW_Aheadvideo>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AW_Aheadvideo>
+    </modules>
+</config>

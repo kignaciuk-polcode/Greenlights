@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+       <AW_Aheadvideo>
+          <version>1.1</version><platform>ce</platform>
+       </AW_Aheadvideo>
+    </modules>
+
+    <global>
+    
+        <models>
+            <aheadvideo>
+                <class>AW_Aheadvideo_Model</class>
+            </aheadvideo>
+        </models>
+
+        <helpers>
+        	<aheadvideo>
+        		<class>AW_Aheadvideo_Helper</class>
+        	</aheadvideo>
+        </helpers>
+        <resources>
+            <aheadvideo_setup>
+                <setup>
+                    <module>AW_Aheadvideo</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </aheadvideo_setup>
+            <aheadvideo_write>
+                <connection>
+                  <use>core_write</use>
+                </connection>
+            </aheadvideo_write>
+            <aheadvideo_read>
+               <connection>
+                <use>core_read</use>
+              </connection>
+            </aheadvideo_read>
+        </resources>	    
+    </global>
+    
+	<frontend>
+	   <routers>
+			<aheadvideo>
+				<use>standard</use>
+				<args>
+					<module>AW_Aheadvideo</module>
+					<frontName>aheadvideo</frontName>
+				</args>
+			</aheadvideo>
+		</routers>
+	</frontend>
+    
+    <adminhtml>
+        <acl>
+          <resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+            <admin>
+              <children>
+                  <system>
+                      <children>
+                        <config>
+                          <children>
+                            <aheadvideo>
+                              <title>aheadWorks - Video Section</title>
+                            </aheadvideo>
+                          </children>
+                        </config>
+                      </children>
+                  </system>
+              </children>
+            </admin>
+          </resources>
+        </acl>
+    </adminhtml>    
+</config>
