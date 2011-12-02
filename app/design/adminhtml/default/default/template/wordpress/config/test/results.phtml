@@ -1,0 +1,30 @@
+<?php
+/**
+  *
+  *
+  */
+?>
+<?php if ($this->isWordpressSection() && $this->isAclValid()): ?>
+	<div class="content-header">
+		<table cellspacing="0">
+			<tbody>
+				<tr>
+					<td>
+						<h3><?php echo $this->__('Fishpig\'s WordPress Integration') ?></h3>
+					</td>
+					<?php if ($this->helper('wordpress/debug_test')->hasError()): ?>
+						<td class="form-buttons">
+							<p style="font-size: 1.2em; font-weight: bold; letter-spacing: -0.4px; line-height: 16px; margin: 0;">
+								<?php echo $this->__('Trouble installing  FishPig\'s WordPress Integration?') ?><br /> 
+								<a href="http://fishpig.co.uk/wordpress-integration-setup/" style="text-decoration: none;" target="_blank"><?php echo $this->__('Why not let us install it for you?') ?></a>
+							</p>
+						</td>
+					<?php endif; ?>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<?php if ($results = $this->getChildHtml('wp_test_results')): ?>
+		<?php echo $results ?>
+	<?php endif; ?>
+<?php endif; ?>

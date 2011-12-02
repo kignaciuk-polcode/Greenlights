@@ -17,3 +17,6 @@ var/backups/*
 media/catalog/*
 media/tmp/*
 scripts/db.php
+/downloader/.cache/
+errors/local.xml
+wordpress/wp-config.php

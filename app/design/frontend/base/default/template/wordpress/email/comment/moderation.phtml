@@ -1,0 +1,18 @@
+<?php
+/**
+ *
+ */
+?>
+<?php echo $this->__('A new comment on the post "%s" is waiting for your approval', htmlentities($this->getComment()->getPost()->getPostTitle())) ?><br />
+<a href="<?php echo htmlentities($this->getComment()->getPost()->getUrl()) ?>" target="_blank"><?php echo htmlentities($this->getComment()->getPost()->getUrl()) ?></a><br/><br/>
+<?php echo $this->__('Author : %s (IP: %s)', htmlentities($this->getComment()->getCommentAuthor()), htmlentities($this->getComment()->getData('comment_author_IP'))) ?><br/>
+<?php echo $this->__('E-mail') ?>: <a href="mailto:<?php echo htmlentities($this->getComment()->getCommentAuthorEmail()) ?>" target="_blank"><?php echo htmlentities($this->getComment()->getCommentAuthorEmail()) ?></a><br/>
+<?php echo $this->__('URL') ?>: <a href="<?php echo htmlentities($this->getComment()->getCommentAuthorUrl()) ?>" target="_blank"><?php echo htmlentities($this->getComment()->getCommentAuthorUrl()) ?></a><br/>
+<?php echo $this->__('Whois') ?>: <a href="http://whois.arin.net/rest/ip/<?php echo htmlentities($this->getComment()->getData('comment_author_IP')) ?>" target="_blank">http://whois.arin.net/rest/ip/<?php echo htmlentities($this->getComment()->getData('comment_author_IP')) ?></a><br/>
+<?php echo $this->__('Comment') ?>:<br />
+<?php echo htmlentities($this->getComment()->getCommentContent()) ?><br /><br />
+<?php echo $this->__('Approve it') ?>: <a href="<?php echo $this->helper('wordpress')->getAdminUrl('comment.php?action=approve&c=' . $this->getComment()->getId()) ?>" target="_blank"><?php echo $this->helper('wordpress')->getAdminUrl('comment.php?action=approve&c=' . $this->getComment()->getId()) ?></a><br />
+<?php echo $this->__('Trash it') ?>: <a href="<?php echo $this->helper('wordpress')->getAdminUrl('comment.php?action=trash&c=' . $this->getComment()->getId()) ?>" target="_blank"><?php echo $this->helper('wordpress')->getAdminUrl('comment.php?action=trash&c=' . $this->getComment()->getId()) ?></a><br />
+<?php echo $this->__('Spam it') ?>: <a href="<?php echo $this->helper('wordpress')->getAdminUrl('comment.php?action=spam&c=' . $this->getComment()->getId()) ?>" target="_blank"><?php echo $this->helper('wordpress')->getAdminUrl('comment.php?action=spam&c=' . $this->getComment()->getId()) ?></a><br />
+<?php echo $this->__('Currently %d comments are waiting for approval. Please visit the moderation panel:', $this->getModeratedCommentCount()) ?><br />
+<a href="<?php echo $this->helper('wordpress')->getAdminUrl('edit-comments.php?comment_status=moderated') ?>" target="_blank"><?php echo $this->helper('wordpress')->getAdminUrl('edit-comments.php?comment_status=moderated') ?></a><br /><br />

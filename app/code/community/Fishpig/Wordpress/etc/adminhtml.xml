@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<adminhtml>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<wordpress translate="title" module="wordpress">
+										<title>WordPress Database and Integration Settings</title>
+										<sort_order>100</sort_order>
+									</wordpress>
+									<wordpress_blog translate="title" module="wordpress">
+										<title>WordPress Blog Display Settings</title>
+										<sort_order>101</sort_order>
+									</wordpress_blog>
+									<wordpress_admin translate="title" module="wordpress">
+										<title>WordPress Admin Settings</title>
+										<sort_order>102</sort_order>
+									</wordpress_admin>
+								</children>
+							</config>
+						</children>
+					</system>
+					<wordpress translate="title" module="wordpress">
+						<title>WordPress</title>
+						<children>
+							<auto_login translate="title">
+								<title>WordPress Admin Auto-Login</title>
+								<sort_order>89</sort_order>
+								<children>
+									<dashboard>
+										<title>Dashboard</title>
+										<sort_order>1</sort_order>
+									</dashboard>
+									<posts>
+										<title>Posts</title>
+										<sort_order>6</sort_order>
+									</posts>
+									<media>
+										<title>Media</title>
+										<sort_order>11</sort_order>
+									</media>
+									<links>
+										<title>Links</title>
+										<sort_order>16</sort_order>
+									</links>
+									<pages>
+										<title>Pages</title>
+										<sort_order>21</sort_order>
+									</pages>
+									<comments>
+										<title>Comments</title>
+										<sort_order>26</sort_order>
+									</comments>
+									<appearance>
+										<title>Appearance</title>
+										<sort_order>31</sort_order>
+									</appearance>
+									<plugins>
+										<title>Plugins</title>
+										<sort_order>36</sort_order>
+									</plugins>
+									<users>
+										<title>Users</title>
+										<sort_order>41</sort_order>
+									</users>
+									<tools>
+										<title>Tools</title>
+										<sort_order>46</sort_order>
+									</tools>
+									<settings>
+										<title>Settings</title>
+										<sort_order>51</sort_order>
+										<children>
+											<general>
+												<title>General</title>
+												<sort_order>1</sort_order>
+											</general>
+											<writing>
+												<title>Writing</title>
+												<sort_order>6</sort_order>
+											</writing>
+											<reading>
+												<title>Reading</title>
+												<sort_order>11</sort_order>
+											</reading>
+											<discussion>
+												<title>Discussion</title>
+												<sort_order>16</sort_order>
+											</discussion>
+											<media>
+												<title>Media</title>
+												<sort_order>21</sort_order>
+											</media>
+											<privacy>
+												<title>Privacy</title>
+												<sort_order>26</sort_order>
+											</privacy>
+											<permalink>
+												<title>Permalink</title>
+												<sort_order>31</sort_order>
+											</permalink>
+										</children>
+									</settings>
+								</children>
+							</auto_login>
+							<configuration translate="title">
+								<title>Settings</title>
+								<sort_order>99</sort_order>
+								<children>
+									<setup>
+										<title>Database / Integration</title>
+										<sort_order>1</sort_order>
+									</setup>
+									<posts_pages>
+										<title>Blog / Plugins</title>
+										<sort_order>6</sort_order>
+									</posts_pages>
+									<admin_settings>
+										<title>Admin Settings</title>
+										<sort_order>11</sort_order>
+									</admin_settings>
+									<auto_login>
+										<title>WP Auto-Login Details</title>
+										<sort_order>16</sort_order>
+									</auto_login>
+								</children>
+							</configuration>
+							<support_bugs translate="title">
+								<title>Support / Bugs</title>
+								<sort_order>109</sort_order>
+							</support_bugs>
+						</children>
+					</wordpress>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</adminhtml>

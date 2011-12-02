@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<layout>
+
+	<default>
+		<reference name="before_body_end">
+			<block type="adminhtml/template" name="wordpress.adminLinks" template="wordpress/admin-links-js.phtml"/>
+		</reference>
+	</default>
+
+	<wp_admin_adminhtml_wpadmin_login>
+		<reference name="left">
+			<block type="wordpress/adminhtml_autologin_edit_tabs" name="wordpress.autologin.tabs"/>
+		</reference>
+		<reference name="content">
+			<block type="wordpress/adminhtml_autologin_edit" name="wordpress.autologin" />
+		</reference>
+	</wp_admin_adminhtml_wpadmin_login>
+	
+	<adminhtml_system_config_edit>
+		<reference name="content">
+			<block type="wordpress/adminhtml_system_config_wrapper" name="wordpress.test.results"  before="-" template="wordpress/config/test/results.phtml">
+				<block type="wordpress/adminhtml_system_config_test_results_grid" name="wp_test_results" as="wp_test_results"/>
+			</block>
+		</reference>
+		<reference name="before_body_end">
+			<block type="wordpress/adminhtml_template" name="wordpress.js" template="wordpress/config/js.phtml" after="-" />
+		</reference>
+	</adminhtml_system_config_edit>
+
+	<wp_admin_adminhtml_support_index>
+		<reference name="content">
+			<block type="wordpress/adminhtml_support_edit" name="wordpress_support" />
+			<block type="wordpress/adminhtml_template" name="support.js" after="-" template="wordpress/support/js.phtml"/>
+		</reference>
+		<reference name="left">
+			<block type="wordpress/adminhtml_support_edit_tabs" name="wordpress_support.tabs"/>
+		</reference>
+	</wp_admin_adminhtml_support_index>
+
+	<adminhtml_catalog_product_edit>
+		<reference name="product_tabs">
+			<action method="addTab">
+				<name>wp_posts</name>
+				<block>wordpress/adminhtml_catalog_product_edit_tab_post_grid</block>
+			</action>
+			<action method="addTab">
+				<name>wp_categories</name>
+				<block>wordpress/adminhtml_catalog_product_edit_tab_category_grid</block>
+			</action>
+		</reference>	
+	</adminhtml_catalog_product_edit>
+	
+	<wp_admin_adminhtml_catalog_product_post>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_product_edit_tab_post_grid" name="associated.posts" />
+			<block type="adminhtml/widget_grid_serializer" name="post_grid_serializer">
+                <reference name="post_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>associated.posts</grid_block_name>
+                        <data_callback>getSelectedWpItemPositions</data_callback>
+                        <hidden_input_name>links[post_ids]</hidden_input_name>
+                        <reload_param_name>related_post_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                    	<input_name>position_in_product</input_name>
+					</action>
+                </reference>
+            </block>
+		</block>
+	</wp_admin_adminhtml_catalog_product_post>
+	
+	<wp_admin_adminhtml_catalog_product_postgrid>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_product_edit_tab_post_grid" name="associated.posts" />
+		</block>
+	</wp_admin_adminhtml_catalog_product_postgrid>
+	
+	<wp_admin_adminhtml_catalog_product_category>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_product_edit_tab_category_grid" name="associated.categories" />
+			<block type="adminhtml/widget_grid_serializer" name="category_grid_serializer">
+                <reference name="category_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>associated.categories</grid_block_name>
+                        <data_callback>getSelectedWpItemPositions</data_callback>
+                        <hidden_input_name>links[category_ids]</hidden_input_name>
+                        <reload_param_name>related_category_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                    	<input_name>position_in_product</input_name>
+					</action>
+                </reference>
+            </block>
+		</block>
+	</wp_admin_adminhtml_catalog_product_category>
+	
+	<wp_admin_adminhtml_catalog_product_categorygrid>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_product_edit_tab_category_grid" name="associated.categories" />
+		</block>
+	</wp_admin_adminhtml_catalog_product_categorygrid>
+	
+	<adminhtml_catalog_category_edit>
+		<reference name="tabs">
+			<action method="addTab">
+				<name>wp_posts</name>
+				<block>wordpress/adminhtml_catalog_category_edit_tab_post_grid</block>
+			</action>
+			<action method="addTab">
+				<name>wp_categories</name>
+				<block>wordpress/adminhtml_catalog_category_edit_tab_category_grid</block>
+			</action>
+		</reference>	
+	</adminhtml_catalog_category_edit>
+	
+	<wp_admin_adminhtml_catalog_category_post>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_category_edit_tab_post_grid" name="associated.posts" />
+			<block type="adminhtml/widget_grid_serializer" name="post_grid_serializer">
+                <reference name="post_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>associated.posts</grid_block_name>
+                        <data_callback>getSelectedWpItemPositions</data_callback>
+                        <hidden_input_name>links[post_ids]</hidden_input_name>
+                        <reload_param_name>related_post_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                    	<input_name>position_in_category</input_name>
+					</action>
+                </reference>
+            </block>
+		</block>
+	</wp_admin_adminhtml_catalog_category_post>
+
+	<wp_admin_adminhtml_catalog_category_postgrid>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_category_edit_tab_post_grid" name="associated.posts" />
+		</block>
+	</wp_admin_adminhtml_catalog_category_postgrid>
+	
+	<wp_admin_adminhtml_catalog_category_category>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_category_edit_tab_category_grid" name="associated.categories" />
+			<block type="adminhtml/widget_grid_serializer" name="category_grid_serializer">
+                <reference name="category_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>associated.categories</grid_block_name>
+                        <data_callback>getSelectedWpItemPositions</data_callback>
+                        <hidden_input_name>links[category_ids]</hidden_input_name>
+                        <reload_param_name>related_category_ids</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                    	<input_name>position_in_category</input_name>
+					</action>
+                </reference>
+            </block>
+		</block>
+	</wp_admin_adminhtml_catalog_category_category>
+
+	<wp_admin_adminhtml_catalog_category_categorygrid>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="wordpress/adminhtml_catalog_category_edit_tab_category_grid" name="associated.category" />
+		</block>
+	</wp_admin_adminhtml_catalog_category_categorygrid>
+	
+</layout>

@@ -1,0 +1,18 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php if ($postListHtml = $this->getPostListHtml()): ?>
+	<div class="box-collateral box-description">
+		<?php if ($title = $this->getTitle()): ?>
+			<h2><?php echo $this->__($title) ?></h2>
+		<?php endif; ?>
+		<div class="std">
+			<?php echo $postListHtml ?>
+		</div>
+	</div>
+<?php endif; ?>

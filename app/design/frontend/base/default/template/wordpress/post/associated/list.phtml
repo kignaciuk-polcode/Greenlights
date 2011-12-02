@@ -1,0 +1,18 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $posts = $this->getPosts() ?>
+<?php if (count($posts) > 0): ?>
+	<ul>
+		<?php foreach($posts as $post): ?>
+			<li>
+				<a href="<?php echo $post->getPermalink() ?>"><?php echo $post->getPostTitle() ?></a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+<?php endif; ?>

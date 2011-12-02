@@ -1,0 +1,57 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php echo $this->getDocType() ?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+>
+<channel>
+	<title><![CDATA[<?php echo $this->getRssTitle() ?>]]></title>
+	<atom:link href="<?php echo $this->getFeedUrl() ?>" rel="self" type="application/rss+xml" />
+	<link><![CDATA[<?php echo Mage::helper('wordpress')->getUrl() ?>]]></link>
+	<description><![CDATA[<?php echo $this->getBlogName() ?>]]></description>
+	<lastBuildDate><?php echo date('D, d M Y H:i:s +0000') ?></lastBuildDate>
+	<language><?php echo $this->getRssLanguage() ?></language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator><![CDATA[http://fishpig.co.uk/wordpress-integration/]]></generator>
+	<?php $posts = $this->getPosts() ?>
+<?php if (count($posts) > 0): ?>
+	<?php foreach($posts as $post): ?>
+	<item>
+		<title><![CDATA[<?php echo $post->getPostTitle() ?>]]></title>
+		<link><![CDATA[<?php echo $post->getPermalink() ?>]]></link>
+		<comments><![CDATA[<?php echo $post->getPermalink() ?>#respond]]></comments>
+		<pubDate><?php echo $post->getPostDate('D, d M Y H:i:s +0000') ?></pubDate>
+		<dc:creator><?php echo $post->getAuthorName() ?></dc:creator>
+	<?php if ($category = $post->getCategories()): ?>
+		<category><![CDATA[]]></category>
+	<?php endif; ?>
+		<guid isPermaLink="false"><![CDATA[<?php echo $post->getGuid() ?>]]></guid>
+	<?php if ($this->displayExceprt()) : ?>
+		<description><![CDATA[<?php echo $post->getExcerpt() ? $post->getPostExcerpt() : $this->shorten($post->getPostContent()) ?>]]></description>
+	<?php else : ?>
+		<description><![CDATA[<?php echo $post->getPostContent() ?>]]></description>
+	<?php endif; ?>
+	<?php if ($image = $this->getFeaturedImageUrl($post)): ?>
+		<image>
+			<url><?php echo $image ?></url>
+			<title><![CDATA[<?php echo $post->getPostTitle() ?>]]></title>
+			<link><![CDATA[<?php echo $post->getPermalink() ?>]]></link>
+		</image>
+	<?php endif; ?>
+	</item>
+	<?php endforeach; ?>
+<?php endif; ?>
+</channel>
+</rss>

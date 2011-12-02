@@ -1,0 +1,63 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $post = $this->getPost() ?>
+<?php if ($post): ?>
+	<?php $helper = $this->helper('wordpress') ?>
+	<?php $author = $post->getAuthor() ?>
+	<?php $comments = $post->getComments() ?>
+	<?php if ($this->helper('wordpress/plugin_shareThis')->canDisplayOnPost()): ?>
+		<?php echo $this->helper('wordpress/plugin_shareThis')->getJavascriptHtml() ?>
+	<?php endif; ?>
+	<div class="page-title">
+		<h1><?php echo $post->getPostTitle() ?></h1>
+	</div>
+	<div class="post-view">
+		<p class="when">
+			<?php echo $this->__('Posted on %s by %s', $post->getPostDate(), '<a href="'.$author->getUrl().'">'.$author->getDisplayName().'</a>') ?>
+			<span>
+				<?php if ($comments->count() == 0): ?>
+					<?php echo $this->__('There have been %s0 comments%s', '<a href="'.$post->getPermalink().'#respond">', '</a>') ?>
+				<?php else: ?>
+					<?php echo $this->__('There have been %s%s comment(s)%s', '<a href="'.$post->getPermalink().'#comments">', $comments->count(), '</a>') ?>
+				<?php endif; ?>
+			</span>
+		</p>
+		<div class="entry">
+			<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+				<div class="featured-image left">
+					<img src="<?php echo $featuredImage->getAvailableImage() ?>" alt=""/>
+				</div>
+			<?php endif; ?>
+			<?php echo $post->getPostContent() ?>
+			<br style="clear:both;"/>
+		</div>
+		<?php if ($this->helper('wordpress/plugin_shareThis')->canDisplayOnPost()): ?>
+			<div id="sharethis-icons"><?php echo $this->helper('wordpress/plugin_shareThis')->getIcons($post) ?></div>
+		<?php endif; ?>
+		<p class="details">
+			<?php $categories = $post->getParentCategories() ?>
+			<?php if (count($categories) > 0): ?>
+				<?php echo $this->__('This post was posted in') ?>
+				<?php $it = count($categories) ?>
+				<?php foreach($categories as $category): ?>
+					<a href="<?php echo $category->getUrl() ?>"><?php echo $category->getName() ?></a><?php if (--$it > 0): ?>, <?php endif; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			<?php $tags = $post->getTags() ?>
+			<?php if (count($tags) > 0): ?>
+				<?php echo (count($categories) == 0) ? $this->__('This post was tagged with') : $this->__('and was tagged with') ?>
+				 <?php $it = count($tags) ?>
+				 <?php foreach($tags as $tag): ?>
+					<a href="<?php echo $tag->getUrl() ?>"><?php echo $tag->getName() ?></a><?php if (--$it > 0): ?>, <?php endif; ?>
+				 <?php endforeach; ?>
+			<?php endif; ?>
+		</p>
+		<?php echo $this->getCommentsHtml() ?>
+	</div>
+<?php endif; ?>

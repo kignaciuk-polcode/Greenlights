@@ -1,0 +1,20 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $post = $this->getPost() ?>
+<?php if ($post): ?>
+	<div id="featured-post">
+		<div class="page-title">
+			<h2><?php echo $post->getPostTitle() ?></h2>
+		</div>
+		<div class="entry">
+			<?php echo $post->getPostContent() ?>
+			<br style="clear:both;"/>
+		</div>
+	</div>
+<?php endif; ?>

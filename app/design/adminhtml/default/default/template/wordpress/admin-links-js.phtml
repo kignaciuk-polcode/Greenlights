@@ -1,0 +1,51 @@
+<?php
+/**
+ *
+ *
+ */
+?>
+<script type="text/javascript">document.observe('dom:loaded', function() {	$('nav').select('li').each(function(rootLi) {if($(rootLi).select('a')[0].select('span')[0].innerHTML=='<?php echo $this->__('WP Admin') ?>') {var ulObj=$(rootLi).select('ul')[0];$(rootLi).select('a')[0].target='_blank';fishpig_wpadmin_links(ulObj);}});function fishpig_wpadmin_links(ulObj){$(ulObj).select('li').each(function(liObj){$($(liObj).select('a')[0]).addClassName('wpadmin-link')});}});</script>
+<?php if (Mage::getStoreConfigFlag('wordpress_admin/wp_admin/links_external_target')): ?>
+	<script type="text/javascript">document.observe('dom:loaded', function() {$$('a.wpadmin-link').each(function(a){a.target = '_blank';});});</script>
+<?php endif; ?>
+<?php if (false): ?>
+<?php if (!Mage::app()->isSingleStoreMode()): ?>
+	<div id="wpadmin-doorway" class="no-display" style="bottom:0; height:100%; position:fixed; width:100%; z-index:101;">
+		<div class="fader" style="background:#000; bottom:0; height:100%; opacity:.3; position:fixed; width:100%; z-index:102;">
+			<input type="hidden" name="fishpig_wp_url_cache" id="fishpig_wp_url_cache" value="0"/>
+		</div>
+		<div id="wpadmin-doorway-inner" style="background:url('<?php echo $this->getSkinUrl('images/footer_bg.gif') ?>') repeat-x left bottom #fff; border:3px solid #6F8992; margin:100px auto 0; padding:20px; position:relative; width: 400px; z-index:102;">
+			<h2 style="font-size:2em; margin-bottom:4px;"><?php echo $this->__('WordPress Quick Links') ?></h2>
+			<p style="font-size:1.1em;"><?php echo $this->__('Select the store that is associated with the WordPress admin you want to go to') ?></p>
+			<?php $stores = Mage::getResourceModel('core/store_collection') ?>
+			<ul style="height:1%; list-style: disc inside none; margin-top:20px; overflow:hidden;">
+				<?php foreach($stores as $store): ?>
+					<li style="float:left; width: 33%;">
+						<a href="#" id="store-<?php echo $store->getId() ?>" class="fish-store-link"><?php echo $store->getName() ?></a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+			<p style="margin-top:20px;">
+				<button type="button" class="cancel scalable"><span><?php echo $this->__('Cancel') ?></span></button>
+			</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.observe('dom:loaded', function() {
+			$$('a.wpadmin-link').each(function(a){
+				$(a).observe('click', function(e) {
+					$('fishpig_wp_url_cache').value = a.href;
+					$('wpadmin-doorway').removeClassName('no-display');
+					Event.stop(e);
+				});
+			});
+			
+			$$('a.fish-store-link').each(function(a) {
+				$(a).observe('click', function(e) {
+					a.href = $('fishpig_wp_url_cache').value + 'store_id/' + a.id.substring(6);
+				});
+			});
+		});
+	</script>
+<?php endif; ?>
+<?php endif; ?>
