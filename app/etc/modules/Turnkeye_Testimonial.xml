@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <modules>
+    <Turnkeye_Testimonial>
+      <active>true</active>
+      <codePool>community</codePool>
+    </Turnkeye_Testimonial>
+  </modules>
+</config>
