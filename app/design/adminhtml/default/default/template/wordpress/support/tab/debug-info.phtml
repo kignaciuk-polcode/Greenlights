@@ -1,0 +1,39 @@
+<?php
+/**
+ *
+ *
+ */
+?>
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4><?php echo $this->__('System Information') ?></h4>
+	</div>
+	<fieldset class="config">
+		<legend><?php echo $this->__('System Information') ?></legend>
+		<?php $sections = $this->helper('wordpress/debug_environmentReport')->getReport() ?>
+		<?php if (count($sections) > 0): ?>
+			<div style="height:1%; overflow:hidden;">
+				<?php foreach($sections as $section => $values): ?>
+					<ul style="float:left; width: 32%;">
+						<li>
+							<h3><a href="#" style="text-decoration:none;"><?php echo $section ?></a>	</h3>
+							<?php if (count($values) > 0): ?>
+								<ul>
+									<?php foreach($values as $field => $value): ?>
+										<li style="height: 18px; overflow: hidden;">
+											<strong><?php echo $field ?></strong>
+											<span><?php echo $value ?></span>
+										</li>
+									<?php endforeach; ?>
+									<li>&nbsp;</li>
+								</ul>
+							<?php endif; ?>
+						</li>
+					</ul>
+				<?php endforeach; ?>	
+			</div>
+		<?php endif; ?>
+		<div style="height:1%;overflow:hidden;"><button type="button" class="scalable back left support-previous" id="content_previous"><span><?php echo $this->__('Previous') ?></span></button><button type="button" class="scalable add right support-next" id="content_next"><span><?php echo $this->__('Next') ?></span></button></div>
+	</fieldset>
+</div>
+

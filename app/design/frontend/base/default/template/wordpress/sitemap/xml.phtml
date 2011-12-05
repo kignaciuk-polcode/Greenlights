@@ -1,0 +1,28 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?><?php echo $this->getDocType() ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc><?php echo $this->helper('wordpress')->getUrl() ?></loc>
+		<lastmod><?php echo date('Y-m-d') ?></lastmod>
+		<priority>1.0</priority>
+		<?php if ($this->getHomepageChangeFrequency()): ?>
+			<changefreq><?php echo $this->getHomepageChangeFrequency() ?></changefreq>
+		<?php endif; ?>
+	</url>	
+	<?php foreach($this->getPosts() as $post): ?>
+		<url>
+			<loc><?php echo $post->getPermalink() ?></loc>
+			<lastmod><?php echo $this->getModifiedDate($post) ?></lastmod>
+			<priority><?php echo $this->getPostPriority() ?></priority>
+			<?php if ($this->getPostChangeFrequency()): ?>
+				<changefreq><?php echo $this->getPostChangeFrequency() ?></changefreq>
+			<?php endif; ?>
+		</url>
+	<?php endforeach; ?>
+</urlset> 

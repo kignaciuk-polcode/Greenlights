@@ -1,0 +1,75 @@
+<?php
+/**
+ *
+ *
+ */
+?>
+<?php $tabInnerHTML = '<span title="The information in this tab has been changed." class="changed"></span><span title="This tab contains invalid data. Please solve the problem before saving." class="error"></span>'; ?>
+<script type="text/javascript">
+	//<![CDATA[
+	document.observe("dom:loaded", function() {
+	
+		$('submit-support-ticket').observe('click', function() {
+			fishpig_SetSupport(0);
+		});
+	
+		$('submit-bug-report').observe('click', function() {
+			fishpig_SetSupport(1);
+		});
+		
+		$('enquiry_type').observe('change', function() {
+			fishpig_SetSupport(this.selectedIndex);
+		});
+
+		$$('.support-previous').each(function(e) {
+			e.observe('click', function() {
+				fish_PreviousTab();
+			});
+		});
+		
+		function fish_PreviousTab()
+		{
+			try {
+				var tab = $('support_tabs').select('li a.active')[0];
+				var newTab = tab.up().previous('li').select('a')[0];
+				support_tabsJsTabs.showTabContent(newTab);
+			}
+			catch (e) {}
+		}
+		
+		$$('.support-next').each(function(e) {
+			e.observe('click', function() {
+				fish_NextTab();
+			});
+		});
+		
+		function fish_NextTab()
+		{
+			try {
+				var tab = $('support_tabs').select('li a.active')[0];
+				var newTab = tab.up().next('li').select('a')[0];
+				support_tabsJsTabs.showTabContent(newTab);
+			}
+			catch (e) {}
+		}
+		
+
+		
+		function fishpig_SetSupport(selectIndex)
+		{
+			$('enquiry_type').selectedIndex = selectIndex;
+			$$('.enquirytype').each(function(e) {
+				e.innerHTML = $('enquiry_type').value;
+			});
+
+			fish_NextTab();
+		}
+		
+		<?php if (((int)$this->getParam('type')) == 1): ?>
+			fishpig_SetSupport(1);
+			fish_NextTab();
+		<?php endif; ?>
+		
+	});
+	//]]>
+</script>

@@ -1,0 +1,21 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php if (!$this->getVideoWidth() && !$this->getVideoHeight()): ?>
+	<?php $this->setVideoWidth(480) ?>
+	<?php $this->setVideoHeight(385) ?>
+<?php endif; ?>
+<?php if ($videoCode = $this->getYoutubeVideoCode()): ?>
+	<?php $embedUrl = 'http://www.youtube.com/v/' . $videoCode . '?fs=1&amp;hl=en_US' . ($this->getHideRelatedVideos() ? '&amp;rel=0' : '') . ($this->getHideSearch() ? '&amp;showsearch=0' : '') . ($this->getAutoplay() ? '&amp;autoplay=1' : '') ?>
+	<object<?php if ($this->getVideoWidth()): ?> width="<?php echo $this->getVideoWidth() ?>"<?php endif; ?><?php if ($this->getVideoHeight()): ?> height="<?php echo $this->getVideoHeight() ?>"<?php endif; ?>>
+		<param name="movie" value="<?php echo $embedUrl ?>"></param>
+		<param name="allowFullScreen" value="true"></param>
+		<param name="allowscriptaccess" value="always"></param>
+		<embed src="<?php echo $embedUrl ?>" type="application/x-shockwave-flash" wmode="transparent" allowscriptaccess="always" allowfullscreen="true"<?php if ($this->getVideoWidth()): ?> width="<?php echo $this->getVideoWidth() ?>"<?php endif; ?><?php if ($this->getVideoHeight()): ?> height="<?php echo $this->getVideoHeight() ?>"<?php endif; ?>></embed>
+	</object>
+<?php endif; ?>

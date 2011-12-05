@@ -1,0 +1,11 @@
+<?php
+/**
+ *
+ */
+
+	$_helper = Mage::helper('wordpress');
+	
+?>
+<?php if ((!$this->getCheckInclusion() || Mage::getStoreConfigFlag('wordpress_blog/rss_feed/is_global')) && Mage::getStoreConfigFlag('wordpress_blog/rss_feed/enabled')): ?>
+<link rel="alternate" type="application/rss+xml" title="<?php echo $this->__('%s - RSS Feed', $_helper->getCachedWpOption('blogname')) ?>" href="<?php echo $_helper->getUrl('feed') ?>" />
+<?php endif; ?>

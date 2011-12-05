@@ -1,0 +1,16 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $_author = $this->getAuthor() ?>
+<?php if ($_author): ?>
+	<div class="page-title">
+		<h1><?php echo $this->__('Author Archives') ?>: <?php echo $_author->getDisplayName() ?></h1>
+	</div>
+	<?php echo $this->getPostListHtml() ?>
+<?php endif; ?>
+

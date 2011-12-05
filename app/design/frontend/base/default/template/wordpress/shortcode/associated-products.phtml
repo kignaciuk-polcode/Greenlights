@@ -1,0 +1,29 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $products = $this->getProducts() ?>
+<?php if (count($products) > 0): ?>
+	<div class="block block-associated-products">
+		<?php if ($title = $this->getTitle()): ?>
+			<div class="block-title">
+				<strong><?php echo $title ?></strong>
+			</div>
+		<?php endif; ?>
+		<div class="block-content">
+			<ul>
+				<?php foreach($products as $product): ?>
+					<li>
+						<a href="<?php echo $product->getProductUrl() ?>">
+							<?php echo $product->getName() ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</div>
+<?php endif; ?>

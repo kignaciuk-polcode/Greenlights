@@ -1,0 +1,33 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+
+<?php $comments = $this->getComments() ?>
+<?php $post = $this->getPost() ?>
+<div id="comments">
+	<?php if ($comments->count() > 0): ?>
+		<h2><?php echo $this->getCommentCount() ?> <?php echo $this->getCommentCount() == 1 ? $this->__('Response to %s', $post->getPostTitle()) : $this->__('Responses to %s', $post->getPostTitle()) ?></h2>
+		<ul class="comment-list">
+			<?php foreach($comments as $comment): ?>
+				<li id="comment-<?php echo $comment->getId() ?>">
+					<div class="by">
+						<a href="<?php echo $comment->getCommentAuthorUrl() ?>" rel="nofollow">
+							<?php echo $comment->getCommentAuthor() ?>
+						</a> <?php echo $this->__('says') ?>:
+					</div>
+					<p class="entry"><?php echo nl2br($comment->getCommentContent()) ?></p>
+					<p class="when"><?php echo $this->__('Posted on %s at %s', $comment->getCommentDate(), $comment->getCommentTime()) ?></p>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+		<?php echo $this->getPagerHtml() ?>
+	<?php endif; ?>
+	<?php if ($this->canComment()): ?>
+		<?php echo $this->getCommentFormHtml() ?>
+	<?php endif; ?>
+</div>

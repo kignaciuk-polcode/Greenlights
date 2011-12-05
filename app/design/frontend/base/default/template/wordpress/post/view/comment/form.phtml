@@ -1,0 +1,71 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<form id="respond" method="post" action="<?php echo $this->getCommentFormAction() ?>">
+	<div class="display-none">
+		<input type="hidden" name="comment_post_ID" value="<?php echo $this->getPostId() ?>"/>
+		<input type="hidden" name="comment_parent" value="0"/>
+	</div>
+	<div class="fieldset">
+		<div class="legend"><?php echo $this->__('Comments') ?></div>
+		<?php if ($this->customerMustLogin()): ?>	
+			<p><?php echo $this->__('You must be logged in to post a comment.') ?></p>
+			<p><button class="button btn-login" type="button" onclick="setLocation('<?php echo $this->getLoginLink() ?>');"><span><span><?php echo $this->__('Login') ?></span></span></button></p>
+		<?php else: ?>
+			<ul class="form-list">
+				<?php if (!$this->isCustomerLoggedIn()): ?>
+					<li class="fields">
+						<div class="field">
+							<label for="author" class="required"><?php echo $this->__('Name') ?> <em>*</em></label>
+							<div class="input-box">
+								<input type="text" id="author" name="author" class="input-text required-entry" value="<?php echo $this->getSessionData()->getAuthor() ?>"/>
+							</div>
+						</div>
+						<div class="field">
+							<label for="email" class="required"><?php echo $this->__('Email') ?> <em>*</em></label>
+							<div class="input-box">
+								<input type="text" id="email" name="email" class="input-text required-entry validate-email" value="<?php echo $this->escapeHtml($this->getSessionData()->getEmail()) ?>"/>
+							</div>
+						</div>
+					</li>
+				<?php endif; ?>
+				<li>
+					<label for="url"><?php echo $this->__('Website') ?></label>
+					<div class="input-box">
+						<input type="text" id="url" name="url" class="input-text" value="<?php echo $this->escapeHtml($this->getSessionData()->getUrl()) ?>"/>
+					</div>
+				</li>
+				<li class="wide">
+					<label for="comment" class="required"><?php echo $this->__('Comment') ?> <em>*</em></label>
+					<div class="input-box">
+						<textarea id="comment" name="comment" rows="8" cols="45" class="required-entry"><?php echo $this->escapeHtml($this->getSessionData()->getComment()) ?></textarea>
+					</div>
+				</li>
+				<?php if (Mage::helper('wordpress/recaptcha')->isEnabled()): ?>
+					<?php if ($recaptcha = $this->getRecaptchaHtml()): ?>
+						<li id="recaptcha-wrapper" class="wide">
+							<?php echo $recaptcha ?>
+						</li>
+					<?php endif; ?>
+				<?php endif; ?>
+			</ul>
+		<?php endif; ?>
+	</div>
+	<?php if (!$this->customerMustLogin()): ?>	
+	<div class="buttons-set">
+		<button type="submit" name="submit"  class="button" value="Post your comment" id="post-the-comment">
+			<span><span><?php echo $this->__('Post your comment') ?></span></span>
+		</button>
+	</div>
+	<script type="text/javascript">
+	//<![CDATA[
+		var commentForm = new VarienForm('respond');
+	//]]>
+	</script>
+	<?php endif; ?>
+</form>

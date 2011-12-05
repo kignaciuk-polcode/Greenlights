@@ -1,0 +1,21 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<div class="page-title">
+	<h1><?php echo $this->__('Tags') ?></h1>
+</div>
+<?php $tags = $this->getTagCollection() ?>
+<?php if (count($tags) > 0): ?>
+	<ul id="tag-list">
+		<?php foreach($tags as $tag): ?>
+			<li>
+				<a href="<?php echo $tag->getUrl() ?>"><?php echo $tag->getName() ?></a> (<?php echo $tag->getPostCount() ?>)
+			</li>
+		<?php endforeach; ?>
+	</ul>
+<?php endif; ?>

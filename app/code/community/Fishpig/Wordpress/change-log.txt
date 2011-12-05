@@ -1,0 +1,331 @@
+##
+# Fishpig's WordPress Integration for Magento eCommerce
+#
+# Author:			FishPig Limited (Ben Tideswell)
+# Documentation:	http://fishpig.co.uk/wordpress-integration/
+# Email Support:	help@fishpig.co.uk
+# Bug Reports:		help@fishpig.co.uk
+# Installation:		http://fishpig.co.uk/wordpress-integration-setup/
+# Upgrade 2.0		http://fishpig.co.uk/wordpress-integration-2-0-upgrade/
+##
+
+30/11/2011 - v2.0.13
+- Added fix for Magento 1.4.1.1 and before that caused blog homepage to 404
+
+30/11/2011 - v2.0.12
+- Added fix for sites using index.php/ in their URL's that caused blog homepage to 404
+
+29/11/2011 - v2.0.11
+- Added fix for Magento 1.3.2.4
+
+29/11/2011 - v2.0.10
+- Added ability to set WordPress blog as Magento homepage
+- Hooked up custom post view template to new configuration option
+- Added backwards compatibility for Magento 1.3.0.0 (although you shouldn't be using such an old version of Magento!)
+- Fixed issue that stopped category list as dropdown displaying
+- Fixed issue that stopped sidebar dropdowns not changing page location
+- Fixed issue that stopped keywords displaying
+- Improved All In One SEO integration
+- Integrated All In One SEO's menu label option for pages which allows you to set a custom label for pages in the navigation
+- Re-added old sidebar blocks to stop errors. These have been deprecated so please update to new blocks
+- Removed blocks related to WpCustomerSynch
+- Add 301 redirects for all attachment links to stop 404 errors in Google Analytics
+
+26/11/2011 - v2.0.5
+- Added fix for pages on Magento 1.3.2.4
+
+26/11/2011 - v2.0.4
+- Added support for 2 sidebar columns, controllable by the WP Admin Widgets section (left & right)
+- Added functionality to alter blog page templates via the Magento configuration area
+- Improved blog search to work without JS
+- Deprecated Fishpig_Wordpress_Model_User::getMeta() (replaced with getCustomField())
+- Deprecated Fishpig_Wordpress_Model_Mysql_User::getMeta() (replaced with getMetaValue())
+
+24/11/2011 - v2.0.3
+- Added fix to stop trashed pages displaying
+- Fixed issue with SyntaxHighlighter integration
+
+24/11/2011 - v2.0.2
+- Fixes for sub-page URL's 
+
+24/11/2011 - v2.0.1
+- Added fix for pages when post permalink code is %post_name%
+- Added fix for sub-pages being displayed as root pages
+
+20/11/2011 - v2.0.0
+- Added Page support
+- Added sidebar widget control in the WordPress Admin. Now you can control your sidebar widgets using the WP Admin GUI!
+- Added decorateList JS call to sidebar list elements
+
+11/11/2011 - v1.9.14
+- Fixed issue stopping users auto-logging in to WP Admin
+
+09/11/2011 - v.1.9.13
+- Added improvement to stop frontend error when incorrectly configured
+- Updated sidebar templates - added 'item' class name so default formatting looks better
+- Fixed issue with regular expression in caption shortcode
+- Fixed issue with $category->getParentCategory() method
+
+01/11/2011 - v.1.9.12
+- Added fix for centered captions
+
+27/10/2011 - v1.9.11
+- Added improvements for multi-store in older versions of Magento
+
+12/10/2011 - v1.9.10
+- Added isEnabledForStore() method to Customer Comments controller
+
+11/10/2011 - v1.9.9
+- Fixed issue with category and archive pager
+
+06/10/2011 - v1.9.8
+- Added check in controller to see whether blog is enabled for store
+
+05/10/2011 - v1.9.7
+- Added support for 'Noindex for Categories' in AllInOne SEO
+- Added support for 'Noindex for Archives' in AllInOne SEO
+- Added support for 'Noindex for Tags' in AllInOne SEO
+
+04/10/2011 - v1.9.6
+- Fixed issue breaking router when 'WP No Category Base' is installed
+
+04/10/2011 - v1.9.5
+- Added robots.txt to blog. Content can be changed via config or disabled completely
+- Added option to display RSS feed link on all pages and not just blog pages (enabled by default)
+
+03/10/2011 - v1.9.4
+- Added Cryillic support for tag URL's
+
+29/09/2011 - v1.9.3
+- Fixed associated posts issue
+- Added default values for XML homepage/post update frequency
+- Added support for Unicode characters in permalinks. This feature is disabled by default but can enabled in the config
+
+28/09/2011 - v1.9.2
+- Fixed issue with store saving
+- Improved router/database response time
+- Improve _getStoreConfig
+
+16/09/2011 - v1.9.1
+- Fixed _getStoreForConfig issue which stopped stores being editable
+- Improved performance while in Admin area
+
+13/09/2011 - v1.9.0
+- Added read-more class name to teaser anchor
+- Added Fishpig_Wordpress_Model_Post::getCustomField($key)
+
+12/09/2011 - v1.8.41
+- Added getChildrenCategories() to post category
+- Updated category list template to include first level sub-categories
+
+11/09/2011 - v1.8.40
+- Fixed bug
+- Fixed issue which caused empty archive pages to not correctly show the 404 page
+
+11/09/2011 - v1.8.39
+- Improved WordPress URL's integration test
+- Improved Blog Route integration test for multi-stores when using store-codes
+- Improved getStoreForConfig
+
+08/09/2011 - v1.8.38
+- Fixed bug for _getStoreForConfig();
+
+08/09/2011 - v1.8.37
+- Improved multi-store support (fixed a bug)
+
+08/09/2011 - v1.8.36
+- Improved multi-store support
+
+08/09/2011 - v1.8.35
+- Added _nosid to getUrl to prevent SID being added to multistore URL's
+- Improved getStoreConfig for Adminhtml to ensure correct store values used in integration tests
+
+08/09/2011 - v1.8.34
+- Improved multi-store support
+- Removed config options from website view. Config options must now be entered globally or per store
+- Improved getUrl
+
+07/09/2011 - v1.8.33
+- Update French translation file (thanks Benoit!)
+- Fixed division by 0 error in Comment model
+
+04/09/2011 - v1.8.32
+- Changed return type of controller::_init to bool/null
+
+04/09/2011 - v1.8.31
+- Added div wrapper to post view content
+- Added fix to stop feed URL giving 404
+
+31/08/2011 - v1.8.30
+- Added fix which stopped post comment feed working
+- Converted recent posts template to block, block-title, block-content sidebar style
+- Added recent comments block to the sidebar
+
+30/08/2011 - v1.8.29
+- Added fix for recoverable error in DatabaseSetup.php
+- Added static route for post comments
+- Added improvements to preview post from WP Admin
+
+23/08/2011 - v1.8.28
+- Fixed error in archive list block when using table prefix other than 'wp_'
+
+20/08/2011 - v1.8.27
+- Added try/catch block for get top link to stop homepage errors when installing
+
+18/08/2011 - v1.8.26
+- Added fix for link category class extend
+- Fixed issue that forced users to login to comment, regardless of WP-Admin Setting
+
+13/08/2011 - v1.8.25
+- Added basic support for the gallery shortcode
+
+12/08/2011 - v1.8.24
+- Changed $this->stripTags for strip_tags
+- Changed tag block title from Categories to Tags
+- Added functionality to force user to login before commenting
+
+10/08/2011 - v1.8.22
+- Added ability to add store code to blog URL's
+- Fixed issue with multiple comment pages
+- Removed AllInOneSeo from post model. (Still need to go further and remove completely so multiple SEO plugins can be supported)
+- Added keywords to AllInOneSEO
+
+04/08/2011 - v1.8.21
+- Added check to search form template to determine whether search is enabled
+- Removed shortcode/filter selectors form Admin and set hard-coded default values
+- Add post auto-excerpt generation
+- Fix post teaser tag (<!--more-->)
+- Automatically generate META description if not added via All In One SEO
+
+03/08/2011 - v1.8.20
+- Added small fix for Syntax Highlighter integration
+- Added fix for comment whitelist to help combat spam (if you have spam, use the built in Recaptcha support for comments)
+- Re-added preview mode
+
+31/07/2011 - v1.8.19
+- Added improved support for Syntax Highlighter extension
+
+31/07/2011 - v1.8.18
+- Removed Syntax Highlighter support (If you still want to use the Syntax Highlighter, please download the extension Syntax Highlighter)
+
+31/07/2011 - v1.8.17
+- Fixed another All In One SEO bug
+
+30/07/2011 - v1.8.16
+- Fixed All In One SEO bug
+
+28/07/2011 - v1.8.15
+- Added fixed for different timezones
+- Added noRoute forward when permalink matches format but no post
+- Changed post permalink pattern to allow for some special characters
+
+27/07/2011 - v1.8.14
+- Added comments fix for Magento 1.6.0.0.rc2
+- Added fix for Magento 1.3.2.4 when using the same database
+- Added another (and the last) htmlEscape/escapeHtml fix for Magento 1.3.2.4
+
+25/07/2011 - v1.8.13
+- Added getTopLinkUrl so that topLink can be generated for semi-integration as well as full-integration
+
+23/07/2011 - v1.8.12
+- Fixed escapeHtml issue that triggered a notice error
+- Removed customer synchronisation features
+- Added WordPress path to integration tests
+- Removed path checking observer
+
+23/07/2011 - v1.8.11
+- Updated support email (help@fishpig.co.uk)
+- Fixed issue in tag cloud template
+- Added support for old WordPress passwords that use md5
+
+06/07/2011 - v1.8.10
+- Fixed issue when calling WordPress extension functions via CRON. The initConnection (database) wasn't getting called, meaning errors occured.
+- Fixed issue with AW FollowUpEmail
+
+06/07/2011 - v1.8.8
+- Fixed caption shortcode classes
+
+05/07/2011 - v1.8.8
+- Fixed htmlEscape/escapeHtml issue for Professional edition
+- Improve isLegacyMagento method
+
+05/07/2011 - v1.8.7
+- Fixed RSS feed image tags
+
+05/07/2011 - v1.8.6
+- Increased username/password field length to fix auto login on Professional edition
+
+06/07/2011 - v1.8.5
+- Fixed caption shortcode. Added wp-caption tag to wrapping div
+
+05/07/2011 - v1.8.4
+- removed donation links
+- Fixed issue in router that stopped some categories displaying
+- Added excerpt and featured image into RSS feed
+- Added excerpt and featured image into ShareThis plugin
+- Improved getFeaturedImage in Post model
+- Added daily archives
+- Added redirect for blog-route/post-id to post permalink
+
+03/07/2011 - v1.8.00
+- Rewritten router to use pattern matching rather than databas lookups.
+  This means the loading of blog pages will be dramatically quicker
+
+26/06/2011 - v1.7.9
+- Added ability to associate posts with products at the category level
+- Fixed invalid user URL's that contain invalid characters
+
+24/06/2011 - v1.7.8
+- Fixed js/wordpress/main.js. Changed class in search form
+- fixed escapeHtml issue in 1.4.*
+
+21/06/2011 - v1.7.7
+- Fix xHTML validation error in wordpress/search/form.phtml
+- Added CDATA tags to SyntaxHighlighter trigger file
+- Added fix for comment form not displaying if not in XML
+- Fixed bug that caused trashed comments to be displayed
+
+20/06/2011 - v1.7.6
+- Given route control to Controller_Abstract::_init
+- Added comment pages, pager and comment RSS feeds
+- Improved comment blocks
+- Added post comment RSS feed
+- Added is-blog class to body tag of all extension pages
+- Fixed archive list order, changed to desc
+
+20/06/2011 - v1.7.4
+- Fixed issue with XML sitemap
+- Improved document outline (heading tags) on blog view page
+- Changed 'Response to %s' string to 'Responses to %s' when more than 1 (or 0) comments are available
+- Added setWrapperClassName to recent posts block
+
+19/06/2011 - v1.7.3
+- Re-ordered logic in Observer_Customer::isCustomerSynchronisationEnabled
+- Added translation fix in wordpress.xml
+- Removed link from current page breadcrumb on blog view page
+- Added fix in tag cloud when no tags are present
+- Added fixes for dependencies on Catalog module
+- Fix Support & WP-Login block issues
+
+18/06/2011 - v1.7.2
+- Added event to _init function in abstract controller.
+
+14/06/2011 - v1.7.0
+- Re-uploaded version 1.6.25 as 1.7.0
+
+14/06/2011 - v1.6.25
+- Added translation of date on archive view page
+
+13/06/2011 - v1.6.24
+- Added a link_list block to display links. XML added to wordpress.xml but needs to be uncommented to display
+- Enabled comment order option in WordPress Admin
+- Added config option to hide/display the blog link in the top links block
+- Auto hide 'My Blog Comments' section if customer synchronisation is disabled
+
+24/05/2011 - v1.6.23
+- Added fix for XML sitemap generation
+- Added roles for WordPress Admin login redirect and Magento settings pages
+- Rewritten associated blog posts & categories in product admin
+- Added more comments in Post model
+- Stopped All-In-One SEO product data loading with products in admin
+- Added change-log.txt to module folder

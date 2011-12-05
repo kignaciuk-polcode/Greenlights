@@ -1,0 +1,24 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php if ($images = $this->getImageCollection()): ?>
+	<?php $columns = $this->getColumns() ?>
+	<?php $imageCount = count($images) ?>
+	<div class="gallery galleryid-<?php echo $this->getPost()->getId() ?> gallery-columns-<?php echo $this->getColumns() ?> gallery-size-<?php echo $this->getSize() ?>" id="gallery-<?php echo $this->getGalleryIt() ?>">
+		<?php $it = 0; foreach($images as $image): ?>
+		<dl class="gallery-item">
+			<dt class="gallery-icon">
+				<a title="<?php echo $image->getPostTitle() ?>" href="<?php echo $image->getFullSizeImage() ?>">
+					<img title="<?php echo $image->getPostTitle() ?>" alt="<?php echo $image->getPostTitle() ?>" class="attachment-<?php echo $this->getSize() ?>" src="<?php echo $image->getImageByType($this->getSize()) ?>" />
+				</a>
+			</dt>
+		</dl>
+		<?php ++$it; if ($it%$columns == 0 || $it == $imageCount): ?><br style="clear: both;" /><?php endif; ?>
+		<?php endforeach; ?>
+	</div>
+<?php endif; ?>
