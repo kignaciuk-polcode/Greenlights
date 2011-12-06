@@ -6,45 +6,35 @@ Disallow: /
 User-agent: *
 Crawl-delay: 10
 
-# Allowable Index
-Allow: /*?p=
-Allow: /index.php/blog/
-Allow: /catalog/seo_sitemap/category/
-Allow:/catalogsearch/result/
 
-# Directories
-Disallow: /404/
-Disallow: /app/
-Disallow: /cgi-bin/
-Disallow: /downloader/
-Disallow: /includes/
-Disallow: /js/
-Disallow: /lib/
-Disallow: /magento/
-# Disallow: /media/ # ???
-Disallow: /pkginfo/
-Disallow: /report/
-Disallow: /skin/
-Disallow: /stats/
-Disallow: /var/
+# Guaranties
+# not found yet
 
-# Paths (clean URLs)
-Disallow: /index.php/
-Disallow: /catalog/product_compare/
-Disallow: /catalog/category/view/
-Disallow: /catalog/product/view/
-Disallow: /catalogsearch/
-Disallow: /checkout/
-Disallow: /control/
-Disallow: /contacts/
-Disallow: /customer/
-Disallow: /customize/
-Disallow: /newsletter/
-Disallow: /poll/
-Disallow: /review/
-Disallow: /sendfriend/
-Disallow: /tag/
-Disallow: /wishlist/
+# Newsletter
+/newsletter/manage/
+
+# Faq
+# not found FAQ yet
+
+# About us
+# TODO
+/about-magento-demo-store
+
+# Contact
+/contacts/
+
+# Account “pages”
+/customer/account/
+
+# Shopping cart
+#/checkout/cart/ # unneeded
+
+# Checkout
+/checkout/
+
+# Log in
+Disallow: /customer/account/login/
+
 
 # Files
 Disallow: /cron.php
@@ -62,3 +52,50 @@ Disallow: /*.css$
 Disallow: /*.php$
 Disallow: /*?p=*&
 Disallow: /*?SID=
+
+
+
+
+####################################
+
+# Allowable Index
+#Allow: /*?p=
+#Allow: /index.php/blog/
+#Allow: /catalog/seo_sitemap/category/
+#Allow:/catalogsearch/result/
+
+# Directories
+#Disallow: /404/
+#Disallow: /app/
+#Disallow: /cgi-bin/
+#Disallow: /downloader/
+#Disallow: /includes/
+#Disallow: /js/
+#Disallow: /lib/
+#Disallow: /magento/
+#Disallow: /media/
+#Disallow: /pkginfo/
+#Disallow: /report/
+#Disallow: /skin/
+#Disallow: /stats/
+#Disallow: /var/
+
+# Paths (clean URLs)
+#Disallow: /index.php/
+#Disallow: /catalog/product_compare/
+#Disallow: /catalog/category/view/
+#Disallow: /catalog/product/view/
+#Disallow: /catalogsearch/
+#Disallow: /checkout/
+#Disallow: /control/
+#Disallow: /contacts/
+#Disallow: /customer/
+#Disallow: /customize/
+#Disallow: /newsletter/
+#Disallow: /poll/
+#Disallow: /review/
+#Disallow: /sendfriend/
+#Disallow: /tag/
+#Disallow: /wishlist/
+
+####################################
