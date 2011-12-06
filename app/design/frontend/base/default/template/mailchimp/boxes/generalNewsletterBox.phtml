@@ -1,0 +1,34 @@
+
+<?php if($this->canShowSmallBox()): ?>
+<div class="block block-subscribe">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Newsletter') ?></span></strong>
+    </div>
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
+    	<?php echo $this->getBlockHtml('formkey')?>
+        <div class="block-content">
+            <label for="newsletter"><?php echo $this->__('Sign Up for Our Newsletter:') ?></label>
+            <div class="input-box">
+            	<?php $customModel = Mage::getSingleton('customer/session'); ?>
+            	<?php if($customModel->isLoggedIn()): ?>
+					<input type="hidden" name="email" id="newsletter" value="<?php echo $customModel->getCustomer()->getEmail();?>"/>
+					<input type="checkbox" name="is_subscribed" id="subscription" value="1" title="<?php echo $this->__('General Subscription') ?>"<?php if($this->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="subscription"><?php echo $this->__('General Subscription') ?></label>
+               <?php else: ?>
+	               <input type="text" name="email" id="newsletter" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="input-text required-entry validate-email" />
+	               <input type="hidden" name="is_subscribed" id="is_subscribed" value="1" />
+               <?php endif; ?>
+            </div>
+            <?php echo $this->getChildHtml('generalNewsletter') ?>
+            <div class="actions">
+                <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="button"><span><span><?php echo $this->__('Subscribe') ?></span></span></button>
+				<img alt="Powered By MailChimp" src="<?php echo $this->getSkinUrl('mailchimp/images/mailchimp_tile.gif') ?>" style="float:right;"/>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+    //]]>
+    </script>
+</div>
+<?php endif;?>

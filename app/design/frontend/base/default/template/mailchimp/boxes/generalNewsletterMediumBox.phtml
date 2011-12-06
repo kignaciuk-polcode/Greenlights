@@ -1,0 +1,22 @@
+
+<?php if($this->canShowMediumBox() && !$this->isForcedToSubscribeCheckout()): ?>
+<div class="block block-subscribe">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Newsletter') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <label for="newsletter"><?php echo $this->__('Sign Up for Our Newsletter:') ?></label>
+        <br/>
+	    <ul class="form-list">
+	        <li class="control">
+	        	<input type="checkbox" name="is_subscribed" id="subscription" value="1" title="<?php echo $this->__('General Subscription') ?>"<?php if($this->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+	        	<label for="subscription"><?php echo $this->__('General Subscription') ?></label>
+        	</li>
+	        <?php echo $this->getChildHtml('generalNewsletter'); ?>
+	    </ul>
+        <div class="actions">
+			<img alt="Powered By MailChimp" src="<?php echo $this->getSkinUrl('mailchimp/images/mailchimp_tile.gif') ?>" style="float:right;"/>
+        </div>
+    </div>
+</div>
+<?php endif;?>

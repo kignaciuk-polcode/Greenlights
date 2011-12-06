@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<layout>
+	<default>
+	</default>
+
+	<checkout_cart_index translate="label">
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/css/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>
+		</reference>
+        <reference name="checkout.cart">
+            <block type="mailchimp/newsletter_subscribe" name="smallbox" as="smallbox" template="mailchimp/boxes/generalNewsletterBox.phtml">
+	            <block type="mailchimp/customer_newsletter" name="generalNewsletter" as="generalNewsletter" template="mailchimp/boxes/generalNewsletter.phtml"/>
+            </block>
+        </reference>
+    </checkout_cart_index>
+
+    <checkout_onepage_index translate="label">
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/css/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>
+		</reference>
+	    <reference name="checkout.onepage.billing">
+            <block type="mailchimp/newsletter_subscribe" name="mediumbox" as="mediumbox" template="mailchimp/boxes/generalNewsletterMediumBox.phtml">
+	            <block type="mailchimp/customer_newsletter" name="generalNewsletter" as="generalNewsletter" template="mailchimp/boxes/generalNewsletter.phtml"/>
+            </block>
+			</reference>
+    </checkout_onepage_index>
+
+    <customer_account_create translate="label">
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/css/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>
+		</reference>
+		<reference name="customer_form_register">
+            <block type="mailchimp/customer_newsletter" name="generalNewsletter" as="generalNewsletter" template="mailchimp/boxes/generalNewsletter.phtml"/>
+		</reference>
+    </customer_account_create>
+
+	<customer_account_index translate="label">
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/css/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>
+		</reference>
+		<reference name="customer_account_dashboard_info">
+            <block type="mailchimp/customer_newsletter" name="additionalNewsletter" as="additionalNewsletter" template="mailchimp/boxes/additionalNewsletter.phtml"/>
+		</reference>
+	</customer_account_index>
+
+    <newsletter_manage_index translate="label">
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/css/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>
+		</reference>
+		<reference name="customer_newsletter">
+            <block type="mailchimp/customer_newsletter" name="generalNewsletter" as="generalNewsletter" template="mailchimp/boxes/generalNewsletter.phtml"/>
+            <block type="mailchimp/customer_newsletter" name="bigBox" as="bigBox" template="mailchimp/boxes/additionalNewsletterBox.phtml"/>
+		</reference>
+    </newsletter_manage_index>
+</layout>

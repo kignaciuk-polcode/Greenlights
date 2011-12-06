@@ -1,0 +1,36 @@
+<?php $store = $this->getCustomer()->getStoreId();?>
+<?php if($this->isMailChimpEnabled($store)): ?>
+	<?php if($this->getAdditionalLists($store)): ?>
+		<div class="subscribed-additional">
+			<form action="<?php echo $this->getFormMultiActionUrl() ?>" method="post" id="form-validate">
+				<input type="hidden" name="additional" id="additional" value="1" />
+				<?php echo $this->getBlockHtml('formkey')?>
+				<div class="page-title">
+					<h1><?php echo $this->__('Additional Newsletters Lists') ?></h1>
+				</div>
+			    <fieldset id="additionalFieldset">
+		    		<ul class="form-list">
+			        <?php foreach ($this->getAdditionalLists($store) as $_list): ?>
+		        		<li class="control">
+		        			<?php $inputId = 'list['.$_list->getListId().']'; ?>
+		        			<?php $fieldsetId = 'additionalFieldset'.$_list->getListId() ;?>
+		        			<input onclick="unCheckGroups('<?php echo $fieldsetId; ?>')" type="checkbox" value="<?php echo $_list->getIsSubscribed()?>" <?php if($_list->getIsSubscribed()) echo 'checked="checked"'; ?> name="<?php echo $inputId; ?>" id="<?php echo $inputId; ?>" title="<?php echo $this->__('Is Subscribed') ?>" class="checkbox" />
+		        			<label for="subscription"><?php echo $this->htmlEscape($_list->getName()) ?></label>
+		    			<?php if($this->getGroups($_list->getListId(),null)): ?>
+		    				<fieldset id="<?php echo $fieldsetId; ?>">
+								<?php echo $this->getGroupInputs($_list->getListId(),$this->getCustomer()->getStoreId(),true); ?>
+		    				</fieldset>
+						<?php endif; ?>
+		    			</li>
+			        <?php endforeach; ?>
+			        </ul>
+			    	<div class="buttons-set">
+			    		<?php /*<p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>*/ ?>
+			            <button type="submit" title="<?php echo $this->__('Update Additional Lists') ?>" class="form-button right" ><span><span><?php echo $this->__('Update Additional Lists') ?></span></span></button>
+		            </div>
+		            <img alt="Powered By MailChimp" src="<?php echo $this->getSkinUrl('mailchimp/images/mailchimp_tile.gif') ?>" class="poweredByMailchimp"/>
+		        </fieldset>
+		    </form>
+	    </div>
+	<?php endif;?>
+<?php endif;?>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_system_config_edit>
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/MailChimp.css</stylesheet></action>
+		</reference>
+	</adminhtml_system_config_edit>
+
+	<mailchimp_adminhtml_ctemplate_edit>
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/MailChimp.js</name></action>
+		</reference>
+	</mailchimp_adminhtml_ctemplate_edit>
+
+	<mailchimp_adminhtml_ctemplate_new>
+		<reference name="head">
+			<action method="addCss"><stylesheet>mailchimp/MailChimp.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>mailchimp/MailChimp.js</name></action>
+		</reference>
+	</mailchimp_adminhtml_ctemplate_new>
+</layout>

@@ -1,0 +1,37 @@
+
+h3.mailchimp-header { background:url(ebizmarts-mailchimp-small.png) no-repeat 0 20px; height:60px; overflow:hidden; padding:0; margin-top:0; width:286px; }
+
+ul.tabs a.mailchimp-section,
+ul.tabs a.mailchimp-section:hover { background:url(../images/tabs_span_bg.gif) repeat-x 0 100%; border-bottom:none; padding:0.5em 0.5em 0.28em 1.5em; }
+ul.tabs a.mailchimp-section:hover { background-color:#d8e6e6; }
+ul.tabs a.mailchimp-section.active,
+ul.tabs a.mailchimp-section.active:hover { background-color:#fff; }
+ul.tabs a.mailchimp-section span,
+ul.tabs a.mailchimp-section:hover span { background:url(ebizmarts-mailchimp-section.png) no-repeat 0 0; height:0; overflow:hidden; padding:14px 0 0; width:103px; }
+
+
+.mailchimp-adminhtml-help-index .main {float:right;width:80%;}
+.mailchimp-adminhtml-help-index .main .preebizlogo {font-size:25px;}
+.mailchimp-adminhtml-help-index .main .ebizlogo {background: url("ebizmarts-mailchimp-small.png") no-repeat scroll right top transparent;font-size: 0;height: 39px;width: 286px;margin: 10px 25px 15px 135px;}
+.mailchimp-adminhtml-help-index .main .postebizlogo {font-size:25px;margin-left:390px;}
+.mailchimp-adminhtml-help-index .main .info {margin-top:100px;float:left;}
+.mailchimp-adminhtml-help-index .main .version {margin-top:100px;float:right;}
+.mailchimp-adminhtml-help-index .main ul {list-style: disc inside none;}
+.mailchimp-adminhtml-help-index .left-menu {float:left;width:20%;}
+.mailchimp-adminhtml-help-index .left-menu .selected{font-weight: bold;}
+.mailchimp-adminhtml-help-index .left-menu li:hover {cursor: pointer;text-decoration:underline;}
+
+.mailchimp-adminhtml-bulksync-index .massaction td.left { padding-left: 0 !important; padding-right: 0 !important; width: 1% !important;}
+.mailchimp-adminhtml-bulksync-index .massaction td.right { padding-left: 0 !important; padding-right: 0 !important; width: 99% !important;}
+.mailchimp-adminhtml-bulksync-index .massaction .entry-edit fieldset #bulkSyncGrid_massaction-select {width:83px;}
+.mailchimp-adminhtml-bulksync-index .textChimp { width: 35px !important; }
+.mailchimp-adminhtml-bulksync-index .selectChimp { width: 205px !important; }
+
+.mailchimp-adminhtml-ctemplate-new .template-source,
+.mailchimp-adminhtml-ctemplate-edit .template-source {width: 700px !important;}
+.mailchimp-adminhtml-ctemplate-new a.link,
+.mailchimp-adminhtml-ctemplate-edit a.link {cursor: pointer;}
+.mailchimp-adminhtml-ctemplate-new a.link img,
+.mailchimp-adminhtml-ctemplate-edit a.link img{border:1px black solid;}
+.mailchimp-adminhtml-ctemplate-new input.button,
+.mailchimp-adminhtml-ctemplate-edit input.button {background: url("../images/btn_bg.gif") repeat-x scroll 0 100% #FFAC47;line-height: 1.35em;border-color: #ED6502 #A04300 #A04300 #ED6502;border-style: solid;border-width: 1px;color: #FFFFFF;cursor: pointer;font: bold 12px arial,helvetica,sans-serif;padding: 0 7px 1px;text-align: center !important;white-space: nowrap;float:right;}

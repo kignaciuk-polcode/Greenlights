@@ -1,0 +1,45 @@
+
+<div id="<?php echo $this->getHtmlId() ?>">
+	<table cellspacing="0" cellpadding="0" class="massaction">
+		<tr>
+		    <td class="left">
+		        <strong id="<?php echo $this->getHtmlId() ?>-count">0</strong>
+		    </td>
+		    <td class="right">
+		        <div class="right">
+		            <div class="entry-edit">
+		                <form action="" id="<?php echo $this->getHtmlId() ?>-form" method="post">
+		                    <?php echo $this->getBlockHtml('formkey')?>
+		                    <fieldset>
+		                        <span class="field-row">
+		                            <label><?php echo $this->__('New') ?></label>
+		                            <select id="<?php echo $this->getHtmlId() ?>-select" class="required-entry select absolute-advice local-validation">
+		                                <option value=""></option>
+		                                <?php foreach($this->getItems() as $_item): ?>
+		                                    <option value="<?php echo $_item->getId() ?>"<?php echo ($_item->getSelected() ? ' selected="selected"' : '')?>><?php echo $_item->getLabel() ?></option>
+		                                <?php endforeach; ?>
+		                            </select>
+		                        </span>
+		                        <span class="outer-span" id="<?php echo $this->getHtmlId() ?>-form-hiddens"></span>
+		                        <span class="outer-span" id="<?php echo $this->getHtmlId() ?>-form-additional"></span>
+		                        <span class="field-row">
+		                            <?php echo $this->getApplyButtonHtml() ?>
+		                        </span>
+		                    </fieldset>
+		                </form>
+		            </div>
+		            <div class="no-display">
+		            <?php foreach($this->getItems() as $_item): ?>
+		                <div id="<?php echo $this->getHtmlId() ?>-item-<?php echo $_item->getId() ?>-block">
+		                    <?php echo $_item->getAdditionalActionBlockHtml() ?>
+		                </div>
+		            <?php endforeach; ?>
+		            </div>
+		        </div>
+		    </td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		$('<?php echo $this->getHtmlId() ?>-count').hide();
+	</script>
+</div>
