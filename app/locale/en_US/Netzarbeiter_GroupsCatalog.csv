@@ -1,0 +1,23 @@
+"Customer Groups Catalog","Customer Groups Catalog"
+"Disable CustomerGroups Extension","Disable Extension"
+"Hide from customer groups","Hide from customer groups"
+"Default: hide products from customer groups","Hide products from customer groups"
+"Default: hide categories from customer groups","Hide categories from customer groups"
+"Please contact our staff to see all our products.","Please contact our staff to see all our products."
+"Please contact our staff to see our complete catalog.","Please contact our staff to see our complete catalog."
+"NONE","NONE"
+"USE DEFAULT","USE DEFAULT"
+"The USE DEFAULT selection was ignored because you also selected other customer groups.","The USE DEFAULT selection was ignored because you also selected other customer groups."
+"Customer groups besides NONE where removed from the selection.","Customer groups besides NONE where removed from the selection."
+"Products visible to the customer group %s","Products visible to the customer group %s"
+"Visible Products","Visible Products"
+"Redirect target","Redirect target"
+"Message to display","Message to display"
+"Use {{sku}} or {{name}} for placeholders<br/>Leave empty to disable message","Use {{sku}} or {{name}} for placeholders<br/>Leave empty to disable message"
+"Display 404 Error","Display 404 Error"
+"Redirect","Redirect"
+"When a hidden product is visited","When a hidden product is visited"
+"Grow DB Field Size if required","Grow DB Field Size if required"
+
+
+

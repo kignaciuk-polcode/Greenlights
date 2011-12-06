@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this Module to newer
+ * versions in the future.
+ *
+ * @category   Netzarbeiter
+ * @package    Netzarbeiter_GroupsCatalog
+ * @copyright  Copyright (c) 2011 Vinai Kopp http://netzarbeiter.com
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+
+	<modules>
+		<Netzarbeiter_GroupsCatalog>
+			<version>0.4.7</version>
+		</Netzarbeiter_GroupsCatalog>
+	</modules>
+
+	<global>
+		<models>
+			<groupscatalog>
+				<class>Netzarbeiter_GroupsCatalog_Model</class>
+			</groupscatalog>
+			<catalog>
+				<rewrite>
+					<layer>Netzarbeiter_GroupsCatalog_Model_Catalog_Layer</layer>
+				</rewrite>
+			</catalog>
+			<catalogsearch>
+				<rewrite>
+					<layer>Netzarbeiter_GroupsCatalog_Model_CatalogSearch_Layer</layer>
+				</rewrite>
+			</catalogsearch>
+			<catalogsearch_mysql4>
+				<rewrite>
+					<advanced_collection>Netzarbeiter_GroupsCatalog_Model_CatalogSearch_Mysql4_Advanced_Collection</advanced_collection>
+				</rewrite>
+			</catalogsearch_mysql4>
+			<sitemap_mysql4>
+				<rewrite>
+					<catalog_category>Netzarbeiter_GroupsCatalog_Model_Resource_Sitemap_Mysql4_Category</catalog_category>
+					<catalog_product>Netzarbeiter_GroupsCatalog_Model_Resource_Sitemap_Mysql4_Product</catalog_product>
+				</rewrite>
+			</sitemap_mysql4>
+
+			<!-- hack for magento 1.3.1 -->
+			<!-- they implemented propper events - but then they build seperate SQL! grml... -->
+			<catalog_resource_eav_mysql4>
+				<rewrite>
+					<category_flat>Netzarbeiter_GroupsCatalog_Model_Catalog_Resource_Eav_Mysql4_Category_Flat</category_flat>
+				</rewrite>
+			</catalog_resource_eav_mysql4>
+		</models>
+		
+		<blocks>
+			<groupscatalog>
+				<class>Netzarbeiter_GroupsCatalog_Block</class>
+			</groupscatalog>
+			<catalog>
+				<rewrite>
+					<navigation>Netzarbeiter_GroupsCatalog_Block_Navigation</navigation>
+					<layer_view>Netzarbeiter_GroupsCatalog_Block_Layer_View</layer_view>
+				</rewrite>
+			</catalog>
+			<adminhtml>
+				<rewrite>
+					<!-- deactivate, I'm going to stop maintaining the feature if nobody complains (see admin routers, too) -->
+					<!--<customer_edit_tabs>Netzarbeiter_GroupsCatalog_Block_Adminhtml_Customer_Edit_Tabs</customer_edit_tabs>-->
+				</rewrite>
+			</adminhtml>
+		</blocks>
+		
+		<helpers>
+			<groupscatalog>
+				<class>Netzarbeiter_GroupsCatalog_Helper</class>
+			</groupscatalog>
+			<catalog>
+				<rewrite>
+					<category>Netzarbeiter_GroupsCatalog_Helper_Category</category>
+					<product>Netzarbeiter_GroupsCatalog_Helper_Product</product>
+				</rewrite>
+			</catalog>
+		</helpers>
+
+		<resources>
+			<groupscatalog_setup>
+				<setup>
+					<module>Netzarbeiter_GroupsCatalog</module>
+					<class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+				</setup>
+				<connection>
+					<use>default_setup</use>
+				</connection>
+			</groupscatalog_setup>
+			<groupscatalog_write>
+				<connection><use>default_write</use></connection>
+			</groupscatalog_write>
+			<groupscatalog_read>
+				<connection><use>default_read</use></connection>
+			</groupscatalog_read>
+		</resources>
+	</global>
+	
+	<frontend>
+		<events>
+
+			<!-- Add hide groups attribute to category collections with flat tables enabled -->
+			<core_collection_abstract_load_before>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>coreCollectionAbstractLoadBefore</method>
+					</groupscatalog>
+				</observers>
+			</core_collection_abstract_load_before>
+
+			<!-- Add hide groups attribute to category collections with flat tables disabled -->
+			<catalog_category_collection_load_before>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>catalogCategoryCollectionLoadBefore</method>
+					</groupscatalog>
+				</observers>
+			</catalog_category_collection_load_before>
+
+			<!-- Filter out hidden categories -->
+			<catalog_category_collection_load_after>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>catalogCategoryCollectionLoadAfter</method>
+					</groupscatalog>
+				</observers>
+			</catalog_category_collection_load_after>
+
+			<!-- Add hide groups attribute to product collections -->
+			<catalog_product_collection_load_before>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>catalogProductCollectionLoadBefore</method>
+					</groupscatalog>
+				</observers>
+			</catalog_product_collection_load_before>
+
+			<!-- Filter out hidden products -->
+			<catalog_product_collection_load_after>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>catalogProductCollectionLoadAfter</method>
+					</groupscatalog>
+				</observers>
+			</catalog_product_collection_load_after>
+		</events>
+		
+		<product>
+			<collection>
+				<attributes>
+					<groupscatalog_hide_group />
+				</attributes>
+			</collection>
+		</product>
+	</frontend>
+
+	<!-- deactivate, I'm going to stop maintaining the feature if nobody complains (see block rewrites, too) -->
+	<!--
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Netzarbeiter_GroupsCatalog_Override before="Mage_Adminhtml">Netzarbeiter_GroupsCatalog_Override_Adminhtml</Netzarbeiter_GroupsCatalog_Override>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	-->
+
+	<adminhtml>
+		<events>
+			<adminhtml_customer_save_after>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>adminhtmlCustomerSaveAfter</method>
+					</groupscatalog>
+				</observers>
+			</adminhtml_customer_save_after>
+			<controller_action_predispatch_adminhtml_catalog_product_action_attribute_save>
+				<observers>
+					<groupscatalog>
+						<type>singleton</type>
+						<class>groupscatalog/observer</class>
+						<method>controllerActionPredispatchAdminhtmlCatalogProductActionAttributeSave</method>
+					</groupscatalog>
+				</observers>
+			</controller_action_predispatch_adminhtml_catalog_product_action_attribute_save>
+		</events>
+        <translate>
+            <modules>
+                <Netzarbeiter_GroupsCatalog>
+                     <files>
+                          <default>Netzarbeiter_GroupsCatalog.csv</default>
+                     </files>
+                </Netzarbeiter_GroupsCatalog>
+            </modules>
+        </translate>
+		<layout>
+			<updates>
+				<groupscatalog>
+					<file>groupscatalog.xml</file>
+				</groupscatalog>
+			</updates>
+		</layout>
+	</adminhtml>
+
+	<default>
+		<catalog>
+			<groupscatalog>
+				<disable_ext>0</disable_ext>
+				<!-- -1 = default to hide to no customer groups -->
+				<default_product_groups>-1</default_product_groups>
+				<default_category_groups>-1</default_category_groups>
+				<grow_db_field>0</grow_db_field>
+				<do_hidden_redirect>0</do_hidden_redirect>
+				<hidden_message>The product "{{name}}" is currently restricted, please login to view this product</hidden_message>
+				<hidden_redirect>customer/account/login</hidden_redirect>
+			</groupscatalog>
+		</catalog>
+	</default>
+</config>
