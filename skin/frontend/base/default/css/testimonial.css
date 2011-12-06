@@ -1,0 +1,37 @@
+.testimonials {height:100%;}
+.testimonials .testimonial_l, .testimonials .testimonial_r {clear:both;display:table;height:auto;margin:25px 20px 25px 0;width:100%;}
+.testimonial_image {display:table-cell;float:left;width:120px;}
+.testimonial_image img {width:120px;}
+.testimonial_text {background:url("../images/quote.gif") no-repeat scroll 0 0 transparent;display:table-cell;float:right;font-size:13px;padding:20px 20px 0 55px;width:480px;}
+.testimonial_text h2 {color:#43A3AC;}
+.testimonial_l .testimonial_text {float:right;}
+.testimonial_l .testimonial_image {float:left;}
+.testimonial_r .testimonial_text {float:left;}
+.testimonial_r .testimonial_image {float:right;}
+
+.testimonials_sidebar .block-content a {
+    color: #1B2D3B;
+	float: none;
+	text-decoration: underline;
+	text-align: right;
+	font-size: 11px;
+    line-height: 1.25;
+}
+
+.testimonials_sidebar .block-title strong {
+    background: url("../images/i_block_testimonials.gif") no-repeat scroll 0 0 transparent;
+    padding-left: 20px;
+}
+
+.testimonials_sidebar  .testimonial_sidebar_box .testimonial_sidebar_text .testimonial_sidebar_name  { 
+font-size: 11px; 
+line-height: 1.25; 
+color: #1B2D3B;
+}
+
+.testimonial_sidebar_text {
+text-align: left;
+padding: 6px 9px; 
+}
+
+.testimonial_sidebar_name {text-align: right !important; font-style: italic; margin: 0 10px 7px;}
