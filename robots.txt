@@ -53,6 +53,14 @@ Disallow: /*.php$
 Disallow: /*?p=*&
 Disallow: /*?SID=
 
+Disallow: /*.doc&
+Disallow: /*.docx&
+Disallow: /*.xls&
+Disallow: /*.xlsx&
+Disallow: /*.ppt&
+Disallow: /*.pptx&
+Disallow: /*.pdf&
+
 
 
 
