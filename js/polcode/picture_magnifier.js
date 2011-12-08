@@ -1,3 +1,3 @@
-function pictureMagnifier () {
-	//alert("TEST");
+function pictureMagnifier (id) {
+//	alert(id);
 }
