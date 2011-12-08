@@ -10,6 +10,9 @@
             <action method="addCss">
                 <stylesheet>css/local.css</stylesheet>
             </action>
+            <action method="addCss">
+                <stylesheet>css/social.css</stylesheet>
+            </action>
         </reference>
         <reference name="header">
             <block type="social/social" name="social" as="social" template="social/social.phtml"/>
