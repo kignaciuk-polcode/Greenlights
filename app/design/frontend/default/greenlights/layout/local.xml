@@ -11,5 +11,8 @@
                 <stylesheet>css/local.css</stylesheet>
             </action>
         </reference>
+        <reference name="header">
+            <block type="social/social" name="social" as="social" template="social/social.phtml"/>
+        </reference>
     </default>
 </layout>
