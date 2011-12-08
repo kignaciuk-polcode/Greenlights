@@ -5,68 +5,11 @@
             <version>0.1.0</version>
         </Polcode_Social>
     </modules>
-    <frontend>
-        <routers>
-            <social>
-                <use>standard</use>
-                <args>
-                    <module>Polcode_Social</module>
-                    <frontName>social</frontName>
-                </args>
-            </social>
-        </routers>
-        <layout>
-            <updates>
-                <social>
-                    <file>social.xml</file>
-                </social>
-            </updates>
-        </layout>
-    </frontend>   
     <global>
-        <models>
-            <social>
-                <class>Polcode_Social_Model</class>
-                <resourceModel>social_mysql4</resourceModel>
-            </social>
-            <social_mysql4>
-                <class>Polcode_Social_Model_Mysql4</class>
-                <entities>
-                    <social>
-                        <table>social</table>
-                    </social>
-                </entities>
-            </social_mysql4>
-        </models>
-        <resources>
-            <social_setup>
-                <setup>
-                    <module>Polcode_Social</module>
-                </setup>
-                <connection>
-                    <use>core_setup</use>
-                </connection>
-            </social_setup>
-            <social_write>
-                <connection>
-                    <use>core_write</use>
-                </connection>
-            </social_write>
-            <social_read>
-                <connection>
-                    <use>core_read</use>
-                </connection>
-            </social_read>
-        </resources>
         <blocks>
             <social>
                 <class>Polcode_Social_Block</class>
             </social>
         </blocks>
-        <helpers>
-            <social>
-                <class>Polcode_Social_Helper</class>
-            </social>
-        </helpers>
     </global>
 </config>
