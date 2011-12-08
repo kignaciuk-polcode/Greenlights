@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Polcode_Social>
+            <version>0.1.0</version>
+        </Polcode_Social>
+    </modules>
+    <global>
+        <blocks>
+            <social>
+                <class>Polcode_Social_Block</class>
+            </social>
+        </blocks>
+    </global>
+</config>

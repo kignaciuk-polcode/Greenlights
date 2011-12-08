@@ -10,6 +10,19 @@
             <action method="addCss">
                 <stylesheet>css/local.css</stylesheet>
             </action>
+            <action method="addCss">
+                <stylesheet>css/social.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="header">
+            <block type="social/social" name="social" as="social" template="social/social.phtml"/>
         </reference>
     </default>
+    
+    <catalog_product_view translate="label">
+        <reference name="head">
+            <action method="addJs"><script>polcode/picture_magnifier.js</script></action>
+        </reference>
+    </catalog_product_view>
+    
 </layout>
