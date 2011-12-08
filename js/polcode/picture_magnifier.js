@@ -1,0 +1,3 @@
+function pictureMagnifier () {
+	//alert("TEST");
+}
