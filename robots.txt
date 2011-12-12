@@ -11,26 +11,21 @@ Crawl-delay: 10
 # not found yet
 
 # Newsletter
-/newsletter/manage/
+Disallow: /newsletter/manage/
 
 # Faq
-# not found FAQ yet
-
 # About us
-# TODO
-/about-magento-demo-store
+################# TODO ON PRODUCTION SERVER
 
 # Contact
-/contacts/
+Disallow: /contacts/
 
 # Account “pages”
-/customer/account/
+Disallow: /customer/account/
 
 # Shopping cart
-#/checkout/cart/ # unneeded
-
 # Checkout
-/checkout/
+Disallow: /checkout/
 
 # Log in
 Disallow: /customer/account/login/
@@ -73,20 +68,20 @@ Disallow: /*.pdf&
 #Allow:/catalogsearch/result/
 
 # Directories
-#Disallow: /404/
-#Disallow: /app/
-#Disallow: /cgi-bin/
-#Disallow: /downloader/
-#Disallow: /includes/
-#Disallow: /js/
-#Disallow: /lib/
-#Disallow: /magento/
-#Disallow: /media/
-#Disallow: /pkginfo/
-#Disallow: /report/
-#Disallow: /skin/
-#Disallow: /stats/
-#Disallow: /var/
+Disallow: /404/
+Disallow: /app/
+Disallow: /cgi-bin/
+Disallow: /downloader/
+Disallow: /includes/
+Disallow: /js/
+Disallow: /lib/
+Disallow: /magento/
+Disallow: /media/
+Disallow: /pkginfo/
+Disallow: /report/
+Disallow: /skin/
+Disallow: /stats/
+Disallow: /var/
 
 # Paths (clean URLs)
 #Disallow: /index.php/
