@@ -23,8 +23,6 @@
     <catalog_category_default translate="label">
         <reference name="head">
             <action method="addJs"><script>polcode/ajax_pager.js</script></action>
-            <action method="addJs"><script>polcode/jquery-1.7.1.min.js</script></action>
-            <action method="addJs"><script>polcode/jquery-noConflict.js</script></action>
         </reference>
         
         <reference name="product_list_toolbar">
@@ -36,8 +34,6 @@
     <catalog_category_layered translate="label">
         <reference name="head">
             <action method="addJs"><script>polcode/ajax_pager.js</script></action>
-            <action method="addJs"><script>polcode/jquery-1.7.1.min.js</script></action>
-            <action method="addJs"><script>polcode/jquery-noConflict.js</script></action>
         </reference>
         
         <reference name="product_list_toolbar">
