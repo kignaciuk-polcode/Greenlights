@@ -55,4 +55,16 @@
             </social_mysql4>
         </models>
     </global>
+    <crontab>
+        <jobs>
+            <polcode_social>
+                <schedule>
+                    <cron_expr>0 18 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>social/observer::sendMails</model>
+                </run>
+            </polcode_social>
+        </jobs>
+    </crontab>
 </config>

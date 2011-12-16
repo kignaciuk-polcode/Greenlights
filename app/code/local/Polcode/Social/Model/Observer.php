@@ -28,4 +28,9 @@ class Polcode_Social_Model_Observer
         }
     }
     
+    public function sendMails($observer) {
+        $date = new DateTime();
+        Mage::log("Cron test - task executed at " . $date->format('Y-m-d H:i:s'));
+    }
+    
 }
