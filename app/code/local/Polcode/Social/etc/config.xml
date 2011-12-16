@@ -6,6 +6,26 @@
         </Polcode_Social>
     </modules>
     <global>
+        <resources>
+            <social_setup>
+                <setup>
+                    <module>Polcode_Social</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </social_setup>
+            <social_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </social_write>
+            <social_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </social_read>
+        </resources>
         <events>
             <sales_order_save_after >
                 <observers>
