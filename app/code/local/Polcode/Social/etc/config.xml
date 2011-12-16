@@ -6,10 +6,53 @@
         </Polcode_Social>
     </modules>
     <global>
+        <resources>
+            <social_setup>
+                <setup>
+                    <module>Polcode_Social</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </social_setup>
+            <social_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </social_write>
+            <social_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </social_read>
+        </resources>
+        <events>
+            <sales_order_save_after >
+                <observers>
+                    <polcode_social_observer>
+                        <type>singleton</type>
+                        <class>Polcode_Social_Model_Observer</class>
+                        <method>add_order</method>
+                    </polcode_social_observer>
+                </observers>
+            </sales_order_save_after >
+        </events>
         <blocks>
             <social>
                 <class>Polcode_Social_Block</class>
             </social>
         </blocks>
+        <models>
+            <social>
+                <class>Polcode_Social_Model</class>
+                <resourceModel>social_mysql4</resourceModel>
+            </social>
+            <social_mysql4>
+                <class>Polcode_Social_Model_Mysql4</class>
+                <entities>
+                    <mails><table>social_mails</table></mails>
+                </entities>
+            </social_mysql4>
+        </models>
     </global>
 </config>
