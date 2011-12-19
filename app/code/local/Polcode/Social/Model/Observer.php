@@ -40,6 +40,7 @@ class Polcode_Social_Model_Observer
         foreach ($ready as $i) {
             $mailOffer = Mage::getModel('social/mails')->load($i['social_mails_id']); // Yeah, i know ... problems with collection filtering
             $mailOffer->send();
+            $mailOffer->delete();
         }
         
     }
