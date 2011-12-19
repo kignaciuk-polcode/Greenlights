@@ -54,5 +54,26 @@
                 </entities>
             </social_mysql4>
         </models>
+        <template>
+            <email>
+                <social_email_template translate="label" module="social">
+                    <label>Social email template</label>
+                    <file>social_email_template.html</file>
+                    <type>html</type>
+                </social_email_template>
+            </email>
+      </template> 
     </global>
+    <crontab>
+        <jobs>
+            <polcode_social>
+                <schedule>
+                    <cron_expr>* * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>social/observer::sendMails</model>
+                </run>
+            </polcode_social>
+        </jobs>
+    </crontab>
 </config>
