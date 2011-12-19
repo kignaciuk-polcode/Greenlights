@@ -6,6 +6,26 @@
         </Polcode_Social>
     </modules>
     <global>
+        <resources>
+            <social_setup>
+                <setup>
+                    <module>Polcode_Social</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </social_setup>
+            <social_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </social_write>
+            <social_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </social_read>
+        </resources>
         <events>
             <sales_order_save_after >
                 <observers>
@@ -35,4 +55,16 @@
             </social_mysql4>
         </models>
     </global>
+    <crontab>
+        <jobs>
+            <polcode_social>
+                <schedule>
+                    <cron_expr>0 18 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>social/observer::sendMails</model>
+                </run>
+            </polcode_social>
+        </jobs>
+    </crontab>
 </config>
