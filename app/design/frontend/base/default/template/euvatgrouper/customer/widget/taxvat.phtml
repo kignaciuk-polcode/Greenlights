@@ -1,0 +1,58 @@
+<?php
+/**
+ * ||GEISSWEB| EU-VAT-GROUPER
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GEISSWEB End User License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://www.geissweb.de/eula.html
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@geissweb.de so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.geissweb.de/ for more information
+ * or send an email to support@geissweb.de or visit our customer forum at
+ * http://forum.geissweb.de to make a feature request.
+ *
+ * @category   Mage
+ * @package    Geissweb_Euvatgrouper
+ * @copyright  Copyright (c) 2011 GEISS Weblösungen (http://www.geissweb.de)
+ * @license    http://www.geissweb.de/eula.html GEISSWEB End User License Agreement
+ */
+?>
+<label for="<?php echo $this->getFieldId('taxvat')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Tax/VAT number') ?> <a href="http://ec.europa.eu/taxation_customs/vies/faqvies.do#item11" title="<?php echo Mage::helper('euvatgrouper')->__('EU VAT-ID Syntax Information');?>" target="_blank"><?php echo Mage::helper('euvatgrouper')->__('Syntax Information');?></a></label>
+<div class="input-box" style="margin-bottom:10px;">
+    <input type="text" <?php if($this->getValidateVAT()):?>onblur="gw_init_vatvalidation(gw_vat_check_url,vatTranslator)"<?php endif;?> id="<?php echo $this->getFieldId('taxvat')?>" name="<?php echo $this->getFieldName('taxvat')?>" value="<?php echo $this->htmlEscape($this->getTaxvat()) ?>" title="<?php echo $this->__('Tax/VAT number') ?>" class="input-text<?php if ($this->isRequired()):?> required-entry<?php endif; ?>" <?php echo $this->getFieldParams() ?> /><div id="vatLoader"><img class="v-middle" title="<?php echo $this->__('Please wait while we validate your VAT-ID...') ?>" alt="<?php echo $this->__('Please wait while we validate your VAT-ID...') ?>" src="<?php echo str_replace("index.php/","",$this->getUrl('',array('_secure'=>true))) ?>skin/frontend/default/default/images/opc-ajax-loader.gif" style="margin:1px 5px 0 0;"><span><?php echo $this->__('Please wait while we validate your VAT-ID...') ?></span></div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+document.observe('dom:loaded', function() {$('vatLoader').hide();});
+//]]>
+</script>
+
+<?php if($this->getValidateVAT()): ?>
+<script type="text/javascript">
+//<![CDATA[
+document.observe('dom:loaded', function() {
+    //$('vatLoader').hide();
+    gw_vat_check_url = '<?php echo Mage::getUrl('',array('_secure'=>true)); ?>vatcheck/';
+    vatTranslator = new Translate({
+	'gw_valid_vat':'<?php echo Mage::helper('euvatgrouper')->__('Your VAT-ID is valid.');?>',
+	'gw_taxfree_success':'<?php echo Mage::helper('euvatgrouper')->__('We have identified you as EU business, you can order VAT-exempt in our shop now.')?>',
+	'gw_customer_from_own_country':'<?php echo Mage::helper('euvatgrouper')->__('We have identified you as business customer.')?>',
+	'gw_invalid_vat':'<?php echo Mage::helper('euvatgrouper')->__('Your VAT-ID is invalid, please check the syntax. If this error remains please contact us directly.');?>',
+	'gw_vatfield_wrong_syntax':'<?php echo Mage::helper('euvatgrouper')->__('The given VAT-ID is invalid, please check the syntax. If this error remains please contact us directly to register a customer account with exempt from taxation with us.');?>',
+	'gw_vies_unavailable':'<?php echo Mage::helper('euvatgrouper')->__('Currently the European VIES service is unavailable, but you can proceed with your registration and validate later from your customer account management.');?>',
+	'gw_memberstate_unavailable':'<?php echo Mage::helper('euvatgrouper')->__('Currently the member state service is unavailable, we could not validate your VAT-ID to issue an VAT exempt order. Anyhow you can proceed with your registration and validate later in your customer account.');?>',
+	'gw_general_error':'<?php echo Mage::helper('euvatgrouper')->__('There was an error processing your request. If this error remains please contact us directly to register a customer account with exempt from taxation with us.');?>'
+    });
+});
+//]]>
+</script>
+<div id="checkrsp"></div>
+<?php endif; ?>

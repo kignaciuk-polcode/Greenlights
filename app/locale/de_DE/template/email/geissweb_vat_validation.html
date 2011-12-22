@@ -1,0 +1,63 @@
+<!--@subject Ergebnisse USt.-ID Validierung @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var store.getFrontendName()":"Store Name",
+"var customer":"Customer Data (Only for registered customers)",
+"var results":"VAT-Validation results"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+ul li{list-style:none;}
+@-->
+<body>
+<h4>USt.-ID Validierungsergebnisse für {{var store.getFrontendName()}}</h4>
+<p>Ein Kunde hat seine USt.-ID über das VIES erfolgreich validiert. Wenn der Name und/oder die Anschrift fehlen, heißt das, dass der Mitgliedstaat der die MwSt-Nummer erteilt hat, diese Daten nicht zur Anzeige freigegeben hat. Wenn Sie einer Steuerverwaltung eines Mitgliedstaats gegenüber nachweisen wollen, dass Sie eine bestimmte UStId-Nummer zu einem bestimmten Zeitpunkt überprüft und eine bestimmte Bestätigungsmeldung erhalten haben, bewahren Sie diese Abfragenummer bitte in Ihren Unterlagen auf.</p>
+<h5>Kundendaten:</h5>
+<table>
+<tr>
+	<td><strong>Website ID:</strong></td><td>{{var customer.website_id}}</td>
+</tr>
+{{depend customer.getData('id')}}
+<tr>
+	<td><strong>Customer ID:</strong></td><td>{{var customer.getData('vies_countryCode')}}</td>
+</tr>
+{{/depend}}
+{{depend customer.firstname}}
+<tr>
+	<td><strong>Kundenname:</strong></td><td>{{var customer.firstname}} {{var customer.lastname}}</td>
+</tr>
+{{/depend}}
+{{depend customer.email}}
+<tr>
+	<td><strong>Kunde E-Mail:</strong></td><td>{{var customer.email}}</td>
+</tr>
+{{/depend}}
+</table>
+
+<h5>Validierungsergebnis:</h5>
+<table>
+<tr>
+	<td><strong>Abfrage-Land:</strong></td><td>{{var customer.getData('vies_countryCode')}}</td>
+</tr>
+<tr>	
+	<td><strong>USt.-ID:</strong></td> <td>{{var customer.getData('vies_countryCode')}}{{var customer.getData('vies_vatNumber')}}</td>
+</tr>
+<tr>
+	<td><strong>Abfragedatum:</strong></td> <td>{{var customer.getData('vies_requestDate')}}</td>
+</tr>
+<tr>
+	<td><strong>USt.-ID gültig:</strong></td><td>{{var customer.getData('vies_valid')}}</td>	
+</tr>
+<tr>
+	<td><strong>Abfragenummer:</strong></td><td>{{var customer.getData('vies_requestIdentifier')}}</td>		
+</tr>
+<tr>
+	<td><strong>Name:</strong></td><td>{{var customer.getData('vies_traderName')}}</td>
+</tr>
+<tr>
+	<td><strong>Adressdaten:</strong></td><td>{{var customer.getData('vies_traderAddress')}}</td>
+</tr>
+</table>
+<p>Jedoch beachten Sie bitte, dass die Überprüfung der Gültigkeit einer UStId-Nummer und deren Zuordnung zu einer bestimmten steuerpflichtigen Person nur EINES der Elemente bei der Nachweisführung hinsichtlich der Umsatzsteuerfreiheit innergemeinschaftlicher Lieferungen (Artikel 138 Absatz 1 Richtlinie 2006/112/EG des Rates) und bei der Entscheidung über den Ort einer Dienstleistung in einem anderen Mitgliedstaat ist.</p>
+<p><font size="-3">Validierungs-Email wurde erstellt von EU VAT Grouper for Magento. Dies ist kein offizielles Dokument einer Steuerverwaltung.</font></p>
+</body>
