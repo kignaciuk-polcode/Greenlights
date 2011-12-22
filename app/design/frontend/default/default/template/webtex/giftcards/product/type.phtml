@@ -1,0 +1,82 @@
+<?php
+$_product = $this->getProduct();
+$_currency = Mage::app()->getStore()->getCurrentCurrency();
+$_from = Mage::getStoreConfig('giftcards/default/min_card_value') ? Mage::getStoreConfig('giftcards/default/min_card_value') : 0;;
+$_to = Mage::getStoreConfig('giftcards/default/max_card_value') ? Mage::getStoreConfig('giftcards/default/max_card_value') : 0;;
+echo $this->getChildHtml('html_calendar');
+?>
+<script type="text/javascript">
+    Validation.add('validate-float-range', "The value is not within the specified range.", function(v, element) {
+        var result = Validation.get('IsEmpty').test(v) || !/[^\d\.\,]/.test(v);
+        var reRange = new RegExp(/^float-range-[\d\.\,]+-[\d\.\,]+$/);
+        $w(element.className).each(function(name, index) {
+            if (name.match(reRange) && result) {
+                var min = parseFloat(name.split('-')[2]);
+                var max = parseFloat(name.split('-')[3]);
+                var val = parseFloat(v);
+                result = !((v < min && min > 0) || (v > max && max > 0));
+            }
+        });
+        return result;
+    });
+</script>
+<div class="gift-card-info">
+	<fieldset style="height: 100%;">
+	<div class="field-label">Choose the type of Gift Card:</div>
+	<div>
+		<input type="radio" id="email-radio" name="email-print" value="email" checked="checked" onclick="changeFieldset()" />&nbsp;<label for="email-radio">E-mail Gift Card (to someone or yourself)</label><br>
+		<input type="radio" id="print-radio" name="email-print" value="print" onclick="changeFieldset()" />&nbsp;<label for="print-radio">Print-Out Gift Card</label>
+	</div>
+	</fieldset>
+  
+    <div id="email-fieldset">
+		<div class="field-label"><label for="email-amount" class="required"><?php echo $this->__('Amount') ?><em>*</em>:</label></div>
+        <input style="width:100px;" type="text" id="amount" name="amount" class="input-text required-entry validate-float-range float-range-<?php echo $_from;?>-<?php echo $_to;?> <?php echo $_class?>"/>&nbsp;(<?php echo $_currency->format($_from) ?> - <?php echo $_currency->format($_to) ?>)
+        
+		<div class="field-label"><label for="recipient" class="required"><?php echo $this->__('Recipient E-mail') ?><em>*</em>:</label></div>
+		<input style="width:200px;" type="text" id="recipient" name="recipient" class="input-text required-entry validate-email"/></td></tr>
+        
+		<div class="field-label"><label>To:</label></div>
+		<input style="width:200px;" type="text" id="email-to" name="email-to" class="input-text"/></td></tr>
+        
+		<div class="field-label"><label>From:</label></div>
+		<input style="width:200px;" type="text" id="email-from" name="email-from" class="input-text"/></td></tr>
+        
+		<div class="field-label"><label>Message:</label></div>
+		<textarea id="email-message" name="email-message"></textarea></td></tr>
+        
+		<div class="field-label"><label>Day to Send:</label></div>
+        <div class="email-date"><?php echo  $this->getCalendarDateHtml();?></div>
+    </div>
+	
+    <div id="print-fieldset">
+
+		<div class="field-label"><label for="print-amount" class="required"><?php echo $this->__('Amount') ?><em>*</em></label></div>
+		<input style="width:100px;" type="text" id="print-amount" name="print-amount" class="input-text required-entry validate-float-range float-range-<?php echo $_from;?>-<?php echo $_to;?> <?php echo $_class?>"/>
+		(<?php echo $_currency->format($_from) ?> - <?php echo $_currency->format($_to) ?>)
+		
+		<div class="field-label"><label>To:</label></div>
+		<input style="width:200px;" type="text" id="print-to" name="print-to" class="input-text"/>
+		
+		<div class="field-label"><label>From:</label></div>
+		<input style="width:200px;" type="text" id="print-from" name="print-from" class="input-text"/>
+		
+		<div class="field-label"><label>Message:</label></div>
+		<textarea id="print-message" name="print-message" ></textarea>
+    </div>
+	
+</div>
+<script type="text/javascript">
+    $('print-fieldset').style.display = 'none';
+    function changeFieldset() {
+        if($('email-radio').checked) {
+            $('email-fieldset').style.display = 'block';
+            $('print-fieldset').style.display = 'none';
+        }
+        else if($('print-radio').checked) {
+            $('email-fieldset').style.display = 'none';
+            $('print-fieldset').style.display = 'block';
+        }
+    }
+</script>
+</form>

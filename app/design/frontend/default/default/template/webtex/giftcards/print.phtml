@@ -1,0 +1,44 @@
+<?php
+$giftCard = $this->_getGiftcard();
+?>
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+            <tr>
+                <td valign="top" style="padding: 10px;">
+                    <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Hello<?php if ($giftCard->getMailRecipient()) : ?>, <?php echo $this->helper('core')->escapeHtml($giftCard->getMailRecipient(), null);?><?php endif; ?>!</h1>
+                    <p style="font-size:12px; line-height:16px; margin:0;">You have received a <?php echo Mage::helper('core')->currency($giftCard->getInitialValue(), true, false)?> Gift Card<?php if ($giftCard->getMailSender()) : ?> from <?php echo $this->helper('core')->escapeHtml($giftCard->getMailSender(), null);?><?php endif; ?>! This card may be redeemed on <a href="<?php echo Mage::app()->getStore()->getBaseUrl(); ?>"><?php echo Mage::app()->getStore()->getFrontendName(); ?></a> website. Happy shopping!</p>
+				</td>
+            </tr>
+			<tr>
+				<td align="center" style="text-align: center;padding: 10px;">
+					<center><img src="<?php echo $this->getSkinUrl('images/giftcard.png'); ?>" /></center>
+				</td>
+			</tr>
+			<tr>
+				<td style="font-size:20px; line-height:30px; margin:0;padding: 10px;">
+					<?php if ($giftCard->getMailRecipient()) : ?>to: <?php echo $this->helper('core')->escapeHtml($giftCard->getMailRecipient(), null);?><br/><?php endif; ?>
+					<?php if ($giftCard->getMailSender()) : ?>from: <?php echo $this->helper('core')->escapeHtml($giftCard->getMailSender(), null);?><br/><?php endif; ?>
+					<?php if ($giftCard->getMailMassege()) : ?>message: <?php echo $this->helper('core')->escapeHtml($giftCard->getMailMassege(), null);?><br/><?php endif; ?>
+					gift card value: <?php echo Mage::helper('core')->currency($giftCard->getInitialValue(), true, false)?><br />
+					gift card claim code: <?php echo $giftCard->getCardCode();?><br />
+				</td>
+			</tr>
+            <tr>
+                <td bgcolor="#EAEAEA" align="left" style="background:#EAEAEA; text-align:left;padding: 10px;">
+					<p style="font-size:12px; margin:0;line-height:20px;">To redeem and use you gift card:
+						<ul style="font-size:12px; margin-left: 40px;line-height:20px;list-style-type: decimal;">
+							<li>Create an account and login into <a href="<?php echo Mage::app()->getStore()->getBaseUrl(); ?>"><?php echo Mage::app()->getStore()->getBaseUrl(); ?></a>.</li>
+							<li>Redeem the card in My Gift Cards page of My Account section.</li>
+							<li>Alternatively, you can redeem the card on My Cart page before proceeding to checkout.</li>
+						</ul>
+					</p>
+				</td>
+            </tr>
+			<tr>
+				<td bgcolor="#EAEAEA" align="left" style="background:#EAEAEA; text-align:left;padding: 10px;">
+					<p style="font-size:12px; margin:0;">If you have any questions please contact us at <a href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_support/email') ?>" style="color:#1E7EC8;"><?php echo Mage::getStoreConfig('trans_email/ident_support/email') ?></a><?php if(Mage::getStoreConfig('general/store_information/phone')) : ?> or call us at <span class="nobr"><?php echo Mage::getStoreConfig('general/store_information/phone') ?></span> Monday - Friday, 8am - 5pm PST.<?php endif; ?></p>
+				</td>
+			</tr>
+        </table>
+<script language="JavaScript" type="text/javascript">
+window.print();
+</script>
