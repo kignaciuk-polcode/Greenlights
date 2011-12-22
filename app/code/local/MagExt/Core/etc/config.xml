@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   MagExt
+ * @package    MagExt_Core
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+    <modules>
+        <MagExt_Core>
+            <version>0.1.0</version>
+        </MagExt_Core>
+    </modules>
+    
+    <admin>
+        <routers>
+            <magext>
+                <use>admin</use>
+                <args>
+                    <module>MagExt_Core</module>
+                    <frontName>magext</frontName>
+                </args>
+            </magext>
+        </routers>
+    </admin>
+    
+    <global>
+        <blocks>
+            <mgxcore>
+                <class>MagExt_Core_Block</class>
+            </mgxcore>
+        </blocks>
+        <resources>
+            <mgxcore_setup>
+                <setup>
+                    <module>MagExt_Core</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mgxcore_setup>
+            <mgxcore_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mgxcore_write>
+            <mgxcore_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mgxcore_read>
+        </resources>
+        <models>
+            <mgxcore>
+                <class>MagExt_Core_Model</class>
+            </mgxcore>
+        </models>
+        <helpers>
+            <mgxcore>
+                <class>MagExt_Core_Helper</class>
+            </mgxcore>
+        </helpers>
+    </global>
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <magext_core translate="title" module="mgxcore">
+                                            <title><![CDATA[MagExtension :: Info]]></title>
+                                            <!-- <children>
+                                                <modules translate="title" module="mgxcore">
+                                                    <title>Installed Extensions</title>
+                                                    <sort_order>1</sort_order>
+                                                </modules>
+                                            </children> -->
+                                        </magext_core>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <MagExt_Core>
+                    <files>
+                        <default>MagExt_Core.csv</default>
+                    </files>
+                </MagExt_Core>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        
+    </default>
+</config>

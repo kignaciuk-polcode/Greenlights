@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MagExt_Core>
+            <active>true</active>
+            <codePool>local</codePool>
+            <name>MagExtension Info</name>
+        </MagExt_Core>
+    </modules>
+</config>

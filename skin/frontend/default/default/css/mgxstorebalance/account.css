@@ -1,0 +1,8 @@
+.storebalance-box #qty {
+    width: 2.5em;
+}
+
+.storebalance-box .add-to-cart-box {
+    float:left;
+    padding-top:12px;
+}

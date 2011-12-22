@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   MagExt
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+    <modules>
+        <MagExt_StoreBalance>
+            <version>1.0.4</version>
+        </MagExt_StoreBalance>
+    </modules>
+    
+    <frontend>
+         <routers>
+            <storebalance>
+                <use>standard</use>
+                <args>
+                    <module>MagExt_StoreBalance</module>
+                    <frontName>storebalance</frontName>
+                </args>
+            </storebalance>
+        </routers>
+
+        <translate>
+            <modules>
+                <MagExt_StoreBalance>
+                    <files>
+                        <default>MagExt_StoreBalance.csv</default>
+                    </files>
+                </MagExt_StoreBalance>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <mgxstorebalance>
+                    <file>mgxstorebalance.xml</file>
+                </mgxstorebalance>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <admin>
+        <routers>
+            <magext>
+                <use>admin</use>
+                <args>
+                    <modules>
+                        <storebalance after="MagExt_Core">MagExt_StoreBalance</storebalance>
+                    </modules>
+                    <frontName>magext</frontName>
+                </args>
+            </magext>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <MagExt_StoreBalance>
+                    <files>
+                        <default>MagExt_StoreBalance.csv</default>
+                    </files>
+                </MagExt_StoreBalance>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <mgxstorebalance>
+                    <file>mgxstorebalance.xml</file>
+                </mgxstorebalance>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+    <global>
+        <models>
+            <mgxstorebalance>
+                <class>MagExt_StoreBalance_Model</class>
+                <resourceModel>mgxstorebalance_mysql4</resourceModel>
+            </mgxstorebalance>
+            <mgxstorebalance_mysql4>
+                <class>MagExt_StoreBalance_Model_Mysql4</class>
+                <entities>
+                    <storebalance>
+                        <table>mgxstorebalance</table>
+                    </storebalance>
+                    <storebalance_transact>
+                        <table>mgxstorebalance_transact</table>
+                    </storebalance_transact>
+                    <coupon>
+                        <table>mgxstorebalance_coupon</table>
+                    </coupon>
+                    <coupon_history>
+                        <table>mgxstorebalance_coupon_history</table>
+                    </coupon_history>
+                </entities>
+            </mgxstorebalance_mysql4>
+        </models>
+        
+        <resources>
+            <mgxstorebalance_setup>
+                <setup>
+                    <module>MagExt_StoreBalance</module>
+                    <class>MagExt_StoreBalance_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mgxstorebalance_setup>
+            <mgxstorebalance_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mgxstorebalance_write>
+            <mgxstorebalance_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mgxstorebalance_read>
+        </resources>
+        
+        <blocks>
+            <mgxstorebalance>
+                <class>MagExt_StoreBalance_Block</class>
+            </mgxstorebalance>
+            <mgxstorebalance_admin>
+                <class>MagExt_StoreBalance_Block_Adminhtml</class>
+            </mgxstorebalance_admin>
+            <checkout>
+                <rewrite>
+                    <onepage_payment_methods>MagExt_StoreBalance_Block_Checkout_Onepage_Payment_Methods</onepage_payment_methods>
+                </rewrite>
+            </checkout>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create_billing_method_form>MagExt_StoreBalance_Block_Adminhtml_Sales_Order_Create_Billing_Method_Form</sales_order_create_billing_method_form>
+                </rewrite>
+            </adminhtml>
+            <multishipping>
+                <rewrite>
+                    <billing>MagExt_StoreBalance_Block_Multishipping_Billing</billing>
+                </rewrite>
+            </multishipping>
+        </blocks>
+        
+        <helpers>
+            <mgxstorebalance>
+                <class>MagExt_StoreBalance_Helper</class>
+            </mgxstorebalance>
+        </helpers>
+
+        <events>
+            <mgxstorebalance_coupon_save_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>saveCouponAfter</method>
+                    </mgxstorebalance>
+                </observers>
+            </mgxstorebalance_coupon_save_after>
+            <mgxstorebalance_balance_save_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>saveBalanceAfter</method>
+                    </mgxstorebalance>
+                </observers>
+            </mgxstorebalance_balance_save_after>
+            <adminhtml_customer_prepare_save>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>prepareCustomerSave</method>
+                    </mgxstorebalance>
+                </observers>
+            </adminhtml_customer_prepare_save>
+            <adminhtml_customer_save_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>saveCustomerAfter</method>
+                    </mgxstorebalance>
+                </observers>
+            </adminhtml_customer_save_after>
+            <sales_quote_collect_totals_before>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>collectQuoteTotalsBefore</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_quote_collect_totals_before>
+            <sales_order_place_before>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>placeOrderBefore</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_order_place_before>
+            <sales_order_place_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>decreaseStoreBalance</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_order_place_after>
+            <sales_order_invoice_save_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>saveInvoiceAfter</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_order_invoice_save_after>
+            
+            <sales_order_load_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>loadOrderAfter</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_order_load_after>
+            
+            <adminhtml_sales_order_creditmemo_register_before>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>registerCreditmemoBefore</method>
+                    </mgxstorebalance>
+                </observers>
+            </adminhtml_sales_order_creditmemo_register_before>
+            
+            <sales_order_creditmemo_refund>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>refundCreditmemo</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_order_creditmemo_refund>
+            
+            <sales_order_creditmemo_save_after>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>saveCreditmemoAfter</method>
+                    </mgxstorebalance>
+                </observers>
+            </sales_order_creditmemo_save_after>
+            
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>disableFreePaymentMethod</method>
+                    </mgxstorebalance>
+                </observers>
+            </core_block_abstract_to_html_before>
+            
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>redirectToCheckout</method>
+                    </mgxstorebalance>
+                </observers>
+            </checkout_cart_add_product_complete>
+            
+            <core_config_data_save_before>
+                <observers>
+                    <mgxstorebalance>
+                        <class>mgxstorebalance/observer</class>
+                        <method>saveConfigBefore</method>
+                    </mgxstorebalance>
+                </observers>
+            </core_config_data_save_before>
+        </events>
+        <sales>
+            <quote>
+                <totals>
+                    <storebalance>
+                        <class>mgxstorebalance/quote_total_storebalance</class>
+                        <after>wee,discount,tax,tax_subtotal,grand_total</after>
+                    </storebalance>
+                </totals>
+            </quote>
+            
+            <order_invoice>
+                <totals>
+                    <storebalance>
+                        <class>mgxstorebalance/invoice_total_storebalance</class>
+                        <after>grand_total</after>
+                    </storebalance>
+                </totals>
+            </order_invoice>
+            
+            <order_creditmemo>
+                <totals>
+                    <storebalance>
+                        <class>mgxstorebalance/creditmemo_total_storebalance</class>
+                    </storebalance>
+                </totals>
+            </order_creditmemo>
+        </sales>
+        <fieldsets>
+            <sales_convert_quote_address>
+                <store_balance_amount><to_order>*</to_order></store_balance_amount>
+                <base_store_balance_amount><to_order>*</to_order></base_store_balance_amount>
+            </sales_convert_quote_address>
+        </fieldsets>
+        
+        <pdf>
+            <totals>
+                <store_balance_amount translate="title">
+                    <title>Store Balance</title>
+                    <source_field>storebalance_amount</source_field>
+                    <font_size>7</font_size>
+                    <display_zero>0</display_zero>
+                    <sort_order>590</sort_order>
+                    <amount_prefix>-</amount_prefix>
+                </store_balance_amount>
+            </totals>
+        </pdf>
+    </global>
+    
+    <default>
+        <magext_storebalance>
+            <general>
+                <enable_storebalance>1</enable_storebalance>
+                <enable_storebalance_coupons>1</enable_storebalance_coupons>
+            </general>
+            <storebalance_coupons>
+                <coupon_length>12</coupon_length>
+                <group_length>4</group_length>
+                <group_separator>-</group_separator>
+                <coupon_format>alphanum</coupon_format>
+            </storebalance_coupons>
+            <storebalance_purchase>
+                <product></product>
+                <button>purchase</button>
+            </storebalance_purchase>
+        </magext_storebalance>
+        <payment>
+            <storebalance translate="title">
+                <active>1</active>
+                <model>mgxstorebalance/payment_method_storebalance</model>
+                <order_status>pending</order_status>
+                <title>Store Balance</title>
+                <allowspecific>0</allowspecific>
+            </storebalance>
+        </payment>
+        <sales>
+            <totals_sort>
+                <storebalance>95</storebalance>
+            </totals_sort>
+        </sales>
+    </default>
+</config>

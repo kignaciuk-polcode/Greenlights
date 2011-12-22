@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   design_default
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<layout version="0.1.0">
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance" name="customer_edit_tab_storebalance">
+                <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_change" name="change" before="-" />
+                <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_accordion" name="accordion" />
+            </block>
+            <action method="addTab"><name>customer_edit_tab_storebalance</name><block>customer_edit_tab_storebalance</block></action>
+        </reference>
+    </adminhtml_customer_edit>
+    
+    <magext_storebalance_balance_index>
+        <block type="core/text_list" name="root">
+            <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_balance" name="storebalance.balance" template="mgxstorebalance/customer/tab/view/balance.phtml">
+                <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_balance_grid" name="storebalance.balance.grid" as="storebalance_balance_grid"/>
+            </block>
+            <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_change" name="storebalance.change"/>
+            <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_transact" name="storebalance.balance.transact" template="mgxstorebalance/customer/tab/view/transact.phtml">
+                <block type="mgxstorebalance/adminhtml_customer_edit_tab_storebalance_transact_grid" name="storebalance.balance.transact.grid" as="storebalance_balance_transact_grid"/>
+            </block> 
+        </block>
+    </magext_storebalance_balance_index>
+    
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+            <block type="mgxstorebalance/adminhtml_sales_order_totals_item" name="storebalance_refunded" template="mgxstorebalance/sales/order/totals/storebalance_refunded.phtml" after="refunded">
+                <action method="setSourceField"><value>store_balance_refunded</value></action>
+                <action method="setLabel" translate="value"><value>Refunded to Store Balance</value></action>
+                <action method="setDisplayArea"><value>footer</value></action>
+                <action method="setStrong"><value>1</value></action>
+                <action method="setHtmlClass"><value>emph</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+    
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="storebalance" template="mgxstorebalance/sales/order/totals/storebalance.phtml">
+                <action method="setSourceField"><value>store_balance_amount</value></action>
+                <action method="setLabel" translate="value"><value>Store Balance</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+    <adminhtml_sales_order_create_index>
+        <reference name="js">
+            <block type="adminhtml/template" template="mgxstorebalance/sales/order/create/js.phtml" name="create" />
+        </reference>
+    </adminhtml_sales_order_create_index>
+</layout>

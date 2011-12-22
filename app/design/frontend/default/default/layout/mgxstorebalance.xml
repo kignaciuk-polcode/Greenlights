@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   design_default
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+-->
+
+<layout version="0.1.0">
+    <customer_account>
+        <!-- MagExt_StoreBalance -->
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="mgxstorebalance" ifconfig="magext_storebalance/general/enable_storebalance">
+                <name>storebalance</name>
+                <path>storebalance/</path>
+                <label>Store Balance</label>
+            </action>
+        </reference>
+    </customer_account>
+        
+    <storebalance_index_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/mgxstorebalance/account.css</name><params/></action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="mgxstorebalance/customer_view" name="storebalance.customer.view">
+                <block type="mgxstorebalance/customer_view_balance" name="storebalance.customer.view.balance" template="mgxstorebalance/customer/view/balance.phtml">
+                    <block type="mgxstorebalance/customer_view_balance_purchase" name="storebalance.customer.view.balance.purchase" template="mgxstorebalance/customer/view/balance/purchase.phtml" />
+                </block>
+                <block type="mgxstorebalance/customer_view_recent" name="storebalance.customer.view.recent" template="mgxstorebalance/customer/view/recent.phtml" />
+            </block>
+        </reference>
+    </storebalance_index_index>
+    
+    <storebalance_index_transact>
+        <update handle="customer_account"/>
+        <reference name="customer_account_navigation">
+            <action method="setActive"><path>storebalance</path></action>
+        </reference>
+        <reference name="content">
+            <block type="mgxstorebalance/customer_transact" name="storebalance.customer.transact" />
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+    </storebalance_index_transact>
+
+    <sales_order_view>
+        <reference name="order_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_order_view>
+    <sales_order_print>
+        <reference name="order_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_order_print>
+    <sales_email_order_items>
+        <reference name="order_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_email_order_items>
+    
+    <sales_order_invoice>
+        <reference name="invoice_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_order_invoice>
+    <sales_order_printinvoice>
+        <reference name="invoice_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_order_printinvoice>
+    <sales_email_order_invoice_items>
+        <reference name="invoice_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_email_order_invoice_items>
+    
+    <sales_order_creditmemo>
+        <reference name="creditmemo_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_order_creditmemo>
+    <sales_order_printcreditmemo>
+        <reference name="creditmemo_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_order_printcreditmemo>
+    <sales_email_order_creditmemo_items>
+        <reference name="creditmemo_totals">
+			<block type="mgxstorebalance/sales_order_totals_storebalance" name="storebalance"></block>
+        </reference>
+    </sales_email_order_creditmemo_items>
+</layout>
