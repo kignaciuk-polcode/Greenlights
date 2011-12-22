@@ -1,0 +1,61 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-title">
+    <h1><?php echo $this->__("Inquiry #%s Items", $this->getRealInquiryId()) ?></h1>
+</div>
+<?php $isInquirySubmitted = $this->isInquirySubmitted(); ?>
+<?php if ($this->hasInquiryItems()): ?>
+    <form id="inquiry-view-form" action="<?php echo $this->getUrl('*/*/update') ?>" method="post">
+        <fieldset>
+            <table class="data-table" id="my-inquiry-items-table" >
+                <col width="1" />
+                <col width="1" />
+                <col width="1" />
+                <thead>
+                    <tr>
+                        <th><?php echo $this->__('Product') ?></th>
+                        <th class="a-center"><span class="nobr"><?php echo $this->__('Qty') ?></span></th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->getInquiryItems() as $_item): ?>
+                        <?php
+                        $product = $_item->getProduct();
+
+                        $isVisibleProduct = $product->isVisibleInSiteVisibility();
+                        ?>            
+                        <tr>
+                            <td>
+                                <a class="product-image" href="<?php echo $this->getProductUrl($_item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(113, 113); ?>" width="113" height="113" alt="<?php echo $this->escapeHtml($product->getName()) ?>" /></a>
+                                <h2 class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a></h2>
+                                <?php echo $this->getDetailsHtml($_item) ?>
+                            </td>
+                            <td class="a-center">
+                                <?php if ($_item->canHaveQty() && $isVisibleProduct): ?>
+                                    <p><input type="text" class="input-text qty" name="qty[<?php echo $_item->getId() ?>]" value="<?php echo $this->getAddToCartQty($_item) * 1 ?>" <?php echo ($isInquirySubmitted)?'disabled="disabled"':'' ?> /></p>
+                                <?php endif; ?>
+
+                                <?php if ($isVisibleProduct && !$isInquirySubmitted): ?>
+                                    <p><a href="<?php echo $this->getItemConfigureUrl($_item) ?>"><?php echo $this->__('Edit') ?></a></p>
+                                <?php endif ?>
+                            </td>
+                            <td>
+                                <?php if(!$isInquirySubmitted):?>
+                                <a href="<?php echo $this->getItemRemoveUrl($_item) ?>" title="<?php echo $this->__('Remove Item') ?>" onclick="return confirmRemoveWishlistItem();" class="btn-remove btn-remove2"><?php echo $this->__('Remove item') ?></a>
+                                <?php endif;?>
+                            </td>                        
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php if(!$isInquirySubmitted):?>
+            <div class="buttons-set buttons-set2">
+                <button type="submit" onclick="this.name='save_and_submitt'" title="<?php echo $this->__('Submitt Inquiry') ?>" class="button btn-submit"><span><span><?php echo $this->__('Submitt Inquiry') ?></span></span></button>               
+            </div>
+            <?php endif;?>
+        </fieldset>
+    </form>
+<?php else: ?>
+    <p><?php echo $this->__('You have no items in your offer inquiry.') ?></p>
+<?php endif; ?>
+

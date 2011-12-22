@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <offer_adminhtml_inquiry_index>
+        <reference name="content">
+            <block type="offer/adminhtml_inquiry" name="offer" />
+        </reference>
+    </offer_adminhtml_inquiry_index>
+    
+    <offer_adminhtml_inquiry_view>
+        <reference name="head">
+            <action method="addJs"><file>polcode/adminhtml/offer.js</file></action>
+            <action method="addJs"><file>mage/adminhtml/product/composite/configure.js</file></action>
+        </reference>
+        <reference name="content">
+            <block type="offer/adminhtml_inquiry_view" name="offer_inquiry_edit"></block>
+        </reference>        
+        <reference name="left">
+            <block type="offer/adminhtml_inquiry_view_tabs" name="offer_inquiry_tabs">
+                <block type="offer/adminhtml_inquiry_view_tab_info" name="inquiry_tab_info" template="offer/inquiry/view/tab/info.phtml">
+                    <block type="offer/adminhtml_inquiry_view_info" name="inquiry_info" template="offer/inquiry/view/info.phtml"></block>
+                    <block type="offer/adminhtml_inquiry_view_items" name="inquiry_items" template="offer/inquiry/view/items.phtml"></block>                
+                    <block type="offer/adminhtml_inquiry_totals" name="inquiry_totals" template="offer/inquiry/totals.phtml"></block>
+                </block>
+                <action method="addTab"><name>inquiry_info</name><block>inquiry_tab_info</block></action>
+            </block>
+        </reference>
+    </offer_adminhtml_inquiry_view>
+    
+</layout>
