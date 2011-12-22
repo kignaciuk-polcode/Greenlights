@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webtex
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.webtexsoftware.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@webtexsoftware.com and we will send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.webtexsoftware.com for more information,
+ * or contact us through this email: info@webtexsoftware.com.
+ *
+ * @category   Webtex
+ * @package    Webtex_Giftcards
+ * @copyright  Copyright (c) 2011 Webtex Solutions, LLC (http://www.webtexsoftware.com/)
+ * @license    http://www.webtexsoftware.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+    <modules>
+        <Webtex_Giftcards>
+            <version>1.0.0</version>
+        </Webtex_Giftcards>
+    </modules>
+    <crontab>
+        <jobs>
+            <webtex_giftcards>
+                <schedule><cron_expr>*/5 * * * *</cron_expr></schedule>
+                <run><model>giftcards/cron::sendMail</model></run>
+            </webtex_giftcards>
+        </jobs>
+      </crontab>    
+    
+      <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <Webtex_Giftcards before="Mage_Checkout">Webtex_Giftcards</Webtex_Giftcards>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+    </frontend>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Webtex_Giftcards before="Mage_Adminhtml_Catalog_ProductController">Webtex_Giftcards_Adminhtml</Webtex_Giftcards>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+	<default>
+		<giftcards>
+			<email>
+				<email_template>email_email_template</email_template>
+				<print_template>print_email_template</print_template>
+				<confirm_template>confirm_email_template</confirm_template>
+			</email>
+		</giftcards>
+	</default>
+    <global>
+    	<template>
+			<email>
+				<email_email_template translate="label" module="giftcards">
+					<label>Gift Card E-mail</label>
+					<file>giftcard_email.html</file>
+					<type>html</type>
+				</email_email_template>
+				<print_email_template translate="label" module="giftcards">
+					<label>Gift Card Print</label>
+					<file>giftcard_print.html</file>
+					<type>html</type>
+				</print_email_template>
+                <confirm_email_template translate="label" module="giftcards">
+					<label>Gift Card Confirm</label>
+					<file>giftcard_confirm.html</file>
+					<type>html</type>
+				</confirm_email_template>
+			</email>
+		</template>
+    	<events>
+    		<order_cancel_after>
+    			<observers>
+    				<webtex_giftcards_cancleOrder>
+    					<type>singleton</type>
+    					<class>Webtex_Giftcards_Model_OrderCancel</class>
+    					<method>cancelOrder</method>
+    				</webtex_giftcards_cancleOrder>
+    			</observers>
+    		</order_cancel_after>
+    	</events>
+        <models>
+            <giftcards>
+                <class>Webtex_Giftcards_Model</class>
+                <resourceModel>giftcards_mysql4</resourceModel>
+            </giftcards>
+            <giftcards_mysql4>
+                <class>Webtex_Giftcards_Model_Mysql4</class>
+                <entities>
+                    <card>
+                        <table>giftcards_card</table>
+                    </card>
+                </entities>
+            </giftcards_mysql4>
+            <sales>
+            	<rewrite>
+                    <order>Webtex_Giftcards_Model_Order</order>
+            		<quote_item>Webtex_Giftcards_Model_Quote_Item</quote_item>
+            		<service_quote>Webtex_Giftcards_Model_Service_Quote</service_quote>
+            	</rewrite>
+            </sales>
+            <salesrule>
+            	<rewrite>
+                	<validator>Webtex_Giftcards_Model_Validator</validator>
+                </rewrite>
+            </salesrule>
+        </models>
+        <resources>
+            <giftcards_setup>
+                <setup>
+                    <module>Webtex_Giftcards</module>
+                </setup>
+            </giftcards_setup>
+        </resources>
+        <helpers>
+            <giftcards>
+                <class>Webtex_Giftcards_Helper</class>
+            </giftcards>  
+        </helpers>
+        <blocks>
+            <giftcards>
+                <class>Webtex_Giftcards_Block</class>
+            </giftcards>
+        </blocks>
+        <catalog>
+            <product>
+                <type>
+                    <giftcards module="giftcards">
+                        <label>Gift Card</label>
+                        <model>giftcards/product_type_giftcards</model> 
+                        <price_model>giftcards/product_price</price_model>
+                        <is_qty>1</is_qty>
+                    </giftcards>
+                </type>
+            </product>
+        </catalog>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <giftcards module="Webtex_Giftcards">
+                    <file>giftcards.xml</file>
+                </giftcards>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <giftcards>
+                <use>admin</use>
+                <args>
+                    <module>Webtex_Giftcards</module>
+                    <frontName>giftcards</frontName>
+                </args>
+            </giftcards>
+        </routers>
+    </admin>
+</config>
