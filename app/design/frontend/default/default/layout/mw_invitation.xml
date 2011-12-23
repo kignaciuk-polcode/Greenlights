@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <customer_account translate="label">
+	    <reference name="customer_account_navigation">
+	    	<action method="addLink" translate="label" module="invitation" ifconfig="invitation/config/enabled"><name>invitation</name><path>invitation/invitation/</path><label>My Invitations</label></action>
+	    </reference>
+    </customer_account>
+   <invitation_invitation_index>
+   <update handle="customer_account"/>
+    	<reference name="content">
+	        <block type="invitation/invitation" name="customer_invitation_dashboard" template="mw_invitation/customer/account/invitation.phtml">
+	        	<!-- <block type="invitation/invitation_info" name="customer_invitation_info" as="invite_info" template="mw_invitation/customer/account/invitation/invite_info.phtml"/> -->
+	            <block type="invitation/invitation_form" name="customer_invitation_form" as="invite_form" template="mw_invitation/customer/account/invitation/invite_form.phtml"/>
+	        </block>
+        </reference>
+   </invitation_invitation_index>
+</layout>
