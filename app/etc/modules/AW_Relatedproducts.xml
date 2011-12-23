@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <AW_Relatedproducts>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AW_Relatedproducts>
+    </modules>
+</config>

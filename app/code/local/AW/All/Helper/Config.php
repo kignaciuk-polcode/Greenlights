@@ -16,12 +16,10 @@
  */
 
 class AW_All_Helper_Config extends Mage_Core_Helper_Abstract{
-	/** Extensions feed path */
+    /** Extensions feed path */
     const EXTENSIONS_FEED_URL = 'http://media.aheadworks.com/feeds/extensions.xml';
-	/** Updates Feed path */
+    /** Updates Feed path */
     const UPDATES_FEED_URL = 'http://media.aheadworks.com/feeds/updates.xml';
-
-    const ENTERPRISE_VERSION = '1.7';
-
-    const PROFESSIONAL_EDITION = '1.6';
+    const ENTERPRISE_VERSION = '1.8';
+    const PROFESSIONAL_EDITION = '1.7';
 }

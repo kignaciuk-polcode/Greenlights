@@ -1,0 +1,75 @@
+<?php  if (($this->getTarget() == "enterprise" && Mage::helper('relatedproducts')->isEnterprise())): ?>
+<?php if($this->getEnabled() && count($this->getRelatedProductsCollection())): ?>
+<div class="box-collateral box-related">
+    <div class="box-title">
+        <h2><?php echo $this->__('Customers Who Bought This Also Bought') ?></h2>
+    </div>
+    <div class="aw-content">
+        <p class="note"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<strong><a href="#" onclick="selectAllAwRelated(this);return false;"><?php echo $this->__('select all') ?></a></strong></p>
+    <?php $i=0; foreach($this->getRelatedProductsCollection() as $_item): ?>
+        <?php if ($i++ % $this->getColumnCount() == 0): ?>
+        <ul class="box-content">
+        <?php endif ?>
+        <li class="item<?php if (($i - 1) % $this->getColumnCount() == 0):?> first<?php elseif ($i % $this->getColumnCount() == 0): ?> last<?php endif; ?>">
+        <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+            <?php if (!$_item->getRequiredOptions()): ?>
+                <input type="checkbox" class="checkbox aw-related-checkbox" id="aw-related-checkbox<?php echo $_item->getId() ?>" name="aw_related_products[]" value="<?php echo $_item->getId() ?>" />
+            <?php endif; ?>
+        <?php endif; ?>
+            <div class="item-info">
+                <a href="<?php echo $this->getProductUrl($_item) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(100) ?>" width="100" height="100" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
+                <div class="product-details">
+                    <h3 class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
+                    <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                        <p><a href="<?php echo $this->getAddToWishlistUrl($_item) ?>"><?php echo $this->__('Add to Wishlist') ?></a></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </li>
+        <?php if ($i % $this->getColumnCount() == 0 || $i == $this->getItemsCount()): ?>
+        </ul>
+        <?php endif ?>
+    <?php endforeach ?>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+$$('.aw-related-checkbox').each(function(elem){
+    Event.observe(elem, 'click', addAwRelatedToProduct)
+});
+
+var relatedAwProductsCheckFlag = false;
+function selectAllAwRelated(txt){
+    if (relatedAwProductsCheckFlag == false) {
+        $$('.aw-related-checkbox').each(function(elem){
+            elem.checked = true;
+        });
+        relatedAwProductsCheckFlag = true;
+        txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+    } else {
+        $$('.aw-related-checkbox').each(function(elem){
+            elem.checked = false;
+        });
+        relatedAwProductsCheckFlag = false;
+        txt.innerHTML="<?php echo $this->__('select all') ?>";
+    }
+    addAwRelatedToProduct();
+}
+
+function addAwRelatedToProduct(){
+    var checkboxes = $$('.aw-related-checkbox');
+    var values = [];
+    for(var i=0;i<checkboxes.length;i++){
+        if(checkboxes[i].checked) values.push(checkboxes[i].value);
+    }
+    
+    if($('related-products-field')){
+        $('related-products-field').value = values.join(',');
+    }
+    
+}
+//-->
+</script>
+<?php endif ?>
+<?php endif ?>

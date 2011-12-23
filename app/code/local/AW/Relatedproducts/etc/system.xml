@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Relatedproducts
+ * @copyright  Copyright (c) 2008-2011 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+-->
+<config>
+	<sections>
+		<relatedproducts module="relatedproducts" translate="label">
+			<label>Who Bought This Also Bought</label>
+			<tab>awall</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>033</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general>
+					<label>General Options</label>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<sort_order>10</sort_order>
+					<fields>
+						<enabled translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enabled>
+						<same_category translate="label">
+							<label>Show products from one category only </label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <backend_model>relatedproducts/system_config_backend_samecategory</backend_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</same_category>
+						<products_to_display translate="label">
+							<label>Products to display</label>
+							<frontend_type>text</frontend_type>
+                            <backend_model>relatedproducts/system_config_backend_samecategory</backend_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</products_to_display>
+                        <process_orders translate="label">
+                            <label>Process orders</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>relatedproducts/system_config_source_statuses</source_model>
+                            <backend_model>relatedproducts/system_config_backend_samecategory</backend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </process_orders>
+					</fields>
+				</general>
+			</groups>
+		</relatedproducts>
+	</sections>
+</config>
