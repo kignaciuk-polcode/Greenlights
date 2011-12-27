@@ -1,6 +1,6 @@
 <?php
 
-class Polcode_MultiSearch_Block_Result extends Mage_Core_Block_Template
+class Polcode_Multisearch_Block_Result extends Mage_Core_Block_Template
 {
     public function __construct()
     {

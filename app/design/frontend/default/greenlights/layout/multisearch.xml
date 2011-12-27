@@ -30,11 +30,16 @@
     
     <multisearch_result_index>
         <reference name="root">
-            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         
         <reference name="content">
-            <block type="multisearch/result" name="search.result" template="multisearch/result.phtml" />
+            <block type="multisearch/result" name="multisearchResult" />
+        </reference>
+        
+        <reference name="multisearchResult">
+            <block type="multisearch/result_shop" name="multisearch.result.shop" template="multisearch/result/shop.phtml" />
+            <block type="multisearch/result_blog" name="multisearch.result.blog" template="multisearch/result/blog.phtml" />
         </reference>
         
     </multisearch_result_index>
