@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+<!-- Remove callouts and rarely used stuff -->
+        <remove name="right.poll"/>
+        <remove name="right.permanent.callout"/>
+        <remove name="left.permanent.callout"/>
+<!-- add the local stylesheet -->
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/local.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/social.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="header">
+            <block type="social/social" name="social" as="social" template="social/social.phtml"/>
+        </reference>
+    </default>
+</layout>
