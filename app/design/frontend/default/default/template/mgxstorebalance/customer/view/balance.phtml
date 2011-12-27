@@ -1,0 +1,43 @@
+<?php
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   design_default
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+?>
+<div class="fieldset">
+    <h4 class="legend"><?php echo $this->__('Balance') ?></h4>
+    <ul class="form-list">
+        <li><label><?php echo $this->__('You have %s on your Store Balance', Mage::helper('core')->currency($this->getBalance()))?></label>&nbsp;
+        </li>
+        <?php if ($this->isEnabledCoupons()):?>
+        <li>
+            <form id="refill-balance-form" action="<?php echo $this->getFormAction()?>" method="post">
+                    <label><?php echo $this->__('Enter Store Balance Coupon if you have one:')?></label><br />
+                    <span class="field"><input type="text" class="required-entry input-text" value="<?php echo $this->getStoreBalanceCoupon()?>" name="storebalance_coupon"></span>
+                    <button class="button" type="submit"><span><?php echo $this->__('Refill Balance')?></span></button>
+            </form>
+        </li>
+        <?php endif;?>
+        <?php echo $this->getChildHtml('', true, true)?>
+    </ul>
+</div>

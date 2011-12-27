@@ -1,0 +1,66 @@
+<?php
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   design_default
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+?>
+<?php $_items = $this->getTransactItems(); ?>
+<?php if($_items->getSize()): ?>
+<fieldset class="group-select">
+    <h4 class="legend"><?php echo $this->__('Recent Balance Transactions') ?></h4>
+	<ul>
+		<li>
+			<table cellspacing="0" class="data-table" id="storebalance-transact-table">
+				<col width="150" />
+				<col width="50" />
+				<col width="50" />
+				<col width="50" />
+				<col />
+				<thead>
+					<tr>
+						<th><?php echo $this->__('Modified On') ?></th>
+						<th><?php echo $this->__('Action') ?></th>
+						<th><?php echo $this->__('Balance') ?></th>
+						<th><?php echo $this->__('Balance Change') ?></th>
+						<th><?php echo $this->__('Comment') ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($_items as $_item): ?>
+						<tr>
+							<td><?php echo $_item->getModifiedDate()?></td>
+							<td><?php echo $this->getActionLabel($_item->getAction())?></td>
+							<td><?php echo Mage::helper('core')->currency($_item->getValue())?></td>
+							<td><?php echo Mage::helper('core')->currency($_item->getValueChange())?></td>
+							<td><?php echo $_item->getComment()?></td>
+						</tr>
+					<?php endforeach;?>
+				</tbody>
+			</table>
+		</li>
+		<li>
+			<a class="right" href="<?php echo $this->getViewAllUrl()?>">View All</a>
+		</li>
+	</ul>
+</fieldset>
+<?php endif ?>

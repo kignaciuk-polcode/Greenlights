@@ -1,0 +1,216 @@
+<?php $check = version_compare(Mage::getVersion(),'1.4.0.1','>=');?>
+<div id="rewardpoints_box">
+<form id="rewardpoints-form" action="<?php echo $this->getUrl('rewardpoints/checkout/rewardPointsPost') ?>" method="post">
+    <div class="discount discount-codes box">
+        <?php if($check):?><h2><?php echo $this->__('Use your rewarded points') ?></h2><?php else:?><h4><?php echo $this->__('Use your rewarded points') ?></h4><?php endif;?>
+        <div class="discount-form">
+        	<h5 id="reward-points-rules-title" <?php if (!sizeof($this->getRewardPointsRule())) echo "style=\"display:none\"";?>><?php echo $this->__("You will be awarded")?></h5>
+			<div id="reward-points-rules">
+	        	<?php $total = 0;?>
+	        	<?php foreach($this->getRewardPointsRule() as $rule):?>
+	        	<div style="width:100%;padding-left:20px;">
+	        		<div style="float:left; width:400px"><?php echo $rule['message'];?></div>
+	        		<div style="float:left;"><b><?php echo $this->__('+ %s %s',($rule['qty']>1?$rule['qty']." x":""),Mage::helper('rewardpoints')->formatPoints($rule['amount']));?></b></div>
+	        	</div>
+	        	<?php $total += $rule['amount']*$rule['qty'];?>
+	        	<?php endforeach;?>
+	        	<?php if($total):?>
+		        	<div style="width:100%;padding:10px 20px;clear:left;">
+		        		<div style="float:left; width:400px;font-weight: bold;"><?php echo $this->__('Total');?></div>
+		        		<div style="float: left; border-top: 1px solid #333; width: 100px;"><b><?php echo $this->__('%s',Mage::helper('rewardpoints')->formatPoints($total));?></b></div>
+		        	</div>
+	        	<?php endif;?>
+        	</div>
+			
+			<?php if (sizeof($this->getRewardPointsRule())):?>
+				<div style="clear:both;padding-top:20px;"></div>
+				<div style="width:100%;padding-top:10px; border-top: 1px dashed #333;"></div>
+			<?php endif;?>
+			
+        	<?php $rate = $this->getPointPerMoney();?>
+        	<div style="width:100%;">
+        	<?php if($this->_getCustomer()->getId()):?>
+	        	<div style="float:left; width:250px;">
+	        		<h5><?php echo $this->__("Reward Points Information",Mage::helper('rewardpoints')->getPointCurency())?></h5>
+	        		<ul style="padding-left:20px">
+		        		<li style="font-weight:normal;"><?php echo Mage::helper('rewardpoints')->__('Points/Currency Exchange Rate: <b>%s</b> = <b>%s</b>',Mage::helper('rewardpoints')->formatPoints($rate[0]), $this->formatMoney($rate[1])) ?></li>
+		        		<li><?php echo $this->__("Your current balance of rewarded points: <b>%s</b>",Mage::helper('rewardpoints')->formatPoints($this->getCurrentRewardPoints()))?></li>
+			        </ul>
+	        	</div>
+	        	
+	        	<div style="float:left;width:300px">
+	        		<h5><?php echo $this->__("Spend your rewarded points")?></h5>
+	        		<label><?php echo $this->__("Choose number of points to spend")?></label>
+	        		<div class="slider_contaner">
+	        			<div id="decr_handle"></div>
+	        			<div id="incr_handle"></div>
+	        			<div id="mw_slider"></div>
+	        		</div>
+	        		<div style="text-align: center;"><input style="color:#f6931f; width:50px; text-align:center" type="text" name="amount" id="amount" /> <br /><?php echo $this->__("Points spent to checkout")?> <label id="label_amount" style="color:#f6931f; font-weight:bold;display:none;"></label></div>
+	        		<label><input type="checkbox" name="use_max_points" id="use_max_points" /> <?php echo $this->__("Use maximum number of points")?></label>
+				</div>
+		         <?php else:?>
+		         <div style="text-align: center;"><?php echo $this->__("Please <a href='%s'>LOGIN</a> to use reward points", Mage::getUrl('customer/account/login'))?></div>
+	            <?php endif;?>
+            </div>
+            <div style="clear:both;"></div>
+		</div>
+	</div>
+</form>
+</div>
+<script type="text/javascript">
+var slider_ajax_timeout = 1000;
+var slider_runing = false;
+var timer;
+var value_buffer;
+$mw_rewardpoints(function() {
+	$mw_rewardpoints("#mw_slider").slider({
+		value:<?php echo $this->getRewardPoints()?$this->getRewardPoints():0;?>,
+		min:0,
+		max:<?php echo $this->getMaxPointsToCheckout()?>,
+		step:<?php echo $rate[0]?>,
+		slide: function(event, ui) {
+			$mw_rewardpoints("#amount").val(ui.value);
+			$mw_rewardpoints("#label_amount").html(ui.value);
+
+			if(ui.value != <?php echo $this->getMaxPointsToCheckout()?>)
+				$mw_rewardpoints("#use_max_points").attr("checked","");
+			else 
+				$mw_rewardpoints("#use_max_points").attr("checked","checked");
+			slider_runing = true;
+			runTimer();
+		},
+		animate: 1000
+	});
+
+	$mw_rewardpoints("#incr_handle").click(function(){
+		if($mw_rewardpoints("#mw_slider").slider("value") < <?php echo $this->getMaxPointsToCheckout()?>){
+			$mw_rewardpoints("#mw_slider").slider("value", $mw_rewardpoints("#mw_slider").slider("value") + <?php echo $rate[0]?>);
+			updateAmount();
+		}
+	});
+
+	
+	$mw_rewardpoints("#decr_handle").click(function(){
+		if($mw_rewardpoints("#mw_slider").slider("value") > 0){
+			$mw_rewardpoints("#mw_slider").slider("value", $mw_rewardpoints("#mw_slider").slider("value") - <?php echo $rate[0]?>);
+			updateAmount();
+		}
+	});
+
+	
+	$mw_rewardpoints("#use_max_points").click(function(){
+		if(this.checked)
+			$mw_rewardpoints("#mw_slider").slider("value",<?php echo $this->getMaxPointsToCheckout()?>);
+		else
+			$mw_rewardpoints("#mw_slider").slider("value",0);
+		updateAmount();
+	});
+	
+	
+
+	$mw_rewardpoints("#amount").keydown(function(event) {
+        // Allow only backspace and delete
+        if ( event.keyCode == 46 || event.keyCode == 8 ) {
+                // let it happen, don't do anything
+        }
+        else {
+                // Ensure that it is a number and stop the keypress
+                if (event.keyCode < 48 || event.keyCode > 57 ) {
+                    event.preventDefault();
+                }       
+        }
+    });
+
+	$mw_rewardpoints("#amount").keyup(function(event) {
+		if ((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode == 46 || event.keyCode == 8 ) {
+			if(this.value <= <?php echo $this->getMaxPointsToCheckout()?>){
+				setUnsetCheckBox();
+				$mw_rewardpoints("#mw_slider").slider("value",this.value);
+				runTimer();
+			}else
+			{
+				this.value = <?php echo $this->getMaxPointsToCheckout()?>;
+				$mw_rewardpoints("#mw_slider").slider("value",<?php echo $this->getMaxPointsToCheckout()?>);
+				setUnsetCheckBox();
+				runTimer();
+			}
+		}
+	});
+	
+	//updateRewardPointsAmount();
+	updateAmount(true);
+});
+
+function updateAmount(noAjax)
+{
+	$mw_rewardpoints("#amount").val($mw_rewardpoints("#mw_slider").slider("value"));
+	$mw_rewardpoints("#label_amount").html($mw_rewardpoints("#mw_slider").slider("value"));
+	setUnsetCheckBox();
+	if(!noAjax)
+		runTimer();
+}
+
+function setUnsetCheckBox()
+{
+	if($mw_rewardpoints("#amount").val() != <?php echo $this->getMaxPointsToCheckout()?>)
+		$mw_rewardpoints("#use_max_points").attr("checked","");
+	else 
+		$mw_rewardpoints("#use_max_points").attr("checked","checked");
+}
+
+function runTimer()
+{
+	clearTimeout(timer);
+	timer = setTimeout("updateRewardPoints();",slider_ajax_timeout);
+}
+
+function updateRewardPoints()
+{
+	slider_runing = false;
+	var amount = $mw_rewardpoints("#amount").val();
+	amount = parseInt(amount/<?php echo $rate[0]?>) * <?php echo $rate[0]?>;
+	$mw_rewardpoints("#amount").val(amount);
+	$mw_rewardpoints('#label_amount').html(amount);
+	$mw_rewardpoints("#shopping-cart-totals-contaner").html($mw_rewardpoints("#shopping-cart-totals-please-wait").html());
+	$mw_rewardpoints.ajax({
+		type: "POST",
+		url: '<?php echo Mage::getUrl('rewardpoints/checkout/rewardpointspost')?>',
+		data: "rewardpoints="+$mw_rewardpoints("#amount").val(),
+	    success: function(data) {
+			$mw_rewardpoints('#shopping-cart-totals-contaner').html(data);
+			updateRules();
+		}
+	});
+}
+
+function updateRules()
+{
+	$mw_rewardpoints("#reward-points-rules").html($mw_rewardpoints("#shopping-cart-totals-please-wait").html());
+	$mw_rewardpoints.ajax({
+		type: "POST",
+		url: '<?php echo Mage::getUrl('rewardpoints/checkout/updaterules')?>',
+		data: "rewardpoints="+$mw_rewardpoints("#amount").val(),
+	    success: function(data) {
+			if(data)
+				$mw_rewardpoints("#reward-points-rules-title").css("display","block");
+			else
+				$mw_rewardpoints("#reward-points-rules-title").css("display","none");
+			$mw_rewardpoints('#reward-points-rules').html(data);
+		}
+	});
+}
+
+function updateRewardPointsAmount()
+{
+	$mw_rewardpoints.ajax({
+		type: "GET",
+		url: '<?php echo Mage::getUrl('rewardpoints/checkout/rewardpoints')?>',
+	    success: function(data) {
+			$mw_rewardpoints('#label_amount').html(data);
+			$mw_rewardpoints("#amount").val(data);
+		}
+	});
+}
+</script>
+

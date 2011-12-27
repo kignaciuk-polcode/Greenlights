@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_system_config_edit>
+    	<reference name="head">
+    		<action method="addCss"><stylesheet>mw_rewardpoints/css/colorpicker.css</stylesheet></action>
+    		<action method="addJs"><script>mw_rewardpoints/jquery.js</script></action>
+    		<action method="addJs"><script>mw_rewardpoints/jquery.maskedinput.js</script></action>
+    		<action method="addJs"><script>mw_rewardpoints/colorpicker.js</script></action>
+    		<action method="addJs"><script>mw_rewardpoints/validate.js</script></action>
+    	</reference>
+    </adminhtml_system_config_edit>
+    <rewardpoints_adminhtml_rewardpoints_index>
+	    <reference name="content">
+	    	<block type="rewardpoints/adminhtml_rewardpoints"></block>
+	    </reference>
+    </rewardpoints_adminhtml_rewardpoints_index>
+    
+
+</layout>

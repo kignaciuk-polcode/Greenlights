@@ -1,0 +1,63 @@
+<!--@subject Ergebnisse USt.-ID Validierung @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var store.getFrontendName()":"Store Name",
+"var customer":"Customer Data (Only for registered customers)",
+"var results":"VAT-Validation results"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+ul li{list-style:none;}
+@-->
+<body>
+<h4>VAT-ID validation result for {{var store.getFrontendName()}}</h4>
+<p>A customer successfully validated his VAT-ID through VIES. If the name and/or address are missing, this means that the Member State that issued the VAT number does not allow to disclose this information. If you want to be able to prove to a tax administration of a Member State that you have checked a given VAT number at a given time, and obtained a given validation reply, please keep this consultation number in your archives.</p>
+<h5>Customer data:</h5>
+<table>
+<tr>
+	<td><strong>Website ID:</strong></td><td>{{var customer.website_id}}</td>
+</tr>
+{{depend customer.id}}
+<tr>
+	<td><strong>Customer ID:</strong></td><td>{{var customer.id}}</td>
+</tr>
+{{/depend}}
+{{depend customer.firstname}}
+<tr>
+	<td><strong>Customer name:</strong></td><td>{{var customer.firstname}} {{var customer.lastname}}</td>
+</tr>
+{{/depend}}
+{{depend customer.email}}
+<tr>
+	<td><strong>Customer email:</strong></td><td>{{var customer.email}}</td>
+</tr>
+{{/depend}}
+</table>
+
+<h5>Validation result:</h5>
+<table>
+<tr>
+	<td><strong>Country:</strong></td><td>{{var customer.getData('vies_countryCode')}}</td>
+</tr>
+<tr>	
+	<td><strong>VAT-ID:</strong></td> <td>{{var customer.getData('vies_countryCode')}}{{var customer.getData('vies_vatNumber')}}</td>
+</tr>
+<tr>
+	<td><strong>Request date:</strong></td> <td>{{var customer.getData('vies_requestDate')}}</td>
+</tr>
+<tr>
+	<td><strong>VAT-ID is valid:</strong></td><td>{{var customer.getData('vies_valid')}}</td>	
+</tr>
+<tr>
+	<td><strong>Consultation number:</strong></td><td>{{var customer.getData('vies_requestIdentifier')}}</td>		
+</tr>
+<tr>
+	<td><strong>Name:</strong></td><td>{{var customer.getData('vies_traderName')}}</td>
+</tr>
+<tr>
+	<td><strong>Address data:</strong></td><td>{{var customer.getData('vies_traderAddress')}}</td>
+</tr>
+</table>
+<p>Please note, however, that the confirmation of the validity of a VAT number and of its attribution to a given taxable person is only ONE of the elements of evidence supporting the VAT exemption of intra-community supplies of goods (article 138, paragraph 1 of Council Directive 2006/112/EC) or the non-application of VAT on a supply of services due to its localisation in another Member State.</p>
+<p><font size="-3">Validation email sent by EU VAT Grouper for Magento. This is not an official document from a tax administration.</font></p>
+</body>

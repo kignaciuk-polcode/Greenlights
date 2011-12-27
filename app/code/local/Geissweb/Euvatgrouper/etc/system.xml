@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<config>
+    <!--tabs>
+        <geissweb translate="label" module="euvatgrouper">
+            <label>Geissweb</label>
+            <sort_order>350</sort_order>
+        </geissweb>
+    </tabs-->
+    <sections>
+        <euvatgrouper translate="label" module="euvatgrouper">
+            <tab>sales</tab>
+            <label>EU VAT Grouper</label>
+            <sort_order>304</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <vat_settings translate="label" module="euvatgrouper">
+                    <label>EU VAT settings</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <validate_vatid translate="label,comment">
+                            <label>Enable EU VAT Grouper</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>This enables the validation of the customers VAT-ID and the assignment to the chosen customer group in account registration form and customer account settings as well as in the checkout.</comment>
+                        </validate_vatid>
+
+                        <member_states translate="label,comment">
+                            <label>Current EU member states</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>List of all current EU member states seperated by comma. Defaults (ISO 3166-2): AT, BE, BG, CY, CZ, DK, DE, EE, FI, FR, GB, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE</comment>
+                        </member_states>
+
+                        <own_vatid translate="label,comment">
+                            <label>Own VAT-ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>Please enter your own VAT-ID including the 2-letter country code without spaces, dots or dashes.</comment>
+                        </own_vatid>
+
+        		<mail_sender translate="label,comment">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                		<comment>Please set the desired Email sender address for validation emails.</comment>
+			</mail_sender>
+
+                        <mail_recipient translate="label,comment">
+                            <label>Email Recipient</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+			<comment>Please set the desired Email recipient address for validation emails.</comment>
+			</mail_recipient>
+
+			<mail_template translate="label,comment">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+			</mail_template>
+
+                    </fields>
+                </vat_settings>
+                <grouping_settings translate="label" module="euvatgrouper">
+                    <label>Grouping settings</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <target_group translate="label,comment">
+                            <label>Customer group for business customers inside EU with valid VAT-ID</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_customer_group</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Set the desired customer group of EU business customers with valid VAT-ID. Select the customer group which will have 0% VAT appiled.</comment>
+                        </target_group>
+                        <target_group_same_cc translate="label,comment">
+                            <label>Customer group for business customers (with valid VAT-ID) from own country</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_customer_group</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Set the desired B2B customer group of customers from your own country.</comment>
+                        </target_group_same_cc>
+                        <target_group_outside translate="label,comment">
+                            <label>Customer Group for customers outside EU</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_customer_group</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Set the desired customer group of foreign customers outside the EU. For this group should also be 0% VAT applied.</comment>
+                        </target_group_outside>
+                        <excluded_groups>
+                            <label>Excluded Groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_customer_group</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>The selected groups will be excluded from the automatic (re-)grouping after each validation. This can be useful if you work with other groups and want your customers stay in that group.</comment>
+                        </excluded_groups>
+                    </fields>
+               </grouping_settings>
+            </groups>
+        </euvatgrouper>
+    </sections>
+</config>

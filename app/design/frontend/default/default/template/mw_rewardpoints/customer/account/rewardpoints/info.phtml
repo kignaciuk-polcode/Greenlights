@@ -1,0 +1,27 @@
+<table>
+	<tr><td>
+			<p class="amount"><?php echo $this->__('Your Reward Points: <strong>%s</strong> = <strong>%s</strong>',Mage::helper('rewardpoints')->formatPoints($this->getRewardPoints()),$this->getMoney()) ?></p>
+			    <?php $rate = $this->getPointPerMoney();?>
+			<p class="amount"><?php echo $this->__('Reward Point/Currency Rate: <strong>%s</strong> = <strong>%s</strong>',Mage::helper('rewardpoints')->formatPoints($rate[0]),$this->formatMoney($rate[1]) ) ?></p>
+			<?php if($this->canExchangeToCredit()):?>
+			<?php $_rate = $this->getPointPerCredit();?>
+			<p class="amount"><?php echo $this->__('Reward Point/Credit Rate: <strong>%s</strong> = <strong>%s</strong> (credit)',Mage::helper('rewardpoints')->formatPoints($_rate[0]),$rate[1] ) ?></p>
+			<?php endif;?>
+	</td>
+	<?php if($this->canExchangeToCredit()):?>
+	<td style="width: 50%;padding-left:50px">
+		<form name="frm_exchange_rewardpoints" id="frm_exchange_rewardpoints" action="<?php echo $this->getUrl('rewardpoints/rewardpoints/exchange');?>" method="post">
+			<h2 style="font-size: 12px; font-weight: bold;padding-bottom:10px;"><?php echo $this->__('Exchange Reward Points To Credit')?></h2>
+			<div style="width:185px; float:left;"><label><?php echo $this->__("Points:")?> </label><input type="text" name="exchange_points" class="input-text required-entry validate-digits" /></div>
+			<div style="float:left; text-align: right;"><button type="submit" title="<?php echo $this->__("Exchange")?>" class="button"><span><span><?php echo $this->__("Exchange")?></span></span></button></div>
+		</form>
+	</td>
+	<?php endif;?>
+	</tr>
+</table>
+
+<script type="text/javascript">
+//<![CDATA[
+    var exchangeForm = new VarienForm('frm_exchange_rewardpoints', true);
+    //]]>
+</script>

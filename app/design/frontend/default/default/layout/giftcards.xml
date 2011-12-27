@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/webtexgiftcards.css</stylesheet></action>
+        </reference>
+    </default>
+    <PRODUCT_TYPE_giftcards>
+
+        <reference name="product.info">
+            <block type="giftcards/product_type" name="product.info.giftcards" as="product_type_data" template="webtex/giftcards/product/type.phtml">
+			<block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/> 
+			</block>
+        </reference>
+    </PRODUCT_TYPE_giftcards>
+    
+    <giftcards_customer_balance>
+    <update handle="customer_account"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="giftcards/balance" name="card_balance" template="webtex/giftcards/balance.phtml"/>
+        </reference>
+    </giftcards_customer_balance>
+    
+    <giftcards_customer_printgiftcard>
+        <reference name="content">
+            <block type="giftcards/printgiftcards" name="card_printgiftcards" template="webtex/giftcards/print.phtml"/>
+        </reference>
+    </giftcards_customer_printgiftcard>
+    
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="giftcards"><name>giftcards</name><path>giftcards/customer/balance/</path><label>My Gift Cards</label></action>
+        </reference>
+    </customer_account>
+
+    <checkout_cart_index>
+	    <reference name="checkout.cart">
+	    <!--action method="addItemRender"><type>giftcards</type><block>checkout/cart_item_renderer</block><template>giftcards/checkout/cart/item/default.phtml</template></action--> 
+            <block type="giftcards/coupon" after="coupon" name="giftcards_coupon" template="webtex/giftcards/gift_coupon.phtml"/>
+	    </reference>
+    </checkout_cart_index>
+</layout>

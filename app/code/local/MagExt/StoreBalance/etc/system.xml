@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   MagExt
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+	<sections>				
+		<magext_storebalance translate="label" module="mgxstorebalance">
+			<label>Store Balance</label>
+            <tab>magext</tab>
+            <sort_order>2550</sort_order>
+            <frontend_type>text</frontend_type>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label" module="mgxstorebalance">
+					<label>General Settings</label>
+					<frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable_storebalance translate="label comment">
+                            <label>Enable Store Balance</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_storebalance>
+                        <enable_storebalance_coupons translate="label comment">
+                            <label>Enable Store Balance Coupons</label>
+                            <comment>Please make sure "Enable Store Balance" set to "Yes"</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_storebalance_coupons>
+                    </fields>
+                </general>
+                <storebalance_coupons translate="label" module="mgxstorebalance">
+                    <label>Coupon Generation Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <coupon_length translate="label comment">
+                            <label>Coupon Length</label>
+                            <comment>delimiters are not counted</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                        </coupon_length>
+                        <coupon_format translate="label comment">
+                            <label>Coupon symbols</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mgxstorebalance/system_config_source_coupon_format</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </coupon_format>
+                        <group_length translate="label comment">
+                            <label>Symbols Grouped By</label>
+                            <comment>leave empty to remove delimiter(s)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-digits validate-not-negative-number</validate>
+                        </group_length>
+                        <group_separator translate="label comment">
+                            <label>Delimiter symbol</label>
+                            <comment>leave empty to remove delimiter(s)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </group_separator>
+                    </fields>
+                </storebalance_coupons>
+                <storebalance_purchase>
+                    <label>Replenishment Product Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <product translate="label comment">
+                            <label>Replenishment Product</label>
+                            <comment>product used for Store Balance refilling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mgxstorebalance/system_config_source_product_list</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>mgxstorebalance_admin/system_config_form_field_product</frontend_model>
+                        </product>
+                        <button translate="label comment">
+                            <label>Replenishment Button Action</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mgxstorebalance/system_config_source_product_button</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </button>
+                    </fields>
+                </storebalance_purchase>
+            </groups>
+        </magext_storebalance>
+        <sales>
+            <groups>
+                <totals_sort>
+                    <fields>
+                        <storebalance module="mgxstorebalance" translate="label">
+                            <label>Store Balance</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </storebalance>
+                    </fields>
+                </totals_sort>
+            </groups>
+        </sales>
+        <payment>
+            <groups>
+                <storebalance module="mgxstorebalance"  translate="label">
+                    <label>Store Balance</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>15</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <!--<active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>-->
+                        <order_status translate="label">
+                            <label>New order status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status_newprocessing</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <payment_action translate="label">
+                            <label>Automatically invoice all items</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>payment/source_invoice</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_action>
+                        <sort_order translate="label">
+                            <label>Sort order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sort_order>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                    </fields>
+                </storebalance>
+            </groups>
+        </payment>
+    </sections>
+</config>

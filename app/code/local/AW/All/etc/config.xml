@@ -4,7 +4,7 @@
 <config>
   <modules>
     <AW_All>
-      <version>2.1.2</version><platform>ce</platform>
+      <version>2.1.4</version><platform>ce</platform>
     </AW_All>
   </modules>
   

@@ -1,0 +1,103 @@
+<form id="form-validate" method="post" action="<?php echo $this->getUrl('invitation/invitation/invite')?>">
+	<div class="fieldset group-select">
+        <h2 class="legend"><?php echo $this->__('Connect & Share');?></h2>
+        <span><?php echo $this->__('With friends on Facebook, Twitter, or Google.') ?></span>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="customer-name">
+                	<?php $addonClass="";?>
+                	<?php if(version_compare(Mage::getVersion(),"1.3.2.4","<=")) $addonClass = " input-box";?>
+				    <div class="<?php echo $addonClass;?> name-firstname">
+				        <?php $url = Mage::helper('invitation')->getLink(Mage::getModel('customer/session')->getCustomer());?>
+						<div class="div_share">
+						<a target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo $url ?>" title="Share With Facebook"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/facebook.png')?>" alt="share" /></a>
+						<a target="_blank" href="http://twitter.com/intent/tweet?text=<?php echo $this->getLayout()->getBlock('head')->getTitle()?>&url=<?php echo $url ?>" title="Share With Twitter"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/twitter.png') ?>" alt="share" /></a>
+						<a target="_blank" href="http://delicious.com/post?v=4&amp;noui&amp;jump=close&amp;url=<?php echo $url ?>" title="Share With Delicious"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/delicious.png') ?>" alt="share" /></a>
+						<a target="_blank" href="http://digg.com/submit?phase=2&amp;url=<?php echo $url ?>" title="Share With Digg"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/digg.png') ?>" alt="share" /></a>
+						<a target="_blank" href="http://www.furl.net/storeIt.jsp?u=<?php echo $url ?>" title="Share With Furl"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/furl.png') ?>" alt="share" /></a>
+						<a target="_blank" href="http://www.stumbleupon.com/submit?url=<?php echo $url ?>" title="Share With Stumbleupon"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/stumbleupon.png') ?>" alt="share" /></a>
+						<a target="_blank" href="http://technorati.com/faves?add=<?php echo $url ?>" title="Share With Technorati"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/technorati.png') ?>" alt="share" /></a>
+						<?php 
+						/*
+						 * <a target="_blank" href="http://myweb.yahoo.com/myresults/bookmarklet?ei=UTF&amp;u=<?php echo $url ?>" title="Share With Yahoo"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/yahoo.png') ?>" alt="share" /></a>
+						 */
+						?>  
+						    <script>var GBuzz= {
+											url : '<?php echo $url ?>',
+											title: 'Lets Save Together',
+											customImage : '<?php echo $this->getSkinUrl('mw_invitation/images/google_buzz.png') ?>'
+											}</script>
+											<script 
+											src="https://orkut-share.googlecode.com/svn/trunk/GBuzz.js">
+											</script>
+								<div class="clear_both"><span> </span></div>						
+						</div>
+				    </div>
+				</div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="fieldset group-select">
+        <h2 class="legend"><?php echo $this->__('Referrer Link');?></h2>
+        <span><?php echo $this->__('Copy + paste your personal link into your blog, email or IM.') ?></span>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="customer-name">
+                	<?php $addonClass="";?>
+                	<?php if(version_compare(Mage::getVersion(),"1.3.2.4","<=")) $addonClass = " input-box";?>
+				    <div>
+				        <?php $url = Mage::helper('invitation')->getLink(Mage::getModel('customer/session')->getCustomer());?>
+						<div class="div_share">
+							<input type="text" value="<?php echo $url ?>" style="width:100%" onclick="this.select()">
+							<div class="clear_both"><span> </span></div>						
+						</div>
+				    </div>
+				</div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="fieldset group-select">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h2 class="legend"><?php echo $this->__('Invite Friends Via Email');?></h2>
+        <span><?php echo $this->__('Send invitation emails to your friends and family');?></span>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="customer-name">
+                	<?php $addonClass="";?>
+                	<?php if(version_compare(Mage::getVersion(),"1.3.2.4","<=")) $addonClass = " input-box";?>
+				    <div class="field<?php echo $addonClass;?> name-firstname">
+				        <label class="required" style="color:#666666" for="email"><?php echo Mage::helper('invitation')->__('Email of your friends');?><em style="color:#EB340A">*</em></label>
+				        <div class="input-box">
+				            <textarea class="input-text required-entry" title="Email" name="email" id="email" style="width:580px; height:70px"></textarea>
+				            <?php 
+				            	$url = Mage::getUrl('invitation/invitation/widget');
+				            	$url = substr($url,strpos($url,'/',7));
+				            ?>
+				            <a href="#" onclick="showPlaxoABChooser('email', '<?php echo $url;?>'); return false"><img src="<?php echo $this->getSkinUrl('mw_invitation/images/add_button.gif')?>" alt="Add from my address book" /></a>
+				            <div><?php echo $this->__('Separate with commas (,)');?></div>
+				        </div>
+				        <label class="required" style="color:#666666" for="email"><?php echo Mage::helper('invitation')->__('Message');?><em style="color:#EB340A">*</em></label>
+				        <div class="input-box">
+				            <textarea class="input-text required-entry" title="Message" name="message" id="message" style="width:580px; height:200px"></textarea>
+				        </div>
+				    </div>
+				</div>
+            </li>
+           
+            
+            <li>
+                <div>
+			        <button class="button form-button" title="<?php echo Mage::helper('invitation')->__("Send");?>" type="submit"><span><span>  <?php echo Mage::helper('invitation')->__("Send");?>  </span></span></button>
+			        <p class="required"><?php echo Mage::helper('invitation')->__("* Required Fields");?></p>
+			    </div>
+            </li>
+        </ul>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    //]]>
+</script>

@@ -1,0 +1,1 @@
+$mw_rewardpoints = jQuery.noConflict();

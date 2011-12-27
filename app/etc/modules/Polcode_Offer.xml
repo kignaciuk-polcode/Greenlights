@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Polcode_Offer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Polcode_Offer>
+    </modules>
+</config>

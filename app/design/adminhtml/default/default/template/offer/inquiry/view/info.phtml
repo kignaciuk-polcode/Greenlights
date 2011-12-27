@@ -1,0 +1,38 @@
+<?php $_inquiry = $this->getInquiry() ?>
+<div class="box-right">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('offer')->__('Custommer Information') ?></h4>
+            <div class="tools"><?php echo $this->getAccountEditLink() ?></div>
+        </div>
+        <div class="fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('offer')->__('Customer Name') ?></label></td>
+                        <td class="value">
+                            <?php if ($_customerUrl = $this->getCustomerViewUrl()) : ?>
+                                <a href="<?php echo $_customerUrl ?>" target="_blank"><strong><?php echo $this->htmlEscape($_inquiry->getCustomerName()) ?></strong></a>
+                            <?php else: ?>
+                                <strong><?php echo $this->htmlEscape($_inquiry->getCustomerName()) ?></strong>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('offer')->__('Email') ?></label></td>
+                        <td class="value"><a href="mailto:<?php echo $_inquiry->getCustomerEmail() ?>"><strong><?php echo $_inquiry->getCustomerEmail() ?></strong></a></td>
+                    </tr>
+                    <?php if ($_groupName = $this->getCustomerGroupName()) : ?>
+                        <tr>
+                            <td class="label"><label><?php echo Mage::helper('offer')->__('Customer Group') ?></label></td>
+                            <td class="value"><strong><?php echo $_groupName ?></strong></td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>    
+        </div>
+    </div>
+</div>
+<div class="clear"></div>  
+<?php
+//var_dump($this->getCustomerGroupName()); ?>

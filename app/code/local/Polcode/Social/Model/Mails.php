@@ -3,10 +3,51 @@
 class Polcode_Social_Model_Mails extends Mage_Core_Model_Abstract
 {
     
+    const XML_PATH_EMAIL_TEMPLATE   = 'social/email/template';
+    const XML_PATH_EMAIL_IDENTITY   = 'sales_email/order/identity';
+    
+    
     public function _construct()
     {
         parent::_construct();
         $this->_init('social/mails');
+    }
+    
+    public function send() {
+        $offerModel = Mage::getModel('sales/order')->load($this->getOrderId());
+        
+        $email = $offerModel->getCustomerEmail();
+        
+        
+        $mailTemplate = Mage::getModel('core/email_template');
+        
+        $mailTemplate->setDesignConfig(array(
+            'area' => 'frontend',
+            'store' => Mage::app()->getStore()->getId()
+        ));
+        
+        $mailTemplate->sendTransactional(
+                $this->getTemplate(),
+                $this->getSender(),
+                $email,
+                null,
+                $this->getParams()
+        );
+        
+        $translate->setTranslateInline(true);
+    }
+    
+    private function getTemplate() {
+        return Mage::getStoreConfig(self::XML_PATH_EMAIL_TEMPLATE, null);
+    }
+    
+    private function getSender() {
+        $storeId = Mage::app()->getStore()->getId();
+        return Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY, $storeId);
+    }
+    
+    private function getParams() {
+        // TODO
     }
     
 }

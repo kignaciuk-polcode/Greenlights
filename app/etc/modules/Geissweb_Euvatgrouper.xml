@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Geissweb_Euvatgrouper>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Geissweb_Euvatgrouper>
+	</modules>
+</config>

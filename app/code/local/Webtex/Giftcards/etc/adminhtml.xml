@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <customer>
+            <children>
+                <giftcards translate="title" module="giftcards">
+                    <title>Gift Cards</title>
+                    <action>giftcards/adminhtml_card/</action>
+                </giftcards>
+            </children>
+        </customer>
+    </menu>
+    <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <giftcards>
+                                            <title>Gift Cards</title>
+                                        </giftcards>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+    </acl>
+</config>

@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webtex
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.webtexsoftware.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@webtexsoftware.com and we will send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.webtexsoftware.com for more information, 
+ * or contact us through this email: info@webtexsoftware.com.
+ *
+ * @category   Webtex
+ * @package    Webtex_Core
+ * @copyright  Copyright (c) 2011 Webtex Solutions, LLC (http://www.webtexsoftware.com/)
+ * @license    http://www.webtexsoftware.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+    <modules>
+        <Webtex_Core>
+            <version>0.1.0</version>
+        </Webtex_Core>
+    </modules>
+    
+    <admin>
+        <routers>
+            <webtex>
+                <use>admin</use>
+                <args>
+                    <module>Webtex_Core</module>
+                    <frontName>webtex</frontName>
+                </args>
+            </webtex>
+        </routers>
+    </admin>
+    
+    <global>
+        <blocks>
+            <mgxcore>
+                <class>Webtex_Core_Block</class>
+            </mgxcore>
+        </blocks>
+        <resources>
+            <mgxcore_setup>
+                <setup>
+                    <module>Webtex_Core</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mgxcore_setup>
+            <mgxcore_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mgxcore_write>
+            <mgxcore_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mgxcore_read>
+        </resources>
+        <models>
+            <mgxcore>
+                <class>Webtex_Core_Model</class>
+            </mgxcore>
+        </models>
+        <helpers>
+            <mgxcore>
+                <class>Webtex_Core_Helper</class>
+            </mgxcore>
+        </helpers>
+    </global>
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <webtex_core translate="title" module="mgxcore">
+                                            <title><![CDATA[Webtexension :: Info]]></title>
+                                            <!-- <children>
+                                                <modules translate="title" module="mgxcore">
+                                                    <title>Installed Extensions</title>
+                                                    <sort_order>1</sort_order>
+                                                </modules>
+                                            </children> -->
+                                        </webtex_core>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Webtex_Core>
+                    <files>
+                        <default>Webtex_Core.csv</default>
+                    </files>
+                </Webtex_Core>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        
+    </default>
+</config>

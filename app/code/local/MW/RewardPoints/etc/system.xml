@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <mageworld translate="label">
+            <label>Mage World</label>
+            <sort_order>100</sort_order>
+        </mageworld>
+    </tabs>
+    <sections>
+        <rewardpoints translate="label" module="rewardpoints">
+            <label>Reward Points</label>
+            <tab>mageworld</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>                
+                <config translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>						
+						<enabled translate="label">
+                            <label>Enable Reward Points</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        
+						<retrict_other_promotions translate="label">
+                            <label>Restrict Other Promotions</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </retrict_other_promotions>
+                        
+                        <point_money_rate translate="label">
+                            <label>Point/Money Rate</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Format x/y (x points / y monetary units)</comment>
+                        </point_money_rate>
+                        
+						<reward_point_for_registering translate="label">
+                            <label>Earned Reward Point For Registering</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reward_point_for_registering>
+                        
+                        <reward_point_for_invite_friend translate="label">
+                            <label>Earned Reward Point When Friends Click Referal Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment> </comment>
+                        </reward_point_for_invite_friend>
+                        
+                        <reward_point_for_friend_registering translate="label">
+                            <label>Earned Reward Point From Friend's Registering</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment> </comment>
+                        </reward_point_for_friend_registering>
+                        
+                        <reward_point_for_friend_purchase translate="label">
+                            <label>Earned Reward Point From Friend's First Purchase</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Format x (points) or x/y (earn x points each y monetary units in grand total)</comment>
+                        </reward_point_for_friend_purchase>
+                        
+                        <reward_point_for_friend_next_purchase translate="label">
+                            <label>Earned Reward Point From Friend's Next Purchase</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Format x (points) or x/y (earn x points each y monetary units in grand total)</comment>
+                        </reward_point_for_friend_next_purchase>
+                        
+                        <reward_point_for_submit_review translate="label">
+                            <label>Earned Reward Point For Submiting Review</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reward_point_for_submit_review>
+                        
+                        <reward_point_for_submit_poll>
+                        	<label>Earned Reward Point For Submiting Poll</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reward_point_for_submit_poll>
+                        <reward_point_for_registering_subscriber>
+                        	<label>Earned Reward Point For Signing Up Newsletter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>85</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reward_point_for_registering_subscriber>
+                       <!--   <reward_point_for_signing_up_newletter>
+                        	<label>Earned Reward Point For Signing Up Newsletter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>85</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reward_point_for_signing_up_newletter>-->
+                        <reward_point_for_order translate="label">
+                            <label>Earned Reward Point For Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Format x (points) or x/y (earn x points each y monetary units in grand total)</comment>
+                        </reward_point_for_order>
+                        
+                        <enabled_product_reward_point>
+                        	<label>Allow Reward Points For Products</label>
+                        	<frontend_type>select</frontend_type>
+                        	<source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>95</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled_product_reward_point>
+                        <max_points_to_checkout translate="label">
+                            <label>Max Point To Checkout</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Format x (points) or x% of grand total (leave the field empty if Max point is unlimited)</comment>
+                        </max_points_to_checkout>
+                        <!-- 
+                        <expiration_time>
+                        	<label>Expriration Time</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Reward points will be expired if the customer don't buy nothing after this number days?</comment>
+                        </expiration_time>
+                         -->
+                    </fields>
+                </config>
+                <display>
+                	<label>Display Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<catalog_view>
+                    		<label>Display Reward Points Of Products On Catalog View</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</catalog_view>
+                    	
+                    	<product_view>
+                    		<label>Display Reward Points Of Products On Product View</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</product_view>
+                    	
+                    	<point_curency>
+                    		<label>Reward Points Currency</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</point_curency>
+                    	
+                    	<curency_position>
+                    		<label>The Position Of Curency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rewardpoints/position</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</curency_position>
+                    	
+                    </fields>
+                </display>
+                
+                <send_reward_points translate="label">
+                    <label>Send Reward Points</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	 <allow_send_reward_point_to_friend translate="label">
+                            <label>Allow Sending Reward Points To Friends</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_send_reward_point_to_friend><!--
+                        
+                        <time>
+                    		<label>Times Between Two Transaction (Seconds)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require  (not recommend)</comment>
+                    	</time>
+                    	
+                    	--><time_life>
+                    		<label>Time For A Pending Transaction (Hour)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require  (not recommend)</comment>
+                    	</time_life>
+                        <enable_send_email_to_sender translate="label">
+                            <label>Send An Email To Customer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_send_email_to_sender>
+                        
+                        <enable_send_email_to_recipient translate="label">
+                            <label>Send An Email To Recipient</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_send_email_to_recipient>
+                        
+                    	<email_sender>
+                        	<label>Email Sender</label>
+                        	<source_model>adminhtml/system_config_source_email_identity</source_model> 
+                            <frontend_type>select</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>System will use this address to sent email</comment>
+                        </email_sender>
+                        
+                        <sender_template>
+                        	<label>Customer's Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model> 
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sender_template>
+                        
+                        <recipient_template>
+                        	<label>Recipient's Email Template</label>
+                        	<source_model>adminhtml/system_config_source_email_template</source_model> 
+                            <frontend_type>select</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </recipient_template>
+                    </fields>
+                </send_reward_points>
+                
+                <exchange_to_credit>
+                	<label>Exchange To Credit</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enabled>
+                    		<label>Enable To Exchange Reward Points To Credit</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment> </comment>
+                    	</enabled>
+                    	
+                    	<point_credit_rate>
+                    		<label>Points/Credits Rate</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment> </comment>
+                    	</point_credit_rate>
+                    	<!--<time>
+                    		<label>Times Between Two Transaction (s)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require (not recommend)</comment>
+                    	</time>
+                    --></fields>
+                </exchange_to_credit>
+                
+                <capcha translate="label">
+                    <label>Capcha</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<capcha_enabled>
+                    		<label>Enable Capcha</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</capcha_enabled>
+						<background_image translate="label">
+                            <label>Background Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mw_rewardpoints/capcha</upload_dir>
+                            <base_url type="media" scope_info="1">mw_rewardpoints/capcha</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </background_image>
+                        <image_bg_color translate="label">
+                            <label>Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : FFFFFF</comment>
+                        </image_bg_color>
+                        <image_width translate="label">
+                            <label>Capcha Image Width (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 255</comment>
+                        </image_width>
+                        <image_height translate="label">
+                            <label>Capcha Image Height (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 50</comment>
+                        </image_height>
+                        <perturbation translate="label">
+                            <label>Perturbation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 0.7</comment>
+                        </perturbation>
+                        <code_length translate="label">
+                            <label>Code length (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 7</comment>
+                        </code_length>
+                        <text_color translate="label">
+                            <label>Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : FF7F27</comment>
+                        </text_color>
+                        <use_transparent_text translate="label">
+                            <label>Use Transparent Text</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_transparent_text>
+                        <text_transparency_percentage translate="label">
+                            <label>Text Transparency Percentage</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>100 = completely transparent</comment>
+                        </text_transparency_percentage>
+                        <num_lines translate="label">
+                            <label>Number of lines</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require</comment>
+                        </num_lines>
+                        
+                        <line_color translate="label">
+                            <label>Line Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : E8E8E8</comment>
+                        </line_color>
+                        <use_wordlist translate="label">
+                            <label>Use Word List</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>if select yes the capcha code will show a random word or random code</comment>
+                        </use_wordlist>
+                	</fields>
+                </capcha>
+                <author_information translate="label">
+                    <label>Author Information</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>The Reward Points Extension is developed and supported by &lt;a href="http://www.mage-world.com/"&gt;www.Mage-World.com&lt;/a&gt;.
+If you need any support or have any question, please contact us at &lt;a href="mailto:support@mage-world.com"&gt;support@mage-world.com.&lt;/a&gt;
+                    </comment>
+                </author_information>
+            </groups>
+            
+        </rewardpoints>
+    </sections>
+</config>

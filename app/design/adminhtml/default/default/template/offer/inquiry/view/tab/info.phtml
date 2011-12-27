@@ -1,0 +1,16 @@
+<?php $_inquiry = $this->getInquiry() ?>
+<div>
+    <?php echo $this->getChildHtml('inquiry_info') ?>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products"><?php echo Mage::helper('offer')->__('Inquiry Items') ?></h4>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <?php echo $this->getItemsHtml() ?>
+    <div class="box-right entry-edit">
+        <div class="entry-edit-head"><h4><?php echo Mage::helper('offer')->__('Inquiry Totals') ?></h4></div>
+        <div class="order-totals"><?php echo $this->getChildHtml('inquiry_totals') ?></div>
+    </div>
+    <div class="clear"></div>    
+</div>

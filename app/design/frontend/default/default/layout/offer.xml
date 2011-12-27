@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+Customer account pages, rendered for all tabs in dashboard
+-->
+<layout version="0.1.0">
+    <customer_account>
+        <!-- Mage_Wishlist -->
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="offer" ifconfig="offer/general/active">
+                <name>offer</name>
+                <path>offer/inquiry/history/</path>
+                <label>Offer</label>
+            </action>
+        </reference>
+    </customer_account>
+    
+    <offer_inquiry_history translate="label">
+        <label>Customer My Account Inquiry History</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="offer/inquiry_history" name="offer.inquiry.history" template="offer/inquiry/history.phtml">
+                <block type="core/text_list" name="offer.inquiry.history.info" as="info" translate="label">
+                    <label>Inquiry History Info</label>
+                </block>
+            </block>
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+    </offer_inquiry_history>
+    
+    
+    <offer_inquiry_view translate="label">    
+        <label>Customer My Account Offer Inquiry View</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="offer/inquiry_view" name="offer.inquiry.view" template="offer/inquiry/view.phtml">
+            </block>
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference> 
+    </offer_inquiry_view>
+    
+    <offer_inquiry_configure translate="label">
+        <label>Configure Inquire Item</label>
+        <update handle="catalog_product_view"/>
+        <reference name="product.info">
+            <block type="offer/inquiry_item_configure" name="product.info.addto" as="addto" template="offer/inquiry/item/configure/addto.phtml"/>
+        </reference>
+        <reference name="product.info.options.wrapper.bottom">
+            <action method="unsetChild"><name>product.info.addto</name></action>
+            <action method="append"><block>product.info.addto</block></action>
+        </reference>
+    </offer_inquiry_configure>    
+    
+    
+</layout>

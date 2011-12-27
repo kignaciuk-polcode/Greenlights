@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webtex
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.webtexsoftware.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@webtexsoftware.com and we will send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.webtexsoftware.com for more information, 
+ * or contact us through this email: info@webtexsoftware.com.
+ *
+ * @category   Webtex
+ * @package    Webtex_Core
+ * @copyright  Copyright (c) 2011 Webtex Solutions, LLC (http://www.webtexsoftware.com/)
+ * @license    http://www.webtexsoftware.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+    <tabs>
+        <webtex translate="label" module="mgxcore">
+            <label>Webtex</label>
+            <sort_order>250</sort_order>
+        </webtex>
+    </tabs>
+	<sections>
+		<webtex_core translate="label" module="mgxcore">
+			<label>Webtex Info</label>
+			<tab>webtex</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>2500</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <modules translate="label">
+                    <label>Installed Extensions by Webtex</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>mgxcore/system_config_form_fieldset_modules</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </modules>
+			</groups>
+		</webtex_core>
+	</sections>
+</config>

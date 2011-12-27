@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagExtension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MagExtension EULA 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magextension.com/LICENSE.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@magextension.com so we can send you a copy.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.magextension.com for more information.
+ *
+ * @category   MagExt
+ * @package    MagExt_StoreBalance
+ * @copyright  Copyright (c) 2010 MagExtension (http://www.magextension.com/)
+ * @license    http://www.magextension.com/LICENSE.txt End-User License Agreement
+ */
+-->
+<config>
+    <menu>
+        <promo>
+            <children>
+                <storebalancecoupon translate="title" module="mgxstorebalance">
+                    <title>Store Balance Coupons</title>
+                    <action>magext/storebalance_coupon</action>
+                </storebalancecoupon>
+            </children>
+        </promo>
+    </menu>
+    
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+					<promo>
+						<children>
+							<storebalancecoupon translate="title" module="mgxstorebalance">
+								<title>Store Balance Coupons</title>
+								<sort_order>100</sort_order>
+							</storebalancecoupon>
+						</children>
+					</promo>
+					<!-- <customer>
+						<children>
+							<manage>
+								<children>
+									<storebalance translate="title" module="mgxstorebalance">
+										<title>Store Balance Tab</title>
+									</storebalance>
+								</children>
+							</manage>
+						</children>
+					</customer> -->
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <magext_storebalance translate="title" module="mgxstorebalance">
+                                        <title><![CDATA[MagExtension :: Store Balance]]></title>
+                                        <!-- <children>
+                                            <general translate="title" module="mgxstorebalance">
+                                                <title>General Settings</title>
+                                            </general>
+                                            <storebalance_coupons translate="title" module="mgxstorebalance">
+                                                <title>Store Balance Coupons Settings</title>
+                                            </storebalance_coupons>
+                                            <storebalance_purchase translate="title" module="mgxstorebalance">
+                                                <title>Replenishment Product Settings</title>
+                                            </storebalance_purchase>
+                                        </children> -->
+                                    </magext_storebalance>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children> 
+            </admin>
+        </resources>
+    </acl>
+</config>

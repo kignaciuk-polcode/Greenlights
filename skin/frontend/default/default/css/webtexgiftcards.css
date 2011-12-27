@@ -1,0 +1,14 @@
+#print-message, #email-message {
+	width: 100%;
+	height: 100px;
+}
+#email-fieldset label em, #print-fieldset label em {
+    color: #EB340A;
+	margin-right: 2px;
+}
+.gift-card-info .field-label {
+	margin-top: 6px;
+}
+#email-fieldset .email-date input {
+	width: 100px;
+}
