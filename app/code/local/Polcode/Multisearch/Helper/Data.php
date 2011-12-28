@@ -360,4 +360,28 @@ class Polcode_Multisearch_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $this->_engine;
     }
+    
+    
+    ////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+    
+    
+    public function getProductsResultUrl($query = null)
+    {
+        return $this->_getUrl('catalogsearch/result', array(
+            '_query' => array(self::QUERY_VAR_NAME => $query),
+            '_secure' => Mage::app()->getFrontController()->getRequest()->isSecure()
+        ));
+    }
+    
+    public function getBlogResultUrl($query = null)
+    {
+        $query = str_replace(" ", "-", $query);
+        $url = Mage::helper('wordpress')->getUrl(Mage::helper('wordpress/search')->getSearchRoute());
+        $url .= '/' . $query;
+        return $url;
+    }
+    
+    
 }

@@ -1,9 +1,12 @@
-<div style="width:100%;background:#f00;">Here will be tabs Products / Blog</div>
-
 <div class="multisearch-col-shop">
-    <?php echo $this->getChildHtml('multisearch.result.shop') ?>
+    Place for product search results.
 </div>
 
 <div class="multisearch-col-blog">
-    <?php echo $this->getChildHtml('multisearch.result.blog') ?>
+    Place for blog search results.
 </div>
+
+<script type="text/javascript">
+searchInProducts('<?php echo $this->helper('multisearch')->getProductsResultUrl($_GET['q']) ?>');
+searchInBlog('<?php echo $this->helper('multisearch')->getBlogResultUrl($_GET['q']) ?>');
+</script>
