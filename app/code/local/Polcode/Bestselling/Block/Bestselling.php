@@ -18,6 +18,8 @@ class Polcode_Bestselling_Block_Bestselling extends Mage_Catalog_Block_Product_A
         Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
         Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
         
+        $products->getSelect()->limit(8);
+        
         $this->setProductCollection($products);
     }
     
