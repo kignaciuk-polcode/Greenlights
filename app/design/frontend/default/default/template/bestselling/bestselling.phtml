@@ -1,0 +1,8 @@
+BESTSELLING:
+<br />
+<?php
+$products = $this->getProductCollection();
+foreach ($products as $product) {
+    echo $product->getName() . ", " . $product->getOrderedQty() . "<br />";
+}
+?>
