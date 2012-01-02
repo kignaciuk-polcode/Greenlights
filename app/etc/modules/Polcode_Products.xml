@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Polcode_Bestselling>
+        <Polcode_Products>
             <active>true</active>
             <codePool>local</codePool>
-        </Polcode_Bestselling>
+        </Polcode_Products>
     </modules>
 </config>

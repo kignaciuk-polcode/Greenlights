@@ -1,6 +1,6 @@
 <?php
 
-class Polcode_Bestselling_Block_Bestselling extends Mage_Catalog_Block_Product_Abstract
+class Polcode_Products_Block_Bestselling extends Mage_Catalog_Block_Product_Abstract
 {
     public function __construct()
     {

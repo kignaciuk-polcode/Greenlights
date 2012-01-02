@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Polcode_Products>
+            <version>0.1.0</version>
+        </Polcode_Products>
+    </modules>
+    <global>
+        <blocks>
+            <products>
+                <class>Polcode_Products_Block</class>
+            </products>
+        </blocks>
+    </global>
+</config>
