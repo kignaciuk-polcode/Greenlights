@@ -96,7 +96,15 @@ class Fishpig_Wordpress_Model_Post_Comment extends Mage_Core_Model_Abstract
 	 */
 	public function getCommentAuthorUrl()
 	{
-		return ($url = $this->getData('comment_author_url')) ? $url : '#';
+		if ($url = $this->_getData('comment_author_url')) {
+			if (strpos($url, 'http') !== 0) {
+				$url = 'http://' . $url;
+			}
+			
+			return $url;
+		}
+		
+		return '#';
 	}
 	
 	/**
@@ -106,8 +114,7 @@ class Fishpig_Wordpress_Model_Post_Comment extends Mage_Core_Model_Abstract
 	 */
 	public function sendNotificationEmail()
 	{
-	
-	
+		// Coming soon
 	}
 
 	/**

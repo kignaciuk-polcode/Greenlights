@@ -44,6 +44,6 @@ class Fishpig_Wordpress_Block_Adminhtml_System_Config_Wrapper extends Fishpig_Wo
 	 */
 	public function isAclValid()
 	{
-		return Mage::helper('wordpress/debug')->isAclValid();
+		return Mage::helper('wordpress/system')->isAclValid();
 	}	
 }

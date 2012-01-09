@@ -17,4 +17,14 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Search extends Fishpig_Wordpress_Bl
 	{
 		return $this->helper('wordpress')->getUrl($this->helper('wordpress/search')->getSearchRoute()) . '/';
 	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Blog Search');
+	}
 }

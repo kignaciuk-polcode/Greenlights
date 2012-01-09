@@ -12,7 +12,7 @@
 					<td>
 						<h3><?php echo $this->__('Fishpig\'s WordPress Integration') ?></h3>
 					</td>
-					<?php if ($this->helper('wordpress/debug_test')->hasError()): ?>
+					<?php if ($this->helper('wordpress/system')->integrationHasErrors()): ?>
 						<td class="form-buttons">
 							<p style="font-size: 1.2em; font-weight: bold; letter-spacing: -0.4px; line-height: 16px; margin: 0;">
 								<?php echo $this->__('Trouble installing  FishPig\'s WordPress Integration?') ?><br /> 

@@ -15,9 +15,9 @@
 			</div>
 		<?php endif; ?>
 		<div class="block-content">
-			<ul>
+			<ul id="wp-associated-product-list">
 				<?php foreach($products as $product): ?>
-					<li>
+					<li class="item">
 						<a href="<?php echo $product->getProductUrl() ?>">
 							<?php echo $product->getName() ?>
 						</a>
@@ -25,5 +25,6 @@
 				<?php endforeach; ?>
 			</ul>
 		</div>
+		<script type="text/javascript">decorateList('wp-associated-product-list');</script>
 	</div>
 <?php endif; ?>

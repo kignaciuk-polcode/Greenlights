@@ -26,7 +26,7 @@ abstract class Fishpig_Wordpress_Model_Mysql4_Category_Collection_Abstract exten
 			->from(array('main_table' => $this->getResource()->getMainTable()))
 			->join(
 				array('tax' => Mage::helper('wordpress/db')->getTableName('term_taxonomy')),
-				Mage::helper('wordpress/db')->getWordpressRead()->quoteInto("`tax`.`taxonomy` = ?", $this->_categoryType)
+				Mage::helper('wordpress/db')->getReadAdapter()->quoteInto("`tax`.`taxonomy` = ?", $this->_categoryType)
 				. " AND `main_table`.`term_id` = `tax`.`term_id`",
 				array('parent_id' => 'parent', 'description', 'count')
 			)

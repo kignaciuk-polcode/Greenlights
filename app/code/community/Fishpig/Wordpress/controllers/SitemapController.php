@@ -40,7 +40,7 @@ class Fishpig_Wordpress_SitemapController extends Mage_Core_Controller_Front_Act
 		
 		$sitemap->load();
 		
-		if (!$sitemap->hasXml()) {
+		if (!$sitemap->hasXml() || true) {
 			$sitemap->generate();
 		}
 		

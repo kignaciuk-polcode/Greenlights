@@ -64,4 +64,14 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Tagcloud extends Fishpig_Wordpress_
 		
 		return Mage::getStoreConfig($key) ? Mage::getStoreConfig($key) : $default;
 	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Blog Tags');
+	}
 }

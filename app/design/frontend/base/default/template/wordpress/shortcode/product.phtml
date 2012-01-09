@@ -6,8 +6,8 @@
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
 ?>
-<?php $product = $this->getProduct() ?>
-<?php if ($product): ?>
+<?php $product = Mage::getModel('catalog/product')->load($this->getProductId()) ?>
+<?php if ($product->getId()): ?>
 	<div id="product-shortcode-<?php echo $product->getId() ?>" class="product-shortcode">
 		<h3><a href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></h3>
 		<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(200, 200) ?>" alt="<?php echo $product->getName() ?>"/>

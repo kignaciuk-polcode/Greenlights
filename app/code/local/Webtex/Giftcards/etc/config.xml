@@ -29,7 +29,7 @@
 <config>
     <modules>
         <Webtex_Giftcards>
-            <version>1.0.0</version>
+            <version>1.0.10</version>
         </Webtex_Giftcards>
     </modules>
     <crontab>
@@ -67,30 +67,30 @@
 	<default>
 		<giftcards>
 			<email>
-				<email_template>email_email_template</email_template>
-				<print_template>print_email_template</print_template>
-				<confirm_template>confirm_email_template</confirm_template>
+				<email_template>giftcards_email_email_template</email_template>
+				<print_template>giftcards_email_print_template</print_template>
+				<confirm_template>giftcards_email_confirm_template</confirm_template>
 			</email>
 		</giftcards>
 	</default>
     <global>
     	<template>
 			<email>
-				<email_email_template translate="label" module="giftcards">
+				<giftcards_email_email_template translate="label" module="giftcards">
 					<label>Gift Card E-mail</label>
 					<file>giftcard_email.html</file>
 					<type>html</type>
-				</email_email_template>
-				<print_email_template translate="label" module="giftcards">
+				</giftcards_email_email_template>
+				<giftcards_email_print_template translate="label" module="giftcards">
 					<label>Gift Card Print</label>
 					<file>giftcard_print.html</file>
 					<type>html</type>
-				</print_email_template>
-                <confirm_email_template translate="label" module="giftcards">
+				</giftcards_email_print_template>
+                <giftcards_email_confirm_template translate="label" module="giftcards">
 					<label>Gift Card Confirm</label>
 					<file>giftcard_confirm.html</file>
 					<type>html</type>
-				</confirm_email_template>
+				</giftcards_email_confirm_template>
 			</email>
 		</template>
     	<events>

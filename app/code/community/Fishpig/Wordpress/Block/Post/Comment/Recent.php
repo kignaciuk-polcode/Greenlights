@@ -11,6 +11,9 @@ class Fishpig_Wordpress_Block_Post_List_Comment extends Fishpig_Wordpress_Block_
 	protected function _beforeToHtml()
 	{
 		Mage::helper('wordpress')->log($this->__('%s has been deprecated; please use %s', get_class($this), get_parent_class($this)));
+
+		$this->setTemplate('wordpress/sidebar/widget/comments.phtml');
+		$this->setTitle($this->__('Recent Comments'));
 		
 		return parent::_beforeToHtml();
 	}

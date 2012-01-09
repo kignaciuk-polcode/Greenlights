@@ -19,10 +19,6 @@
 										<title>WordPress Blog Display Settings</title>
 										<sort_order>101</sort_order>
 									</wordpress_blog>
-									<wordpress_admin translate="title" module="wordpress">
-										<title>WordPress Admin Settings</title>
-										<sort_order>102</sort_order>
-									</wordpress_admin>
 								</children>
 							</config>
 						</children>
@@ -122,10 +118,6 @@
 										<title>Blog / Plugins</title>
 										<sort_order>6</sort_order>
 									</posts_pages>
-									<admin_settings>
-										<title>Admin Settings</title>
-										<sort_order>11</sort_order>
-									</admin_settings>
 									<auto_login>
 										<title>WP Auto-Login Details</title>
 										<sort_order>16</sort_order>

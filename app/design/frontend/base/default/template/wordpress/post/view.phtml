@@ -10,7 +10,6 @@
 <?php if ($post): ?>
 	<?php $helper = $this->helper('wordpress') ?>
 	<?php $author = $post->getAuthor() ?>
-	<?php $comments = $post->getComments() ?>
 	<?php if ($this->helper('wordpress/plugin_shareThis')->canDisplayOnPost()): ?>
 		<?php echo $this->helper('wordpress/plugin_shareThis')->getJavascriptHtml() ?>
 	<?php endif; ?>
@@ -21,10 +20,10 @@
 		<p class="when">
 			<?php echo $this->__('Posted on %s by %s', $post->getPostDate(), '<a href="'.$author->getUrl().'">'.$author->getDisplayName().'</a>') ?>
 			<span>
-				<?php if ($comments->count() == 0): ?>
+				<?php if ($post->getCommentCount() == 0): ?>
 					<?php echo $this->__('There have been %s0 comments%s', '<a href="'.$post->getPermalink().'#respond">', '</a>') ?>
 				<?php else: ?>
-					<?php echo $this->__('There have been %s%s comment(s)%s', '<a href="'.$post->getPermalink().'#comments">', $comments->count(), '</a>') ?>
+					<?php echo $this->__('There have been %s%s comment(s)%s', '<a href="'.$post->getPermalink().'#comments">', $post->getCommentCount(), '</a>') ?>
 				<?php endif; ?>
 			</span>
 		</p>

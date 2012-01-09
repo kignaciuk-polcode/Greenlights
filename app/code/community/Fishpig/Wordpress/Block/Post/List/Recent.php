@@ -12,6 +12,9 @@ class Fishpig_Wordpress_Block_Post_List_Recent extends Fishpig_Wordpress_Block_S
 	{
 		Mage::helper('wordpress')->log($this->__('%s has been deprecated; please use %s', get_class($this), get_parent_class($this)));
 		
+		$this->setTemplate('wordpress/sidebar/widget/posts.phtml');
+		$this->setTitle($this->__('Recent Posts'));
+		
 		return parent::_beforeToHtml();
 	}
 }

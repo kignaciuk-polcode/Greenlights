@@ -105,6 +105,8 @@ class MagExt_StoreBalance_Model_Quote_Total_Storebalance extends Mage_Sales_Mode
         
         $quote = $address->getQuote();
         $store = Mage::app()->getStore($quote->getStoreId());
+        $baseBalanceLeft = 0;
+        if ($quote->getCustomer()->getId()) {
         $baseBalance = Mage::getModel('mgxstorebalance/balance')
             ->setCustomer($quote->getCustomer())
             ->setWebsiteId($store->getWebsiteId())
@@ -112,6 +114,7 @@ class MagExt_StoreBalance_Model_Quote_Total_Storebalance extends Mage_Sales_Mode
             ->getValue();
         
         $baseBalanceLeft = $baseBalance - $quote->getBaseStoreBalanceTotal();
+        }
         
         if ($address->getStoreBalanceAmount() && ($baseBalanceLeft >= $address->getBaseGrandTotal())) {
             $address->addTotal(array(

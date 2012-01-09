@@ -38,6 +38,12 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Categories extends Fishpig_Wordpres
 		return number_format($this->getData('parent_id'), 0, '', '');
 	}
 	
+	/**
+	 * Determine whether the category is the current category
+	 *
+	 * @param Fishpig_Wordpress_Model_Category $category
+	 * @return bool
+	 */
 	public function isCurrentCategory($category)
 	{
 		if ($this->getCurrentCategory()) {
@@ -47,6 +53,11 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Categories extends Fishpig_Wordpres
 		return false;
 	}
 	
+	/**
+	 * Retrieve the current category
+	 *
+	 * @return Fishpig_Wordpress_Model_Category
+	 */
 	public function getCurrentCategory()
 	{
 		if (!$this->hasCurrentCategory()) {
@@ -54,5 +65,15 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Categories extends Fishpig_Wordpres
 		}
 		
 		return $this->getData('current_category');
+	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Categories');
 	}
 }

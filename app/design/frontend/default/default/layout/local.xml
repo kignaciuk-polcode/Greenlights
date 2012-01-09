@@ -16,6 +16,8 @@
         </reference>
         <reference name="header">
             <block type="social/social" name="social" as="social" template="social/social.phtml"/>
+            <block type="social/social" name="social" as="social" />
+            <block type="multisearch/form" name="top.search" as="topSearch" />
         </reference>
     </default>
 </layout>

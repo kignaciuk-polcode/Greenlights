@@ -22,6 +22,17 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Posts extends Fishpig_Wordpress_Blo
 	}
 	
 	/**
+	 * Control the number of posts displayed
+	 *
+	 * @param int $count
+	 * @return $this
+	 */
+	public function setPostCount($count)
+	{
+		return $this->setNumber($count);
+	}
+	
+	/**
 	 * Adds on cateogry/author ID filters
 	 *
 	 * @return Fishpig_Wordpress_Model_Mysql4_Post_Collection
@@ -44,4 +55,14 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Posts extends Fishpig_Wordpress_Blo
 
 		return $collection;
 	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Recent Posts');
+	}	
 }

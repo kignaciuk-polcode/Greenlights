@@ -28,7 +28,7 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Archives extends Fishpig_Wordpress_
 					FROM `" . $table . "` AS `main_table` WHERE (`main_table`.`post_type`='post') AND (`main_table`.`post_status` ='publish') 
 					GROUP BY archive_date ORDER BY archive_date DESC";
 					
-			$dates = Mage::helper('wordpress/db')->getWordpressRead()->fetchAll($sql);
+			$dates = Mage::helper('wordpress/db')->getReadAdapter()->fetchAll($sql);
 			$collection  = new Varien_Data_Collection();
 			
 			foreach($dates as $date) {
@@ -61,6 +61,12 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Archives extends Fishpig_Wordpress_
 		return implode($splitter, $dates);
 	}
 	
+	/**
+	 * Determine whether the archive is the current archive
+	 *
+	 * @param Fishpig_Wordpress_Model_Archive $archive
+	 * @return bool
+	 */
 	public function isCurrentArchive($archive)
 	{
 		if ($this->getCurrentArchive()) {
@@ -71,6 +77,11 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Archives extends Fishpig_Wordpress_
 		return false;
 	}
 	
+	/**
+	 * Retrieve the current archive
+	 *
+	 * @return Fishpig_Wordpress_Model_Archive
+	 */
 	public function getCurrentArchive()
 	{
 		if (!$this->hasCurrentArchive()) {
@@ -78,5 +89,15 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Archives extends Fishpig_Wordpress_
 		}
 		
 		return $this->getData('current_archive');
+	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Archives');
 	}
 }

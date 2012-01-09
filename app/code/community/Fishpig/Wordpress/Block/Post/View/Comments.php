@@ -36,8 +36,13 @@ class Fishpig_Wordpress_Block_Post_View_Comments extends Fishpig_Wordpress_Block
 	public function getComments()
 	{
 		if (!$this->hasComments()) {
-			if ($post = $this->getPost()) {
-				$this->setComments($post->getResource()->getPostComments($post));
+			$this->setComments(new Varien_Data_Collection());
+			if ($this->getCommentCount() > 0) {
+				if ($post = $this->getPost()) {
+					if ($comments = $post->getResource()->getPostComments($post)) {
+						$this->setComments($comments);
+					}
+				}
 			}
 		}
 		
@@ -51,11 +56,7 @@ class Fishpig_Wordpress_Block_Post_View_Comments extends Fishpig_Wordpress_Block
 	 */
 	public function getCommentCount()
 	{
-		if (!$this->hasCommentCount()) {
-			$this->setCommentCount($this->getPost()->getResource()->getPostComments($this->getPost())->count());
-		}
-		
-		return $this->getData('comment_count');
+		return $this->getPost()->getCommentCount();
 	}
 
 	/**
@@ -64,12 +65,14 @@ class Fishpig_Wordpress_Block_Post_View_Comments extends Fishpig_Wordpress_Block
 	 */
 	protected function _beforeToHtml()
 	{
-		if ($pagerBlock = $this->getPagerBlock()) {
-			$pagerBlock->setCollection($this->getComments());
-		}
-
-		if ($commentsFormBlock = $this->getCommentFormBlock()) {
-			$commentsFormBlock->setPost($this->getPost());
+		if ($this->getCommentCount() > 0)  {
+			if ($pagerBlock = $this->getPagerBlock()) {
+				$pagerBlock->setCollection($this->getComments());
+			}
+	
+			if ($commentsFormBlock = $this->getCommentFormBlock()) {
+				$commentsFormBlock->setPost($this->getPost());
+			}
 		}
 
 		parent::_beforeToHtml();

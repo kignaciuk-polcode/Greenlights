@@ -57,5 +57,4 @@ class Fishpig_Wordpress_Block_Tag_View extends Fishpig_Wordpress_Block_Post_List
 	
 		return $this->_postCollection;
 	}
-
 }

@@ -29,11 +29,7 @@
 
 	<wp_admin_adminhtml_support_index>
 		<reference name="content">
-			<block type="wordpress/adminhtml_support_edit" name="wordpress_support" />
-			<block type="wordpress/adminhtml_template" name="support.js" after="-" template="wordpress/support/js.phtml"/>
-		</reference>
-		<reference name="left">
-			<block type="wordpress/adminhtml_support_edit_tabs" name="wordpress_support.tabs"/>
+			<block type="adminhtml/template" name="wordpress_support" template="wordpress/support.phtml" />
 		</reference>
 	</wp_admin_adminhtml_support_index>
 
@@ -137,7 +133,7 @@
 			<block type="wordpress/adminhtml_catalog_category_edit_tab_post_grid" name="associated.posts" />
 		</block>
 	</wp_admin_adminhtml_catalog_category_postgrid>
-	
+
 	<wp_admin_adminhtml_catalog_category_category>
 		<block type="core/text_list" name="root" output="toHtml">
 			<block type="wordpress/adminhtml_catalog_category_edit_tab_category_grid" name="associated.categories" />

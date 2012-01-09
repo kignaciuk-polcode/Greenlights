@@ -175,7 +175,6 @@ class Fishpig_Wordpress_Helper_Search extends Fishpig_Wordpress_Helper_Abstract
 	 */
 	public function useSeoUrls()
 	{
-		return true;
 		return Mage::getStoreConfigFlag('wordpress_blog/search/use_seo_urls');
 	}
 	

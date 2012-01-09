@@ -24,7 +24,7 @@ Supported layout update handles (custom)
 		<!-- Delete this to remove the top 'Blog' link -->
 		<reference name="top.links">
 			<action method="addLink" translate="label title" module="wordpress" ifconfig="wordpress_blog/top_link/enabled">
-				<label>Blog</label>
+				<label helper="wordpress/getPrettyBlogRoute" />
 				<url helper="wordpress/getTopLinkUrl"/>
 				<title>Blog</title>
 				<prepare>0</prepare>
@@ -84,6 +84,12 @@ Supported layout update handles (custom)
 				<action method="addWidgetType">
 					<name>text</name><block>sidebar_widget_text</block><template>wordpress/sidebar/widget/text.phtml</template>
 				</action>
+				<action method="addWidgetType">
+					<name>links</name><block>sidebar_widget_links</block><template>wordpress/sidebar/widget/links.phtml</template>
+				</action>
+				<action method="addWidgetType">
+					<name>meta</name><block>sidebar_widget_meta</block><template>wordpress/sidebar/widget/meta.phtml</template>
+				</action>
 			</block>
 		</reference>
 		<reference name="right">
@@ -114,6 +120,9 @@ Supported layout update handles (custom)
 				<action method="addWidgetType">
 					<name>text</name><block>sidebar_widget_text</block><template>wordpress/sidebar/widget/text.phtml</template>
 				</action>
+				<action method="addWidgetType">
+					<name>links</name><block>sidebar_widget_links</block><template>wordpress/sidebar/widget/links.phtml</template>
+				</action>
 			</block>
 		</reference>
 	</wordpress_default>
@@ -138,6 +147,9 @@ Supported layout update handles (custom)
 	
 	<wordpress_category_index>
 		<update handle="wordpress_default"/>
+		<reference name="head">
+			<block type="core/template" name="wordpress.blog.feed.category" as="blog_category_feed" before="-" template="wordpress/feed/category/link.phtml" />
+		</reference>
 		<reference name="content">
 			<block type="wordpress/category_view" name="wordpress_category" template="wordpress/category/view.phtml">
 				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
@@ -223,7 +235,7 @@ Supported layout update handles (custom)
 	<catalog_product_view>
 		<reference name="product.info.additional">
 			<block type="wordpress/post_list_associated" name="wordpress_posts_associated" template="wordpress/post/associated.phtml">
-				<action method="setTitle" translate="title" module="wordpress"><title>Related blog posts</title></action>
+				<action method="setTitle" translate="title" module="wordpress"><title>Related Blog Posts</title></action>
 			</block>
 		</reference>
 	</catalog_product_view>

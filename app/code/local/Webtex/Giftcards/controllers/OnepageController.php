@@ -3,45 +3,6 @@ require_once 'Mage/Checkout/controllers/OnepageController.php';
 class Webtex_Giftcards_OnepageController extends Mage_Checkout_OnepageController
 {
     /**
-     * Shipping method save action
-     */
-
-    public function saveShippingMethodAction()
-    {
-        if ($this->_expireAjax()) {
-            return;
-        }
-        if ($this->getRequest()->isPost()) {
-            $data = $this->getRequest()->getPost('shipping_method', '');
-            $result = $this->getOnepage()->saveShippingMethod($data);
-
-            if(!$result) {
-                Mage::dispatchEvent('checkout_controller_onepage_save_shipping_method',
-                        array('request'=>$this->getRequest(),
-                            'quote'=>$this->getOnepage()->getQuote()));
-                $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
-                
-                if ($this->getOnepage()->getQuote()->getGrandTotal() == 0 && !$this->getOnepage()->getQuote()->hasRecurringItems()) {
-                  $result = $this->getOnepage()->savePayment(array('method' => 'free'));
-                  $this->loadLayout('checkout_onepage_review');
-                  $result['goto_section'] = 'review';
-                  $result['update_section'] = array(
-                      'name' => 'review',
-                      'html' => $this->_getReviewHtml()
-                  );
-                } else {
-
-                  $result['goto_section'] = 'payment';
-                  $result['update_section'] = array(
-                      'name' => 'payment-method',
-                      'html' => $this->_getPaymentMethodsHtml()
-                  );
-                }
-            }
-            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
-        }
-    }
-    /**
      * Create order action
      */
     public function saveOrderAction()
