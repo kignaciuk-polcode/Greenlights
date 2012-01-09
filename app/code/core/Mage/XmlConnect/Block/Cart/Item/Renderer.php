@@ -13,14 +13,13 @@
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
  * DISCLAIMER
- *
  * Do not edit or add to this file if you wish to upgrade Magento to newer
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -92,7 +91,7 @@ class Mage_XmlConnect_Block_Cart_Item_Renderer extends Mage_Checkout_Block_Cart_
                 $exclPrice = $_item->getRowTotal();
             }
             $exclPrice = $this->_formatPrice($exclPrice);
-            $subtotalXmlObj->addAttribute('excluding_tax', $subtotalXmlObj->xmlentities($exclPrice));
+            $subtotalXmlObj->addAttribute('excluding_tax', $subtotalXmlObj->escapeXml($exclPrice));
         }
 
         if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()) {
@@ -107,7 +106,7 @@ class Mage_XmlConnect_Block_Cart_Item_Renderer extends Mage_Checkout_Block_Cart_
             }
             $inclPrice = $this->_formatPrice($inclPrice);
 
-            $subtotalXmlObj->addAttribute('including_tax', $subtotalXmlObj->xmlentities($inclPrice));
+            $subtotalXmlObj->addAttribute('including_tax', $subtotalXmlObj->escapeXml($inclPrice));
         }
 
         if (Mage::helper('weee')->getApplied($_item)) {
@@ -152,7 +151,7 @@ class Mage_XmlConnect_Block_Cart_Item_Renderer extends Mage_Checkout_Block_Cart_
             }
             $exclPrice = $this->_formatPrice($exclPrice);
 
-            $priceXmlObj->addAttribute('excluding_tax', $priceXmlObj->xmlentities($exclPrice));
+            $priceXmlObj->addAttribute('excluding_tax', $priceXmlObj->escapeXml($exclPrice));
         }
 
         if ($this->helper('tax')->displayCartPriceInclTax()
@@ -169,7 +168,7 @@ class Mage_XmlConnect_Block_Cart_Item_Renderer extends Mage_Checkout_Block_Cart_
             }
             $inclPrice = $this->_formatPrice($inclPrice);
 
-            $priceXmlObj->addAttribute('including_tax', $priceXmlObj->xmlentities($inclPrice));
+            $priceXmlObj->addAttribute('including_tax', $priceXmlObj->escapeXml($inclPrice));
         }
 
         if (Mage::helper('weee')->getApplied($_item)) {
@@ -240,10 +239,7 @@ class Mage_XmlConnect_Block_Cart_Item_Renderer extends Mage_Checkout_Block_Cart_
             }
 
             $totalExcl = $this->_formatPrice($totalExcl);
-            $priceXmlObj->addAttribute(
-                'total_excluding_tax',
-                $priceXmlObj->xmlentities($totalExcl)
-            );
+            $priceXmlObj->addAttribute('total_excluding_tax', $priceXmlObj->escapeXml($totalExcl));
         }
 
         if ($typeOfDisplay2 && $_item->getWeeeTaxAppliedAmount()) {
@@ -254,7 +250,7 @@ class Mage_XmlConnect_Block_Cart_Item_Renderer extends Mage_Checkout_Block_Cart_
             }
 
             $totalIncl = $this->_formatPrice($totalIncl);
-            $priceXmlObj->addAttribute('total_including_tax', $priceXmlObj->xmlentities($totalIncl));
+            $priceXmlObj->addAttribute('total_including_tax', $priceXmlObj->escapeXml($totalIncl));
         }
 
         return $priceXmlObj;
