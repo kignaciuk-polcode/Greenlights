@@ -2,10 +2,7 @@
 <?php $collection->getSelect()->where('testimonial_sidebar=?', '1'); ?>
 <?php $collection->setOrder('testimonial_position', 'ASC'); ?>
 <?php $testimonials = $collection->load(); ?>
-<<<<<<< HEAD
-=======
 <?php $i = 0;?>
->>>>>>> kamil/master
 <?php if ($testimonials->count() > 0): ?>
 
 <div class="block testimonials_sidebar">

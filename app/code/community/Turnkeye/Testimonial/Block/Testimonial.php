@@ -14,8 +14,4 @@ class Turnkeye_Testimonial_Block_Testimonial extends Mage_Core_Block_Template
 		return $this->getData('testimonial');
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> kamil/master
