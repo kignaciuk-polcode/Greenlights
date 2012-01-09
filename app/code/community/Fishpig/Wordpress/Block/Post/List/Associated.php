@@ -34,15 +34,17 @@ class Fishpig_Wordpress_Block_Post_List_Associated extends Fishpig_Wordpress_Blo
 	/**
 	 * Adds on cateogry/author ID filters
 	 *
-	 * @return Fishpig_Wordpress_Model_Mysql4_Post_Collection
+	 * @return array|Fishpig_Wordpress_Model_Mysql4_Post_Collection
 	 */
 	protected function _getPostCollection()
 	{
-		$collection = Mage::helper('wordpress/catalog_product')
-			->getAssociatedPosts($this->getProduct())
-			->setCurPage(1);
-
-		return $collection;
+		$collection = Mage::helper('wordpress/catalog_product')->getAssociatedPosts($this->getProduct());
+			
+		if ($collection) {
+			return $collection->setCurPage(1);
+		}
+		
+		return array();
 	}
 	
 	/**

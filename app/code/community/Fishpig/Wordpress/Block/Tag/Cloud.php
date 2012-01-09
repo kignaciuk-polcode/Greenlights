@@ -12,6 +12,9 @@ class Fishpig_Wordpress_Block_Tag_Cloud extends Fishpig_Wordpress_Block_Sidebar_
 	{
 		Mage::helper('wordpress')->log($this->__('%s has been deprecated; please use %s', get_class($this), get_parent_class($this)));
 		
+		$this->setTemplate('wordpress/sidebar/widget/tagcloud.phtml');
+		$this->setTitle($this->__('Blog Tags'));
+		
 		return parent::_beforeToHtml();
 	}
 }

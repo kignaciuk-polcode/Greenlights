@@ -6,7 +6,7 @@
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
 
-class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveCategoryAssociations
+class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveCategoryAssociations extends Fishpig_Wordpress_Model_Observer_Adminhtml_SaveAssociationsAbstract
 {
 	/**
 	 * Save the product/post & product/category associations
@@ -15,12 +15,10 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveCategoryAssociations
 	public function saveAssociations(Varien_Event_Observer $observer)
 	{
 		try {
-			if ($this->_getCategory()) {
+			if ($this->_getCategory() && $this->_getStoreId()) {
 				if ($links = Mage::app()->getRequest()->getPost('links')) {
 					foreach(array('post' => 'post_id', 'category' => 'wp_category_id') as $type => $wpField) {
 						if (isset($links[$type . '_ids'])) {
-							Mage::helper('wordpress')->log($type . '_ids');
-							Mage::helper('wordpress')->log(print_r(Mage::helper('adminhtml/js')->decodeGridSerializedInput($links[$type . '_ids']), true));
 							$this->_deleteCurrentAssociations($type);
 							$this->_addNewAssociations($type, Mage::helper('adminhtml/js')->decodeGridSerializedInput($links[$type . '_ids']), $wpField);
 						}
@@ -29,8 +27,8 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveCategoryAssociations
 			}
 		}
 		catch (Exception $e) {
-			echo $e;exit;
 			Mage::helper('wordpress')->log($e->getMessage());
+			Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
 		}
 	}
 
@@ -45,7 +43,7 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveCategoryAssociations
 		$table = $this->_getResource()->getTableName('wordpress_category_'.$type);
 
 		$this->_getResource()->getConnection('core_write')
-			->delete($table, $this->_getResource()->getConnection('core_write')->quoteInto('category_id=?', $this->_getCategory()->getId()));
+			->delete($table, $this->_getResource()->getConnection('core_write')->quoteInto('category_id=? AND store_id=' . $this->_getStoreId(), $this->_getCategory()->getId()));
 	}
 
 	/**
@@ -72,10 +70,9 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveCategoryAssociations
 					$position = 0;
 					$assocId = $data;
 				}
-Mage::helper('wordpress')->log(print_r(array('category_id' => $categoryId, $wpField => $assocId, 'position' => $position), true));
 
 				$this->_getResource()->getConnection('core_write')
-					->insert($table, array('category_id' => $categoryId, $wpField => $assocId, 'position' => $position));
+					->insert($table, array('category_id' => $categoryId, $wpField => $assocId, 'position' => $position, 'store_id' => $this->_getStoreId()));
 			}
 		}
 	}
@@ -88,14 +85,5 @@ Mage::helper('wordpress')->log(print_r(array('category_id' => $categoryId, $wpFi
 	protected function _getCategory()
 	{	
 		return ($category = Mage::registry('category')) ? $category : false;
-	}
-	
-	/**
-	 * Retrieve the resource class
-	 *
-	 */
-	protected function _getResource()
-	{
-		return Mage::getSingleton('core/resource');
 	}
 }

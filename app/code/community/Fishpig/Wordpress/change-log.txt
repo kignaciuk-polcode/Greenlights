@@ -9,6 +9,88 @@
 # Upgrade 2.0		http://fishpig.co.uk/wordpress-integration-2-0-upgrade/
 ##
 
+TODO
+- Add gravatar support
+- Simplify remaining shortcodes (gallery & caption)
+- Update associated products template to single template (instead of associated and associated/list.phtml)
+- Add pages to XML sitemap
+
+04/01/2012 - v2.1.19
+- Added change to sidebar block caching system to allow for duplicate blocks with different configs
+- Added fix for no image on associated products
+- Added Auto-Login flow improvement
+
+28/12/2011 - v2.1.18
+- Fixed multi-store issue
+
+22/12/2011 - v2.1.17
+- Added fix for getAssociatedProducts
+- Updated the WordPress auto paragraph function
+- Applied fix for Syntax Highlighter
+
+16/12/2011 - v2.1.16
+- Simplified shortcode system to allow for easy adding of new shortcodes and plugins
+- Added fix for getAssociatedProducts
+
+14/12/2011 - v.2.1.15
+- Fixed another associations issue for single-store Magento installations
+
+13/12/2011 - v.2.1.14
+- Fixed issue that stopped associations working
+
+13/12/2011 - v.2.1.13
+- Added fix to comment link that adds http:// onto start of malformed link
+
+13/12/2011 - v.2.1.12
+- Re-added gallery shortcode
+- Added legacy Magento check to integration tests
+
+12/12/2011 - v2.1.11
+- Removed the sidebar META widget
+- Updated associated product block template
+- Fixed issue with comments
+- Re-added blog/category associations & refactored
+
+12/12/2011 - v2.1.10
+- Re-added associate category posts
+- Fixed issue that stopped Auto-Login links from opening in a new tab
+
+12/12/2011 - v2.1.9
+- Fixed issue with comment count on old templates
+- Fixed issue with multi-store config value retrieval
+- Fixed issue with semi-integration test results displaying when in full-integration mode on multi-store
+
+05/12/2011 - v2.1.7
+- Fixed issue with table mapping when using same database
+
+05/12/2011 - v2.1.6
+- Added support for associated posts on multi-stores
+- Removed associated blog categories
+- Small bug fixes
+
+05/12/2011 - v2.1.4
+- Refactored more code
+- Minor bug fixes
+- Added Magento 1.3.2.4 fix that means {{block}} won't work inside a post
+
+04/12/2011 - v2.1.1
+- Added ability to change top link label and blog breadcrumb label via config
+- Rewritten database loading to use a lazy loading system. This makes the extension much faster
+- Refactored a lot of code
+- Added default titles for sidebar widget blocks
+- Add WordPress Sidebar block caching. If your blocks don't update, refresh the Block HTML Output cache type
+- Ability to use {{block type="core/template" name="block_name" template="custom/template.phml"}} in WordPress posts & pages
+- Added category posts RSS feeds & link in head
+- 20% improvements in speed/memory on our development server
+- Added integration for Links sidebar widget
+- Added integration for Meta sidebar widget
+- Small fix for sites running Magento in the same database
+
+02/12/2011 - v2.0.14
+- Added changes for BuddyPress BETA testing
+- Added more fixes to allow old sidebar blocks/templates to function (although you should update to the new format ASAP).
+- Added change to database loading to improve WordPress Customer Synchronisation extension
+
 30/11/2011 - v2.0.13
 - Added fix for Magento 1.4.1.1 and before that caused blog homepage to 404
 

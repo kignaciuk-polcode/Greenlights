@@ -27,4 +27,14 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Comments extends Fishpig_Wordpress_
 		
 		return $this->getData('comments');
 	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Recent Comments');
+	}
 }

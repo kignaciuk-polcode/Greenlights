@@ -14,6 +14,7 @@ class Fishpig_Wordpress_Helper_Post extends Fishpig_Wordpress_Helper_Abstract
 	 * @var string
 	 */
 	protected $_postIdVar = 'p';
+
 	/**
 	 * Returns TRUE is ?p=id links are being used
 	 *
@@ -277,17 +278,17 @@ class Fishpig_Wordpress_Helper_Post extends Fishpig_Wordpress_Helper_Abstract
 						$part = trim($part, '%');
 					
 						switch($part) {
-							case 'year': 		$url[] 	= $post->getPostDate('Y');		break;
+							case 'year': 			$url[] 	= $post->getPostDate('Y');		break;
 							case 'monthnum':	$url[] 	= $post->getPostDate('m');		break;
-							case 'day':			$url[]  = $post->getPostDate('d');		break;
-							case 'hour':		$url[]  = $post->getPostDate('H');		break;
-							case 'minute':		$url[]  = $post->getPostDate('i');		break;
-							case 'second':		$url[]  = $post->getPostDate('s');		break;
-							case 'post_id':		$url[] 	= $post->getId();				break;
-							case 'postname':	$url[] 	= urldecode($post->getPostName());			break;
-							case 'category':	$url[] 	= $this->_getPermalinkCategoryPortion($post);	break;
+							case 'day':				$url[]  	= $post->getPostDate('d');		break;
+							case 'hour':			$url[]  	= $post->getPostDate('H');		break;
+							case 'minute':		$url[]  	= $post->getPostDate('i');		break;
+							case 'second':		$url[]  	= $post->getPostDate('s');		break;
+							case 'post_id':		$url[] 	= $post->getId();						break;
+							case 'postname':	$url[] 	= urldecode($post->getPostName());					break;
+							case 'category':		$url[] 	= $this->_getPermalinkCategoryPortion($post);	break;
 							case 'author':																break;
-							default:			$this->log("Unknown permalink token ({$segment})");		break;
+							default:					$this->log("Unknown permalink token ({$segment})");		break;
 						}
 					}
 					else {

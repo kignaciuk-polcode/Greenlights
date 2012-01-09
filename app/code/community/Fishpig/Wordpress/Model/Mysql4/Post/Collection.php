@@ -33,8 +33,8 @@ class Fishpig_Wordpress_Model_Mysql4_Post_Collection extends Fishpig_Wordpress_M
 			$categoryIds = array($categoryIds);
 		}
 		
-		$postSql = Mage::helper('wordpress/db')->getWordpressRead()->quoteInto("`main_table`.`ID` IN (?)", $postIds);
-		$categorySql = Mage::helper('wordpress/db')->getWordpressRead()->quoteInto("`tax`.`term_id` IN (?)", $categoryIds);
+		$postSql = Mage::helper('wordpress/db')->getReadAdapter()->quoteInto("`main_table`.`ID` IN (?)", $postIds);
+		$categorySql = Mage::helper('wordpress/db')->getReadAdapter()->quoteInto("`tax`.`term_id` IN (?)", $categoryIds);
 		
 		$this->joinTermTables('category');
 		

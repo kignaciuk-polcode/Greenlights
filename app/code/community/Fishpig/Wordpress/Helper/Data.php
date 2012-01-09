@@ -8,7 +8,11 @@
 
 class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 {
-	
+	/**
+	 * Retrieve the top link URL
+	 *
+	 * @return string
+	 */
 	public function getTopLinkUrl()
 	{
 		try {
@@ -26,6 +30,18 @@ class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 			$this->log('Magento & WordPress are not correctly integrated (see entry below).');
 			$this->log($e->getMessage());
 		}
+		
+		return '';
+	}
+
+	/**
+	 * Returns the pretty version of the blog route
+	 *
+	 * @return string
+	 */
+	public function getPrettyBlogRoute()
+	{
+		return Mage::getStoreConfig('wordpress_blog/top_link/label');
 	}
 	
 	/**
@@ -46,7 +62,64 @@ class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 	 */
 	public function isEnabled()
 	{
-		return !$this->getStoreConfigFlag('advanced/modules_disable_output/Fishpig_Wordpress');
+		return true;
+		return !$this->getCachedConfigValue('advanced/modules_disable_output/Fishpig_Wordpress');
+	}
+	
+	/**
+	  * Formats a Wordpress date string
+	  *
+	  */
+	public function formatDate($date, $format = null, $f = false)
+	{
+		if ($format == null) {
+			$format = $this->getDefaultDateFormat();
+		}
+		
+		/**
+		 * This allows you to translate month names rather than whole date strings
+		 * eg. "March","Mars"
+		 *
+		 */
+		$len = strlen($format);
+		$out = '';
+		
+		for( $i = 0; $i < $len; $i++) {	
+			$out .= $this->__(Mage::getModel('core/date')->date($format[$i], strtotime($date)));
+		}
+		
+		return $out;
+	}
+	
+	/**
+	  * Formats a Wordpress date string
+	  *
+	  */
+	public function formatTime($time, $format = null)
+	{
+		if ($format == null) {
+			$format = $this->getDefaultTimeFormat();
+		}
+		
+		return $this->formatDate($time, $format);
+	}
+	
+	/**
+	  * Return the default date formatting
+	  *
+	  */
+	public function getDefaultDateFormat()
+	{
+		return $this->getCachedWpOption('date_format', 'F jS, Y');
+	}
+	
+	/**
+	  * Return the default time formatting
+	  *
+	  */
+	public function getDefaultTimeFormat()
+	{
+		return $this->getCachedWpOption('time_format', 'g:ia');
 	}
 	
 	/**
@@ -71,16 +144,6 @@ class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * Determine whether customer synch is enabled in the admin
-	 *
-	 * @return bool
-	 */
-	public function isCustomerSynchronisationEnabled()
-	{
-		return $this->getStoreConfigFlag('wordpress/customer_synchronisation/enabled');
 	}
 
 	/**

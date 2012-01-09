@@ -6,8 +6,30 @@
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
 
-class Fishpig_Wordpress_Block_Sidebar_Widget_Abstract extends Mage_Core_Block_Template
+abstract class Fishpig_Wordpress_Block_Sidebar_Widget_Abstract extends Mage_Core_Block_Template
 {
+	abstract public function getDefaultTitle();
+	
+	protected function _construct()
+	{
+        $this->addData(array(
+            'cache_lifetime'    => 120,
+            'cache_tags'        => array('wordpress_sidebar_widget'),
+        ));
+        
+        return parent::_construct();
+	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getTitle()
+	{
+		return $this->_getData('title') ? $this->_getData('title') : $this->getDefaultTitle();
+	}
+	
 	/**
 	 * Attempt to load the widget information from the WordPress options table
 	 *
@@ -28,6 +50,8 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Abstract extends Mage_Core_Block_Te
 				}
 			}
 		}
+
+		$this->setCacheKey($this->getNameInLayout());
 
 		return parent::_beforeToHtml();
 	}

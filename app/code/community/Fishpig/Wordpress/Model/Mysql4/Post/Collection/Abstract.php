@@ -137,7 +137,7 @@ abstract class Fishpig_Wordpress_Model_Mysql4_Post_Collection_Abstract extends M
 	public function addSearchStringFilter(array $words, array $fields, $operator)
 	{
 		if (count($words) > 0) {
-			$read = Mage::helper('wordpress/db')->getWordpressRead();
+			$read = Mage::helper('wordpress/db')->getReadAdapter();
 			$where = array();
 	
 			foreach($fields as $field) {

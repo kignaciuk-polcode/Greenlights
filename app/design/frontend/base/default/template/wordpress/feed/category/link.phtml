@@ -1,0 +1,11 @@
+<?php
+/**
+ *
+ */
+ 
+ 	$_helper = Mage::helper('wordpress');
+ 	
+?>
+<?php if ($_category = Mage::registry('wordpress_category')): ?>
+<link rel="alternate" type="application/rss+xml" title="<?php echo $this->__('%s - %s Category- RSS Feed', $_helper->getCachedWpOption('blogname'), $_category->getName()) ?>" href="<?php echo rtrim($_category->getUrl(), '/') ?>/feed/" />
+<?php endif; ?>

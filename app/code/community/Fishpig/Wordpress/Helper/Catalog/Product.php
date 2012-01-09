@@ -15,23 +15,22 @@ class Fishpig_Wordpress_Helper_Catalog_Product extends Fishpig_Wordpress_Helper_
 	 * @param Mage_Catalog_Model_Product $product
 	 * @return Fishpig_Wordpress_Model_Mysql4_Post_Collection
 	 */
-	public function getAssociatedPosts(Mage_Catalog_Model_Product $product)
+	public function getAssociatedPosts($product)
 	{
-		$postIds = $this->getAssociatedPostIds($product);
-		$categoryIds = $this->getAssociatedCategoryIds($product);
-		$collection = Mage::getResourceModel('wordpress/post_collection')
-			->addIsPublishedFilter();
-		
-		$collection->getSelect()->distinct();
-		
-		if (count($postIds) > 0 || count($categoryIds) > 0) {
-			$collection->addCategoryAndPostIdFilter($postIds, $categoryIds);
+		if ($product instanceof Mage_Catalog_Model_Product) {
+			$postIds = $this->getAssociatedPostIds($product);
+			$categoryIds = $this->getAssociatedCategoryIds($product);
+
+			if (count($postIds) > 0 || count($categoryIds) > 0) {
+				$collection = Mage::getResourceModel('wordpress/post_collection')->addIsPublishedFilter();
+				$collection->getSelect()->distinct();
+				$collection->addCategoryAndPostIdFilter($postIds, $categoryIds);
+			
+				return $collection;
+			}
 		}
-		else {
-			$collection->getSelect()->where('1=2');
-		}
 		
-		return $collection;
+		return false;
 	}
 
 	/**
@@ -94,22 +93,19 @@ class Fishpig_Wordpress_Helper_Catalog_Product extends Fishpig_Wordpress_Helper_
 	 * @param Fishpig_Wordpress_Model_Post $post
 	 * @return Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Collection
 	 */
-	public function getAssociatedProducts(Fishpig_Wordpress_Model_Post $post)
+	public function getAssociatedProducts($post)
 	{
-		$productIds = $this->_getAssociatedWpEntityIds($post->getId(), 'product', 'post', 'post_id');
-
-		$collection = Mage::getResourceModel('catalog/product_collection');
-		
-		if ($collection) {
-			Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($collection);
-			$collection->addAttributeToFilter('status', 1);
-			$collection->addAttributeToFilter('entity_id', array('in' => $productIds));
-				
-			if (count($productIds) == 0) {
-				$collection->getSelect()->where('1=2');
+		if ($post instanceof Fishpig_Wordpress_Model_Post) {
+			$productIds = $this->_getAssociatedWpEntityIds($post->getId(), 'product', 'post', 'post_id');
+	
+			if (count($productIds) > 0) {
+				$collection = Mage::getResourceModel('catalog/product_collection');		
+				Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($collection);
+				$collection->addAttributeToFilter('status', 1);
+				$collection->addAttributeToFilter('entity_id', array('in' => $productIds));
+			
+				return $collection;
 			}
-		
-			return $collection;
 		}
 		
 		return false;

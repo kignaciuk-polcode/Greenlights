@@ -28,6 +28,12 @@ class Fishpig_Wordpress_Helper_Plugin_AllInOneSeo extends Fishpig_Wordpress_Help
 		return array('title', 'description', 'keywords');
 	}
 	
+	/**
+	 * Retrieve the options for this plugin
+	 *
+	 * @param string $key = null
+	 * @return null|array
+	 */
 	public function getPluginOptions($key = null)
 	{
 		if ($options = Mage::helper('wordpress')->getCachedWpOption('aioseop_options')) {
@@ -41,6 +47,12 @@ class Fishpig_Wordpress_Helper_Plugin_AllInOneSeo extends Fishpig_Wordpress_Help
 		}
 	}
 	
+	/**
+	 * Retrieve a specific plugin option
+	 *
+	 * @param string $key
+	 * @return string
+	 */
 	public function getPluginOption($key)
 	{
 		return $this->getPluginOptions('aiosp_'.$key);

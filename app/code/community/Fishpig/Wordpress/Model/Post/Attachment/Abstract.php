@@ -34,15 +34,14 @@ abstract class Fishpig_Wordpress_Model_Post_Attachment_Abstract extends Mage_Cor
 		if ($this->getId() > 0 && !$this->getIsFullyLoaded()) {
 			$this->setIsFullyLoaded(true);
 
-			$select = Mage::helper('wordpress/db')->getWordpressRead()
+			$select = Mage::helper('wordpress/db')->getReadAdapter()
 				->select()
 				->from(Mage::helper('wordpress/db')->getTableName('postmeta'), 'meta_value')
 				->where('meta_key=?', '_wp_attachment_metadata')
 				->where('post_id=?', $this->getId())
 				->limit(1);
 
-
-			$data = unserialize(Mage::helper('wordpress/db')->getWordpressRead()->fetchOne($select));
+			$data = unserialize(Mage::helper('wordpress/db')->getReadAdapter()->fetchOne($select));
 
 			if (is_array($data)) {
 				foreach($data as $key => $value) {

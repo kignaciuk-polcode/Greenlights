@@ -6,7 +6,7 @@
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
 
-class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
+class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations extends Fishpig_Wordpress_Model_Observer_Adminhtml_SaveAssociationsAbstract
 {
 	/**
 	 * Save the product/post & product/category associations
@@ -15,7 +15,7 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
 	public function saveAssociations(Varien_Event_Observer $observer)
 	{
 		try {
-			if ($this->_getProduct()) {
+			if ($this->_getProduct() && $this->_getStoreId()) {
 				if ($links = Mage::app()->getRequest()->getPost('links')) {
 					foreach(array('post', 'category') as $type) {
 						if (isset($links[$type . '_ids'])) {
@@ -28,6 +28,7 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
 		}
 		catch (Exception $e) {
 			Mage::helper('wordpress')->log($e->getMessage());
+			Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
 		}
 	}
 
@@ -42,7 +43,7 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
 		$table = $this->_getResource()->getTableName('wordpress_product_'.$type);
 
 		$this->_getResource()->getConnection('core_write')
-			->delete($table, $this->_getResource()->getConnection('core_write')->quoteInto('product_id=?', $this->_getProduct()->getId()));
+			->delete($table, $this->_getResource()->getConnection('core_write')->quoteInto('product_id=? AND store_id=' . $this->_getStoreId(), $this->_getProduct()->getId()));
 	}
 
 	/**
@@ -54,6 +55,7 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
 	protected function _addNewAssociations($type, $assocIds)
 	{
 		if (count($assocIds) > 0) {
+			$storeId = $this->_getStoreId();
 			$productId = $this->_getProduct()->getId();
 			$table = $this->_getResource()->getTableName('wordpress_product_'.$type);
 		
@@ -66,8 +68,7 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
 					$assocId = $data;
 				}
 
-				$this->_getResource()->getConnection('core_write')
-					->insert($table, array('product_id' => $productId, "{$type}_id" => $assocId, 'position' => $position));
+				$this->_getResource()->getConnection('core_write')->insert($table, array('product_id' => $productId, "{$type}_id" => $assocId, 'position' => $position, 'store_id' => $storeId));
 			}
 		}
 	}
@@ -80,14 +81,5 @@ class Fishpig_Wordpress_Model_Observer_Adminhtml_SaveProductAssociations
 	protected function _getProduct()
 	{	
 		return ($product = Mage::registry('product')) ? $product : false;
-	}
-	
-	/**
-	 * Retrieve the resource class
-	 *
-	 */
-	protected function _getResource()
-	{
-		return Mage::getSingleton('core/resource');
 	}
 }

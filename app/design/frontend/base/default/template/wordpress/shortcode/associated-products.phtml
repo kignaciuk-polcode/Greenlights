@@ -15,15 +15,23 @@
 			</div>
 		<?php endif; ?>
 		<div class="block-content">
-			<ul>
+			<ol class="mini-products-list" id="block-associated-products">
 				<?php foreach($products as $product): ?>
-					<li>
-						<a href="<?php echo $product->getProductUrl() ?>">
-							<?php echo $product->getName() ?>
-						</a>
+					<li class="item">
+						<div class="product">
+							<a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $product->getName() ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->resize(50) ?>" width="50" height="50" alt="<?php echo $product->getName() ?>" /></a>
+							<div class="product-details">
+								<p class="product-name"><a href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></p>
+								<?php echo $this->getPriceHtml($product, true, '-associated') ?>
+								<?php if ($this->helper('wishlist')->isAllow()) : ?>
+									<a href="<?php echo $this->getAddToWishlistUrl($product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+								<?php endif; ?>								
+							</div>
+						</div>
 					</li>
 				<?php endforeach; ?>
-			</ul>
+			</ol>
 		</div>
+		<script type="text/javascript">decorateList('block-associated-products', 'none-recursive')</script>
 	</div>
 <?php endif; ?>

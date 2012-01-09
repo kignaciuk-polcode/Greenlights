@@ -14,6 +14,12 @@ class Fishpig_Wordpress_CategoryController extends Fishpig_Wordpress_Controller_
 	protected function _init()
 	{
 		if ($category = $this->_loadCategoryBasedOnUrl()) {
+		
+			if ($this->isFeedPage()) {
+				$this->_forward('commentFeed');
+				return null;
+			}
+
 			if (!Mage::helper('wordpress')->isLegacyMagento()) {
 				$this->_addCustomLayoutHandles(array('wordpress_category_index', 'WORDPRESS_CATEGORY_'.$category->getId()));
 			}
@@ -80,5 +86,23 @@ class Fishpig_Wordpress_CategoryController extends Fishpig_Wordpress_Controller_
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Display the comment feed
+	 *
+	 */
+	public function commentFeedAction()
+	{
+		if ($this->isEnabledForStore()) {
+			$this->getResponse()
+				->setBody($this->getLayout()->createBlock('wordpress/feed_category')->setCategory(Mage::registry('wordpress_category'))->toHtml());
+
+			$this->getResponse()->sendResponse();
+			exit;
+		}
+		else {
+			$this->_forward('noRoute');
+		}
 	}
 }

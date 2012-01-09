@@ -39,7 +39,7 @@ abstract class Fishpig_Wordpress_Model_Post_Abstract extends Mage_Core_Model_Abs
 	public function getPostContent()
 	{
 		if (!$this->hasFilteredPostContent()) {
-			$this->setFilteredPostContent(Mage::helper('wordpress/filter')->applyFilters($this->getData('post_content'), array('id' => $this->getId(), 'type' => 'post')));
+			$this->setFilteredPostContent(Mage::helper('wordpress/filter')->applyFilters($this->getData('post_content'), array('object' => $this, 'type' => 'content')));
 		}
 		
 		return $this->getData('filtered_post_content');

@@ -14,9 +14,19 @@ class Fishpig_Wordpress_Adminhtml_Catalog_ProductController extends Mage_Adminht
 	 */
 	public function postAction()
 	{
-		$this->_initProduct();
-		$this->loadLayout();
-		$this->renderLayout();
+		if (!$this->_isSingleStoreMode() && !Mage::app()->getRequest()->getParam('store')) {
+			$this->_forward('storeSelector');
+		}
+		else {
+			if ($this->_initWordPressDatabaseForStore()) {
+				$this->_initProduct();
+				$this->loadLayout();
+				$this->renderLayout();
+			}
+			else {
+				$this->_forward('noWordPressDatabase');
+			}
+		}
 	}
 	
 	/**
@@ -25,9 +35,19 @@ class Fishpig_Wordpress_Adminhtml_Catalog_ProductController extends Mage_Adminht
 	 */
 	public function postGridAction()
 	{
-		$this->_initProduct();
-		$this->loadLayout();
-		$this->renderLayout();
+		if (!$this->_isSingleStoreMode() && !Mage::app()->getRequest()->getParam('store')) {
+			$this->_forward('storeSelector');
+		}
+		else {
+			if ($this->_initWordPressDatabaseForStore()) {
+				$this->_initProduct();
+				$this->loadLayout();
+				$this->renderLayout();
+			}
+			else {
+				$this->_forward('noWordPressDatabase');
+			}
+		}
 	}
 	
 	
@@ -37,9 +57,19 @@ class Fishpig_Wordpress_Adminhtml_Catalog_ProductController extends Mage_Adminht
 	 */
 	public function categoryAction()
 	{
-		$this->_initProduct();
-		$this->loadLayout();
-		$this->renderLayout();
+		if (!$this->_isSingleStoreMode() && !Mage::app()->getRequest()->getParam('store')) {
+			$this->_forward('storeSelector');
+		}
+		else {
+			if ($this->_initWordPressDatabaseForStore()) {
+				$this->_initProduct();
+				$this->loadLayout();
+				$this->renderLayout();
+			}
+			else {
+				$this->_forward('noWordPressDatabase');
+			}
+		}
 	}
 	
 	/**
@@ -48,11 +78,72 @@ class Fishpig_Wordpress_Adminhtml_Catalog_ProductController extends Mage_Adminht
 	 */
 	public function categoryGridAction()
 	{
-		$this->_initProduct();
-		$this->loadLayout();
-		$this->renderLayout();
+		if (!$this->_isSingleStoreMode() && !Mage::app()->getRequest()->getParam('store')) {
+			$this->_forward('storeSelector');
+		}
+		else {
+			if ($this->_initWordPressDatabaseForStore()) {
+				$this->_initProduct();
+				$this->loadLayout();
+				$this->renderLayout();
+			}
+			else {
+				$this->_forward('noWordPressDatabase');
+			}
+		}
 	}
 	
+	public function noWordPressDatabaseAction()
+	{
+		$this->getResponse()->setBody('<p style="font-size: 18px; margin-top: 40px; text-align: center;">There was an error connecting to the WordPress database for this store.</p>');
+	}
+	
+	protected function _initWordPressDatabaseForStore()
+	{
+		if ($this->_isSingleStoreMode()) {
+			if ($store = Mage::helper('wordpress')->getCurrentFrontendStore()) {
+				if ($store->getId()) {
+					$website = $store->getWebsite();
+					
+					if ($website->getId()) {
+						$this->getRequest()->setParam('store', $store->getId());
+						return Mage::helper('wordpress/db')->connect($website->getCode(), $store->getCode());
+					}
+				}
+			}
+		}
+		else {
+			if ($storeId = Mage::app()->getRequest()->getParam('store', false)) {
+				$store = Mage::getModel('core/store')->load($storeId);
+				
+				if ($store->getId()) {
+					$website = $store->getWebsite();
+					
+					if ($website->getId()) {
+						return Mage::helper('wordpress/db')->connect($website->getCode(), $store->getCode());
+					}
+				}
+			}
+		}		
+
+		return false;
+	}
+	
+	public function storeSelectorAction()
+	{
+		$this->getResponse()->setBody('<p style="font-size: 18px; margin-top: 40px; text-align: center;">You must select a store using the store changer (top left) before associating blog items with this product.</p>');
+
+	}
+	
+	/**
+	 * Determine whether only 1 store exists
+	 *
+	 * @return bool
+	 */
+	protected function _isSingleStoreMode()
+	{
+		return Mage::app()->isSingleStoreMode();
+	}
 	
 	/**
 	 * Initialise the product model

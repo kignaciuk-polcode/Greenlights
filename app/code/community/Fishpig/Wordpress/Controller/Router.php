@@ -23,13 +23,20 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 	protected $_requestObject = null;
 	
 	/**
+	 * Used to load in controller files
+	 *
+	 * @param string
+	 */
+	protected $_controllerClassPrefix = 'Fishpig_Wordpress';
+	
+	/**
 	 * Create an instance of the router and add it to the queue
 	 */
     public function initController($observer)
     {
     	$helper = Mage::helper('wordpress');
     	
-    	if (!$helper->isAdminhtmlArea() && $helper->isEnabled()) {
+    	if ($helper->isEnabled()) {
 	        $front = $observer->getEvent()->getFront();
 
     	    $wp = new Fishpig_Wordpress_Controller_Router();
@@ -58,7 +65,9 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 				}
 			}
 		}
-		catch (Exception $e) { }
+		catch (Exception $e) { 
+			Mage::helper('wordpress')->log('Router: ' . $e->getMessage());
+		}
 
 		return false;
 	}
@@ -74,8 +83,13 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 		$helper = Mage::helper('wordpress/router');
 		$this->_initStaticRoutes();
 
-//		Still being tested
-//		$this->_handleFirstPageRedirect($uri);
+		$this->getRequest()->setModuleName('wordpress')->setRouteName('wordpress');
+		
+		Mage::dispatchEvent('wordpress_match_routes_before', array('router' => $this, 'uri' => $uri));
+
+		if ($this->getRequest()->getModuleName() && $this->getRequest()->getControllerName() && $this->getRequest()->getActionName()) {
+			return true;
+		}
 		
 		if (!$uri && !Mage::helper('wordpress/post')->getPostId()) {
 			return $this->getRequest()->setControllerName('homepage')->setActionName('index');
@@ -107,7 +121,8 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 			return $this->_redirectFromAttachmentUriToPost($uri);
 		}
 
-
+		Mage::dispatchEvent('wordpress_match_routes_after', array('router' => $this));
+		
 		return false;
 	}
 	
@@ -130,22 +145,6 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 		
 		return false;
 	}
-	
-	protected function _handleFirstPageRedirect($uri)
-	{
-		$var = Mage::helper('wordpress/router')->getPostPagerVar();
-		$pageIndex = (int)$this->getRequest()->getParam($var);
-		
-		if ($pageIndex === 1) {
-			$currentUrl = Mage::helper('core/url')->getCurrentUrl();
-			if (preg_match('/\/' . $var . '\/1\//', $currentUrl)) {
-				$newUrl = str_replace('/' . $var . '/1/', '/', $currentUrl);
-				header("HTTP/1.1 301 Moved Permanently");
-				header('Location: ' . $newUrl);
-				exit;
-			}
-		}
-	}
 
 	/**
 	 * Dispatch the controller request
@@ -154,9 +153,7 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 	 */
 	protected function forceDispatch()
 	{
-		$this->getRequest()->setModuleName('wordpress')->setRouteName('wordpress');
-
-		if ($controllerClassName = $this->_validateControllerClassName('Fishpig_Wordpress', $this->getRequest()->getControllerName())) {
+		if ($controllerClassName = $this->_validateControllerClassName($this->_controllerClassPrefix, $this->getRequest()->getControllerName())) {
 			$controllerInstance = new $controllerClassName($this->getRequest(), $this->getFront()->getResponse());
 
 			if ($controllerInstance->hasAction($this->getRequest()->getActionName())) {
@@ -189,7 +186,7 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 			$this->addStaticRoute(Mage::helper('wordpress/search')->getSearchRoute(), 'search');
 		}
 			
-		Mage::app()->dispatchEvent('wordpress_init_static_routes_after', array('router' => $this));
+		Mage::dispatchEvent('wordpress_init_static_routes_after', array('router' => $this));
 		
 		return $this;
 	}
@@ -226,8 +223,21 @@ class Fishpig_Wordpress_Controller_Router extends Mage_Core_Controller_Varien_Ro
 	 *
 	 * @return Zend_Controller_Request_Http
 	 */
-	protected function getRequest()
+	public function getRequest()
 	{
 		return $this->_requestObject;
+	}
+	
+	/**
+	 * Set the controller class prefix
+	 *
+	 * @param string $prefix
+	 * @return $this
+	 */
+	public function setControllerClassPrefix($prefix)
+	{
+		$this->_controllerClassPrefix = $prefix;
+		
+		return $this;
 	}
 }

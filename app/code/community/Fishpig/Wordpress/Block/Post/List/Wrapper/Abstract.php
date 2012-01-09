@@ -63,7 +63,7 @@ class Fishpig_Wordpress_Block_Post_List_Wrapper_Abstract extends Mage_Core_Block
 			->setPostsPerPage()
 			->setPageFromUrl()
 			->setOrderByPostDate();
-			
+		
 		if ($this->_postStatusValue) {
 			$collection->addStatusFilter($this->_postStatusValue);
 		}

@@ -52,6 +52,16 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Pages extends Fishpig_Wordpress_Blo
 			return $this->getPage()->getPostTitle();
 		}
 		
-		return $this->getData('title');
+		return parent::getTitle();
+	}
+	
+	/**
+	 * Retrieve the default title
+	 *
+	 * @return string
+	 */
+	public function getDefaultTitle()
+	{
+		return $this->__('Pages');
 	}
 }

@@ -41,8 +41,12 @@ implements Mage_Adminhtml_Block_Widget_Tab_Interface
 		return array_keys($this->getSelectedWpItemPositions());
 	}
 	
-	public function getSelectedWpItemPositions()
+	public function getSelectedWpItemPositions($storeId = null)
 	{
+		if (is_null($storeId)) {
+			$storeId = $this->getFrontendStoreId();
+		}
+		
 		$postIds = array();
 
 		if ($this->_getObject()) {
@@ -52,7 +56,8 @@ implements Mage_Adminhtml_Block_Widget_Tab_Interface
 			$select = $this->_getReadAdapter()
 				->select()
 				->from($table, array($this->_getWpField(), 'position'))
-				->where($this->_getMagentoField() . '=?', $this->_getObject()->getId());
+				->where($this->_getMagentoField() . '=?', $this->_getObject()->getId())
+				->where('store_id=?', $storeId);
 				
 			if ($results = $this->_getReadAdapter()->fetchAll($select)) {
 				foreach($results as $data) {
@@ -64,7 +69,12 @@ implements Mage_Adminhtml_Block_Widget_Tab_Interface
 		return $postIds;
 	}
 
-
+	public function getFrontendStoreId()
+	{
+		return $this->getRequest()->getParam('store');
+	
+	}
+	
 	/**
 	 * Add a custom filter for the in_product column
 	 *
@@ -188,7 +198,13 @@ implements Mage_Adminhtml_Block_Widget_Tab_Interface
 	public function getCurrentUrl($params = array())
 	{
 		if ($this->_getObject()) {
-			return $this->getUrl('wp_admin/adminhtml_catalog_' . $this->_getMagentoEntity() . '/' . $this->_getWpEntity() . 'Grid', array('id' => $this->_getObject()->getId()));
+			$params = array('id' => $this->_getObject()->getId());
+			
+			if ($store = Mage::app()->getRequest()->getParam('store', false)) {
+				$params['store'] = $store;
+			}
+			
+			return $this->getUrl('wp_admin/adminhtml_catalog_' . $this->_getMagentoEntity() . '/' . $this->_getWpEntity() . 'Grid', $params);
 		}
 		
 		return $this->getUrl('wp_admin/adminhtml_catalog_' . $this->_getMagentoEntity() . '/' . $this->_getWpEntity() . 'Grid');
@@ -202,7 +218,13 @@ implements Mage_Adminhtml_Block_Widget_Tab_Interface
 	public function getTabUrl()
 	{
 		if ($this->_getObject()) {
-			return $this->getUrl('wp_admin/adminhtml_catalog_' . $this->_getMagentoEntity() . '/' . $this->_getWpEntity(), array('id' => $this->_getObject()->getId()));
+			$params = array('id' => $this->_getObject()->getId());
+			
+			if ($store = Mage::app()->getRequest()->getParam('store', false)) {
+				$params['store'] = $store;
+			}
+
+			return $this->getUrl('wp_admin/adminhtml_catalog_' . $this->_getMagentoEntity() . '/' . $this->_getWpEntity(), $params);
 		}
 		
 		return $this->getUrl('wp_admin/adminhtml_catalog_' . $this->_getMagentoEntity() . '/' . $this->_getWpEntity());

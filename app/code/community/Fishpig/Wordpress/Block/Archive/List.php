@@ -12,6 +12,9 @@ class Fishpig_Wordpress_Block_Archive_List extends Fishpig_Wordpress_Block_Sideb
 	{
 		Mage::helper('wordpress')->log($this->__('%s has been deprecated; please use %s', get_class($this), get_parent_class($this)));
 		
+		$this->setTemplate('wordpress/sidebar/widget/archives.phtml');
+		$this->setTitle($this->__('Archives'));
+		
 		return parent::_beforeToHtml();
 	}
 }

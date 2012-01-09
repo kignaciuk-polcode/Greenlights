@@ -8,28 +8,15 @@
 
 class Fishpig_Wordpress_Block_Adminhtml_System_Config_Test_Results_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
-	protected function _afterToHtml($html)
-	{
-		if (Mage::helper('wordpress/debug_test')->hasResults()) {
-			return $html;
-		}
-	}
-	
 	/**
 	 * Prepare the collection of posts to display
 	 */
     protected function _prepareCollection()
     {
-		$collection = $this->_getResultCollection();
-        $this->setCollection($collection);
+		$this->setCollection($this->helper('wordpress/system')->getIntegrationTestResults());
 
         return parent::_prepareCollection();
     }
-
-	protected function _getResultCollection()
-	{
-		return Mage::helper('wordpress/debug_test')->performIntegrationTests();
-	}
 	
 	/**
 	 * Prepares the columns of the grid
@@ -72,11 +59,8 @@ class Fishpig_Wordpress_Block_Adminhtml_System_Config_Test_Results_Grid extends 
 		$this->unsetChild('reset_filter_button');
 		$this->unsetChild('search_button');
 		$this->unsetChild('export_button');
-
 		$this->_pagerVisibility = false;
 		$this->_filterVisibility = false;
-		
-//		$this->setGridHeader('WordPress Integration Results');
 	
 		return $result;
 	}
@@ -85,5 +69,10 @@ class Fishpig_Wordpress_Block_Adminhtml_System_Config_Test_Results_Grid extends 
 	public function getModuleName()
 	{
 		return parent::getModuleName() . '_Adminhtml';
+	}
+	
+	public function getRowUrl($item)
+	{
+		return null;
 	}
 }

@@ -12,6 +12,9 @@ class Fishpig_Wordpress_Block_Category_List extends Fishpig_Wordpress_Block_Side
 	{
 		Mage::helper('wordpress')->log($this->__('%s has been deprecated; please use %s', get_class($this), get_parent_class($this)));
 		
+		$this->setTemplate('wordpress/sidebar/widget/categories.phtml');
+		$this->setTitle($this->__('Categories'));
+		
 		return parent::_beforeToHtml();
 	}
 }

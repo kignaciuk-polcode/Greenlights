@@ -65,8 +65,6 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 
 		$this->_addCrumb('home', array('link' => Mage::getUrl(), 'label' => $this->__('Home')))
 			->_addCrumb('blog', array('link' => Mage::helper('wordpress')->getUrl(), 'label' => $this->__(Mage::helper('wordpress')->getPrettyBlogRoute())));
-
-		$this->_addRssFeed();
 		
 		if ($rootBlock = $this->getLayout()->getBlock('root')) {
 			$rootBlock->addBodyClass('is-blog');
@@ -99,9 +97,7 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 	 */
 	protected function _setNamesUtf8()
 	{	
-		if (Mage::helper('wordpress')->isSeparateDatabase()) {
-			Mage::helper('wordpress/db')->getWordpressRead()->query('SET NAMES UTF8');
-		}
+		Mage::helper('wordpress/db')->getReadAdapter()->query('SET NAMES UTF8');
 	}
 	
 	/**
@@ -110,24 +106,9 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 	 */
 	protected function _checkRunnableStatus()
 	{
-		try {
-			Mage::helper('wordpress/db')->getWordpressRead()->query('SELECT ID FROM ' . Mage::helper('wordpress/db')->getTableName('posts') . ' LIMIT 1');
+		if (!Mage::helper('wordpress/db')->isConnected() || !Mage::helper('wordpress/db')->isQueryable()) {
+			throw new Exception(self::NO_DATABASE_EXCEPTION);
 		}
-		catch (Exception $e) {
-			throw new Exception($e->getMessage(), self::NO_DATABASE_EXCEPTION);
-		}
-	}
-	
-	/**
-	 * Adds the Wordpress RSS feed into the Magento header
-	 */
-	protected function _addRssFeed()
-	{
-		if ($headBlock = $this->_getBlock('head')) {
-//			$headBlock->addItem('link_rel', Mage::helper('wordpress')->getUrl('feed'), 'rel="alternate" type="application/rss+xml" title="' . Mage::helper('wordpress')->getCachedWpOption('blogname'). ' - RSS Feed"');
-		}
-		
-		return $this;
 	}
 	
 	/**
@@ -158,7 +139,7 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 	 */
 	protected function _addCanonicalLink($url)
 	{
-		if ($headBlock = $this->_getBlock('head')) {
+		if ($headBlock = $this->getLayout()->getBlock('head')) {
 			$headBlock->addItem('link_rel', $url, 'rel="canonical"');
 		}
 		
@@ -210,28 +191,6 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 	}
 	
 	/**
-	 * Returns a layout block
-	 *
-	 * @param string $blockName
-	 * @return Mage_Core_Block_Template
-	 */
-	protected function _getBlock($blockName)
-	{
-		return $this->getLayout()->getBlock($blockName);
-	}
-	
-	/**
-	 * Dispatch a Magento event
-	 *
-	 * @param string $eventName
-	 * @param array $params
-	 */
-	protected function _event($eventName, array $params = array())
-	{
-		Mage::dispatchEvent($eventName, $params);
-	}
-	
-	/**
 	 * Wrapper for self::_title
 	 * This wrapper was added for 1.3 backwards compatibility
 	 *
@@ -250,7 +209,7 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 				$title = implode(' / ', array_reverse($this->_titles));
 			}
 
-			if ($head = $this->_getBlock('head')) {
+			if ($head = $this->getLayout()->getBlock('head')) {
 				$head->setTitle($title);
 			}
 
@@ -258,19 +217,6 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 		}
 		
 		return parent::_title($text, $resetIfExists);
-	}
-	
-	/**
-	 * Shortcut to register a value
-	 * This is depreceated and will be removed soon
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 */
-	public function register($key, $value)
-	{
-		Mage::register($key, $value);
-		return $this;
 	}
 	
 	/**

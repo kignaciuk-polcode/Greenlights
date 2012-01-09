@@ -13,7 +13,7 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	 *
 	 * @var array
 	 */
-	protected $_cache = array();
+	static protected $_cache = array();
 	
 	/**
 	  * Returns the URL used to access your Wordpress frontend
@@ -35,7 +35,7 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 		if ($this->isFullyIntegrated()) {
 			$url = Mage::getUrl('', array(
 				'_direct' 	=> $this->getBlogRoute() . '/' . ltrim($extra, '/'), 
-				'_store' 	=> $this->_getStoreForConfig(),
+				'_store' 	=> $this->getCurrentFrontendStore()->getCode(),
 				'_secure' 	=> false,
 				'_nosid' 	=> true,
 			));
@@ -47,6 +47,11 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 		return htmlspecialchars($url);
 	}
 	
+	/**
+	 * Retrieve the WordPress home URL
+	 *
+	 * @return string
+	 */
 	public function getHomeUrl()
 	{
 		return $this->getCachedWpOption('home');
@@ -80,30 +85,11 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	  */
 	public function getBlogRoute()
 	{
-		if (!isset($this->_cache['blog_route'])) {
-			$this->_cache['blog_route'] = null;
-			
-			if ($this->isFullyIntegrated()) {
-				$this->_cache['blog_route'] = $this->getStoreConfig('wordpress/integration/route');
-			}
+		if (!$this->_isCached('blog_route')) {
+			$this->_cache('blog_route', $this->isFullyIntegrated() ? $this->getCachedConfigValue('wordpress/integration/route') : null);
 		}
 		
-		return $this->_cache['blog_route'];
-	}
-
-	/**
-	 * Returns the pretty version of the blog route
-	 *
-	 * @return string
-	 */
-	public function getPrettyBlogRoute()
-	{
-		if ($route = $this->getBlogRoute()) {
-			$route = str_replace('-', ' ', $route);
-			return ucwords($route);
-		}
-	
-		return null;	
+		return $this->_cached('blog_route');
 	}
 
 	/**
@@ -114,11 +100,11 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	 */	
 	public function isSeparateDatabase()
 	{
-		if (!isset($this->_cache['is_separate_db'])) {
-			$this->_cache['is_separate_db'] = $this->getStoreConfigFlag('wordpress/database/is_different_db');
+		if (!$this->_isCached('is_separate_db')) {
+			$this->_cache('is_separate_db', $this->getCachedConfigValue('wordpress/database/is_different_db'));
 		}
 		
-		return $this->_cache['is_separate_db'];
+		return $this->_cached('is_separate_db');
 	}
 	
 	/**
@@ -138,11 +124,11 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	  */
 	public function isFullyIntegrated()
 	{
-		if (!isset($this->_cache['is_fully_integrated'])) {
-			$this->_cache['is_fully_integrated'] = $this->getStoreConfigFlag('wordpress/integration/full');
+		if (!$this->_isCached('is_fully_integrated')) {
+			$this->_cache('is_fully_integrated', $this->getCachedConfigValue('wordpress/integration/full'));
 		}
 		
-		return $this->_cache['is_fully_integrated'];
+		return $this->_cached('is_fully_integrated');
 	}
 	
 	/**
@@ -163,11 +149,13 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	  */
 	public function getCachedWpOption($optionName, $default = null)
 	{
-		if (!isset($this->_cache['option'][$optionName])) {
-			$this->_cache['option'][$optionName] = $this->getWpOption($optionName, $default);
+		$cacheKey = 'option_' . $optionName;
+		
+		if (!$this->_isCached($cacheKey)) {
+			$this->_cache($cacheKey, $this->getWpOption($optionName, $default));
 		}
 
-		return $this->_cache['option'][$optionName];
+		return $this->_cached($cacheKey);
 	}
 	
 	/**
@@ -191,68 +179,12 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	}
 	
 	/**
-	  * Formats a Wordpress date string
-	  *
-	  */
-	public function formatDate($date, $format = null, $f = false)
-	{
-		if ($format == null) {
-			$format = $this->getDefaultDateFormat();
-		}
-		
-		/**
-		 * This allows you to translate month names rather than whole date strings
-		 * eg. "March","Mars"
-		 *
-		 */
-		$len = strlen($format);
-		$out = '';
-		
-		for( $i = 0; $i < $len; $i++) {	
-			$out .= $this->__(Mage::getModel('core/date')->date($format[$i], strtotime($date)));
-		}
-		
-		return $out;
-	}
-	
-	/**
-	  * Formats a Wordpress date string
-	  *
-	  */
-	public function formatTime($time, $format = null)
-	{
-		if ($format == null) {
-			$format = $this->getDefaultTimeFormat();
-		}
-		
-		return $this->formatDate($time, $format);
-	}
-	
-	/**
-	  * Return the default date formatting
-	  *
-	  */
-	public function getDefaultDateFormat()
-	{
-		return $this->getCachedWpOption('date_format', 'F jS, Y');
-	}
-	
-	/**
-	  * Return the default time formatting
-	  *
-	  */
-	public function getDefaultTimeFormat()
-	{
-		return $this->getCachedWpOption('time_format', 'g:ia');
-	}
-	
-	/**
 	  * Logs an error to the Wordpress error log
 	  *
 	  */
 	public function log($message, $level = null, $file = 'wordpress.log')
 	{
-		if ($this->getStoreConfigFlag('wordpress/debug/log_enabled')) {
+		if ($this->getCachedConfigValue('wordpress/debug/log_enabled')) {
 			if ($message = trim($message)) {
 				return Mage::log($message, $level, $file, true);
 			}
@@ -309,7 +241,7 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	 */
 	public function getWordPressPath()
 	{
-		$path = $this->getStoreConfig('wordpress/misc/path');
+		$path = $this->getCachedConfigValue('wordpress/misc/path');
 
 		if (!$path) {
 			$mUrlParts = parse_url(Mage::getBaseUrl());
@@ -335,7 +267,7 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	 */
 	public function getDomain()
 	{	
-		$url = parse_url($this->getStoreConfig('web/unsecure/base_url'));
+		$url = parse_url($this->getCachedConfigValue('web/unsecure/base_url'));
 		$host = $url['host'];
 		
 		if (strpos($host, 'www.') !== false) {
@@ -352,167 +284,193 @@ class Fishpig_Wordpress_Helper_Abstract extends Mage_Core_Helper_Abstract
 	 */
 	public function integrationIsEnabled()
 	{
-		if (!isset($this->_cache['integration_is_enabled'])) {
-			$read = Mage::helper('wordpress/db')->getWordpressRead();
-			$select = $read->select()->from(Mage::helper('wordpress/db')->getTableName('posts'), 'ID')->limit(1);
-				
-			try {
-				$read->fetchOne($select);
-				$this->_cache['integration_is_enabled'] = true;
-			}
-			catch (Exception $e) {
-				$this->log($e->getMessage());
-				$this->_cache['integration_is_enabled'] = false;
-			}
-		}
+		$helper = Mage::helper('wordpress/db');
 		
-		return $this->_cache['integration_is_enabled'];
-	}
-
-	/**
-	 * Determine whether to adminhtml is being used
-	 * Used by events loaded before area set
-	 *
-	 * @return bool
-	 */
-	public function isAdminhtmlArea()
-	{	
-		if (!isset($this->_cache['is_adminhtml_area'])) {
-			if (Mage::getDesign()->getArea() == 'adminhtml') {
-				$this->_cache['is_adminhtml_area'] = true;
-			}
-			else {				
-				$requestUri = strtolower(Mage::app()->getFrontController()->getRequest()->getRequestUri());
-				$adminFrontName = Mage::getConfig()->getNode('admin/routers/adminhtml/args/frontName');
-		
-				if (isset($adminFrontName[0])) {
-					$this->_cache['is_adminhtml_area'] = (strpos($requestUri, '/index.php/' . $adminFrontName[0] . '/') !== false);
-				}
-				else {
-					$this->_cache['is_adminhtml_area'] = false;
-				}
-			}
-		}
-		
-		return $this->_cache['is_adminhtml_area'];
+		return $helper->isConnected() && $helper->isQueryable();
 	}
 	
 	/**
-	 * Retrieve the current store code if set in Adminhtml
+	 * Retrieve a cached config value
 	 *
-	 * @return null|string
+	 * @param string $key
+	 * @param string $website = null
+	 * @param string $store = null
+	 * @return mixed
 	 */
-	protected function _getStoreForConfig()
+	public function getCachedConfigValue($key, $website = null, $store = null)
 	{
-		if ($this->isAdminhtmlArea()) {
-			if (!isset($this->_cache['current_store'])) {
-				$requestUri = strtolower(Mage::app()->getFrontController()->getRequest()->getRequestUri());
-				$this->_cache['current_store'] = false;
-				
-				$store = Mage::app()->getRequest()->getParam('store', null);
-				$website = Mage::app()->getRequest()->getParam('website', null);
+		if (!isset(self::$_cache['config_' . $key])) {
+			self::$_cache['config_' . $key] = $this->getConfigValue($key, $website, $store, false);
+		}
+		
+		return self::$_cache['config_' . $key];
+	}
 	
-				if ($store) {
-					$this->_cache['current_store'] = $store;
-				}
-				else if (preg_match("/\/store\/([a-z0-9\-\_]{1,})\//", $requestUri, $results)) {
-					$this->_cache['current_store'] = $results[1];
-				}
-				else if ($website) {
-					if (preg_match("/\/website\/([a-z0-9\-\_]{1,})\//", $requestUri, $results)) {
-						if ($website = $this->getWebsite($results[1])) {
-							if ($group = $website->getDefaultGroup()) {
-								if ($store = $group->getDefaultStore()) {
-									$this->_cache['current_store'] = $store->getCode();
-								}
-							}
-						}
-					}
-				}
-				else {
-					$this->_cache['current_store'] = $this->getDefaultStore()->getCode();
+	/**
+	 * If in Adminhtml area and $website & $store are null
+	 * Auto set them
+	 *
+	 * @param string|null $website
+	 * @param string|null $store
+	 * @return array
+	 */
+	protected function _ensureWebsiteAndStore($website = null, $store = null)
+	{
+		if (Mage::getDesign()->getArea() == 'adminhtml' && is_null($website) && is_null($store)) {
+			return array(
+				Mage::app()->getRequest()->getParam('website', null), 
+				Mage::app()->getRequest()->getParam('store', null),
+			);
+		}
+		
+		return array(
+			Mage::app()->getStore()->getWebsite()->getCode(),
+			Mage::app()->getStore()->getCode(),
+		);
+	}
+
+	/**
+	 * Retrieve a config value
+	 *
+	 * @param string $key
+	 * @param string $website = null
+	 * @param string $store = null
+	 * @param bool $reload = true
+	 * @return mixed
+	 */	
+	public function getConfigValue($key, $website = null, $store = null, $reload = true)
+	{
+		list($website, $store) = $this->_ensureWebsiteAndStore($website, $store);
+		
+		$section = substr($key, 0, strpos($key, '/'));
+		
+		$options = array(array(null, null));
+		
+		if ($website && $store) {
+			$options[] = array($website, null);
+			$options[] = array($website, $store);
+		}
+		else if ($website) {
+			$options[] = array($website, null);
+		}
+		
+		$options = array_reverse($options);
+
+		foreach($options as $option) {
+			if ($configData = $this->_getConfigDataForSection($section, $option[0], $option[1], $reload)) {
+				if (isset($configData[$key])) {
+					return $configData[$key];
 				}
 			}
-
-			return $this->_cache['current_store'] ? $this->_cache['current_store'] : null;
 		}
-
+		
 		return null;
 	}
 	
 	/**
-	 * Retrieve value from the config
-	 * Auto set the store if needed
+	 * Retrieve the data for a config section
 	 *
-	 * @param string $key
-	 * @param string|null $store
-	 * @return string
+	 * @param string $section
+	 * @param string $website = null
+	 * @param string $store = null
+	 * @param bool $reload = true
+	 * @return mixed
 	 */
-	public function getStoreConfig($key, $store = null)
+	protected function _getConfigDataForSection($section, $website = null, $store = null, $reload = true)
 	{
-		if (!isset($this->_cache['config_' .$key])) {
-			$this->_cache['config_' .$key] = Mage::getStoreConfig($key, is_null($store) ? $this->_getStoreForConfig() : $store);
+		$cacheKey = 'config_data_' . $section;
+		
+		if ($website) {
+			$cacheKey .= '_w-' . $website;
 		}
 		
-		return $this->_cache['config_' .$key];
+		if ($store) {
+			$cacheKey .= '_s-' . $store;
+		}
+
+		if (!isset(self::$_cache[$cacheKey]) || $reload) {
+			self::$_cache[$cacheKey] = array();
+			
+	        $configDataObject = Mage::getModel('adminhtml/config_data')
+				->setSection($section)
+				->setWebsite($website)
+				->setStore($store);
+
+        	self::$_cache[$cacheKey] = $configDataObject->load();				
+		}
+		
+		return self::$_cache[$cacheKey];
 	}
 	
 	/**
-	 * Retrieve value from the config
-	 * Auto set the store if needed
-	 *
-	 * @param string $key
-	 * @param string|null $store
-	 * @return bool
-	 */
-	public function getStoreConfigFlag($key, $store = null)
-	{
-		return Mage::getStoreConfigFlag($key, is_null($store) ? $this->_getStoreForConfig() : $store);
-	}
-	
-	
-	/**
-	 * Retrieve the default store
+	 * Retrieve the current store code
 	 *
 	 * @return Mage_Core_Model_Store
 	 */
-	public function getDefaultStore()
+	public function getCurrentFrontendStore()
 	{
-		if ($website = $this->getWebsite()) {
-			if ($group = $website->getDefaultGroup()) {
-				if ($store = $group->getDefaultStore()) {
-					return $store;
-				}
+		if (!isset(self::$_cache['current_frontend_store'])) {
+			$store = Mage::app()->getStore();
+			
+			if (!$store->getId() || $store->getCode() == 'admin') {
+				$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+				$select = $connection->select()
+					->from($this->getTableName('core/store'), 'store_id')
+					->where('store_id > ?', 0)
+					->where('code != ?', 'admin')
+					->limit(1)
+					->order('sort_order ASC');
+				
+				$store = Mage::getModel('core/store')->load($connection->fetchOne($select));
+
+				self::$_cache['current_frontend_store'] = $store;
+			}
+			else {
+				self::$_cache['current_frontend_store'] = $store;
 			}
 		}
 		
-		return false;
+		return self::$_cache['current_frontend_store'];
 	}
 	
 	/**
-	 * Retrieve the default website
+	 * Store a value in the cache
 	 *
-	 * @return Mage_Core_Model_Website
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this;
 	 */
-	public function getWebsite($websiteCode = null)
+	protected function _cache($key, $value)
 	{
-		$websites = Mage::getResourceModel('core/website_collection');
+		self::$_cache[$key] = $value;
 		
-		if (!is_null($websiteCode)) {
-			$websites->addFieldToFilter('code', $websiteCode);
+		return $this;
+	}
+	
+	/**
+	 * Determine whether there is a value in the cache for the key
+	 *
+	 * @param string $key
+	 * @return bool
+	 */
+	protected function _isCached($key)
+	{
+		return isset(self::$_cache[$key]);
+	}
+	
+	/**
+	 * Retrieve a value from the cache
+	 *
+	 * @param string $key
+	 * @param mixed $default = null
+	 * @return mixed
+	 */
+	protected function _cached($key, $default = null)
+	{
+		if ($this->_isCached($key)) {
+			return self::$_cache[$key];
 		}
-		else {
-			$websites->addFieldToFilter('is_default', 1);
-		}
-			
-		$websites->getSelect()->limit(1);
-
-		$websites->load();
 		
-		if (count($websites) > 0) {
-			return $websites->getFirstItem();
-		}
-		
-		return false;
+		return $default;
 	}
 }

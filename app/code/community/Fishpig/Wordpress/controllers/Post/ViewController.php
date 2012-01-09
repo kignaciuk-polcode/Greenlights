@@ -39,7 +39,7 @@ class Fishpig_Wordpress_Post_ViewController extends Fishpig_Wordpress_Controller
 			$this->_addCrumb('post', array('label' => $post->getPostTitle()));
 			$this->_addCanonicalLink($post->getPermalink());
 			
-			if ($headBlock = $this->_getBlock('head')) {
+			if ($headBlock = $this->getLayout()->getBlock('head')) {
 				$feedTitle = sprintf('%s &raquo; %s Comments Feed', Mage::helper('wordpress')->getCachedWpOption('blogname'), $post->getPostTitle());
 				$headBlock->addItem('link_rel', $post->getCommentFeedUrl(), 'rel="alternate" type="application/rss+xml" title="' . $feedTitle . '"');
 			}

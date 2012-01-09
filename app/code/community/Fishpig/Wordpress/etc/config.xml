@@ -2,18 +2,13 @@
 <config>
     <modules>
         <Fishpig_Wordpress>
-            <version>2.0.13</version>
+            <version>2.1.19</version>
         </Fishpig_Wordpress>
     </modules>
     <global>
 		<events>
             <controller_front_init_routers>
                 <observers>
-                    <wp_databaseSetup>
-                        <type>singleton</type>
-                        <class>wordpress/observer_databaseSetup</class>
-                        <method>initConnection</method>
-                    </wp_databaseSetup>
 					<wp_initRouter>
 						<type>singleton</type>
 						<class>Fishpig_Wordpress_Controller_Router</class>
@@ -204,11 +199,6 @@
 								<sort_order>11</sort_order>
 								<action>adminhtml/system_config/edit/section/wordpress_blog/</action>
 							</posts_pages>
-							<admin_settings>
-								<title>Admin Settings</title>
-								<sort_order>16</sort_order>
-								<action>adminhtml/system_config/edit/section/wordpress_admin/</action>
-							</admin_settings>
 							<auto_login>
 								<title>WP Auto-Login Details</title>
 								<sort_order>21</sort_order>
@@ -271,10 +261,6 @@
 											<title>WordPress Blog Display Settings</title>
 											<sort_order>101</sort_order>
 										</wordpress_blog>
-										<wordpress_admin>
-											<title>WordPress Admin Settings</title>
-											<sort_order>102</sort_order>
-										</wordpress_admin>
 									</children>
 								</config>
 							</children>
@@ -374,10 +360,6 @@
 											<title>Blog / Plugins</title>
 											<sort_order>6</sort_order>
 										</posts_pages>
-										<admin_settings>
-											<title>Admin Settings</title>
-											<sort_order>11</sort_order>
-										</admin_settings>
 										<auto_login>
 											<title>WP Auto-Login Details</title>
 											<sort_order>16</sort_order>
@@ -437,6 +419,7 @@
 			</locale>
 			<top_link>
 				<enabled>1</enabled>
+				<label>Blog</label>
 			</top_link>
 			<posts>
 				<more_anchor>Continue Reading</more_anchor>
@@ -489,11 +472,9 @@ Disallow: /wp-content/
 				<post_priority>0.8</post_priority>
 				<post_change_frequency>weekly</post_change_frequency>
 			</xml_sitemap>
-		</wordpress_blog>
-		<wordpress_admin>
-			<wp_admin>
+			<auto_login>
 				<links_external_target>1</links_external_target>
-			</wp_admin>
-		</wordpress_admin>
+			</auto_login>
+		</wordpress_blog>
 	</default>
 </config>

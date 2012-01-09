@@ -30,7 +30,7 @@ class Fishpig_Wordpress_Block_Adminhtml_Autologin_Edit_Tab_Form extends Mage_Adm
 			'name'      => 'password',
 		));
 
-		$configUrl = $this->getUrl($this->helper('wordpress/adminhtml')->getWordpressConfigPath());
+		$configUrl = $this->getUrl('adminhtml/system_config/edit/section/wordpress');
 		
 		$text = new Varien_Data_Form_Element_Note();
 		$text->setText('

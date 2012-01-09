@@ -6,10 +6,10 @@
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
 ?>
-
-<?php $comments = $this->getComments() ?>
 <?php $post = $this->getPost() ?>
+<?php $comments = $this->getComments() ?>
 <div id="comments">
+	<?php //if ($this->getCommentCount() > 0): ?>
 	<?php if ($comments->count() > 0): ?>
 		<h2><?php echo $this->getCommentCount() ?> <?php echo $this->getCommentCount() == 1 ? $this->__('Response to %s', $post->getPostTitle()) : $this->__('Responses to %s', $post->getPostTitle()) ?></h2>
 		<ul class="comment-list">
