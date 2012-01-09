@@ -76,4 +76,13 @@
             </polcode_social>
         </jobs>
     </crontab>
+    <frontend>
+        <layout>
+            <updates>
+                <social>
+                    <file>social.xml</file>
+                </social>
+            </updates>
+        </layout>
+    </frontend>
 </config>
