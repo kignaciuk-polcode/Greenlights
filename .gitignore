@@ -20,3 +20,4 @@ scripts/db.php
 /downloader/.cache/
 errors/local.xml
 wordpress/wp-config.php
+/media/wysiwyg/.thumbs/
