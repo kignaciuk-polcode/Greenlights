@@ -50,7 +50,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <by_mail>
+                        <email_template>
                             <label>Template for e-mail</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_email_template</source_model>
@@ -58,8 +58,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </by_mail>
-                        <by_print>
+                        </email_template>
+                        <print_template>
                             <label>Template for print</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_email_template</source_model>
@@ -67,8 +67,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </by_print>
-                        <confirm>
+                        </print_template>
+                        <confirm_template>
                             <label>Template for confirmation</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_email_template</source_model>
@@ -76,7 +76,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </confirm>
+                        </confirm_template>
                     </fields>
                 </email>
             </groups>
