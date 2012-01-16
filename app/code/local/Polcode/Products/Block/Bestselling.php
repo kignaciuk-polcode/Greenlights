@@ -15,10 +15,11 @@ class Polcode_Products_Block_Bestselling extends Mage_Catalog_Block_Product_Abst
             ->addStoreFilter($storeId)
             ->setOrder('ordered_qty', 'desc');
         
-        Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
-        Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
+        //Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
+        //Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
         
         $products->getSelect()->limit(8);
+        
         
         $this->setProductCollection($products);
     }
