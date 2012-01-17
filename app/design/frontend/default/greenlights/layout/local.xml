@@ -37,11 +37,36 @@
     </wordpress_search_index>
     
     <catalogsearch_result_index translate="label">
-        <block type="core/text_list" name="left" as="left" translate="label">
-            <label>Left Column</label>
-            <block type="catalogsearch/layer" name="catalogsearch.leftnav" after="currency" template="search/search_menu.phtml"/>
+        <reference name="left">
+            <block type="core/template" name="search_menu" before="all" template="search/search_menu.phtml"/>
             <remove name="left.newsletter" />
-        </block>
+            <remove name="left.permanent.callout" />
+            <remove name="currency" />
+<!--
+            <remove name="catalogsearch.leftnav" />
+-->
+            
+        </reference>
+        <reference name="right">
+            <block type="cms/block" name="cms_guaranties_block">
+                <action method="setBlockId"><block_id>our_guaranties_to_you</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_shipping_block">
+                <action method="setBlockId"><block_id>free_shipping</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_invite_block">
+                <action method="setBlockId"><block_id>invite_your_friend</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_buyagift_block">
+                <action method="setBlockId"><block_id>buy_a_gift</block_id></action>
+            </block>
+            <remove name="multipledeals_sidedeals" />
+            <remove name="right.reports.product.viewed" />
+            <remove name="right.reports.product.compared" />
+            <remove name="wishlist_sidebar" />
+            <remove name="social" />
+            <remove name="sale.reorder.sidebar" />
+        </reference>
     </catalogsearch_result_index>
     
     
