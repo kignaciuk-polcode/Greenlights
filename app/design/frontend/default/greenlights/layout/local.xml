@@ -27,6 +27,24 @@
     </default>
     
     
+    <wordpress_search_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/search_result" name="wordpress_search_result" template="wordpress/search/result.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml"/>
+            </block>
+        </reference>
+    </wordpress_search_index>
+    
+    <catalogsearch_result_index translate="label">
+        <block type="core/text_list" name="left" as="left" translate="label">
+            <label>Left Column</label>
+            <block type="catalogsearch/layer" name="catalogsearch.leftnav" after="currency" template="search/search_menu.phtml"/>
+            <remove name="left.newsletter" />
+        </block>
+    </catalogsearch_result_index>
+    
+    
 <!--    <catalog_category_default translate="label">
         <reference name="head">
             <action method="addJs">

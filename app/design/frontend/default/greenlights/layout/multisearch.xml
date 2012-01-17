@@ -30,10 +30,11 @@
     
     <default>
         <reference name="header">
+<!--
             <block type="multisearch/form" name="top.search" as="topSearch" />
+-->
         </reference>
     </default>
-    
     
     
     <multisearch_result_index>
