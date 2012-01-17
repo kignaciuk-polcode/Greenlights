@@ -23,8 +23,6 @@
         </reference>
         <reference name="header">
             <block type="checkout/cart_sidebar" name="cart_top" as="topCart" template="checkout/cart/top.phtml"/>
-<!--            <block type="social/social" name="social" as="social" />
-            <block type="multisearch/form" name="top.search" as="topSearch" />-->
         </reference>
     </default>
     
