@@ -1,0 +1,292 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="entry-edit">
+    <?php echo $this->getFormHtml();?>
+</div>
+<?php echo $this->getChildHtml('form_after');?>
+
+<style type="text/css">	
+	.grid tr.on-mouse-over { background:#fcf5dd; cursor:pointer; }
+</style>
+
+<script type="text/javascript">
+		
+	function changeText(elem, changeVal){
+	   if(elem.textContent){
+		  elem.textContent = changeVal;
+	   }else{
+		  elem.innerText = changeVal;
+	   }
+	}
+		
+	if (document.getElementById('product_id').value!='') {
+		selected_product_id = document.getElementById('product_id').value;
+		document.getElementById('products_grid_radio'+selected_product_id).checked = true;
+		document.getElementById('products_grid_radio'+selected_product_id).parentNode.parentNode.addClassName('on-mouse-over');
+		
+		var tds = document.getElementById('products_grid_radio'+selected_product_id).parentNode.parentNode.getElementsByTagName("td");
+		document.getElementById('product_details_select').parentNode.parentNode.style.display = 'none';
+		
+		document.getElementById('product_details_name').parentNode.parentNode.style.display = '';
+		changeText(document.getElementById('product_details_name'), tds[2].firstChild.data);		
+		
+		document.getElementById('product_details_price').parentNode.parentNode.style.display = '';
+		changeText(document.getElementById('product_details_price'), tds[5].firstChild.data);					
+				
+		document.getElementById('product_details_qty').parentNode.parentNode.style.display = '';
+		changeText(document.getElementById('product_details_qty'), tds[6].firstChild.data);		
+		
+		document.getElementById('deal_qty').disabled = '';
+		changeText(document.getElementById('note_deal_qty'), '');		
+		document.getElementById('deal_price').disabled = '';
+		changeText(document.getElementById('note_deal_price'), '');	
+				
+		document.getElementById('name_note').style.display = 'none';
+		document.getElementById('price_note').style.display = 'none';
+		document.getElementById('qty_note').style.display = '';	
+		
+		if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Configurable Product') {
+		   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+		   
+		   document.getElementById('name_note').style.display = 'none';
+		   document.getElementById('price_note').style.display = '';
+		   document.getElementById('qty_note').style.display = 'none';
+		   
+		   document.getElementById('deal_qty').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Configurable Products since it varies for each of it\'s Associated Products.');		
+		}
+		
+		if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Bundle Product') {
+		   document.getElementById('product_details_price').parentNode.parentNode.style.display = 'none';
+		   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+		
+		   document.getElementById('name_note').style.display = '';
+		   document.getElementById('price_note').style.display = 'none';
+		   document.getElementById('qty_note').style.display = 'none';
+		   
+		   document.getElementById('deal_price').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_price'), 'Price cannot be set for Bundle Products since it is Dynamic.');		
+		   document.getElementById('deal_qty').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Bundle Products since it varies for each of it\'s Bundle Items.');		
+		}
+		
+		if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Grouped Product') {
+		   document.getElementById('product_details_price').parentNode.parentNode.style.display = 'none';
+		   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+		
+		   document.getElementById('name_note').style.display = '';
+		   document.getElementById('price_note').style.display = 'none';
+		   document.getElementById('qty_note').style.display = 'none';
+		   
+		   document.getElementById('deal_price').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_price'), 'Price cannot be set for Grouped Products since it depends on the Associated Products.');			
+		   document.getElementById('deal_qty').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Grouped Products since it varies for each of it\'s Associated Products.');			
+		}
+				
+		document.getElementById('name_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+document.getElementById('product_id').value+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+		document.getElementById('price_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+document.getElementById('product_id').value+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+		document.getElementById('qty_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+document.getElementById('product_id').value+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+	}
+	
+    function categoryProductRowClick(grid, event){
+        var trElement = Event.findElement(event, 'tr');
+        var isInput   = Event.element(event).tagName == 'INPUT';
+        if(trElement){
+            var checkbox = Element.getElementsBySelector(trElement, 'input');
+            if(checkbox[0] && !checkbox[0].checked){
+                var checked = isInput ? checkbox[0].checked : !checkbox[0].checked;
+                productGridJsObject.setCheckboxChecked(checkbox[0], checked);
+				
+				selected_product_id = document.getElementById('product_id').value;
+				
+				if (document.getElementById('products_grid_radio'+selected_product_id) != null) {
+					document.getElementById('products_grid_radio'+selected_product_id).parentNode.parentNode.removeClassName('on-mouse-over');
+				}					
+
+				document.getElementById('product_id').value = checkbox[0].value;
+	
+				var tds = document.getElementById('products_grid_radio'+checkbox[0].value).parentNode.parentNode.getElementsByTagName("td");
+				document.getElementById('product_details_select').parentNode.parentNode.style.display = 'none';
+				
+				document.getElementById('product_details_name').parentNode.parentNode.style.display = '';
+				changeText(document.getElementById('product_details_name'), tds[2].firstChild.data);		
+				
+				document.getElementById('product_details_price').parentNode.parentNode.style.display = '';
+				changeText(document.getElementById('product_details_price'), tds[5].firstChild.data);					
+						
+				document.getElementById('product_details_qty').parentNode.parentNode.style.display = '';
+				changeText(document.getElementById('product_details_qty'), tds[6].firstChild.data);		
+				
+				document.getElementById('deal_qty').disabled = '';
+				changeText(document.getElementById('note_deal_qty'), '');		
+				document.getElementById('deal_price').disabled = '';
+				changeText(document.getElementById('note_deal_price'), '');	
+				
+				document.getElementById('name_note').style.display = 'none';
+				document.getElementById('price_note').style.display = 'none';
+				document.getElementById('qty_note').style.display = '';
+				
+				if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Configurable Product') {
+				   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+				   
+				   document.getElementById('name_note').style.display = 'none';
+				   document.getElementById('price_note').style.display = '';
+				   document.getElementById('qty_note').style.display = 'none';
+				   
+				   document.getElementById('deal_qty').disabled = 'disabled';
+				   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Configurable Products since it varies for each of it\'s Associated Products.');		
+				}
+
+				if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Bundle Product') {
+				   document.getElementById('product_details_price').parentNode.parentNode.style.display = 'none';
+				   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+
+				   document.getElementById('name_note').style.display = '';
+				   document.getElementById('price_note').style.display = 'none';
+				   document.getElementById('qty_note').style.display = 'none';
+				   
+				   document.getElementById('deal_price').disabled = 'disabled';
+				   changeText(document.getElementById('note_deal_price'), 'Price cannot be set for Bundle Products since it is Dynamic.');		
+				   document.getElementById('deal_qty').disabled = 'disabled';
+				   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Bundle Products since it varies for each of it\'s Bundle Items.');		
+				}
+
+				if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Grouped Product') {
+				   document.getElementById('product_details_price').parentNode.parentNode.style.display = 'none';
+				   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+
+				   document.getElementById('name_note').style.display = '';
+				   document.getElementById('price_note').style.display = 'none';
+				   document.getElementById('qty_note').style.display = 'none';
+				   
+				   document.getElementById('deal_price').disabled = 'disabled';
+				   changeText(document.getElementById('note_deal_price'), 'Price cannot be set for Grouped Products since it depends on the Associated Products.');			
+				   document.getElementById('deal_qty').disabled = 'disabled';
+				   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Grouped Products since it varies for each of it\'s Associated Products.');			
+				}
+
+				
+				document.getElementById('name_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+document.getElementById('product_id').value+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+				document.getElementById('price_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+document.getElementById('product_id').value+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+				document.getElementById('qty_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+document.getElementById('product_id').value+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+				
+				document.getElementById('products_grid_radio'+checkbox[0].value).parentNode.parentNode.addClassName('on-mouse-over');
+            }
+        }
+    }	
+	
+	function initGridAjaxCustom() {
+        productGridJsObject.initGrid();
+        productGridJsObject.initGridRows();
+		
+		selected_product_id = document.getElementById('product_id').value;
+		if (document.getElementById('products_grid_radio'+selected_product_id) != null) {
+			document.getElementById('products_grid_radio'+selected_product_id).checked = true;
+			document.getElementById('products_grid_radio'+selected_product_id).parentNode.parentNode.addClassName('on-mouse-over');
+		}
+    }
+	
+	function radioAction(productId) {
+		selected_product_id = document.getElementById('product_id').value;
+		
+		if (document.getElementById('products_grid_radio'+selected_product_id) != null) {
+			document.getElementById('products_grid_radio'+selected_product_id).parentNode.parentNode.removeClassName('on-mouse-over');
+		}		
+				
+        document.getElementById('products_grid_radio'+productId).parentNode.parentNode.addClassName('on-mouse-over');
+	    var tds = document.getElementById('products_grid_radio'+productId).parentNode.parentNode.getElementsByTagName("td");	   
+	    document.getElementById('product_details_select').parentNode.parentNode.style.display = 'none';
+	   
+	    document.getElementById('product_details_name').parentNode.parentNode.style.display = '';
+		changeText(document.getElementById('product_details_name'), tds[2].firstChild.data);		
+		
+		document.getElementById('product_details_price').parentNode.parentNode.style.display = '';
+		changeText(document.getElementById('product_details_price'), tds[5].firstChild.data);					
+				
+		document.getElementById('product_details_qty').parentNode.parentNode.style.display = '';
+		changeText(document.getElementById('product_details_qty'), tds[6].firstChild.data);		
+		
+		document.getElementById('deal_qty').disabled = '';
+		changeText(document.getElementById('note_deal_qty'), '');		
+		document.getElementById('deal_price').disabled = '';
+		changeText(document.getElementById('note_deal_price'), '');		
+				
+		document.getElementById('name_note').style.display = 'none';
+		document.getElementById('price_note').style.display = 'none';
+		document.getElementById('qty_note').style.display = '';
+		
+		if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Configurable Product') {
+		   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+		   
+		   document.getElementById('name_note').style.display = 'none';
+		   document.getElementById('price_note').style.display = '';
+		   document.getElementById('qty_note').style.display = 'none';
+		   
+		   document.getElementById('deal_qty').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Configurable Products since it varies for each of it\'s Associated Products.');		
+		}
+		
+		if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Bundle Product') {
+		   document.getElementById('product_details_price').parentNode.parentNode.style.display = 'none';
+		   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+		
+		   document.getElementById('name_note').style.display = '';
+		   document.getElementById('price_note').style.display = 'none';
+		   document.getElementById('qty_note').style.display = 'none';
+		   
+		   document.getElementById('deal_price').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_price'), 'Price cannot be set for Bundle Products since it is Dynamic.');		
+		   document.getElementById('deal_qty').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Bundle Products since it varies for each of it\'s Bundle Items.');		
+		}
+		
+		if (tds[3].firstChild.data.replace(/^\s+|\s+$/g,"")=='Grouped Product') {
+		   document.getElementById('product_details_price').parentNode.parentNode.style.display = 'none';
+		   document.getElementById('product_details_qty').parentNode.parentNode.style.display = 'none';
+		
+		   document.getElementById('name_note').style.display = '';
+		   document.getElementById('price_note').style.display = 'none';
+		   document.getElementById('qty_note').style.display = 'none';
+		   
+		   document.getElementById('deal_price').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_price'), 'Price cannot be set for Grouped Products since it depends on the Associated Products.');			
+		   document.getElementById('deal_qty').disabled = 'disabled';
+		   changeText(document.getElementById('note_deal_qty'), 'Qty cannot be set for Grouped Products since it varies for each of it\'s Associated Products.');			
+		}
+				
+		document.getElementById('name_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+productId+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+		document.getElementById('price_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+productId+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+		document.getElementById('qty_product_edit').href = '<?php echo Mage::getUrl('adminhtml/catalog_product/edit/'); ?>'+'id/'+productId+'/key/'+'<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_mycontroller","myaction"); ?>'+'/';
+	   
+	    document.getElementById('product_id').value = productId;
+    }	
+	
+    productGridJsObject.initGridAjax = initGridAjaxCustom;
+    productGridJsObject.rowClickCallback = categoryProductRowClick;
+
+</script>

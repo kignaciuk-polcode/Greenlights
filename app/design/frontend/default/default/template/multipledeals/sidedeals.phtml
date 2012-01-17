@@ -1,0 +1,137 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+  //retrieve the running deals product id
+  $product_id = $this->getMainDeal();
+  if (!is_null($product_id) && Mage::getStoreConfig('multipledeals/configuration/enabled')): 
+
+    $_product = Mage::getModel('catalog/product')->load($product_id);	
+	$display_qty = Mage::getStoreConfig('multipledeals/sidebar_configuration/display_qty');
+	
+	// CURRENCY CONVERSION
+	$currency_symbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+	$baseCurrencyCode = Mage::app()->getStore()->getBaseCurrencyCode();
+	$currentCurrencyCode = Mage::app()->getStore()->getCurrentCurrencyCode();		
+
+    $_coreHelper = $this->helper('core');
+    $_weeeHelper = $this->helper('weee');
+    $_taxHelper  = $this->helper('tax');
+
+    $_simplePricesTax = ($_taxHelper->displayPriceIncludingTax() || $_taxHelper->displayBothPrices());
+	
+    $multipledeals = Mage::getModel('multipledeals/multipledeals')->getCollection()->addFieldToFilter('status', array('eq' => 3))->addFieldToFilter('product_id', array('eq' => $_product->getId()))->getFirstItem();
+	$special_price = $multipledeals->getDealPrice();
+		
+	if ($special_price!='') {
+		$old_price = $_product->getPrice();
+		
+		$converted_old_price = Mage::helper('directory')->currencyConvert($old_price, $baseCurrencyCode, $currentCurrencyCode);
+		$old_price_tax = $_taxHelper->getPrice($_product, $converted_old_price, $_simplePricesTax);
+		$converted_special_price = Mage::helper('directory')->currencyConvert($special_price, $baseCurrencyCode, $currentCurrencyCode);
+		$special_price_tax = $_taxHelper->getPrice($_product, $converted_special_price, $_simplePricesTax);
+	} else {
+		$price = $_product->getPrice();
+		$converted_price = Mage::helper('directory')->currencyConvert($price, $baseCurrencyCode, $currentCurrencyCode);	
+		$price_tax = $_taxHelper->getPrice($_product, $converted_price, $_simplePricesTax);
+	}
+	
+?>	
+<div class="block-countdown">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Daily deal') ?></span></strong>
+    </div>
+    <div class="block-content">
+			<a href="<?php echo $this->getUrl('multipledeals'); ?>"><span class="product_name"><?php echo $_product->getName(); ?></span></a><br/>
+		<div class="container">					
+			<?php if ((!Mage::getStoreConfig('multipledeals/sidebar_configuration/display_price') && !$display_qty) || ($_product->getTypeId()=='bundle' || $_product->getTypeId()=='grouped')): ?>
+				<a href="<?php echo $this->getUrl('multipledeals'); ?>"><img class="product_image_big" src="<?php echo Mage::helper('catalog/image')->init($_product, 'small_image')->resize(150,150);?>" alt="multipledeals_image" />
+			<?php else: ?>
+				<a href="<?php echo $this->getUrl('multipledeals'); ?>"><img class="product_image" src="<?php echo Mage::helper('catalog/image')->init($_product, 'small_image')->resize(70,70);?>" alt="multipledeals_image" />
+			<?php endif; ?>
+			<div class="right-container">
+			  <?php if (Mage::getStoreConfig('multipledeals/sidebar_configuration/display_price') && ($_product->getTypeId()=='simple' || $_product->getTypeId()=='virtual' || $_product->getTypeId()=='downloadable' || $_product->getTypeId()=='configurable')): ?>
+				<?php if ($special_price!=''): ?>
+					<h5 class="old_price"><?php echo $currency_symbol.number_format($old_price_tax,2); ?></h5>  
+					<h3><?php echo $currency_symbol.number_format($special_price_tax,2); ?></h3>  
+				<?php else: ?>
+					<h3><?php echo $currency_symbol.number_format($price_tax,2); ?></h3>   					
+				<?php endif; ?>			
+			  <?php endif; ?>
+			  <?php if ($multipledeals->getId()!='' && ($_product->getTypeId()=='simple' || $_product->getTypeId()=='virtual' || $_product->getTypeId()=='downloadable') && $display_qty): ?>
+				<p><b><?php echo $multipledeals->getDealQty(); ?> item(s)</b> left!</p>	
+			  <?php endif; ?>
+			</div>
+			</a>
+		</div>
+		<div class="countdown">               
+			<?php echo $this->getCountdown('170px','45px','sidebar_'.rand(), null, $product_id); ?>
+        </div>
+    </div>    
+    <div class="block-footer"></div>
+</div>				
+<?php endif; ?>
+
+
+
+<?php $sidedeals_number = Mage::getStoreConfig('multipledeals/sidebar_configuration/sidedeals_number'); ?>
+<?php $display_qty = Mage::getStoreConfig('multipledeals/sidebar_configuration/display_qty'); ?>
+<?php $display_past_deals = Mage::getStoreConfig('multipledeals/configuration/past_deals'); ?>
+<?php $items = $this->getItems(); ?>
+
+<?php if (count($items)!=0 && $sidedeals_number!=0 && Mage::getStoreConfig('multipledeals/configuration/enabled')): ?>
+<div class="block-deals">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Active Deals') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol class="mini-products-list" id="block-deals">
+        <?php $i = 0; foreach($items as $_item): $i++; ?>
+			<?php $item_url = $_item->getProductUrl(); ?>
+			<?php $multipledeals = Mage::getModel('multipledeals/multipledeals')->getCollection()->addFieldToFilter('status', array('eq' => 3))->addFieldToFilter('product_id', array('eq' => $_item->getId()))->getFirstItem(); ?>
+            <li class="item">
+                    <a href="<?php echo $item_url; ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(60) ?>" width="60" height="60" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
+                    <div class="product-details">
+                        <p class="product-name"><a href="<?php echo $item_url; ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></p>
+						<?php if (Mage::getStoreConfig('multipledeals/sidebar_configuration/display_price') && ($_item->getTypeId()=='simple' || $_item->getTypeId()=='virtual' || $_item->getTypeId()=='downloadable' || $_item->getTypeId()=='configurable')): ?>
+							<?php echo $this->getPriceHtml($_item, true, '-deal') ?>
+						<?php endif; ?>
+						<?php if ($multipledeals->getId()!='' && ($_item->getTypeId()=='simple' || $_item->getTypeId()=='virtual' || $_item->getTypeId()=='downloadable') && $display_qty): ?>
+							<span class="deal-qty"><b><?php echo $multipledeals->getDealQty(); ?> item(s)</b> left!</span>
+						<?php endif; ?>
+                    </div>
+            </li>
+			<?php if ($sidedeals_number<=$i) break; ?>
+        <?php endforeach; ?>
+        </ol>
+		<div class="actions">
+			<div class="left" style="margin-right:7px;font-weight:bold">View: </div><a href="<?php echo $this->getUrl('multipledeals/index/list'); ?>"><?php echo $this->__('All Deals') ?></a><?php if ($display_past_deals): ?><div class="separator">||</div><a href="<?php echo $this->getUrl('multipledeals/index/recent'); ?>"><?php echo $this->__('Past Deals') ?></a><?php endif; ?>
+		</div>
+        <script type="text/javascript">decorateList('block-deals', 'none-recursive')</script>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,21 @@
+<?php
+    $_product = Mage::registry('product');
+	$display_qty = Mage::getStoreConfig('multipledeals/configuration/qty');
+?>
+<?php if (Mage::getModel('multipledeals/multipledeals')->getIsMultipleDeal($_product->getId()) && Mage::getStoreConfig('multipledeals/configuration/enabled')): ?>		
+	<!-- COUNTDOWN -->
+	<div class="clear"></div><br/>
+	<?php
+		$multipledeals = Mage::getModel('multipledeals/multipledeals')->getCollection()->addFieldToFilter('status', array('eq' => 3))->addFieldToFilter('product_id', $_product->getId())->getFirstItem();
+		$this->getNrViews();
+	?>	
+	
+	<div class="main-countdown">
+		<?php echo $this->getCountdown('284px','75px','product_view_112', null, $_product->getId()); ?>
+	</div>
+	<?php if (($_product->getTypeId()=='simple' || $_product->getTypeId()=='virtual' || $_product->getTypeId()=='downloadable') && $display_qty): ?>
+		<p style="color:#a71d1d; font-family:Arial; font-size:13px;">Hurry, there are only <b style="color:#000;"><?php echo $multipledeals->getDealQty(); ?> item(s)</b> left!</p> 
+	<?php endif; ?>
+
+	<!-- COUNTDOWN END -->
+<?php endif; ?>

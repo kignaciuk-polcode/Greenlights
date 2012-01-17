@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Devinc_Multipledeals>
+            <version>0.1.0</version>
+        </Devinc_Multipledeals>
+    </modules>
+    <frontend>
+        <routers>
+            <multipledeals>
+                <use>standard</use>
+                <args>
+                    <module>Devinc_Multipledeals</module>
+                    <frontName>multipledeals</frontName>
+                </args>
+            </multipledeals>
+        </routers>
+        <layout>
+            <updates>
+                <multipledeals>
+                    <file>multipledeals.xml</file>
+                </multipledeals>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<multipledeals>
+				<use>admin</use>
+				<args>
+					<module>Devinc_Multipledeals</module>
+					<frontName>multipledeals</frontName>
+				</args>
+			</multipledeals>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<multipledeals module="multipledeals">
+				<title>Multiple Deals</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<add module="multipledeals">
+						<title>Add Deal</title>
+						<sort_order>0</sort_order>
+						<action>multipledeals/adminhtml_multipledeals/new/</action>
+					</add>
+					<items module="multipledeals">
+						<title>Manage Deals</title>
+						<sort_order>1</sort_order>
+						<action>multipledeals/adminhtml_multipledeals/</action>
+					</items>
+					<configuration module="multipledeals">
+						<title>Settings</title>
+						<sort_order>2</sort_order>
+						<action>adminhtml/system_config/edit/section/multipledeals</action>
+					</configuration>
+				</children>
+			</multipledeals>
+		</menu>
+		<acl>
+			<resources>
+				<!-- <all>
+					<title>Allow Everything</title>
+				</all> -->
+				<admin>
+					<children>
+						<multipledeals translate="title" module="multipledeals">
+							<title>Multiple Deals Menu</title>
+							<sort_order>50</sort_order>  							 
+							<children>
+								<add translate="title" module="multipledeals">
+									<title>Add Deal</title>
+									<sort_order>0</sort_order>
+								</add>
+								<items translate="title" module="multipledeals">
+									<title>Manage Deals</title>
+									<sort_order>1</sort_order>
+								</items>
+								<configuration translate="title" module="multipledeals">
+									<title>Settings</title>
+									<sort_order>2</sort_order>
+								</configuration>
+							</children>
+						</multipledeals>
+						<system>
+							<children>
+								<config>
+									<children>
+										<multipledeals translate="title" module="multipledeals">
+											<title>Multiple Deals Settings</title>
+											<sort_order>50</sort_order>
+										</multipledeals>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>		
+		</acl>
+		
+		<layout>
+			<updates>
+				<multipledeals>
+					<file>multipledeals.xml</file>
+				</multipledeals>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+		<events> 
+		  <checkout_cart_save_after> 
+			<observers> 
+			  <multipledeals_observer> 
+				<type>singleton</type> 
+				<class>multipledeals/observer</class> 
+				<method>refreshCart</method> 
+			  </multipledeals_observer> 
+			</observers> 
+		  </checkout_cart_save_after> 		 
+		  <sales_order_place_after> 
+			<observers> 
+			  <multipledeals_observer> 
+				<type>singleton</type> 
+				<class>multipledeals/observer</class> 
+				<method>updateDealQty</method> 
+			  </multipledeals_observer> 
+			</observers> 
+		  </sales_order_place_after> 
+		  <catalog_product_get_final_price> 
+			<observers> 
+			  <multipledeals_observer> 
+				<type>singleton</type> 
+				<class>multipledeals/observer</class> 
+				<method>getFinalPrice</method> 
+			  </multipledeals_observer> 
+			</observers> 
+		  </catalog_product_get_final_price> 
+		</events> 
+        <blocks>
+            <adminhtml>
+				<rewrite>
+					<widget_grid_column_renderer_action>Devinc_Multipledeals_Block_Adminhtml_Widget_Grid_Column_Renderer_Action</widget_grid_column_renderer_action>
+				</rewrite>
+			</adminhtml>
+    	</blocks>
+        <models>
+            <multipledeals>
+                <class>Devinc_Multipledeals_Model</class>
+                <resourceModel>multipledeals_mysql4</resourceModel>
+            </multipledeals>
+            <multipledeals_mysql4>
+                <class>Devinc_Multipledeals_Model_Mysql4</class>
+                <entities>
+                    <multipledeals>
+                        <table>multipledeals</table>
+                    </multipledeals>
+                </entities>
+            </multipledeals_mysql4>
+        </models>
+        <resources>
+            <multipledeals_setup>
+                <setup>
+                    <module>Devinc_Multipledeals</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </multipledeals_setup>
+            <multipledeals_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </multipledeals_write>
+            <multipledeals_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </multipledeals_read>
+        </resources>
+        <blocks>
+            <multipledeals>
+                <class>Devinc_Multipledeals_Block</class>
+            </multipledeals>
+        </blocks>
+        <helpers>
+            <multipledeals>
+                <class>Devinc_Multipledeals_Helper</class>
+            </multipledeals>
+        </helpers>
+    </global>
+</config>

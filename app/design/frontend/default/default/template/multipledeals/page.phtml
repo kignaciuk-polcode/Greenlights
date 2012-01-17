@@ -1,0 +1,13 @@
+<?php
+	$product_id = Mage::getModel('multipledeals/multipledeals')->getCollection()->addFieldToFilter('type', array('eq'=>'1'))->getFirstItem()->getProductId();
+	if ($product_id && $product_id!=0 && Mage::getStoreConfig('multipledeals/configuration/enabled')):
+?>
+<?php
+    $_product = Mage::getModel('catalog/product')->load($product_id);	
+?>	
+<a href="<?php echo $this->getUrl('multipledeals'); ?>">
+		<div class="page-countdown">                
+			<?php echo $this->getCountdown('180px','40px','block',null,$product_id); ?>
+        </div>
+</a>
+<?php endif; ?>

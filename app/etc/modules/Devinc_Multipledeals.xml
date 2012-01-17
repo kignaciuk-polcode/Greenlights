@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Devinc_Multipledeals>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Devinc_Multipledeals>
+    </modules>
+</config> 
