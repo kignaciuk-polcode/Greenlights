@@ -1,2 +1,19 @@
-<p>[PRODUCTS]</p>
-<p>[BLOG]</p>
+<?php
+$base = $this->getUrl();
+if (strpos($_SERVER['REQUEST_URI'], "/blog/search/") === false) {
+    $searchString = $_GET['q'];
+} else {
+    $splitted = split('/blog/search/', $_SERVER['REQUEST_URI']);
+    $searchString = substr($splitted[1], 0, -1);
+}
+$productsQuery = str_replace(" ", "+", str_replace("-", "+", $searchString));
+$blogQuery = str_replace(" ", "-", $searchString);
+?>
+<p><a href="<?php echo $base."catalogsearch/result/?q=$productsQuery" ?>">[PRODUCTS]</a></p>
+<p><a href="<?php echo $base."blog/search/$blogQuery/" ?>">[BLOG]</a></p>
+
+<?php if (!(strpos($_SERVER['REQUEST_URI'], "/blog/search/") === false)) { ?>
+<script type="text/javascript">
+$('search').value = "<?php echo str_replace("-", " ", $searchString); ?>";
+</script>
+<?php } ?>
