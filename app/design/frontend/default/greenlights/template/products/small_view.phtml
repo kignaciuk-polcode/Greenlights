@@ -1,0 +1,19 @@
+<h2 class="products_small_view_subtitle"><?php echo $this->__($this->getData('title')) ?></h2>
+
+
+<?php $_products = $this->getProductCollection(); ?>
+
+<?php $_columnCount = 4; ?>
+<?php $i=0; foreach ($_products as $_product): ?>
+    <?php if ($i++%$_columnCount==0): ?>
+    <ul class="products_small_view_products-grid">
+    <?php endif; ?>
+        <li class="products_small_view_item">
+            <a href="<?php echo $this->getProductUrl($_product) ?>" class="products_small_view_product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(115) ?>" width="115" height="115" /></a>
+            <h3 class="products_small_view_product-name"><a href="<?php echo $this->getProductUrl($_product) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a></h3>
+            <?php echo $this->getPriceHtml($_product, true, '-home-viewed') ?>
+        </li>
+    <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+    </ul>
+    <?php endif; ?>
+<?php endforeach; ?>
