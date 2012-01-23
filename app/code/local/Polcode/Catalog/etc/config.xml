@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+        <modules>
+            <Polcode_Catalog>
+                <version>0.1.0</version>
+            </Polcode_Catalog>
+        </modules>
+<global>
+
+
+
+    <models>
+        <polcodecatalog>
+            <class>Polcode_Catalog_Model</class>
+<!--            <resourceModel>polcodecatalog_mysql4</resourceModel>-->
+        </polcodecatalog>
+<!--        <polcodecatalog_mysql4>
+            <class>Polcode_Catalog_Model_Resource_Eav_Mysql4</class>
+        </polcodecatalog_mysql4>-->
+    </models>
+ 
+    <resources>
+        <polcodecatalog_setup>
+            <setup>
+                <module>Polcode_Catalog</module>
+                <class>Polcode_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+            </setup> 
+            <connection>
+                <use>core_setup</use>
+            </connection>
+        </polcodecatalog_setup>
+ 
+        <polcodecatalog_write>
+            <connection>
+                <use>core_write</use>
+            </connection>
+        </polcodecatalog_write>
+        <polcodecatalog_read>
+            <connection>
+                <use>core_read</use>
+            </connection>
+        </polcodecatalog_read>
+    </resources>
+
+</global>
+</config>
