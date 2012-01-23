@@ -125,3 +125,10 @@
 }
 
 
+.addresses-list h2 {
+    color: #000;
+    border-bottom: 1px solid #a9adaf;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #0A263C;
+}
