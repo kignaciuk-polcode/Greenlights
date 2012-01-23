@@ -479,7 +479,7 @@ button.button span span {
 
 }
 
-a.search_menu_button {
+a.big_buttoned_menu {
     display: block;
     #float: left;
     width:80%;
@@ -492,7 +492,7 @@ a.search_menu_button {
     text-decoration: none;
     padding: 5px 0px 5px 20px;
 }
-a.search_menu_button.active {
+a.big_buttoned_menu.active {
     background: #fff url("../images/bkg_search_menu_button_active.png") repeat-x 0 0;
     border: 1px #268a8f solid;
 }
