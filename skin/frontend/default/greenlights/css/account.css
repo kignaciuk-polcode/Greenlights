@@ -114,8 +114,14 @@
 .fieldset .form-list {
     margin: 10px 25px 0px 25px;
 }
+.fieldset span {
+    margin: 10px 25px 0px 25px;
+}
 
 
-
+.box-account.box-info.account-box.ad-account-info {
+    background: none;
+    border: none;
+}
 
 
