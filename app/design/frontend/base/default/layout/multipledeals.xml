@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+		<block type="multipledeals/multipledeals" name="multipledeals_sidedeals" template="multipledeals/sidedeals.phtml" before="cart_sidebar"/>
+		<reference name="head">
+			<action method="addCss"><stylesheet>multipledeals/css/multipledeals.css</stylesheet></action>
+            <action method="addJs"><script>multipledeals/swfobject.js</script></action>
+        </reference>
+        <reference name="top.links">
+            <action method="addLink" ifconfig="multipledeals/configuration/header_links" translate="label title" module="customer"><label>Active Deals</label><url>multipledeals/</url><title>Multiple Deals</title><position>40</position></action>
+        </reference> 
+		<reference name="right">
+		    <action method="insert" ifconfig="multipledeals/sidebar_configuration/right_sidebar"><block>multipledeals_sidedeals</block></action>
+	    </reference>
+		<reference name="left">
+		    <action method="insert" ifconfig="multipledeals/sidebar_configuration/left_sidebar"><block>multipledeals_sidedeals</block></action>
+        </reference>
+    </default>
+	
+	<catalog_product_view>
+        <reference name="alert.urls"> 
+			<block type="multipledeals/multipledeals" name="multipledeals" template="multipledeals/multipledeals.phtml" />   
+        </reference>
+    </catalog_product_view>
+	
+	<multipledeals_index_list>
+		<label>Multiple Deals List</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+        <reference name="content">        
+			<block type="multipledeals/list" name="multipledeals_product_list" template="multipledeals/list.phtml" />
+        </reference>
+		<reference name="right">
+			<remove name="multipledeals_sidedeals" />
+        </reference>
+    </multipledeals_index_list>	
+	
+	<multipledeals_index_recent>
+		<label>Multiple Deals Recent</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+        <reference name="content">        
+			<block type="multipledeals/recent" name="multipledeals_product_recent" template="multipledeals/list_recent.phtml" />
+        </reference>
+		<reference name="right">
+			<remove name="multipledeals_sidedeals" />
+        </reference>
+    </multipledeals_index_recent>	
+	
+	<multipledeals_checkout_cart_index>
+		<update handle="checkout_cart_index"/>            
+	</multipledeals_checkout_cart_index>
+	
+	<multipledeals_checkout_onepage_index>
+		<update handle="checkout_onepage_index"/>            
+	</multipledeals_checkout_onepage_index>
+	
+	
+</layout> 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/social.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="header">
+            <!--<block type="multisearch/form" name="top.search" as="topSearch" />-->
+        </reference>
+        <reference name="right">
+            <block type="social/social" name="social" as="social" before="all" />
+        </reference>
+    </default>
+</layout>

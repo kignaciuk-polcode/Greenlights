@@ -28,6 +28,15 @@
 -->
 <layout version="0.1.0">
     
+    <default>
+        <reference name="header">
+<!--
+            <block type="multisearch/form" name="top.search" as="topSearch" />
+-->
+        </reference>
+    </default>
+    
+    
     <multisearch_result_index>
         <reference name="head">
             <action method="addJs"><script>polcode/search_engine.js</script></action>

@@ -25,8 +25,6 @@
         </reference>
         <reference name="header">
             <block type="checkout/cart_sidebar" name="cart_top" as="topCart" template="checkout/cart/top.phtml"/>
-<!--            <block type="social/social" name="social" as="social" />
-            <block type="multisearch/form" name="top.search" as="topSearch" />-->
         </reference>
     </default>
     <catalog_product_view>
@@ -44,6 +42,72 @@
                 
         </reference>        
     </catalog_product_view>
+    
+    <wordpress_search_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="core/template" name="search_menu" before="all" template="search/search_menu.phtml"/>
+            <remove name="wordpress_sidebar_left" />
+            <remove name="left.newsletter" />
+        </reference>
+        <reference name="right">
+            <block type="cms/block" name="cms_guaranties_block">
+                <action method="setBlockId"><block_id>our_guaranties_to_you</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_shipping_block">
+                <action method="setBlockId"><block_id>free_shipping</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_invite_block">
+                <action method="setBlockId"><block_id>invite_your_friend</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_buyagift_block">
+                <action method="setBlockId"><block_id>buy_a_gift</block_id></action>
+            </block>
+            <remove name="wordpress_sidebar_right" />
+            <remove name="multipledeals_sidedeals" />
+            <remove name="right.reports.product.viewed" />
+            <remove name="right.reports.product.compared" />
+            <remove name="wishlist_sidebar" />
+            <remove name="social" />
+            <remove name="sale.reorder.sidebar" />
+        </reference>
+    </wordpress_search_index>
+    
+    <catalogsearch_result_index translate="label">
+        <reference name="left">
+            <block type="core/template" name="search_menu" before="all" template="search/search_menu.phtml"/>
+            <remove name="left.newsletter" />
+            <remove name="left.permanent.callout" />
+            <remove name="currency" />
+<!--
+            <remove name="catalogsearch.leftnav" />
+-->
+            
+        </reference>
+        <reference name="right">
+            <block type="cms/block" name="cms_guaranties_block">
+                <action method="setBlockId"><block_id>our_guaranties_to_you</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_shipping_block">
+                <action method="setBlockId"><block_id>free_shipping</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_invite_block">
+                <action method="setBlockId"><block_id>invite_your_friend</block_id></action>
+            </block>
+            <block type="cms/block" name="cms_buyagift_block">
+                <action method="setBlockId"><block_id>buy_a_gift</block_id></action>
+            </block>
+            <remove name="multipledeals_sidedeals" />
+            <remove name="right.reports.product.viewed" />
+            <remove name="right.reports.product.compared" />
+            <remove name="wishlist_sidebar" />
+            <remove name="social" />
+            <remove name="sale.reorder.sidebar" />
+        </reference>
+    </catalogsearch_result_index>
+    
     
 <!--    <catalog_category_default translate="label">
         <reference name="head">

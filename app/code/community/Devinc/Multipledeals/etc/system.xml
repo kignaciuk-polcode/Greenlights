@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+		<dd translate="label" module="multipledeals">
+            <label>Developers-inc</label>
+            <sort_order>200</sort_order>
+		</dd>
+    </tabs>
+	<sections>
+		<multipledeals translate="label" module="multipledeals">
+			<label>Multiple Deals</label>
+			<tab>dd</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<configuration translate="label">
+					<label>Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label">
+							<label>Enable Multiple Deals</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>
+						<header_links translate="label">
+							<label>Display in Header Links</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</header_links>
+						<qty translate="label">
+							<label>Display Remaining QTY</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</qty>
+						<past_deals translate="label">
+							<label>Display Past Deals</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</past_deals>
+						<no_deal_message translate="label comment">
+							<label>No Deal Message</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>This is the message that will appear in case the product quantity or the countdown reaches 0 and there is no new deal scheduled.</comment>
+						</no_deal_message>
+						<notify translate="label">
+							<label>Notify Admin</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Yes - the admin will be notified via email when a deal expires and there is no new deal scheduled.</comment>
+						</notify>
+						<admin_email translate="label comment">
+							<label>Admin Email</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</admin_email>
+						<countdown_type translate="label">
+							<label>Countdown Type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>multipledeals/source_countdown</source_model>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Flash isn't present on the computer or mobile device, the Flash Countdown will automatically be replaced with the Javascript Countdown.</comment>
+						</countdown_type>	
+					</fields>
+				</configuration>
+				<sidebar_configuration translate="label">
+					<label>Sidebar Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<maindeal_featured translate="label">
+							<label>Feature Main Deal</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If Yes - the Main Deal won't be included in the Deals block, it will have it's own featured block.</comment>
+						</maindeal_featured>	
+						<sidedeals_number translate="label">
+							<label>Number of Sidebar Deals</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sidedeals_number>	
+						<left_sidebar translate="label">
+							<label>Display in Left Sidebar</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</left_sidebar>
+						<right_sidebar translate="label">
+							<label>Display in Right Sidebar</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</right_sidebar>
+						<display_price translate="label">
+							<label>Display Deal Price</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</display_price>
+						<display_qty translate="label">
+							<label>Display Remaining QTY</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</display_qty>
+					</fields>
+				</sidebar_configuration>
+				<countdown_configuration translate="label">
+					<label>Flash Countdown Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>	
+						<display_days translate="label">
+							<label>Display Days</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>If No - the countdown will convert the days to hours.</comment>
+						</display_days>
+						<bg_main translate="label">
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bg_main>
+						<bg_color translate="label">
+							<label>Digit Background Color</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bg_color>
+						<alpha translate="label">
+							<label>Digit Gradient Alpha %</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</alpha>
+						<textcolor translate="label">
+							<label>Digit Color</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</textcolor>
+						<txt_color translate="label">
+							<label>Sec/Min/Hour Color</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</txt_color>
+						<sec_text translate="label">
+							<label>Seconds Text</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sec_text>
+						<min_text translate="label">
+							<label>Minutes Text</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_text>
+						<hour_text translate="label">
+							<label>Hours Text</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</hour_text>
+						<days_text translate="label">
+							<label>Days Text</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</days_text>
+					</fields>
+				</countdown_configuration>
+				
+				<js_countdown_configuration translate="label">
+					<label>Javascript Countdown Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>	
+						<bg_main translate="label">
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bg_main>
+						<textcolor translate="label">
+							<label>Digit Color</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</textcolor>
+						<days_text translate="label">
+							<label>Days Text</label>
+							<frontend_type>text</frontend_type> 
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</days_text>
+					</fields>
+				</js_countdown_configuration>
+			</groups>
+        </multipledeals>
+    </sections>
+</config>

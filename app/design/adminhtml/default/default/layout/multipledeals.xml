@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <multipledeals_adminhtml_multipledeals_index>
+        <reference name="content">
+            <block type="multipledeals/adminhtml_multipledeals" name="multipledeals" />
+        </reference>
+    </multipledeals_adminhtml_multipledeals_index>
+</layout>

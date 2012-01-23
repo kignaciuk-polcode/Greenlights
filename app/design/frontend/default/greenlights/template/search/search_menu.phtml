@@ -1,0 +1,22 @@
+<?php
+$base = $this->getUrl();
+$productSearch = true;
+if (strpos($_SERVER['REQUEST_URI'], "/blog/search/") === false) {
+    $searchString = $_GET['q'];
+} else {
+    $splitted = split('/blog/search/', $_SERVER['REQUEST_URI']);
+    $searchString = substr($splitted[1], 0, -1);
+    $productSearch = false;
+}
+$productsQuery = str_replace(" ", "+", str_replace("-", "+", $searchString));
+$blogQuery = str_replace(" ", "-", $searchString);
+?>
+<a class="big_buttoned_menu<?php if($productSearch) echo ' active'; ?>" href="<?php echo $base."catalogsearch/result/?q=$productsQuery" ?>">PRODUCTS</a>
+<a class="big_buttoned_menu<?php if(!$productSearch) echo ' active'; ?>" href="<?php echo $base."blog/search/$blogQuery/" ?>">BLOG</a>
+
+
+<?php if (!(strpos($_SERVER['REQUEST_URI'], "/blog/search/") === false)) { ?>
+<script type="text/javascript">
+$('search').value = "<?php echo str_replace("-", " ", $searchString); ?>";
+</script>
+<?php } ?>
