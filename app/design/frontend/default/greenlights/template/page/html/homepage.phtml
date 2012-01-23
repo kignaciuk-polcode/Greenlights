@@ -9,11 +9,7 @@
     <div class="col-main">
         <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_brands_rotator')->setTemplate('cms/widget/static_block/default.phtml')->toHtml() ?>
         
-        <?php //echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/home_product_viewed.phtml')->toHtml() ?>
-        <?php //echo $this->getLayout()->createBlock('products/bestselling')->setTemplate('products/bestselling.phtml')->toHtml() ?>
-        <?php //echo $this->getLayout()->createBlock('products/new')->setTemplate('products/new.phtml')->toHtml() ?>
-        
-        <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/products/small_view.phtml')->toHtml() ?>
+        <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('products/small_view_recently_viewed.phtml')->setAttribute('title', 'RECENTLY VIEWED PRODUCTS')->toHtml() ?>
         <?php echo $this->getLayout()->createBlock('products/bestselling')->setTemplate('products/small_view.phtml')->setAttribute('title', 'BESTSELLING PRODUCTS')->toHtml() ?>
         <?php echo $this->getLayout()->createBlock('products/new')->setTemplate('products/small_view.phtml')->setAttribute('title', 'NEW ARRIVIALS')->toHtml() ?>
     </div>
