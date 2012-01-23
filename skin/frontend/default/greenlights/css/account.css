@@ -1,4 +1,61 @@
-
 .col-left.sidebar {
     width: 175px;
 }
+
+.block .block-title {
+    border-bottom: 0px;
+}
+.block .block-content {
+    border-bottom: 0px;
+}
+
+.box-account {
+    background: #fff;
+    border: 0px;
+}
+.box-account .box-head h2 {
+    color: #000;
+    background-image: url("");
+}
+
+
+
+.my-orders-table {
+    background: #f3f2f2 url("../images/bkg_data_table_th.png") repeat-x 0 0;    
+    border-color: #a9adaf;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5x;
+    border-top-right-radius: 5px;
+}
+.my-orders-table thead th {
+    height: 37px;
+    line-height: 37px;
+    min-height: 37px;
+    margin: 0;
+    padding: 0 8px;
+    background: none;
+    color: #085f8b;
+}
+.my-orders-table td {
+    border-top: 1px solid #a9adaf;
+    height: 37px;
+    line-height: 37px;
+    min-height: 37px;
+    margin: 0;
+    padding: 0 8px;
+    background: #e8e7e7 url("../images/bkg_data_table_th.png") repeat-x 0 0;
+}
+.my-orders-table tfoot tr {
+    background-color: #fff !important;
+}
+.my-orders-table tfoot tr.first td {
+    background: none;
+}
+
+
+
+
+
