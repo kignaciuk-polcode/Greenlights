@@ -1,24 +1,27 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
     <default>
-		<reference name="head">
-			<action method="addItem"><type>skin_css</type><name>relatedproducts/css/styles.css</name></action>
-		</reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>relatedproducts/css/styles.css</name>
+            </action>
+        </reference>
     </default>
-	<catalog_product_view>
-		<reference name="right">
-			<block type="relatedproducts/relatedproducts" name="catalog.product.awrelated.community" before="-" template="catalog/product/list/awrelated.phtml">
-				<action method="setTarget">
-					<alias>community</alias>
-				</action>				
-			</block>	 
-		</reference>
-		<reference name="content">
-			<block type="relatedproducts/relatedproducts" name="catalog.product.awrelated.enterprise" template="catalog/product/list/awrelated.phtml">
-				<action method="setTarget">
-					<alias>enterprise</alias>
-				</action>					
-			</block>	
-		</reference>		
-	</catalog_product_view>
+    <catalog_product_view>
+        <reference name="right">
+            <block type="relatedproducts/relatedproducts" name="catalog.product.awrelated.community" before="-" template="catalog/product/list/awrelated.phtml">
+                <action method="setTarget">
+                    <alias>community</alias>
+                </action>				
+            </block>	 
+        </reference>
+        <reference name="content">
+            <block type="relatedproducts/relatedproducts" name="catalog.product.awrelated.enterprise" template="catalog/product/list/awrelated.phtml">
+                <action method="setTarget">
+                    <alias>enterprise</alias>
+                </action>					
+            </block>	
+        </reference>		
+    </catalog_product_view>
 </layout>

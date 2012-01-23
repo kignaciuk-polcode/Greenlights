@@ -11,6 +11,26 @@
         <?php //echo $this->getChildHtml() ?>        
     </div>
 </div>
+<script type="text/javascript">
 
+$$('#shopping-cart-table tbody tr').each(function(o){
+   
+   var paddingTop = parseInt(o.select('td').first().getStyle('padding-top'));
+   var paddingBottom = parseInt(o.select('td').first().getStyle('padding-bottom'));
+
+   var containerHeight = o.getHeight() - paddingTop - paddingBottom; 
+ 
+    o.select('div.with-border').each(function(e){
+       e.setStyle({
+           borderRight: '1px solid #d5e3ec', 
+           height: containerHeight+"px",
+           lineHeight: containerHeight+"px"
+       })
+   });
+     
+});
+
+
+</script>
 
 

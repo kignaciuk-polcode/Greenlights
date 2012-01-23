@@ -59,7 +59,7 @@
 <?php else: ?>
 <p class="product-image">
     <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(265).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(228).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
         echo $_helper->productAttribute($_product, $_img, 'image');
     ?>
 </p>
@@ -71,7 +71,7 @@
     <?php $i = 0; ?>
     <?php foreach ($this->getGalleryImages() as $_image): ?>
         <li>
-            <?php $enlargedImgUrl = $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail_enlarged', $_image->getFile())->resize(265); ?>
+            <?php $enlargedImgUrl = $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail_enlarged', $_image->getFile())->resize(100); ?>
             <a href="#" onmouseover="pictureMagnifier('productGalleryPhoto<?php echo $i; ?>', '<?php echo $enlargedImgUrl; ?>'); return false;" onmouseout="removePictureMagnifier('productGalleryPhoto<?php echo $i; ?>'); return false;" onclick="popWin('<?php echo $this->getGalleryUrl($_image) ?>', 'gallery', 'width=300,height=300,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"><img id="productGalleryPhoto<?php echo $i; ?>" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(56); ?>" width="56" height="56" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
         </li>
         <?php $i++; ?>

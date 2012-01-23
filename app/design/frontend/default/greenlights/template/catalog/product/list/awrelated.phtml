@@ -1,0 +1,39 @@
+<?php //if ($this->getTarget() == "community" && !Mage::helper('relatedproducts')->isEnterprise()):   ?>
+<?php if ($this->getEnabled() && count($this->getRelatedProductsCollection())): ?>
+    <div class="aw-box aw-base aw-related-items block">
+        <div class="head">
+            <h4><?php echo $this->__('Other Products') ?></h4>
+        </div>
+        <div class="aw-content" <?php
+    if (Mage::helper('relatedproducts')->checkVersion('1.4.1.0')) {
+        echo "id=\"after1400\"";
+    }
+    ?>>
+
+            <ol>
+    <?php foreach ($this->getRelatedProductsCollection() as $_item): ?>
+                    <li<?php if ($_item->isComposite() || !$_item->isSaleable()): ?> class="super-products"<?php endif; ?>>
+                        <div class="product-images">
+                            <a href="<?php echo $_item->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(120) ?>" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" width="120" height="120" /></a>
+                        </div>
+                        <div class="product-details">
+                            <a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a>
+                            <div class="price-box">
+                                <span class="regular-price">
+                                    <span class="price-label"><?php echo __('Incl. BTW:') ?></span>
+                                    <span class="price">
+        <?php echo $this->helper('core')->currency($this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true)); ?>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+    <?php endforeach ?>
+            </ol>
+        </div>
+    </div>
+
+    <?php //endif  ?>
+    <?php
+
+ endif ?>
