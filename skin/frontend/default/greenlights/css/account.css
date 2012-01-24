@@ -13,8 +13,12 @@
     background: #fff;
     border: 0px;
 }
+.box-account .box-head {
+    border: none;
+}
 .box-account .box-head h2 {
     color: #000;
+    padding-left: 0px;
 }
 
 
@@ -32,6 +36,7 @@
 }
 .box-account.box-info .box-head h2 {
     color: #000;
+    background-image: none;
 }
 .box-account.box-info .box-title {
     background: none;
@@ -71,6 +76,7 @@
     margin: 0;
     padding: 0 8px;
     background: #e8e7e7 url("../images/bkg_data_table_th.png") repeat-x 0 0;
+    vertical-align: middle;
 }
 .data-table tfoot tr {
     background-color: #fff !important;
@@ -126,14 +132,19 @@
 
 
 .addresses-list h2 {
-    color: #000;
-    border-bottom: 1px solid #a9adaf;
     margin-bottom: 15px;
-    font-size: 18px;
     color: #0A263C;
 }
 
 
 .col-left.sidebar .block-account .block-content {
     padding: 0;
+}
+
+.page-title {
+    border: none;
+}
+
+.dashboard .box-recent .box-head h2 {
+    background-image: none;
 }
