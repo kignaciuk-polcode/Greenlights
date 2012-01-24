@@ -161,7 +161,7 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
             </div>
 
             <div id="tabContent4" class="tabContent" style="display:none;">
-                <div>Fourth Tab Content goes here</div>
+                <div><?php echo $this->getChildHtml('product-crosssell'); ?></div>
             </div>
 
             <div id="tabContent5" class="tabContent" style="display:none;">
@@ -174,7 +174,7 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
     </div>
 
 <?php echo $this->getChildHtml('awRelatedProducts') ?>
-
+</div>
     <script type="text/javascript">
         /*-----------------------------------------------------------
         Toggles element's display value

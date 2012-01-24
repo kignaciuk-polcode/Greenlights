@@ -328,6 +328,15 @@ button.button span span {
     width: 162px;
 }
 
+.page-title {
+    border-bottom: none;
+}
+
+.page-title h1, page-title h2 {
+    color: #010202;
+    font-size: 24px;
+    margin: 0;
+}
 
 .cart-table {
     background: #f3f2f2 url("../images/bkg_data_table_th.png") repeat-x 0 0;    
@@ -1324,7 +1333,6 @@ a.big_buttoned_menu.active {
     border: 1px #268a8f solid;
 }
 
-
 .pager {
     border: none;
     background: none;
@@ -1348,3 +1356,50 @@ a.big_buttoned_menu.active {
     text-decoration: underline;
 }
 
+/* Blog */
+
+.post-list h2 {
+    border-bottom: 1px solid #e1e0e0;
+    width: 100%;
+    position: relative;
+/*    padding: 0 20px;*/
+    margin: 0;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.post-list h2 span {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width:13px;
+    height: 6px;
+    background: #fff url(../images/bkg_post_title.png) no-repeat 0 0;
+    position: absolute;
+    bottom: -6px;
+    left: 32px;
+    font-size: 0px;
+    border: none;
+}
+
+.post-list h2 a {
+    font-size: 22px;
+    color: #010202;
+    text-decoration: none;
+    text-indent: 20px;
+}
+
+.post-list p {
+    clear: both;
+}
+
+.featured-image {
+    padding: 5px;
+    border: 1px solid #bdbdbd;
+}
+
+.post-list .date {
+    width: 122px;
+    height: 48px;
+    background: url()
+}
