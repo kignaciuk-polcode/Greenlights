@@ -132,3 +132,8 @@
     font-size: 18px;
     color: #0A263C;
 }
+
+
+.col-left.sidebar .block-account .block-content {
+    padding: 0;
+}
