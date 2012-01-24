@@ -1,5 +1,9 @@
 .col-left.sidebar {
-    width: 175px;
+    width: 200px;
+}
+
+.col-main {
+    width: 740px;
 }
 
 .block .block-title {
@@ -67,6 +71,7 @@
     padding: 0 8px;
     background: none;
     color: #085f8b;
+    border-right: none;
 }
 .data-table td {
     border-top: 1px solid #a9adaf;
