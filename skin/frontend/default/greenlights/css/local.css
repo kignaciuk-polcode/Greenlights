@@ -1328,6 +1328,7 @@ a.big_buttoned_menu.active {
 .pager {
     border: none;
     background: none;
+    padding: 12px 8px;
 }
 .pager .pages {
     margin: 0px;
