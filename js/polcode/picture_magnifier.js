@@ -14,8 +14,11 @@ function pictureMagnifier (id, imgSrc) {
 		'after' : newFotoContainer
 	});
 	
+	newFotoContainer.setStyle('background: #ddd; padding: 5px;');
+	
 	newFotoContainer.clonePosition(placeToInsertPhoto);
 	newFotoContainer.setStyle('position: fixed; top: 20px;');
+	newFotoContainer.setStyle('width: ' + newFoto.width + 'px; height: ' + newFoto.height + 'px;');
 }
 
 function removePictureMagnifier(id) {
