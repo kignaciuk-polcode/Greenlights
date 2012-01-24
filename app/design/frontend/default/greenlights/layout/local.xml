@@ -38,9 +38,9 @@
                 </action>
                 <block type="fileuploader/fileuploader" name="product.attachments" template="fileuploader/attachments.phtml"/> 
                 
-<block type="checkout/cart_crosssell" name="product.crosssell" as="product-crosssell" template="checkout/cart/crosssell.phtml"/>                
+<block type="checkout/cart_crosssell" name="product.crosssell" as="product-crosssell" template="checkout/cart/crosssell.phtml"/>
                 
-        </reference>        
+        </reference>
     </catalog_product_view>
     
     <wordpress_search_index>
