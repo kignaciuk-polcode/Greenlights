@@ -1307,15 +1307,21 @@ a.big_buttoned_menu {
     width:80%;
     position: relative;
     background: #e7e7e7 url("../images/bkg_big_menu_button.png") repeat-x 0 0;
-    border: 1px #c7c9ca solid;
+    border-left: 1px #c7c9ca solid;
+    border-right: 1px #c7c9ca solid;
+    border-bottom: 1px #c7c9ca solid;
     font: 1.2em/1.3 Arial,Helvetica,sans-serif;
     #font-weight: bold;
     color: #000;
     text-decoration: none;
     padding: 5px 0px 5px 20px;
 }
+a.big_buttoned_menu.first {
+    border-top: 1px #c7c9ca solid;
+}
 a.big_buttoned_menu.active {
     background: #67abb3 url("../images/bkg_big_menu_button_active.png") repeat-x 0 0;
     border: 1px #268a8f solid;
 }
+
 

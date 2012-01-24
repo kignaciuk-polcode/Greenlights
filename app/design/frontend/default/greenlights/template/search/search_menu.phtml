@@ -11,7 +11,7 @@ if (strpos($_SERVER['REQUEST_URI'], "/blog/search/") === false) {
 $productsQuery = str_replace(" ", "+", str_replace("-", "+", $searchString));
 $blogQuery = str_replace(" ", "-", $searchString);
 ?>
-<a class="big_buttoned_menu<?php if($productSearch) echo ' active'; ?>" href="<?php echo $base."catalogsearch/result/?q=$productsQuery" ?>">PRODUCTS</a>
+<a class="big_buttoned_menu<?php if($productSearch) echo ' active'; ?> first" href="<?php echo $base."catalogsearch/result/?q=$productsQuery" ?>">PRODUCTS</a>
 <a class="big_buttoned_menu<?php if(!$productSearch) echo ' active'; ?>" href="<?php echo $base."blog/search/$blogQuery/" ?>">BLOG</a>
 
 
