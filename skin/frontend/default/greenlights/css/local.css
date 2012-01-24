@@ -1325,3 +1325,25 @@ a.big_buttoned_menu.active {
 }
 
 
+.pager {
+    border: none;
+    background: none;
+}
+.pager .pages {
+    margin: 0px;
+    text-align: right;
+}
+.pager .pages a {
+    color: #000;
+    text-decoration: none;
+}
+.pager .pages li.current {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.pager .pages a.previous, .pager .pages a.next {
+    color: #000;
+    text-decoration: underline;
+}
+
