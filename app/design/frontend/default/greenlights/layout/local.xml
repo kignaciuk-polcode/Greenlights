@@ -37,6 +37,9 @@
                     <key>options_container</key>
                 </action>
                 <block type="fileuploader/fileuploader" name="product.attachments" template="fileuploader/attachments.phtml"/> 
+                
+<block type="checkout/cart_crosssell" name="product.crosssell" as="product-crosssell" template="checkout/cart/crosssell.phtml"/>                
+                
         </reference>        
     </catalog_product_view>
     
