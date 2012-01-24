@@ -14,8 +14,8 @@ function pictureMagnifier (id, imgSrc) {
 		'after' : newFotoContainer
 	});
 	
-	newFotoContainer.absolutize();
 	newFotoContainer.clonePosition(placeToInsertPhoto);
+	newFotoContainer.setStyle('position: fixed; top: 20px;');
 }
 
 function removePictureMagnifier(id) {

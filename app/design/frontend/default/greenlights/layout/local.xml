@@ -158,7 +158,7 @@
         <reference name="product_list_toolbar">
             <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
         </reference>
-    </catalog_category_layered>
+    </catalog_category_layered>-->
     
     
     <catalog_product_view translate="label">
@@ -167,6 +167,6 @@
                 <script>polcode/picture_magnifier.js</script>
             </action>
         </reference>
-    </catalog_product_view>-->
+    </catalog_product_view>
     
 </layout>
