@@ -28,7 +28,7 @@
         </reference>
     </default>
     <catalog_product_view>
-        <reference name="product.info">     
+        <reference name="product.info">
             <action method="unsetCallChild">
                 <child>container2</child>
                 <call>ifEquals</call>
@@ -165,6 +165,19 @@
         <reference name="head">
             <action method="addJs">
                 <script>polcode/picture_magnifier.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-1.7.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-ui-1.8.17.custom.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/no-conflict.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>jquery/css/start/jquery-ui-1.8.17.custom.css</name>
             </action>
         </reference>
     </catalog_product_view>
