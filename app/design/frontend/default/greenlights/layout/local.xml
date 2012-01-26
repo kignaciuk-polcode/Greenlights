@@ -39,7 +39,32 @@
             <block type="fileuploader/fileuploader" name="product.attachments" template="fileuploader/attachments.phtml"/> 
                 
             <block type="checkout/cart_crosssell" name="product.crosssell" as="product-crosssell" template="checkout/cart/crosssell.phtml"/>
-                
+        </reference>
+        
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/product_view.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>polcode/picture_magnifier.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-1.7.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-ui-1.8.17.custom.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/no-conflict.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>jquery/css/start/jquery-ui-1.8.17.custom.css</name>
+            </action>
+        </reference>
+        
+        <reference name="content">
+            <block type="core/template" name="addedToCartDialog" template="catalog/product/view/addedToCartDialog.phtml" />
         </reference>
     </catalog_product_view>
     
@@ -179,6 +204,9 @@
                 <type>js_css</type>
                 <name>jquery/css/start/jquery-ui-1.8.17.custom.css</name>
             </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="addedToCartDialog" template="catalog/product/view/addedToCartDialog.phtml" />
         </reference>
     </catalog_product_view>
     

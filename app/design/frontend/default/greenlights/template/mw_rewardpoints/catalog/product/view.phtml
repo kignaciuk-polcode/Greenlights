@@ -125,7 +125,12 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
                 if (this.validator.validate()) {
                     $('product_addtocart_form').request({
                         onSuccess: function(t) {
-                            jQuery("#dialog-message").dialog('open');
+                            var dialog = jQuery("#added-to-cart-container");
+                            var price = jQuery(".price-box").find('.price').text();
+                            var quantity = jQuery("input#qty").attr('value');
+                            dialog.find('span#added-to-cart-price').text(price);
+                            dialog.find('span#added-to-cart-quantity').text(quantity);
+                            dialog.dialog('open');
                         }
                     });
                 }
@@ -134,11 +139,39 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
         </script>
     </div>
 
-<div id="dialog-message" title="<?php echo __("Added to cart") ?>">
-    Here goes content
+<div id="added-to-cart-container" title="<?php echo __("Added to cart") ?>">
+    <div class="added-to-cart header">
+        <?php
+            $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize(150, 150).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+            echo $_helper->productAttribute($_product, $_img, 'image');
+        ?>
+        <div class="product-name">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        </div>
+        <p>Quantity: <span id="added-to-cart-quantity">0</span></p>
+        <p>Price: <span id="added-to-cart-price">0</span></p>
+        <a class="back" href="#"><?php echo __('CONTINUE SHOPPING') ?></a>
+        <a class="checkout" href="#"><?php echo __('CHECKOUT') ?></a>
+        opis
+    </div>
+        
+        
+<?php foreach($_product->getReletedProducts() as $rel) { ?>
+        <div class="added-to-cart item-to-consider">
+            <span class="added-to-cart image-cell">
+                image
+            </span>
+            <span class="added-to-cart desc-cell">
+                desc
+            </span>
+        </div>
+<?php } ?>
+        
+        
+    </div>
 </div>
 <script type="text/javascript">
-jQuery("#dialog-message").dialog({
+jQuery("#added-to-cart-container").dialog({
     modal: true,
     autoOpen: false
 });
