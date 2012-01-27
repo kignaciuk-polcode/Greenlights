@@ -115,6 +115,12 @@
     </wordpress_search_index>
     
     <catalogsearch_result_index translate="label">
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/search.css</stylesheet>
+            </action>
+        </reference>
+        
         <reference name="left">
             <block type="core/template" name="search_menu" before="all" template="search/search_menu.phtml"/>
             <remove name="left.newsletter" />

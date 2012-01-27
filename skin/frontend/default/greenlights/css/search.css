@@ -1,0 +1,30 @@
+.category-products {
+    border: 1px solid #c9c9c9;
+    width: 560px;
+}
+.category-products ul.products-grid {
+    background: none;
+    border: none;
+}
+.category-products ul.products-grid li.item {
+    margin: 10px;
+    width: 120px;
+    padding: 0px;
+}
+.products-grid .product-image {
+    width: 120px;
+    height: 120px;
+}
+.products-grid .product-name a {
+    color: #000;
+}
+.price-label {
+    color: #999;
+}
+.regular-price .price {
+    color: #698608;
+}
+a.big_buttoned_menu {
+    width: 175px;
+    padding: 8px 0 8px 20px;
+}
