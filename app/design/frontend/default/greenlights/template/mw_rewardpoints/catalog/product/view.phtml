@@ -149,45 +149,48 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
             <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
         </div>
         <p>Quantity: <span id="added-to-cart-quantity">0</span></p>
-        <p>Price: <span id="added-to-cart-price">0</span></p>
-        <a class="back" href="#"><?php echo __('CONTINUE SHOPPING') ?></a>
-        <a class="checkout" href="#"><?php echo __('CHECKOUT') ?></a>
+        <p><span style="font-weight: bold;">Price:</span> <span id="added-to-cart-price">0</span></p>
+        <button class="button btn-cart validation-passed" onclick="window.location.reload()">
+            <span><span>
+                <?php echo __('CONTINUE SHOPPING') ?>
+            </span></span>
+        </button>
+        <button class="button btn-cart validation-passed" onclick="window.location='<?php echo Mage::getUrl('checkout/onepage/') ?>'">
+            <span><span>
+                <?php echo __('CHECKOUT') ?>
+            </span></span>
+        </button>
     </div>
-        
-<?php foreach($_product->getRelatedProducts() as $rel) { ?>
-        <?php $rel->load() ?>
-        <div class="added-to-cart item-to-consider">
-            <table>
-                <tr>
-                    <td>
-                        <?php
-                        $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($rel, 'image')->keepFrame(false)->resize(100, 100).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
-                        echo $_helper->productAttribute($rel, $_img, 'image');
-                        ?>
-                    </td>
-                    <td>
-                        <p><a href="#">
-                            <?php echo $_helper->productAttribute($rel, $rel->getName(), 'name') ?>
-                        </a></p>
-                        <span>
-                            <?php echo $rel->getShortDescription() ?>
-                        </span>
-                        <p><a href=""><?php echo __('More Information') ?></a></p>
-                    </td>
-                    <td>
-                        <p>Price: <?php echo $rel->getPrice() ?></p>
-                        <p>
-                            <form>
-                                <input type="text" id="<?php echo 'buyAlso_' . $rel->getSku() ?>" name="quantity" value="1" />
-                                <input type="submit" value="Add to cart" />
-                            </form>
-                        </p>
-                        <p><?php echo __('All prices are incl. VAT') ?></p>
-                    </td>
-                </tr>
-            </table>
-        </div>
-<?php } ?>
+        <?php $related = $_product->getRelatedProducts() ?>
+        <?php if (count($related)) { ?>
+            <span class="item-to-consider-header"><h2><?php echo __('ITEMS TO CONSIDER') ?></h2></span>
+            <?php foreach($_product->getRelatedProducts() as $rel) { ?>
+            <?php $rel->load() ?>
+            <div class="added-to-cart item-to-consider">
+                <table>
+                    <tr>
+                        <td class="image">
+                            <?php
+                            $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($rel, 'image')->keepFrame(false)->resize(100, 100).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+                            echo $_helper->productAttribute($rel, $_img, 'image');
+                            ?>
+                        </td>
+                        <td>
+                            <p><a href="#">
+                                <?php echo $_helper->productAttribute($rel, $rel->getName(), 'name') ?>
+                            </a></p>
+                            <p><?php echo __('Price: ') ?><span class="price"><?php echo $rel->getPrice() ?></span></p>
+                            <span>
+                                <?php echo $rel->getShortDescription() ?>
+                            </span>
+                            <p><a class="more-info" href=""><?php echo __('More Information') ?></a></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <?php } ?>
+        <?php } ?>
+            
         
         
     </div>

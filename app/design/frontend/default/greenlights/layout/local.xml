@@ -62,10 +62,6 @@
                 <name>jquery/css/start/jquery-ui-1.8.17.custom.css</name>
             </action>
         </reference>
-        
-        <reference name="content">
-            <block type="core/template" name="addedToCartDialog" template="catalog/product/view/addedToCartDialog.phtml" />
-        </reference>
     </catalog_product_view>
     
     <wordpress_default>
@@ -184,30 +180,5 @@
             <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
         </reference>
     </catalog_category_layered>-->
-    
-    
-    <catalog_product_view translate="label">
-        <reference name="head">
-            <action method="addJs">
-                <script>polcode/picture_magnifier.js</script>
-            </action>
-            <action method="addJs">
-                <script>jquery/jquery-1.7.1.min.js</script>
-            </action>
-            <action method="addJs">
-                <script>jquery/jquery-ui-1.8.17.custom.min.js</script>
-            </action>
-            <action method="addJs">
-                <script>jquery/no-conflict.js</script>
-            </action>
-            <action method="addItem">
-                <type>js_css</type>
-                <name>jquery/css/start/jquery-ui-1.8.17.custom.css</name>
-            </action>
-        </reference>
-        <reference name="content">
-            <block type="core/template" name="addedToCartDialog" template="catalog/product/view/addedToCartDialog.phtml" />
-        </reference>
-    </catalog_product_view>
     
 </layout>
