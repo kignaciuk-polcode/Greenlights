@@ -152,18 +152,40 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
         <p>Price: <span id="added-to-cart-price">0</span></p>
         <a class="back" href="#"><?php echo __('CONTINUE SHOPPING') ?></a>
         <a class="checkout" href="#"><?php echo __('CHECKOUT') ?></a>
-        opis
     </div>
         
-        
-<?php foreach($_product->getReletedProducts() as $rel) { ?>
+<?php foreach($_product->getRelatedProducts() as $rel) { ?>
+        <?php $rel->load() ?>
         <div class="added-to-cart item-to-consider">
-            <span class="added-to-cart image-cell">
-                image
-            </span>
-            <span class="added-to-cart desc-cell">
-                desc
-            </span>
+            <table>
+                <tr>
+                    <td>
+                        <?php
+                        $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($rel, 'image')->keepFrame(false)->resize(100, 100).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+                        echo $_helper->productAttribute($rel, $_img, 'image');
+                        ?>
+                    </td>
+                    <td>
+                        <p><a href="#">
+                            <?php echo $_helper->productAttribute($rel, $rel->getName(), 'name') ?>
+                        </a></p>
+                        <span>
+                            <?php echo $rel->getShortDescription() ?>
+                        </span>
+                        <p><a href=""><?php echo __('More Information') ?></a></p>
+                    </td>
+                    <td>
+                        <p>Price: <?php echo $rel->getPrice() ?></p>
+                        <p>
+                            <form>
+                                <input type="text" id="<?php echo 'buyAlso_' . $rel->getSku() ?>" name="quantity" value="1" />
+                                <input type="submit" value="Add to cart" />
+                            </form>
+                        </p>
+                        <p><?php echo __('All prices are incl. VAT') ?></p>
+                    </td>
+                </tr>
+            </table>
         </div>
 <?php } ?>
         
@@ -173,7 +195,9 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
 <script type="text/javascript">
 jQuery("#added-to-cart-container").dialog({
     modal: true,
-    autoOpen: false
+    autoOpen: false,
+    width: 500,
+    height: 500
 });
 </script>
 
