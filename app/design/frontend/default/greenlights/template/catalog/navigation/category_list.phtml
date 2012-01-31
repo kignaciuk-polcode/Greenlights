@@ -1,0 +1,20 @@
+<?php
+$categoryUrlKey = $this->getData('category_url_key');
+$categoryId = -1;
+
+$allCategories = Mage::getModel('catalog/category')->getCollection()
+    ->addAttributeToSelect('name')
+    ->addAttributeToSelect('parent_id')
+    ->addAttributeToSelect('url_key');
+
+foreach($allCategories as $tmpCat) {
+    $parentId = $tmpCat->getParentId();
+    if ($parentId == 0) {
+        continue;
+    }
+    if ($allCategories->getItemById($parentId)->getUrlKey() === $categoryUrlKey) {
+        echo $tmpCat->getName()."<br>";
+    }
+}
+
+?>
