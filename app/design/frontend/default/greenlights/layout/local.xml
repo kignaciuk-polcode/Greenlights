@@ -51,7 +51,7 @@
         </reference>
     </wordpress_default>
     
-    <wordpress_search_index>
+<!--    <wordpress_search_index>
         <reference name="root">
             <action method="setTemplate">
                 <template>page/3columns.phtml</template>
@@ -91,7 +91,7 @@
             <remove name="social" />
             <remove name="sale.reorder.sidebar" />
         </reference>
-    </wordpress_search_index>
+    </wordpress_search_index>-->
     
     <catalogsearch_result_index translate="label">
         <reference name="left">

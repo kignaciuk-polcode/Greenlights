@@ -80,7 +80,7 @@ class Fishpig_Wordpress_Model_Post extends Fishpig_Wordpress_Model_Post_Abstract
 			$excerpt = substr($content, 0, strpos($content, self::TEASER_TAG));
 			
 			if ($includeSuffix && $this->_getTeaserAnchor()) {
-				$excerpt .= sprintf(' <a href="%s" class="read-more">%s</a>', $this->getPermalink(), $this->_getTeaserAnchor());
+				$excerpt .= sprintf('<br style="clear:both;"/><a href="%s" class="read-more"><span>%s</span></a>', $this->getPermalink(), $this->_getTeaserAnchor());
 			}
 			
 			return $excerpt;

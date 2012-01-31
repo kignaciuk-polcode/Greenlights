@@ -29,7 +29,7 @@ class Geissweb_Euvatgrouper_Model_Vatvalidation extends Varien_Object {
 
     protected $_eventPrefix = 'euvatgrouper_vatvalidation';
     protected $_eventObject = 'vatvalidation';
-    protected $_viesUrl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
+    protected $_viesUrl = 'http://www.geissweb.de/feeds/vies.wsdl';
 
     public $shop_nr = "";
     public $shop_cc = "";

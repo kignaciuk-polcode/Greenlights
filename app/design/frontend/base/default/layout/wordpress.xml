@@ -14,30 +14,32 @@ Supported layout update handles (custom)
 
 -->
 
-	<default>
-		<reference name="head">
-			<block type="core/template" name="wordpress.blog.feed" as="blog_feed" before="-" template="wordpress/feed/default/link.phtml">
-				<action method="setCheckInclusion"><check>1</check></action>
-			</block>
-		</reference>
+    <default>
+        <reference name="head">
+            <block type="core/template" name="wordpress.blog.feed" as="blog_feed" before="-" template="wordpress/feed/default/link.phtml">
+                <action method="setCheckInclusion">
+                    <check>1</check>
+                </action>
+            </block>
+        </reference>
 		
 		<!-- Delete this to remove the top 'Blog' link -->
-		<reference name="top.links">
-			<action method="addLink" translate="label title" module="wordpress" ifconfig="wordpress_blog/top_link/enabled">
-				<label helper="wordpress/getPrettyBlogRoute" />
-				<url helper="wordpress/getTopLinkUrl"/>
-				<title>Blog</title>
-				<prepare>0</prepare>
-				<urlParams />
-				<position>90</position>
-				<li_params />
-				<a_params>class="top-link-blog"</a_params>
-				<before_text />
-				<after_text />
-			</action>
-		</reference>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="wordpress" ifconfig="wordpress_blog/top_link/enabled">
+                <label helper="wordpress/getPrettyBlogRoute" />
+                <url helper="wordpress/getTopLinkUrl"/>
+                <title>Blog</title>
+                <prepare>0</prepare>
+                <urlParams />
+                <position>90</position>
+                <li_params />
+                <a_params>class="top-link-blog"</a_params>
+                <before_text />
+                <after_text />
+            </action>
+        </reference>
 		<!--  End of add top 'Blog' link -->
-	</default>
+    </default>
 	
 	
 	<!--
@@ -45,199 +47,255 @@ Supported layout update handles (custom)
 	 * Default styles for all WordPress pages
 	 */
 	-->
-	<wordpress_default>
-		<remove name="tags_popular" />
-		<reference name="root">
-			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
-		</reference>
-		<reference name="head">
-			<action method="addJs"><script>fishpig/wordpress/main.js</script></action>
-		</reference>
-		<reference name="wordpress.blog.feed">
-			<action method="setCheckInclusion"><check>0</check></action>
-		</reference>
-		<reference name="left">
-			<block type="wordpress/sidebar" name="wordpress_sidebar_left" before="-" template="wordpress/sidebar.phtml">
-				<action method="setWidgetArea"><area>sidebar-1</area></action>
-				<action method="setWidgetFallbackArea"><area>primary-widget-area</area></action>
-				<action method="addWidgetType">
-					<name>search</name><block>sidebar_widget_search</block><template>wordpress/sidebar/widget/search.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>pages</name><block>sidebar_widget_pages</block><template>wordpress/sidebar/widget/pages.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>recent-posts</name><block>sidebar_widget_posts</block><template>wordpress/sidebar/widget/posts.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>recent-comments</name><block>sidebar_widget_comments</block><template>wordpress/sidebar/widget/comments.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>archives</name><block>sidebar_widget_archives</block><template>wordpress/sidebar/widget/archives.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>categories</name><block>sidebar_widget_categories</block><template>wordpress/sidebar/widget/categories.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>tag_cloud</name><block>sidebar_widget_tagcloud</block><template>wordpress/sidebar/widget/tagcloud.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>text</name><block>sidebar_widget_text</block><template>wordpress/sidebar/widget/text.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>links</name><block>sidebar_widget_links</block><template>wordpress/sidebar/widget/links.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>meta</name><block>sidebar_widget_meta</block><template>wordpress/sidebar/widget/meta.phtml</template>
-				</action>
-			</block>
-		</reference>
-		<reference name="right">
-			<block type="wordpress/sidebar" name="wordpress_sidebar_right" before="-" template="wordpress/sidebar.phtml">
-				<action method="setWidgetArea"><area>sidebar-2</area></action>
-				<action method="setWidgetFallbackArea"><area>secondary-widget-area</area></action>
-				<action method="addWidgetType">
-					<name>search</name><block>sidebar_widget_search</block><template>wordpress/sidebar/widget/search.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>pages</name><block>sidebar_widget_pages</block><template>wordpress/sidebar/widget/pages.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>recent-posts</name><block>sidebar_widget_posts</block><template>wordpress/sidebar/widget/posts.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>recent-comments</name><block>sidebar_widget_comments</block><template>wordpress/sidebar/widget/comments.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>archives</name><block>sidebar_widget_archives</block><template>wordpress/sidebar/widget/archives.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>categories</name><block>sidebar_widget_categories</block><template>wordpress/sidebar/widget/categories.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>tag_cloud</name><block>sidebar_widget_tagcloud</block><template>wordpress/sidebar/widget/tagcloud.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>text</name><block>sidebar_widget_text</block><template>wordpress/sidebar/widget/text.phtml</template>
-				</action>
-				<action method="addWidgetType">
-					<name>links</name><block>sidebar_widget_links</block><template>wordpress/sidebar/widget/links.phtml</template>
-				</action>
-			</block>
-		</reference>
-	</wordpress_default>
+    <wordpress_default>
+        <remove name="tags_popular" />
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>fishpig/wordpress/main.js</script>
+            </action>
+        </reference>
+        <reference name="wordpress.blog.feed">
+            <action method="setCheckInclusion">
+                <check>0</check>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="wordpress/sidebar" name="wordpress_sidebar_left" before="-" template="wordpress/sidebar.phtml">
+                <action method="setWidgetArea">
+                    <area>sidebar-1</area>
+                </action>
+                <action method="setWidgetFallbackArea">
+                    <area>primary-widget-area</area>
+                </action>
+                <action method="addWidgetType">
+                    <name>search</name>
+                    <block>sidebar_widget_search</block>
+                    <template>wordpress/sidebar/widget/search.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>pages</name>
+                    <block>sidebar_widget_pages</block>
+                    <template>wordpress/sidebar/widget/pages.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>recent-posts</name>
+                    <block>sidebar_widget_posts</block>
+                    <template>wordpress/sidebar/widget/posts.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>recent-comments</name>
+                    <block>sidebar_widget_comments</block>
+                    <template>wordpress/sidebar/widget/comments.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>archives</name>
+                    <block>sidebar_widget_archives</block>
+                    <template>wordpress/sidebar/widget/archives.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>categories</name>
+                    <block>sidebar_widget_categories</block>
+                    <template>wordpress/sidebar/widget/categories.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>tag_cloud</name>
+                    <block>sidebar_widget_tagcloud</block>
+                    <template>wordpress/sidebar/widget/tagcloud.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>text</name>
+                    <block>sidebar_widget_text</block>
+                    <template>wordpress/sidebar/widget/text.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>links</name>
+                    <block>sidebar_widget_links</block>
+                    <template>wordpress/sidebar/widget/links.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>meta</name>
+                    <block>sidebar_widget_meta</block>
+                    <template>wordpress/sidebar/widget/meta.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="wordpress/sidebar" name="wordpress_sidebar_right" before="-" template="wordpress/sidebar.phtml">
+                <action method="setWidgetArea">
+                    <area>sidebar-2</area>
+                </action>
+                <action method="setWidgetFallbackArea">
+                    <area>secondary-widget-area</area>
+                </action>
+                <action method="addWidgetType">
+                    <name>search</name>
+                    <block>sidebar_widget_search</block>
+                    <template>wordpress/sidebar/widget/search.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>pages</name>
+                    <block>sidebar_widget_pages</block>
+                    <template>wordpress/sidebar/widget/pages.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>recent-posts</name>
+                    <block>sidebar_widget_posts</block>
+                    <template>wordpress/sidebar/widget/posts.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>recent-comments</name>
+                    <block>sidebar_widget_comments</block>
+                    <template>wordpress/sidebar/widget/comments.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>archives</name>
+                    <block>sidebar_widget_archives</block>
+                    <template>wordpress/sidebar/widget/archives.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>categories</name>
+                    <block>sidebar_widget_categories</block>
+                    <template>wordpress/sidebar/widget/categories.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>tag_cloud</name>
+                    <block>sidebar_widget_tagcloud</block>
+                    <template>wordpress/sidebar/widget/tagcloud.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>text</name>
+                    <block>sidebar_widget_text</block>
+                    <template>wordpress/sidebar/widget/text.phtml</template>
+                </action>
+                <action method="addWidgetType">
+                    <name>links</name>
+                    <block>sidebar_widget_links</block>
+                    <template>wordpress/sidebar/widget/links.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </wordpress_default>
 	
-	<wordpress_homepage_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/homepage" name="wordpress_homepage" template="wordpress/homepage.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
-					<block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
-				</block>
-			</block>
-		</reference>
-	</wordpress_homepage_index>
+    <wordpress_homepage_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/homepage" name="wordpress_homepage" template="wordpress/homepage.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
+                    <block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
+                </block>
+            </block>
+        </reference>
+    </wordpress_homepage_index>
 	
-	<wordpress_post_list_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml"/>
-		</reference>
-	</wordpress_post_list_index>	
+    <wordpress_post_list_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml"/>
+        </reference>
+    </wordpress_post_list_index>	
 	
-	<wordpress_category_index>
-		<update handle="wordpress_default"/>
-		<reference name="head">
-			<block type="core/template" name="wordpress.blog.feed.category" as="blog_category_feed" before="-" template="wordpress/feed/category/link.phtml" />
-		</reference>
-		<reference name="content">
-			<block type="wordpress/category_view" name="wordpress_category" template="wordpress/category/view.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
-					<block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
-				</block>
-			</block>
-		</reference>
-	</wordpress_category_index>
+    <wordpress_category_index>
+        <update handle="wordpress_default"/>
+        <reference name="head">
+            <block type="core/template" name="wordpress.blog.feed.category" as="blog_category_feed" before="-" template="wordpress/feed/category/link.phtml" />
+        </reference>
+        <reference name="content">
+            <block type="wordpress/category_view" name="wordpress_category" template="wordpress/category/view.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
+                    <block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
+                </block>
+            </block>
+        </reference>
+    </wordpress_category_index>
 
-	<wordpress_search_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/search_result" name="wordpress_search_result" template="wordpress/search/result.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml"/>
-			</block>
-		</reference>
-	</wordpress_search_index>	
+    <wordpress_search_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/search_result" name="wordpress_search_result" template="wordpress/search/result.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml"/>
+            </block>
+        </reference>
+    </wordpress_search_index>	
 	
-	<wordpress_tag_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/tag_view" name="wordpress_tag" template="wordpress/tag/view.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
-					<block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
-				</block>
-			</block>
-		</reference>
-	</wordpress_tag_index>
+    <wordpress_tag_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/tag_view" name="wordpress_tag" template="wordpress/tag/view.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
+                    <block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
+                </block>
+            </block>
+        </reference>
+    </wordpress_tag_index>
 	
-	<wordpress_archive_view_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/archive_view" name="wordpress_archive" template="wordpress/archive/view.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
-					<block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
-				</block>
-			</block>
-		</reference>
-	</wordpress_archive_view_index>
+    <wordpress_archive_view_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/archive_view" name="wordpress_archive" template="wordpress/archive/view.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
+                    <block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
+                </block>
+            </block>
+        </reference>
+    </wordpress_archive_view_index>
 	
-	<wordpress_tag_list>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/tag_list" name="wordpress_tag" template="wordpress/tag/list.phtml"/>
-		</reference>
-	</wordpress_tag_list>
+    <wordpress_tag_list>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/tag_list" name="wordpress_tag" template="wordpress/tag/list.phtml"/>
+        </reference>
+    </wordpress_tag_list>
 	
-	<wordpress_author_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/author_view" name="wordpress_author" template="wordpress/author/view.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
-					<block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
-				</block>
-			</block>
-		</reference>
-	</wordpress_author_index>
+    <wordpress_author_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/author_view" name="wordpress_author" template="wordpress/author/view.phtml">
+                <block type="wordpress/post_list" name="wordpress_post_list" template="wordpress/post/list.phtml">
+                    <block type="wordpress/post_list_pager" name="wordpress_post_list_pager"/>
+                </block>
+            </block>
+        </reference>
+    </wordpress_author_index>
 	
-	<wordpress_post_view_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/post_view" name="wordpress_post_view" template="wordpress/post/view.phtml">
-				<block type="wordpress/post_view_comments" name="wordpress_post_comments" template="wordpress/post/view/comments.phtml">
-					<block type="wordpress/post_view_comment_pager" name="wordpress_post_comment_pager"/>
-					<block type="wordpress/post_view_comment_form" name="wordpress_post_comment_form" template="wordpress/post/view/comment/form.phtml" />
-				</block>
-			</block>
-		</reference>
-		<reference name="left">
-			<block type="wordpress/post_associated_products" name="wordpress_associated_products" template="wordpress/post/associated/product/list.phtml" before="-">
-				<action method="setTitle" translate="title" module="wordpress"><title>Related Products</title></action>
-			</block>
-		</reference>
-	</wordpress_post_view_index>
+    <wordpress_post_view_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/post_view" name="wordpress_post_view" template="wordpress/post/view.phtml">
+                <block type="wordpress/post_view_comments" name="wordpress_post_comments" template="wordpress/post/view/comments.phtml">
+                    <block type="wordpress/post_view_comment_pager" name="wordpress_post_comment_pager"/>
+                    <block type="wordpress/post_view_comment_form" name="wordpress_post_comment_form" template="wordpress/post/view/comment/form.phtml" />
+                </block>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="wordpress/post_associated_products" name="wordpress_associated_products" template="wordpress/post/associated/product/list.phtml" before="-">
+                <action method="setTitle" translate="title" module="wordpress">
+                    <title>Related Products</title>
+                </action>
+            </block>
+        </reference>
+    </wordpress_post_view_index>
 	
-	<wordpress_page_view_index>
-		<update handle="wordpress_default"/>
-		<reference name="content">
-			<block type="wordpress/page_view" name="wordpress_page_view" template="wordpress/page/view.phtml" />
-		</reference>
-	</wordpress_page_view_index>
+    <wordpress_page_view_index>
+        <update handle="wordpress_default"/>
+        <reference name="content">
+            <block type="wordpress/page_view" name="wordpress_page_view" template="wordpress/page/view.phtml" />
+        </reference>
+    </wordpress_page_view_index>
 
-	<catalog_product_view>
-		<reference name="product.info.additional">
-			<block type="wordpress/post_list_associated" name="wordpress_posts_associated" template="wordpress/post/associated.phtml">
-				<action method="setTitle" translate="title" module="wordpress"><title>Related Blog Posts</title></action>
-			</block>
-		</reference>
-	</catalog_product_view>
+    <catalog_product_view>
+        <reference name="product.info.additional">
+            <block type="wordpress/post_list_associated" name="wordpress_posts_associated" template="wordpress/post/associated.phtml">
+                <action method="setTitle" translate="title" module="wordpress">
+                    <title>Related Blog Posts</title>
+                </action>
+            </block>
+        </reference>
+    </catalog_product_view>
 	
 </layout>

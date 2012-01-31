@@ -1,0 +1,587 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sidebarTabs version 1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-01 14:02-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: A.Partovi <a_partovi7@yahoo.com>\n"
+"Language-Team: Newton Horta <nghorta@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: C:\\Arquivos de programas\\EasyPHP 2.0b1\\www\\wordpress\\wp-content\\plugins\\sidebartabs\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: sidebarTabs.php:284
+msgid "Put widgets into tabbed (scrollable) interface in sidebar"
+msgstr "قابلیت فعالسازی ابزارک ها در نوارکناری به صورت زبانه(Tab)"
+
+#: sidebarTabs.php:285
+msgid "sidebarTabs"
+msgstr "زبانه ها"
+
+#: sidebarTabs.php:312
+msgid "Instance 1"
+msgstr "نمونه 1"
+
+#: sidebarTabs.php:322
+msgid "Title:"
+msgstr "عنوان:"
+
+#: sidebarTabs.php:325
+msgid "Exclude Title:"
+msgstr "در نظر نگرفتن عنوان:"
+
+#: sidebarTabs.php:328
+msgid "Orders sidebarTabs:"
+msgstr "ترتیب زبانه ها: "
+
+#: sidebarTabs.php:329
+msgid "Seperate mutiple sidebarTabs orders with commas. Leave blank for all."
+msgstr "در صورت نیاز با استفاده از کاما ترتیب قرارگیری زبانه ها را مشخص کنید."
+
+#: sidebarTabs.php:331
+msgid "Layout of Instance:"
+msgstr "آرایش قرارگیری: "
+
+#: sidebarTabs.php:333
+msgid "Horizontal"
+msgstr "افقی"
+
+#: sidebarTabs.php:334
+msgid "Vertical"
+msgstr "عمودی"
+
+#: sidebarTabs.php:339
+msgid "Layout of Horizontal Tabs:"
+msgstr "آرایش زبانه های افقی: "
+
+#: sidebarTabs.php:341
+#: sidebarTabs_admin.php:337
+#: sidebarTabs_admin.php:488
+msgid "Fixed without icons"
+msgstr "ثابت، بدون آیکون"
+
+#: sidebarTabs.php:342
+#: sidebarTabs_admin.php:338
+#: sidebarTabs_admin.php:489
+msgid "Fixed with icons"
+msgstr "ثابت، با آیکون"
+
+#: sidebarTabs.php:343
+#: sidebarTabs_admin.php:339
+#: sidebarTabs_admin.php:490
+msgid "Scrollable without icons"
+msgstr "متحرک، بدون آیکون"
+
+#: sidebarTabs.php:344
+#: sidebarTabs_admin.php:340
+#: sidebarTabs_admin.php:491
+msgid "Scrollable with icons"
+msgstr "متحرک، با آیکون"
+
+#: sidebarTabs.php:349
+msgid "Effect (Only vertical instances):"
+msgstr "افکت (تنها برای زبانه عمودی): "
+
+#: sidebarTabs.php:351
+msgid "default"
+msgstr "پیش فرض"
+
+#: sidebarTabs.php:352
+msgid "fade"
+msgstr "محو شدن"
+
+#: sidebarTabs.php:353
+msgid "slide"
+msgstr "اسلاید"
+
+#: sidebarTabs.php:358
+msgid "Display in Sidebar:"
+msgstr "نمایش در نوارکناری پوسته: "
+
+#: sidebarTabs.php:360
+#: sidebarTabs_admin.php:354
+#: sidebarTabs_admin.php:373
+#: sidebarTabs_fixed.php:244
+#: sidebarTabs_scrollable.php:100
+msgid "Yes"
+msgstr "بله"
+
+#: sidebarTabs.php:361
+#: sidebarTabs_admin.php:205
+#: sidebarTabs_admin.php:353
+#: sidebarTabs_admin.php:372
+#: sidebarTabs_fixed.php:243
+#: sidebarTabs_scrollable.php:99
+msgid "No"
+msgstr "خیر"
+
+#: sidebarTabs_admin.php:11
+msgid "Save successful."
+msgstr "با موفقیت ذخیره شد."
+
+#: sidebarTabs_admin.php:12
+msgid "Error!"
+msgstr "خطا!"
+
+#: sidebarTabs_admin.php:13
+msgid "sidebarTab successfully deleted."
+msgstr "زبانه با موفقیت حذف شد."
+
+#: sidebarTabs_admin.php:14
+msgid "sidebarTab successfully updated."
+msgstr "زبانه با موفقیت به روز شد."
+
+#: sidebarTabs_admin.php:15
+msgid "sidebarTabs Options successfully Updated!"
+msgstr "تنظیمات زبانه ها با موفقیت به روز شد!"
+
+#: sidebarTabs_admin.php:16
+msgid "args successfully Updated!"
+msgstr "متغیرها با موفقیت به روز شد!"
+
+#: sidebarTabs_admin.php:40
+#: sidebarTabs_admin.php:506
+msgid "Default args"
+msgstr "متغیرهای پیش فرض"
+
+#: sidebarTabs_admin.php:43
+#: sidebarTabs_admin.php:133
+#: sidebarTabs_admin.php:323
+#: sidebarTabs_admin.php:390
+msgid "Back to Manage sidebarTabs"
+msgstr "بازگشت به صفحه مدیریت زبانه ها"
+
+#: sidebarTabs_admin.php:52
+#: sidebarTabs_admin.php:179
+msgid "Before Widget"
+msgstr "پیش از ابزارک"
+
+#: sidebarTabs_admin.php:58
+#: sidebarTabs_admin.php:185
+msgid "After Widget"
+msgstr "پس از ابزارک"
+
+#: sidebarTabs_admin.php:64
+#: sidebarTabs_admin.php:191
+msgid "Before Title"
+msgstr "پیش از عنوان"
+
+#: sidebarTabs_admin.php:70
+#: sidebarTabs_admin.php:197
+msgid "After Title"
+msgstr "پس از عنوان"
+
+#: sidebarTabs_admin.php:78
+#: sidebarTabs_admin.php:222
+msgid "Update"
+msgstr "به روز رسانی"
+
+#: sidebarTabs_admin.php:113
+#: sidebarTabs_admin.php:122
+msgid "SidebarTab"
+msgstr "زبانه"
+
+#: sidebarTabs_admin.php:114
+#: sidebarTabs_admin.php:548
+msgid "Edit"
+msgstr "ویرایش"
+
+#: sidebarTabs_admin.php:123
+msgid "New"
+msgstr "جدید"
+
+#: sidebarTabs_admin.php:142
+msgid "Tab Number"
+msgstr "شماره زبانه"
+
+#: sidebarTabs_admin.php:143
+msgid "The order in which the sidebartab will appear in your tab bar"
+msgstr "با تعیین شماره برای ابزارک مورد نظر ترتیب قرارگیری آن را در زبانه ها مشخص کنید"
+
+#: sidebarTabs_admin.php:146
+msgid "Widget:"
+msgstr "ابزارک:"
+
+#: sidebarTabs_admin.php:167
+msgid "Tab name"
+msgstr "نام زبانه"
+
+#: sidebarTabs_admin.php:173
+msgid "Unregister Widget"
+msgstr "ابزارک ثبت نشده"
+
+#: sidebarTabs_admin.php:203
+#: sidebarTabs_admin.php:520
+msgid "Icon"
+msgstr "آیکون"
+
+#: sidebarTabs_admin.php:220
+msgid "Save"
+msgstr "ذخیره"
+
+#: sidebarTabs_admin.php:320
+msgid "Options"
+msgstr "تنظیمات"
+
+#: sidebarTabs_admin.php:329
+msgid "Attention: D'ont forget to Save the changes after you are done. Always save after upgrade of plugin version."
+msgstr "توجه: پس از انجام تغییرات حتما بر روی دکمه به روز رسانی تنظیمات در پایین صفحه کلیک کنید تا تنظیمات جدید ذخیره شود!"
+
+#: sidebarTabs_admin.php:331
+msgid "Layout of Tabs (Only for configuration and compatibility with previous versions. Select layout in each instance of the plugin.)"
+msgstr "تنظیم آرایش زبانه ها برای هر نمونه (تنها برای زبانه های افقی)"
+
+#: sidebarTabs_admin.php:335
+msgid "Select"
+msgstr "انتخاب"
+
+#: sidebarTabs_admin.php:348
+msgid "Check 'Yes' if you uses jQuery UI in the blog (Avoid conflict with the jQuery Tools library since both have the tabs function)."
+msgstr "اگر وبلاگتان از محیط کاربری بر پایه jQuery بهره می برد گزینه بله را انتخاب کنید تا باعث اختلال با افزونه زبانه ها نشود!"
+
+#: sidebarTabs_admin.php:362
+msgid "Default arguments before and after widget of your theme"
+msgstr "متغیرهای پیش فرض برای پیش و پس از ابزارک"
+
+#: sidebarTabs_admin.php:366
+msgid "<strong>Note</strong>: Some themes, without the use of arguments, break the sidebar layout. Others don't work correctly with them. So I decided to create this option and leave the choice up to each one. An excellent explanation this issue is the comment (#69) made by Clifton in page of plugin. If the plugin works correctly without these arguments in your theme select 'No', otherwise select 'Yes'."
+msgstr "<strong>نکته</strong>:  استفاده از متغیرهای پیش فرض در برخی پوسته ها باعث خراب شدن آرایش نوارکناری می شود و در برخی از پوسته ها اگر از آنها استفاده نشود، افزونه زبانه ها به درستی کار نخواهد کرد، بنابراین اگر افزونه زبانه ها با پوسته وبلاگ شما به خوبی کار می کند احتیاجی به استفاده از متغیرهای پیش فرض نیست؛ تنها در صورتی از متغیرهای پیش فرض استفاده کنید که افزونه زبانه ها با پوسته کنونی وبلاگتان مشکل دارد!!   "
+
+#: sidebarTabs_admin.php:370
+msgid "Use?"
+msgstr "استفاده شود؟"
+
+#: sidebarTabs_admin.php:385
+msgid "Loading. Wait..."
+msgstr "در حال بارگذاری، لطفا صبر کنید..."
+
+#: sidebarTabs_admin.php:431
+#, php-format
+msgid "The tab number was set to %s."
+msgstr "شماره زبانه %s تعیین شده است."
+
+#: sidebarTabs_admin.php:442
+msgid "The tab number should be at least 1 and so was changed to 1."
+msgstr "شماره زبانه حداقل باید 1 باشد به این دلیل، شماره به 1 تغییر پیدا کرد."
+
+#: sidebarTabs_admin.php:446
+msgid "The tab number was changed to be only one higher than the previous total number of tabs."
+msgstr "شماره زبانه کنونی باید تنها یک رقم بیشتر از مجموع تعداد زبانه های قبلی باشد، به این دلیل شماره زبانه تغییر کرد. "
+
+#: sidebarTabs_admin.php:498
+msgid "Manage sidebarTabs"
+msgstr "مدیریت زبانه ها"
+
+#: sidebarTabs_admin.php:503
+msgid "Delete"
+msgstr "حذف کردن"
+
+#: sidebarTabs_admin.php:504
+msgid "Create New sidebarTab"
+msgstr "ساخت زبانه جدید"
+
+#: sidebarTabs_admin.php:505
+msgid "sidebarTabs Options"
+msgstr "تنظیمات"
+
+#: sidebarTabs_admin.php:507
+msgid "Reset ?"
+msgstr "بازگشت به تنظیمات پیش فرض؟"
+
+#: sidebarTabs_admin.php:507
+msgid "Reset"
+msgstr "تنظیمات پیش فرض"
+
+#: sidebarTabs_admin.php:516
+msgid "Order"
+msgstr "ترتیب"
+
+#: sidebarTabs_admin.php:517
+msgid "Widget"
+msgstr "ابزارک"
+
+#: sidebarTabs_admin.php:518
+msgid "Tab Name"
+msgstr "نام زبانه"
+
+#: sidebarTabs_admin.php:519
+msgid "Description"
+msgstr "توضیح"
+
+#: sidebarTabs_admin.php:521
+msgid "Unregister"
+msgstr "ثبت نشده"
+
+#: sidebarTabs_admin.php:522
+msgid "Action"
+msgstr "اجرا"
+
+#: sidebarTabs_admin.php:529
+msgid "yes"
+msgstr "بله"
+
+#: sidebarTabs_admin.php:530
+msgid "no"
+msgstr "خیر"
+
+#: sidebarTabs_admin.php:556
+msgid "Preview (without style) - Layout: "
+msgstr "پیش نمایش آرایش زبانه ها: "
+
+#: sidebarTabs_admin.php:577
+msgid "No instance created. Go to Design > Widget after create the sidebarTabs."
+msgstr "نمونه ای ساخته نشده؛ پس از ساخت زبانه ها به بخش نمایش و سپس ابزارک بروید."
+
+#: sidebarTabs_fixed.php:17
+msgid "Preview"
+msgstr "پیش نمایش"
+
+#: sidebarTabs_fixed.php:20
+#: sidebarTabs_fixed.php:114
+msgid "Active Tab"
+msgstr "زبانه فعال"
+
+#: sidebarTabs_fixed.php:21
+#: sidebarTabs_fixed.php:132
+msgid "Inactive Tab"
+msgstr "زبانه غیر فعال"
+
+#: sidebarTabs_fixed.php:22
+msgid "Mouse Over"
+msgstr "آمدن فلش ماوس بر روی زبانه"
+
+#: sidebarTabs_fixed.php:28
+msgid "Plugin jQuery Corner"
+msgstr "افزونه jQuery مربوط به گوشه"
+
+#: sidebarTabs_fixed.php:32
+msgid "Width Corner"
+msgstr "مقدار گردی گوشه"
+
+#: sidebarTabs_fixed.php:34
+msgid "(recommended value: 5)"
+msgstr "(مقدار پیشنهادی: 5)"
+
+#: sidebarTabs_fixed.php:38
+msgid "Select the corner of tabs"
+msgstr "انتخاب نوع گوشه برای زبانه"
+
+#: sidebarTabs_fixed.php:99
+#: sidebarTabs_scrollable.php:16
+msgid "Colors"
+msgstr "رنگ ها"
+
+#: sidebarTabs_fixed.php:103
+#: sidebarTabs_scrollable.php:20
+msgid "Enter the color in the fields bellow, or use the buttons to pick it."
+msgstr "کد رنگ مورد نظر را در فیلدهای زیر وارد کنید و یا با کمک از دکمه کنار هر فیلد، رنگ مورد نظر را انتخاب کنید."
+
+#: sidebarTabs_fixed.php:107
+msgid "Line Color"
+msgstr "رنگ خط"
+
+#: sidebarTabs_fixed.php:116
+#: sidebarTabs_fixed.php:125
+#: sidebarTabs_fixed.php:134
+msgid "Text color:"
+msgstr "رنگ متن:"
+
+#: sidebarTabs_fixed.php:118
+#: sidebarTabs_fixed.php:127
+#: sidebarTabs_fixed.php:136
+msgid "Background color:"
+msgstr "رنگ پس زمینه:"
+
+#: sidebarTabs_fixed.php:123
+msgid "Mouse Over Tab"
+msgstr "آمدن فلش ماوس بر روی زبانه"
+
+#: sidebarTabs_fixed.php:142
+#: sidebarTabs_scrollable.php:31
+msgid "Background color of the panes"
+msgstr "رنگ پس زمینه پنجره ها"
+
+#: sidebarTabs_fixed.php:149
+#: sidebarTabs_scrollable.php:38
+msgid "Link color in the panes"
+msgstr "رنگ لینک در پنجره ها"
+
+#: sidebarTabs_fixed.php:152
+#: sidebarTabs_fixed.php:159
+#: sidebarTabs_fixed.php:166
+#: sidebarTabs_scrollable.php:41
+#: sidebarTabs_scrollable.php:48
+#: sidebarTabs_scrollable.php:55
+msgid "blank assumes the theme color"
+msgstr "خالی گذاشتن این بخش به معنی استفاده از رنگ پوسته است"
+
+#: sidebarTabs_fixed.php:156
+#: sidebarTabs_scrollable.php:45
+msgid "Hover link color in the panes"
+msgstr "رنگ لینک با آمدن فلش ماوس روی آن"
+
+#: sidebarTabs_fixed.php:163
+#: sidebarTabs_scrollable.php:52
+msgid "Text color in the panes"
+msgstr "رنگ متن در پنجره ها"
+
+#: sidebarTabs_fixed.php:170
+msgid "Background of vertical tabs "
+msgstr "پس زمینه زبانه های عمودی"
+
+#: sidebarTabs_fixed.php:173
+msgid "standard"
+msgstr "استاندارد"
+
+#: sidebarTabs_fixed.php:176
+#: sidebarTabs_fixed.php:187
+msgid "gradient"
+msgstr "gradient"
+
+#: sidebarTabs_fixed.php:179
+#: sidebarTabs_fixed.php:190
+#: sidebarTabs_fixed.php:205
+msgid "normal"
+msgstr "معمولی"
+
+#: sidebarTabs_fixed.php:184
+msgid "Background of horizontal tabs "
+msgstr "پس زمینه زبانه های افقی"
+
+#: sidebarTabs_fixed.php:198
+msgid "Dimensions / Font of Tabs / CSS Margin Instance / Others"
+msgstr "اندازه ها / فونت زبانه / تنظیمات CSS Margin / سایر تنظیمات"
+
+#: sidebarTabs_fixed.php:202
+msgid "Font Weight of Tabs"
+msgstr "حالت نمایش فونت زبانه ها"
+
+#: sidebarTabs_fixed.php:204
+msgid "bold"
+msgstr "درشت"
+
+#: sidebarTabs_fixed.php:209
+msgid "Font Size of Tabs"
+msgstr "اندازه فونت زبانه ها"
+
+#: sidebarTabs_fixed.php:215
+msgid "Font Family of Tabs"
+msgstr "نوع فونت زبانه ها"
+
+#: sidebarTabs_fixed.php:217
+msgid "Example: verdana, arial, sans-serif. Blank assumes the theme."
+msgstr "برای مثال: verdana, arial, sans-serif. با خالی گذاشتن این بخش از فونت پوسته استفاده می شود."
+
+#: sidebarTabs_fixed.php:221
+msgid "Height Tabs"
+msgstr "ارتفاع زبانه ها"
+
+#: sidebarTabs_fixed.php:223
+msgid "(recommended value: 26)"
+msgstr "(مقدار پیشنهادی: 26)"
+
+#: sidebarTabs_fixed.php:227
+#: sidebarTabs_scrollable.php:83
+msgid "Width sidebar of your theme"
+msgstr "عرض پنجره زبانه ها در نوارکناری پوسته"
+
+#: sidebarTabs_fixed.php:230
+#: sidebarTabs_scrollable.php:86
+msgid "(fixed sidebar)"
+msgstr "(ثابت)"
+
+#: sidebarTabs_fixed.php:231
+#: sidebarTabs_scrollable.php:87
+msgid "(fluid sidebar)"
+msgstr "(متغیر)"
+
+#: sidebarTabs_fixed.php:235
+#: sidebarTabs_scrollable.php:91
+msgid "CSS Margin Instance"
+msgstr "تنظیمات CSS Margin"
+
+#: sidebarTabs_fixed.php:237
+#: sidebarTabs_scrollable.php:93
+msgid "blank assumes the default margin of plugin"
+msgstr "خالی گذاشتن این بخش به معنی استفاده از margin پیش فرض افزونه است"
+
+#: sidebarTabs_fixed.php:241
+#: sidebarTabs_scrollable.php:97
+msgid "Align horizontal tabs on the left?"
+msgstr "تراز کردن زبانه های افقی در سمت چپ؟"
+
+#: sidebarTabs_fixed.php:248
+#: sidebarTabs_scrollable.php:104
+msgid "Remember last opened tab"
+msgstr "آخرین زبانه فعال را به یاد بسپار (گزینه انقضای کوکی در پایین را تنظیم کنید)"
+
+#: sidebarTabs_fixed.php:254
+#: sidebarTabs_scrollable.php:110
+msgid "Cookies expires"
+msgstr "زمان انقضای کوکی ها"
+
+#: sidebarTabs_fixed.php:256
+#: sidebarTabs_scrollable.php:112
+msgid "Time in days. Examples: 20 = 20 days = 480 hours, 0.5 = 0.5 days = 12 hours"
+msgstr "بر مبنای تعداد روز، برای مثال: 20 = 20 روز و یا 0.5 = نصف روز "
+
+#: sidebarTabs_fixed.php:266
+#: sidebarTabs_scrollable.php:133
+msgid "Update Settings"
+msgstr "به روز رسانی تنظیمات"
+
+#: sidebarTabs_scrollable.php:24
+msgid "Line color of the panes"
+msgstr "رنگ خط پنجره ها"
+
+#: sidebarTabs_scrollable.php:62
+msgid "Dimensions / CSS Margin Instance / Others"
+msgstr "اندازه ها / تنظیمات CSS Margin / سایر تنظیمات"
+
+#: sidebarTabs_scrollable.php:67
+msgid "<strong>Note:</strong> Set the height (32) and width (39) if you want to use the icons provided with the plugin"
+msgstr "<strong>نکته:</strong> اگر می خواهید از آیکون استفاده کنید، ارتفاع را (32) و عرض را (39) تعیین کنید!"
+
+#: sidebarTabs_scrollable.php:71
+msgid "Height Icons"
+msgstr "ارتفاع آیکون"
+
+#: sidebarTabs_scrollable.php:77
+msgid "Width Icons"
+msgstr "عرض آیکون"
+
+#~ msgid "Layout of Tabs"
+#~ msgstr "Layout das Abas"
+#~ msgid "Callback"
+#~ msgstr "Callback"
+#~ msgid "colors of tabs"
+#~ msgstr "cor das abas"
+#~ msgid "Dimensions"
+#~ msgstr "Dimensões"
+#~ msgid "Layout:"
+#~ msgstr "Layout:"
+#~ msgid "(Check 'Yes' if is not used in the blog)"
+#~ msgstr "(Selecione \"Sim\" se não é usada no blog)"
+#~ msgid "Loads"
+#~ msgstr "Carrega"
+#~ msgid "Layout"
+#~ msgstr "Layout"
+#~ msgid "Order Select:"
+#~ msgstr "Ordens Id:"
+
+#, fuzzy
+#~ msgid "sidebarTabs Demo"
+#~ msgstr "Opções sidebarTabs"
+#~ msgid "Settings"
+#~ msgstr "Configurações"
+#~ msgid "Height Tabs or Height Icons"
+#~ msgstr "Altura das Abas ou dos Ícones"
+#~ msgid "(Leave blank if you do not use icons in the tabs)"
+#~ msgstr "(Deixe em branco se você não usa ícones nas abas)"
+
