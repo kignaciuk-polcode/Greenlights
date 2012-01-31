@@ -7,13 +7,24 @@ $allCategories = Mage::getModel('catalog/category')->getCollection()
     ->addAttributeToSelect('parent_id')
     ->addAttributeToSelect('url_key');
 
+
+$i = 0;
 foreach($allCategories as $tmpCat) {
     $parentId = $tmpCat->getParentId();
     if ($parentId == 0) {
         continue;
     }
     if ($allCategories->getItemById($parentId)->getUrlKey() === $categoryUrlKey) {
-        echo $tmpCat->getName()."<br>";
+        $name = $tmpCat->getName();
+        $url = $tmpCat->getUrl();
+        $i++;
+        if ($i % 4 == 1) {
+            echo '<ul class="category-list-row">';
+        }
+        echo "<li><a href=\"$url\">$name</a></li>";
+        if ($i % 4 == 0) {
+            echo '</ul>';
+        }
     }
 }
 
