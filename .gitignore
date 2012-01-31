@@ -15,6 +15,7 @@ var/export/*
 var/import/*
 var/backups/*
 media/catalog/*
+media/custom/upload/*
 media/tmp/*
 scripts/db.php
 /downloader/.cache/

@@ -1,0 +1,66 @@
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable {
+    
+}
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
+    
+}
+
+#added-to-cart-container {
+    padding: 0px;
+}
+#added-to-cart-price {
+    color: #118822;
+    font-weight: bold;
+}
+.added-to-cart img {
+    float: left;
+    margin: 0px 15px;
+}
+.added-to-cart.header {
+    background: #fff url("../images/bkg_data_table_td.png") repeat-x 0 0;
+    background-position: bottom;
+    text-align: left;
+    width: 100%;
+    padding: 20px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.added-to-cart.header h1 {
+    color: #000;
+}
+.item-to-consider-header h2 {
+    text-align: left;
+    margin: 10px 5px;
+    border-bottom: 1px #ccc solid;
+}
+.added-to-cart.item-to-consider {
+    background: #fff url("../images/bkg_data_table_td.png") repeat-x 0 0;
+    background-position: bottom;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #c2c2c2;
+}
+.added-to-cart.item-to-consider img {
+    float: left;
+    margin: 0px 15px 0px 0px;
+}
+.added-to-cart.item-to-consider p {
+    padding: 0px;
+    margin: 0px;
+}
+.added-to-cart.item-to-consider td.image {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+.added-to-cart.item-to-consider td a {
+    font-weight: bold;
+    font-size: 14px;
+}
+.added-to-cart.item-to-consider td .price {
+    font-weight: bold;
+}
+.added-to-cart.item-to-consider a.more-info {
+    color: #187FFB;
+    font-weight: normal;
+}

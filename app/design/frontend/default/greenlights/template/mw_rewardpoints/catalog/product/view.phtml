@@ -123,12 +123,86 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
             var productAddToCartForm = new VarienForm('product_addtocart_form');
             productAddToCartForm.submit = function(){
                 if (this.validator.validate()) {
-                    this.form.submit();
+                    $('product_addtocart_form').request({
+                        onSuccess: function(t) {
+                            var dialog = jQuery("#added-to-cart-container");
+                            var price = jQuery(".price-box").find('.price').text();
+                            var quantity = jQuery("input#qty").attr('value');
+                            dialog.find('span#added-to-cart-price').text(price);
+                            dialog.find('span#added-to-cart-quantity').text(quantity);
+                            dialog.dialog('open');
+                        }
+                    });
                 }
             }.bind(productAddToCartForm);
             //]]>
         </script>
     </div>
+
+<div id="added-to-cart-container" title="<?php echo __("Added to cart") ?>">
+    <div class="added-to-cart header">
+        <?php
+            $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize(150, 150).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+            echo $_helper->productAttribute($_product, $_img, 'image');
+        ?>
+        <div class="product-name">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        </div>
+        <p>Quantity: <span id="added-to-cart-quantity">0</span></p>
+        <p><span style="font-weight: bold;">Price:</span> <span id="added-to-cart-price">0</span></p>
+        <button class="button btn-cart validation-passed" onclick="window.location.reload()">
+            <span><span>
+                <?php echo __('CONTINUE SHOPPING') ?>
+            </span></span>
+        </button>
+        <button class="button btn-cart validation-passed" onclick="window.location='<?php echo Mage::getUrl('checkout/onepage/') ?>'">
+            <span><span>
+                <?php echo __('CHECKOUT') ?>
+            </span></span>
+        </button>
+    </div>
+        <?php $related = $_product->getRelatedProducts() ?>
+        <?php if (count($related)) { ?>
+            <span class="item-to-consider-header"><h2><?php echo __('ITEMS TO CONSIDER') ?></h2></span>
+            <?php foreach($_product->getRelatedProducts() as $rel) { ?>
+            <?php $rel->load() ?>
+            <div class="added-to-cart item-to-consider">
+                <table>
+                    <tr>
+                        <td class="image">
+                            <?php
+                            $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($rel, 'image')->keepFrame(false)->resize(100, 100).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+                            echo $_helper->productAttribute($rel, $_img, 'image');
+                            ?>
+                        </td>
+                        <td>
+                            <p><a href="#">
+                                <?php echo $_helper->productAttribute($rel, $rel->getName(), 'name') ?>
+                            </a></p>
+                            <p><?php echo __('Price: ') ?><span class="price"><?php echo $rel->getPrice() ?></span></p>
+                            <span>
+                                <?php echo $rel->getShortDescription() ?>
+                            </span>
+                            <p><a class="more-info" href=""><?php echo __('More Information') ?></a></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <?php } ?>
+        <?php } ?>
+            
+        
+        
+    </div>
+</div>
+<script type="text/javascript">
+jQuery("#added-to-cart-container").dialog({
+    modal: true,
+    autoOpen: false,
+    width: 500,
+    height: 500
+});
+</script>
 
     <div class="product-collateral">
 

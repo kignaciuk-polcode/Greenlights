@@ -15,7 +15,7 @@
         <reference name="head">
             <action method="addJs">
                 <script>prototype/default-values.js</script>
-            </action>            
+            </action>
             <action method="addCss">
                 <stylesheet>css/local.css</stylesheet>
             </action>
@@ -28,7 +28,7 @@
         </reference>
     </default>
     <catalog_product_view>
-        <reference name="product.info">     
+        <reference name="product.info">
             <action method="unsetCallChild">
                 <child>container2</child>
                 <call>ifEquals</call>
@@ -37,9 +37,30 @@
                 <key>options_container</key>
             </action>
             <block type="fileuploader/fileuploader" name="product.attachments" template="fileuploader/attachments.phtml"/> 
-                
+            
             <block type="checkout/cart_crosssell" name="product.crosssell" as="product-crosssell" template="checkout/cart/crosssell.phtml"/>
-                
+        </reference>
+        
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/product_view.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>polcode/picture_magnifier.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-1.7.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-ui-1.8.17.custom.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/no-conflict.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>jquery/css/start/jquery-ui-1.8.17.custom.css</name>
+            </action>
         </reference>
     </catalog_product_view>
     
@@ -55,6 +76,11 @@
         <reference name="root">
             <action method="setTemplate">
                 <template>page/3columns.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/search.css</stylesheet>
             </action>
         </reference>
         <reference name="left">
@@ -94,6 +120,12 @@
     </wordpress_search_index>-->
     
     <catalogsearch_result_index translate="label">
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/search.css</stylesheet>
+            </action>
+        </reference>
+        
         <reference name="left">
             <block type="core/template" name="search_menu" before="all" template="search/search_menu.phtml"/>
             <remove name="left.newsletter" />
@@ -158,15 +190,6 @@
         <reference name="product_list_toolbar">
             <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
         </reference>
-    </catalog_category_layered>
-    
-    
-    <catalog_product_view translate="label">
-        <reference name="head">
-            <action method="addJs">
-                <script>polcode/picture_magnifier.js</script>
-            </action>
-        </reference>
-    </catalog_product_view>-->
+    </catalog_category_layered>-->
     
 </layout>
