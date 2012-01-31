@@ -28,3 +28,39 @@ a.big_buttoned_menu {
     width: 175px;
     padding: 8px 0 8px 20px;
 }
+
+
+.post-list {
+    border: 1px solid #c9c9c9;
+    width: 530px;
+    padding: 15px;
+}
+.post-list a {
+    color: #2e9d8c
+}
+.post-list .pager {
+    padding: 0px;
+}
+.post-list ul li {
+    padding-top: 25px;
+    background: #fff url("../images/bkg_data_table_th.png") repeat-x bottom;
+    border-bottom: 1px solid #dbdbdb;
+}
+.post-list ul li h2 {
+    padding-left: 10px;
+    margin: 0px;
+}
+.post-list ul li h2 a {
+    color: #3e7c93;
+}
+.post-list ul li p {
+    padding-left: 10px;
+}
+.post-list ul li p.on {
+    text-align: right;
+    color: #6f6f6f;
+}
+.post-list ul li p.details {
+    text-align: left;
+    color: #6f6f6f;
+}
