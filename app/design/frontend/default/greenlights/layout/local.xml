@@ -72,7 +72,7 @@
         </reference>
     </wordpress_default>
     
-<!--    <wordpress_search_index>
+    <wordpress_search_index>
         <reference name="root">
             <action method="setTemplate">
                 <template>page/3columns.phtml</template>
@@ -83,6 +83,9 @@
                 <stylesheet>css/search.css</stylesheet>
             </action>
         </reference>
+        <refenrence name="wordpress_post_list">
+            <action method="setTemplate">wordpress/search/list.phtml</action>
+        </refenrence>
         <reference name="left">
             <block type="core/template" name="search_menu" before="all" template="search/search_menu.phtml"/>
             <remove name="wordpress_sidebar_left" />
@@ -117,7 +120,7 @@
             <remove name="social" />
             <remove name="sale.reorder.sidebar" />
         </reference>
-    </wordpress_search_index>-->
+    </wordpress_search_index>
     
     <catalogsearch_result_index translate="label">
         <reference name="head">
