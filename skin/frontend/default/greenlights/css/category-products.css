@@ -1,0 +1,44 @@
+.col3-layout .col-wrapper {
+    width: auto;
+}
+
+.col-right.sidebar {
+    width: 165px;
+}
+
+.col-left.sidebar {
+    width: 185px;
+}
+
+.col3-layout .col-wrapper .col-main {
+    width: 560px;
+    margin-left: 30px;
+}
+
+
+
+
+.products-grid {
+    border: none;
+    background: none;
+}
+.products-grid li.item {
+    padding: 0px;
+    width: 138px;
+    margin: 12px 0px 12px 0px;
+}
+.products-grid .product-image {
+    width: 115px;
+    height: 115px;
+}
+.products-grid .product-name a {
+    color: #000;
+}
+.regular-price .price-label {
+    color: #8a8a8a;
+}
+.regular-price .price {
+    color: #607027;
+}
+
+
