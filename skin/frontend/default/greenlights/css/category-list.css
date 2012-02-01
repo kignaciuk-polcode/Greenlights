@@ -16,3 +16,8 @@ ul.category-list-row li a {
     text-decoration: none;
     color: #000;
 }
+
+.col-main h1 {
+    color: #000;
+    font-weight: bold;
+}
