@@ -18,17 +18,22 @@ class Polcode_Social_Model_Mails extends Mage_Core_Model_Abstract
         
         $email = $offerModel->getCustomerEmail();
         
-        
+        /* @var $translate Mage_Core_Model_Translate */
+        $translate = Mage::getSingleton('core/translate');
+        $translate->setTranslateInline(false);
+
+        /* @var $mailTemplate Mage_Core_Model_Email_Template */
         $mailTemplate = Mage::getModel('core/email_template');
-        
+
         $mailTemplate->setDesignConfig(array(
             'area' => 'frontend',
             'store' => Mage::app()->getStore()->getId()
         ));
         
+               
         $mailTemplate->sendTransactional(
-                $this->getTemplate(),
-                $this->getSender(),
+                Mage::helper('social')->getEmailTemplate(), 
+                Mage::helper('social')->getEmailSender(), 
                 $email,
                 null,
                 $this->getParams()
@@ -37,14 +42,6 @@ class Polcode_Social_Model_Mails extends Mage_Core_Model_Abstract
         $translate->setTranslateInline(true);
     }
     
-    private function getTemplate() {
-        return Mage::getStoreConfig(self::XML_PATH_EMAIL_TEMPLATE, null);
-    }
-    
-    private function getSender() {
-        $storeId = Mage::app()->getStore()->getId();
-        return Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY, $storeId);
-    }
     
     private function getParams() {
         // TODO

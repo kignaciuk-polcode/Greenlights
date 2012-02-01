@@ -42,6 +42,11 @@
                 <class>Polcode_Social_Block</class>
             </social>
         </blocks>
+        <helpers>
+            <social>
+                <class>Polcode_Social_Helper</class>
+            </social>
+        </helpers>        
         <models>
             <social>
                 <class>Polcode_Social_Model</class>
@@ -57,12 +62,12 @@
         <template>
             <email>
                 <social_email_template translate="label" module="social">
-                    <label>Social email template</label>
+                    <label>Social Email</label>
                     <file>social_email_template.html</file>
                     <type>html</type>
-                </social_email_template>
+                </social_email_template>            
             </email>
-      </template> 
+        </template>        
     </global>
     <crontab>
         <jobs>
@@ -77,6 +82,15 @@
         </jobs>
     </crontab>
     <frontend>
+        <routers>
+            <offer>
+                <use>standard</use>
+                <args>
+                    <module>Polcode_Social</module>
+                    <frontName>social</frontName>
+                </args>
+            </offer>
+        </routers>        
         <layout>
             <updates>
                 <social>
@@ -85,4 +99,13 @@
             </updates>
         </layout>
     </frontend>
+    <default>
+        <social>
+            <email>
+                <enabled>0</enabled>
+                <template>social_email_template</template>
+                <identity>general</identity>            
+            </email>
+        </social>
+    </default>     
 </config>
