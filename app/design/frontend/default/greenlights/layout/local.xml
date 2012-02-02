@@ -207,29 +207,12 @@
         </reference>
     </catalog_category_default>
     
-<!--    <catalog_category_default translate="label">
+    <customer_account_login translate="label">
         <reference name="head">
-            <action method="addJs">
-                <script>polcode/ajax_pager.js</script>
+            <action method="addCss">
+                <stylesheet>css/login.css</stylesheet>
             </action>
         </reference>
-        
-        <reference name="product_list_toolbar">
-            <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
-        </reference>
-    </catalog_category_default>
-    
-    
-    <catalog_category_layered translate="label">
-        <reference name="head">
-            <action method="addJs">
-                <script>polcode/ajax_pager.js</script>
-            </action>
-        </reference>
-        
-        <reference name="product_list_toolbar">
-            <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
-        </reference>
-    </catalog_category_layered>-->
+    </customer_account_login>
     
 </layout>

@@ -1,0 +1,29 @@
+.account-login .registered-users h2, .account-login .new-users h2 {
+    background: none;
+    color: #000;
+    border-bottom: 1px solid #c9c9c9;
+    font-weight: normal;
+    background: url("../images/bkg_data_table_th.png") repeat-x scroll 0 100% #FFFFFF;
+    padding: 10px 20px 10px;
+}
+
+.form-list label, .form-list label.required em {
+    color: #61746e;
+    font-weight: normal;
+}
+
+.account-login .content {
+    padding: 0px;
+    border-color: #c9c9c9 #c9c9c9 -moz-use-text-color;
+    background: url("../images/bkg_product_tab_content.png") repeat-x scroll 0 100% #FFFFFF;
+}
+
+.account-login .content p, .account-login .content ul {
+    margin: 14px 21px;
+}
+
+.account-login .buttons-set {
+    border-top: 2px solid #c9c9c9;
+    background: #f1f1f1;
+}
+
