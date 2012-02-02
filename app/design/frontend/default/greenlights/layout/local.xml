@@ -243,4 +243,12 @@
         </reference>
     </customer_account_create>
     
+    <checkout_onepage_index translate="label">
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+        </reference>
+    </checkout_onepage_index>
+    
 </layout>

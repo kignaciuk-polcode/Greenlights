@@ -1,0 +1,65 @@
+#checkoutSteps {
+    color: #081b19;
+}
+
+#checkoutSteps a {
+    text-decoration: none;
+}
+
+#checkoutSteps li.active .step-title {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: url("../images/bkg_data_table_th.png") repeat-x scroll 0 100% #FFFFFF;
+}
+
+.opc .active .step-title h2 {
+    font-weight: normal;
+    color: #081b19;
+    padding: 5px 0px 5px;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+.opc .active .step-title .number {
+    margin: 5px 0px 5px;
+}
+
+#opc-login h3 {
+    font-weight: normal;
+    color: #2f6c7e;
+    font-size: 12px;
+    border: none;
+}
+#opc-login h4 {
+    font-weight: bold;
+    color: #2f6c7e;
+    font-size: 12px;
+}
+
+.form-list label {
+    color: #081b19;
+    font-weight: normal;
+}
+
+.buttons-set {
+    background: none;
+}
+
+.opc .step {
+    background: url("../images/bkg_data_table_td.png") repeat-x scroll 0 100% #FFFFFF;
+}
+
+.sp-methods dt, .sp-methods label {
+    color: #061822;
+}
+
+.sp-methods label, .sp-methods .price {
+    font-weight: normal;
+}
+
+
+
+
+
+
+
+
