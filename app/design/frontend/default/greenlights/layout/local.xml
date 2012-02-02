@@ -203,6 +203,8 @@
         <reference name="left">
             <block type="testimonial/testimonial" name="home.testimonial" template="testimonial/testimonials_box.phtml" />
         </reference>
+        <reference name="content">
+        </reference>
     </catalog_category_default>
     
 <!--    <catalog_category_default translate="label">
