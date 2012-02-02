@@ -1,6 +1,6 @@
 <div class="cart">
     <?php $_cartQty = $this->getSummaryCount() ?>
-    <a href="#"></a>
+    <a href="<?php echo $this->getUrl('checkout/cart') ?>"></a>
     <div>
         <span>
             <?php echo $this->__('Shopping Cart') ?>: 
