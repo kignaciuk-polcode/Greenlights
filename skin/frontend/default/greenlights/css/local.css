@@ -36,9 +36,10 @@ a.button {
 
 }
 
+
 input.input-text, textarea {
+    border-color: #d7d7d7;
     padding: 3px;
-    border-color: #c1d4e1;
 }
 
 button.button span {
@@ -100,6 +101,7 @@ button.button span span {
 }
 
 .header .logo {
+    clear: both;
     margin: 0 0 0 55px;
     padding: 14px 0;
 }
@@ -108,11 +110,13 @@ button.button span span {
     padding: 0;
     height: 46px;
     width: auto;
+    overflow: hidden;
 }
 
 .header .form-language {
+    clear: none;
     float: left;
-    padding: 5px 10px 0 0;
+    padding: 11px 10px 0 0;
     text-align: right;
 }
 
@@ -122,7 +126,7 @@ button.button span span {
 }
 
 .header .links {
-    float: left;
+    float: right;
     margin: 10px 36px 0 0;    
 }
 
@@ -165,14 +169,13 @@ button.button span span {
 }
 
 .header .top-menu div.m {
-    overflow: hidden;
+/*    overflow: hidden;*/
     background: url("../images/bkg_top_menu_middle.png") repeat-x top right;
     margin: 0 20px;
 }
 
 .header .top-menu ul.menu {
-    padding: 0 10px;
-    margin: 11px 0 0 0;
+    padding: 11px 10px 0 10px;
     height: 45px;
 }
 
@@ -1718,7 +1721,7 @@ a.big_buttoned_menu.active {
 }
 
 
-#comments .fieldset {
+/*#comments .fieldset {
     position: relative;
     background: #E5E5E5 url("../images/bkg_respond_form.jpg") repeat-x left top;
     border: 1px solid #c7c9ca;
@@ -1763,4 +1766,113 @@ a.big_buttoned_menu.active {
     border-radius: 5px;
     behavior: url(/skin/frontend/default/greenlights/css/PIE.htc);
     position: relative;
+}*/
+
+
+/* Contacts */
+
+.fieldset {
+    background: none;
+    border: 1px solid #c7c9ca;
+    padding: 0;   
 }
+
+.fieldset .legend {
+    float: none;
+    background: #fff url("../images/bkg_contact_legend.png") repeat-x left bottom;
+    border: none;
+    border-bottom: 1px solid #c7c9ca;
+    margin: 0;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.buttons-set {
+    border-top: 1px solid #c7c9ca;
+    clear: both;
+    margin: 0;
+    padding: 8px 20px;
+    text-align: right;
+    background: url("../images/bkg_contact_actions.png") repeat-x 0 0;
+}
+
+div.form-list {
+    padding: 20px;
+    background: #fefefe url("../images/bkg_contact_form.png") repeat-x left bottom;    
+}
+
+p.required {
+    margin: 0;
+}
+
+.form-list label {
+    color: #397c84
+}
+
+#contactForm button.button span, #respond button.button span {
+    background: #2c6e7f;
+}
+
+#contactForm button.button span span,  #respond button.button span span {
+    padding: 4px 10px;
+}
+
+/* Navigation */
+
+.nav-container {
+    background: none;
+    float: left;
+}
+
+#nav {
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 600px;
+    z-index: 999;
+}
+
+
+#nav a {
+    color: #0b1619;
+    float: left;
+    font-weight: normal;
+    padding: 0 8px;
+}
+
+#nav li.level-top {
+    padding-right: 10px; 
+}
+
+
+#nav a.level-top, #nav a.level-top:hover {
+    height: 38px;
+    line-height: 38px;
+    padding-right: 15px;
+    background: url("../images/bkg_top_menu_dropdown.png") no-repeat right center;
+}
+
+#nav a.level-top:hover {
+    
+}
+
+#nav a, #nav a:hover {
+}
+
+#nav ul, #nav div {
+    border: 1px solid #899BA5;
+    left: -10000px;
+    position: absolute;
+    top: 40px;
+    width: 15em;
+}
+
+
+#nav li.active a { color:#0b1619; }
+#nav li.over a,
+#nav a:hover { color:#0b1619; }
+
+/*#nav ul span, #nav ul li.last li span {
+    padding: 0 5px;
+}*/

@@ -11,6 +11,8 @@
         <remove name="right.testimonials"/>
         <remove name="catalog.product.awrelated.community" />
         <remove name="catalog.product.related" />
+
+
 <!-- add the local stylesheet -->
         <reference name="head">
             <action method="addJs">
@@ -26,7 +28,25 @@
         <reference name="header">
             <block type="checkout/cart_sidebar" name="cart_top" as="topCart" template="checkout/cart/top.phtml"/>
         </reference>
+
+
+        <reference name="wishlist_link">
+            <action method="setTemplate">
+                <template></template>
+            </action>         
+        </reference>
+
+        <reference name="top.links">       
+            <action method="removeLinkByUrl">
+                <url helper="wordpress/getTopLinkUrl"/>
+            </action>
+            <remove name="checkout_cart_link"/>
+        </reference>    
+    
     </default>
+    
+   
+       
     <catalog_product_view>
         <reference name="product.info">
             <action method="unsetCallChild">

@@ -7,9 +7,9 @@
 			<action method="addCss"><stylesheet>multipledeals/css/multipledeals.css</stylesheet></action>
             <action method="addJs"><script>multipledeals/swfobject.js</script></action>
         </reference>
-        <reference name="top.links">
+<!--        <reference name="top.links">
             <action method="addLink" ifconfig="multipledeals/configuration/header_links" translate="label title" module="customer"><label>Active Deals</label><url>multipledeals/</url><title>Multiple Deals</title><position>40</position></action>
-        </reference> 
+        </reference> -->
 		<reference name="right">
 		    <action method="insert" ifconfig="multipledeals/sidebar_configuration/right_sidebar"><block>multipledeals_sidedeals</block></action>
 	    </reference>
