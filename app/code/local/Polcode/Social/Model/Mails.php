@@ -30,7 +30,6 @@ class Polcode_Social_Model_Mails extends Mage_Core_Model_Abstract
             'store' => Mage::app()->getStore()->getId()
         ));
         
-               
         $mailTemplate->sendTransactional(
                 Mage::helper('social')->getEmailTemplate(), 
                 Mage::helper('social')->getEmailSender(), 

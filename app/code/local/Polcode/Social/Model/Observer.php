@@ -29,6 +29,7 @@ class Polcode_Social_Model_Observer
     }
     
     public function sendMails($observer) {
+        return;
         $date = new DateTime();
         Mage::log("Cron test - task executed at " . $date->format('Y-m-d H:i:s'));
         
@@ -37,8 +38,11 @@ class Polcode_Social_Model_Observer
         $collection->addFieldToFilter('launch_date', array('to' => $date->format('Y-m-d H:i:s'), 'datetime' => true))->loadData();
         $ready = $collection->getData();
         
+        
+        
         foreach ($ready as $i) {
             $mailOffer = Mage::getModel('social/mails')->load($i['social_mails_id']); // Yeah, i know ... problems with collection filtering
+            
             $mailOffer->send();
             $mailOffer->delete();
         }

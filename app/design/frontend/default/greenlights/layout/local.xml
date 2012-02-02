@@ -189,30 +189,58 @@
         </reference>
     </catalogsearch_result_index>
     
-    
-<!--    <catalog_category_default translate="label">
+    <catalog_category_default>
         <reference name="head">
-            <action method="addJs">
-                <script>polcode/ajax_pager.js</script>
-            </action>
+            <action method="addCss"><stylesheet>css/category-products.css</stylesheet></action>
         </reference>
-        
-        <reference name="product_list_toolbar">
-            <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
+        <reference name="right">
+            <block type="cms/block" name="cms_guaranties_block">
+                <action method="setBlockId">
+                    <block_id>our_guaranties_to_you</block_id>
+                </action>
+            </block>
+            <block type="cms/block" name="cms_shipping_block">
+                <action method="setBlockId">
+                    <block_id>free_shipping</block_id>
+                </action>
+            </block>
+            <block type="cms/block" name="cms_invite_block">
+                <action method="setBlockId">
+                    <block_id>invite_your_friend</block_id>
+                </action>
+            </block>
+            <block type="cms/block" name="cms_buyagift_block">
+                <action method="setBlockId">
+                    <block_id>buy_a_gift</block_id>
+                </action>
+            </block>
+            <remove name="multipledeals_sidedeals" />
+            <remove name="right.reports.product.viewed" />
+            <remove name="right.reports.product.compared" />
+            <remove name="wishlist_sidebar" />
+            <remove name="sale.reorder.sidebar" />
+        </reference>
+        <reference name="left">
+            <block type="testimonial/testimonial" name="home.testimonial" template="testimonial/testimonials_box.phtml" />
+        </reference>
+        <reference name="content">
         </reference>
     </catalog_category_default>
     
-    
-    <catalog_category_layered translate="label">
+    <customer_account_login translate="label">
         <reference name="head">
-            <action method="addJs">
-                <script>polcode/ajax_pager.js</script>
+            <action method="addCss">
+                <stylesheet>css/login.css</stylesheet>
             </action>
         </reference>
-        
-        <reference name="product_list_toolbar">
-            <block type="page/html_pager" name="product_list_toolbar_pager" template="catalog/product/list/pager.phtml"/>
+    </customer_account_login>
+    
+    <customer_account_create translate="label">
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/registration.css</stylesheet>
+            </action>
         </reference>
-    </catalog_category_layered>-->
+    </customer_account_create>
     
 </layout>

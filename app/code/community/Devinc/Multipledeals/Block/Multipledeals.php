@@ -181,7 +181,6 @@ class Devinc_Multipledeals_Block_Multipledeals extends Mage_Core_Block_Template
 						  ddiff = new Date(dthen-dnow);
 						gsecs = Math.floor(ddiff.valueOf()/1000);
 						CountBack(gsecs, "'.$id.'", DisplayFormat);
-						document.getElementById("'.$id.'").style.fontSize = "'.$js_font_size.'";
 					</script>
 					</div>';
 			//$html .=	'<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>';

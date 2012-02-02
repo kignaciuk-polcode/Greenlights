@@ -1,0 +1,28 @@
+.fieldset {
+    padding: 0px;
+    border: 1px solid #C9C9C9;
+    background: url("../images/bkg_product_tab_content.png") repeat-x scroll 0 100% #FFFFFF;
+}
+
+.fieldset .legend {
+    float: none;
+    margin: 0px;
+    background: url("../images/bkg_data_table_th.png") repeat-x scroll 0 100% #FFFFFF;
+    border: 0px;
+    border-bottom: 1px solid #C9C9C9;
+    color: #000000;
+    font-weight: normal;
+    padding: 10px 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.fieldset ul.form-list {
+    margin: 15px 20px 15px;
+}
+
+.form-list label, .form-list label.required em {
+    color: #467E88;
+    font-weight: normal;
+}
+

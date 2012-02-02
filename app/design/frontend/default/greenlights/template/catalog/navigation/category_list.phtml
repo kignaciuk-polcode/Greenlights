@@ -7,8 +7,10 @@ $allCategories = Mage::getModel('catalog/category')->getCollection()
     ->addAttributeToSelect('parent_id')
     ->addAttributeToSelect('url_key');
 
-
 $i = 0;
+
+echo '<h1>' . $this->getData('title') . '</h1>';
+
 foreach($allCategories as $tmpCat) {
     $parentId = $tmpCat->getParentId();
     if ($parentId == 0) {
