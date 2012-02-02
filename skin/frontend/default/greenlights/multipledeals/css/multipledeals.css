@@ -1,0 +1,39 @@
+
+/* Product View */
+.main-countdown {
+    z-index:-1;
+    
+}
+
+/* Sidebar */
+.block-deals .block-content #block-deals .item .product-image { width:60px; margin-right:7px; }
+.block-deals .block-content #block-deals .item .product-details .product-name { line-height:120%; }
+.block-deals .block-content #block-deals .item .product-details .product-name a { font-size:11px; }
+.block-deals .block-content #block-deals .item .product-details .deal-qty b { color:#a71d1d; }
+.block-deals .block-content .actions { font-size:11px; }
+.block-deals .block-content .actions .separator { float:left;padding:0px 5px 0px 5px; }
+.block-deals .block-content .price-box { margin:0px; }
+.block-deals .block-content .price-box .old-price { display:none; }
+.block-deals .block-content .price-box .special-price .price-label { display:none; }
+.block-deals .block-content .price-box .special-price .price { font-size:12px; color:#333333 !important; }
+
+/* Page View */
+.page-countdown { padding:6px 0px 0px 476px; background:url(../images/page_bg.png) no-repeat; width:205px; height:44px; margin-bottom:5px; z-index:-1; }
+
+/* Sidebar Countdown */
+.block-countdown { padding:0px; border:0px; margin-bottom:12px;}
+.block-countdown .block-title { background:url(../images/sidebar_hd.png) no-repeat; width:197px; height:43px; margin:0px; padding:0px; border:0px; }
+.block-countdown .block-title span { visibility:hidden; }
+.block-countdown .block-content { background:url(../images/sidebar_ct.png) repeat-y; width:185px; padding:0px 6px 0px 6px; text-align:center; }
+.block-countdown .block-content a { text-decoration:none; }
+.block-countdown .block-content .product_name { font-weight:bold; font-size:13px; color:#000; }
+.block-countdown .block-content .product_image { float:left; margin-left:7px; margin-right:7px; margin-bottom:7px; }
+.block-countdown .block-content .product_image_big { float:left; margin-left:17px; margin-right:7px; margin-bottom:7px; }
+.block-countdown .block-content .container { text-align:left;padding:4px 0px 4px 0px; }
+.block-countdown .block-content .right-container { text-align:left;padding-top:9px; *padding:0px; }
+.block-countdown .block-content .right-container h3 { color:#FB8C10; font-size:16px; }
+.block-countdown .block-content .right-container h5.old_price { text-decoration:line-through; padding:0px; margin:0px; *padding-top:5px; }
+.block-countdown .block-content .right-container p { color:#a71d1d; font-family:Arial; font-size:13px; }
+.block-countdown .block-content .right-container p b { color:#000000; }
+.block-countdown .block-content .countdown { padding:8px 0px 0px 0px;}
+.block-countdown .block-footer { background:url(../images/sidebar_ft.png) no-repeat; width:197px; height:8px; }
