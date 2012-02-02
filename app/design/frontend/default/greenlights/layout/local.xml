@@ -215,4 +215,12 @@
         </reference>
     </customer_account_login>
     
+    <customer_account_create translate="label">
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/registration.css</stylesheet>
+            </action>
+        </reference>
+    </customer_account_create>
+    
 </layout>
