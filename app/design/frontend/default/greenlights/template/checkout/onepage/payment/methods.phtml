@@ -31,38 +31,99 @@
  * @see Mage_Checkout_Block_Onepage_Payment_Methods
  */
 ?>
-<dl class="sp-methods" id="checkout-payment-method-load">
+<div class="sp-methods" id="checkout-payment-method-load">
 <?php
-    $methods = $this->getMethods();
-    $oneMethod = count($methods) <= 1;
+$methods = $this->getMethods();
+$oneMethod = count($methods) <= 1;
+
+// methods
+$banks = array();
+$others = array();
+$creditCard;
+$storeBalance;
+
+foreach ($methods as $_method) {
+    $_code = $_method->getCode();
+    switch($_code) {
+        case 'ops_ingHomePay' :
+            $banks[] = $_method;
+            break;
+        case 'ops_cbcOnline' :
+            $banks[] = $_method;
+            break;
+        case 'ops_dexiaDirectNet' :
+            $banks[] = $_method;
+            break;
+        case 'ops_kbcOnline' :
+            $banks[] = $_method;
+            break;
+        case 'ops_cc' :
+            $creditCard = $_method;
+            break;
+        case 'storebalance' :
+            $storeBalance = $_method;
+            break;
+        default :
+            $others[] = $_method;
+    }
+}
 ?>
-<?php
-    foreach ($methods as $_method):
-        $_code = $_method->getCode();
-?>
-    <dt>
-    <?php if(!$oneMethod): ?>
-        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
-    <?php else: ?>
-        <span class="no-display"><input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" checked="checked" class="radio" /></span>
-        <?php $oneMethod = $_code; ?>
-    <?php endif; ?>
-        <label for="p_method_<?php echo $_code ?>"><?php echo $this->getMethodTitle($_method) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
-    </dt>
-    <?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
-    <dd>
-        <?php echo $html; ?>
-    </dd>
-    <?php endif; ?>
-<?php endforeach; ?>
-</dl>
-<?php echo $this->getChildChildHtml('additional'); ?>
-<script type="text/javascript">
-//<![CDATA[
-<?php echo $this->getChildChildHtml('scripts'); ?>
-payment.init();
-<?php if (is_string($oneMethod)): ?>
-    payment.switchMethod('<?php echo $oneMethod ?>');
+    <div class="col-left">
+        <div class="home_banking">
+            <h3><?php echo __('HOME BANKING') ?></h3>
+            <ul>
+<?php foreach ($banks as $_method) { $_code = $_method->getCode(); ?>
+                <li>
+                    <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="p_method_<?php echo $_code ?>"><?php echo $this->getMethodTitle($_method) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+<?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
+                    <?php echo $html; ?>
 <?php endif; ?>
-//]]>
-</script>
+                </li>
+<?php } ?>
+            </ul>
+        </div>
+        
+        <div class="other">
+            <h3><?php echo __('OTHER') ?></h3>
+            <ul>
+<?php foreach ($others as $_method) { $_code = $_method->getCode(); ?>
+                <li>
+                    <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="p_method_<?php echo $_code ?>"><?php echo $this->getMethodTitle($_method) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+<?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
+                    <?php echo $html; ?>
+<?php endif; ?>
+                </li>
+<?php } ?>
+            </ul>
+        </div>
+    </div>
+    <div class="col-right">
+        <div class="credit_cards">
+            <h3><?php echo __('CREDIT CARDS') ?></h3>
+                <li>
+                    <input id="p_method_<?php echo $creditCard->getCode() ?>" value="<?php echo $creditCard->getCode() ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($creditCard->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $creditCard->getCode() ?>')"<?php if($this->getSelectedMethodCode()==$creditCard->getCode()): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="p_method_<?php echo $creditCard->getCode() ?>"><?php echo $this->getMethodTitle($creditCard) ?> <?php echo $this->getMethodLabelAfterHtml($creditCard) ?></label>
+<?php if ($html = $this->getPaymentMethodFormHtml($creditCard)): ?>
+                    <?php echo $html; ?>
+<?php endif; ?>
+                </li>
+            </ul>
+        </div>
+
+<?php if (isset($storeBalance)) { ?>
+        <div class="store_balance">
+            <h3><?php echo __('STORE BALANCE') ?></h3>
+                <li>
+                    <input id="p_method_<?php echo $storeBalance->getCode() ?>" value="<?php echo $storeBalance->getCode() ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($storeBalance->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $storeBalance->getCode() ?>')"<?php if($this->getSelectedMethodCode()==$storeBalance->getCode()): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="p_method_<?php echo $storeBalance->getCode() ?>"><?php echo $this->getMethodTitle($storeBalance) ?> <?php echo $this->getMethodLabelAfterHtml($storeBalance) ?></label>
+<?php if ($html = $this->getPaymentMethodFormHtml($storeBalance)): ?>
+                    <?php echo $html; ?>
+<?php endif; ?>
+                </li>
+        </div>
+<?php } ?>
+
+    </div>
+</div>
