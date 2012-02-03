@@ -68,8 +68,9 @@ foreach ($methods as $_method) {
     }
 }
 ?>
-    <div class="col-left">
-        <div class="home_banking">
+
+    <div class="col2-set"> <!-- FIRST ROW -->
+        <div class="col-left">
             <h3><?php echo __('HOME BANKING') ?></h3>
             <ul>
 <?php foreach ($banks as $_method) { $_code = $_method->getCode(); ?>
@@ -83,8 +84,23 @@ foreach ($methods as $_method) {
 <?php } ?>
             </ul>
         </div>
-        
-        <div class="other">
+        <div class="col-right">
+            <h3><?php echo __('CREDIT CARDS') ?></h3>
+                <li>
+                    <input id="p_method_<?php echo $creditCard->getCode() ?>" value="<?php echo $creditCard->getCode() ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($creditCard->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $creditCard->getCode() ?>')"<?php if($this->getSelectedMethodCode()==$creditCard->getCode()): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="p_method_<?php echo $creditCard->getCode() ?>"><?php echo $this->getMethodTitle($creditCard) ?> <?php echo $this->getMethodLabelAfterHtml($creditCard) ?></label>
+<?php if ($html = $this->getPaymentMethodFormHtml($creditCard)): ?>
+                    <?php echo $html; ?>
+<?php endif; ?>
+                </li>
+            </ul>
+        </div>
+    </div> <!-- END: FIRST ROW -->
+    
+    
+    
+    <div class="col2-set"> <!-- SECOND ROW -->
+        <div class="col-left">
             <h3><?php echo __('OTHER') ?></h3>
             <ul>
 <?php foreach ($others as $_method) { $_code = $_method->getCode(); ?>
@@ -98,22 +114,9 @@ foreach ($methods as $_method) {
 <?php } ?>
             </ul>
         </div>
-    </div>
-    <div class="col-right">
-        <div class="credit_cards">
-            <h3><?php echo __('CREDIT CARDS') ?></h3>
-                <li>
-                    <input id="p_method_<?php echo $creditCard->getCode() ?>" value="<?php echo $creditCard->getCode() ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($creditCard->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $creditCard->getCode() ?>')"<?php if($this->getSelectedMethodCode()==$creditCard->getCode()): ?> checked="checked"<?php endif; ?> class="radio" />
-                    <label for="p_method_<?php echo $creditCard->getCode() ?>"><?php echo $this->getMethodTitle($creditCard) ?> <?php echo $this->getMethodLabelAfterHtml($creditCard) ?></label>
-<?php if ($html = $this->getPaymentMethodFormHtml($creditCard)): ?>
-                    <?php echo $html; ?>
-<?php endif; ?>
-                </li>
-            </ul>
-        </div>
 
 <?php if (isset($storeBalance)) { ?>
-        <div class="store_balance">
+        <div class="col-right">
             <h3><?php echo __('STORE BALANCE') ?></h3>
                 <li>
                     <input id="p_method_<?php echo $storeBalance->getCode() ?>" value="<?php echo $storeBalance->getCode() ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($storeBalance->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $storeBalance->getCode() ?>')"<?php if($this->getSelectedMethodCode()==$storeBalance->getCode()): ?> checked="checked"<?php endif; ?> class="radio" />
@@ -124,6 +127,25 @@ foreach ($methods as $_method) {
                 </li>
         </div>
 <?php } ?>
+    </div> <!-- END: SECOND ROW -->
 
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
