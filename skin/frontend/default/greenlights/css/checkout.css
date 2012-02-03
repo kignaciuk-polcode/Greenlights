@@ -1,0 +1,79 @@
+#checkoutSteps {
+    color: #081b19;
+}
+
+#checkoutSteps a {
+    text-decoration: none;
+}
+
+#checkoutSteps #opc-billing .step-title {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#checkoutSteps .step-title {
+    background: url("../images/bkg_data_table_th.png") repeat-x scroll 0 100% #FFFFFF;
+    height: 30px;
+}
+
+.opc .step-title h2 {
+    font-weight: normal;
+    color: #081b19;
+    padding: 8px 0px 8px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.opc .allow .step-title h2 {
+    color: #bbb;
+    text-transform: uppercase;
+}
+
+.opc .allow.active .step-title h2 {
+    color: #081b19;
+}
+
+.opc .active .step-title .number {
+    margin: 8px 0px 8px;
+}
+
+#opc-login h3 {
+    font-weight: normal;
+    color: #2f6c7e;
+    font-size: 12px;
+    border: none;
+}
+#opc-login h4 {
+    font-weight: bold;
+    color: #2f6c7e;
+    font-size: 12px;
+}
+
+.form-list label {
+    color: #081b19;
+    font-weight: normal;
+}
+
+.buttons-set {
+    background: none;
+}
+
+.opc .step {
+    background: url("../images/bkg_data_table_td.png") repeat-x scroll 0 100% #FFFFFF;
+}
+
+.sp-methods dt, .sp-methods label {
+    color: #061822;
+}
+
+.sp-methods label, .sp-methods .price {
+    font-weight: normal;
+}
+
+
+
+
+
+
+
+
