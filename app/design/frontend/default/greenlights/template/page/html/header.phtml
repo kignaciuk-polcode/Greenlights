@@ -1,10 +1,10 @@
-
 <?php $currentUrl = Mage::helper('core/url')->getCurrentUrl(); ?>
+
 <div class="header-container">
     <div class="header">
         <div class="quick-access">
             <?php //echo $this->getChildHtml('topSearch') ?>
-<!--            <p class="welcome-msg"><?php //echo $this->getWelcome()       ?> <?php echo $this->getAdditionalHtml() ?></p>-->
+<!--            <p class="welcome-msg"><?php //echo $this->getWelcome()        ?> <?php echo $this->getAdditionalHtml() ?></p>-->
 
             <?php echo $this->getChildHtml('topLinks') ?>
             <?php echo $this->getChildHtml('store_language') ?>                     
@@ -21,7 +21,7 @@
                 <div class="r">
                     <div class="m">
                         <ul class="menu">
-                            <?php $home = ($this->getIsHomePage()==true) ? 'active' : '' ?>
+                            <?php $home = (Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') ? 'active' : '' ?>
                             <li class="first"><a href="<?php echo $this->getUrl('') ?>" class="<?php echo $home ?>"><span><span><span><?php echo __('PRODUCTS') ?></span></span></span></a></li>
                             <?php $brands = (strstr($currentUrl, $this->getUrl('brands'))) ? 'active' : '' ?>
                             <li><a href="<?php echo $this->getUrl('brands-list') ?>" class="<?php echo $brands ?>"><span><span><span><?php echo __('BRANDS') ?></span></span></span></a></li>
@@ -46,7 +46,7 @@
                         </ul>
                         <div class="sub-menu">                            
                             <?php
-                            if ($this->getIsHomePage()) {
+                            if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms'){
                                 echo $this->getChildHtml('topMenu');
                             }
                             ?>
@@ -56,9 +56,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
