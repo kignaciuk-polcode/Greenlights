@@ -35,6 +35,8 @@ $_helper = $this->helper('catalog/output');
 $_product = $this->getProduct();
 $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
 $_brand_image = Mage::getModel('catalog/category')->setData($_brand->getData())->getImageUrl();
+
+//var_dump($_product);
 ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
@@ -49,66 +51,91 @@ $_brand_image = Mage::getModel('catalog/category')->setData($_brand->getData())-
             </div>
 
             <div class="product-shop">
-                <div class="col-right">
-                    <div class="brand-image">
-                        <?php if($_brand_image):?>
-                        <img src="<?php echo $_brand_image ?>" width="142" />                        
-                        <?php endif;?>
-                    </div>
-
-                    <?php if ($this->canEmailToFriend()): ?>
-            <!--                    <p class="email-friend"><a href="<?php //echo $this->helper('catalog/product')->getEmailToFriendUrl($_product)    ?>"><?php //echo $this->__('Email to a Friend')    ?></a></p>-->
-                    <?php endif; ?>
-
-                    <?php //echo $this->getReviewsSummaryHtml($_product, false, true)  ?>
-                    <?php echo $this->getChildHtml('alert_urls') ?>
-                    <?php echo $this->getChildHtml('product_type_data') ?>
-                    <?php //echo $this->getTierPriceHtml() ?>
-
-                    <?php if (!$this->hasOptions()): ?>
-                        <div class="add-to-box">
-                            <?php if ($_product->isSaleable()): ?>
-                                <?php echo $this->getChildHtml('addtocart') ?>
-                                <?php //if ($this->helper('wishlist')->isAllow() || $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product)):  ?>
-                <!--                                <span class="or"><?php //echo $this->__('OR')   ?></span>-->
-                                <?php //endif; ?>
+                <?php if ($_product->getTypeId() != 'giftcards'): ?>
+                    <div class="col-right">
+                        <div class="brand-image">
+                            <?php if ($_brand_image): ?>
+                                <img src="<?php echo $_brand_image ?>" width="142" />                        
                             <?php endif; ?>
-                            <?php //echo $this->getChildHtml('addto')  ?>
                         </div>
-                    <?php else: ?>
-                        <?php //echo $this->getChildHtml('addto') ?>
-                    <?php endif; ?>
 
-                    <?php if ($_product->getRewardPointProduct()): ?>
-                        <div class="short-description">
-                            <?php echo Mage::helper('rewardpoints')->__("You will earn <b>%s</b> for buying this product", Mage::helper('rewardpoints')->formatPoints($_product->getRewardPointProduct())) ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                <div class="col-left">
-                    <div class="product-name">
-                        <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-                    </div>
-                    <div class="brand-name">
-                        <?php if ($_brand): ?>
-                            <span><?php echo $this->__('By') ?></span> 
-                            <span><?php echo $_brand->getName(); ?></span>
+                        <?php if ($this->canEmailToFriend()): ?>
+                                    <!--                    <p class="email-friend"><a href="<?php //echo $this->helper('catalog/product')->getEmailToFriendUrl($_product)      ?>"><?php //echo $this->__('Email to a Friend')      ?></a></p>-->
+                        <?php endif; ?>
 
+                        <?php //echo $this->getReviewsSummaryHtml($_product, false, true)   ?>
+                        <?php echo $this->getChildHtml('alert_urls') ?>
+                        <?php echo $this->getChildHtml('product_type_data') ?>
+                        <?php //echo $this->getTierPriceHtml() ?>
+
+                        <?php if (!$this->hasOptions()): ?>
+                            <div class="add-to-box">
+                                <?php if ($_product->isSaleable()): ?>
+                                    <?php echo $this->getChildHtml('addtocart') ?>
+                                    <?php //if ($this->helper('wishlist')->isAllow() || $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product)):  ?>
+                                <!--                                <span class="or"><?php //echo $this->__('OR')     ?></span>-->
+                                    <?php //endif;  ?>
+                                <?php endif; ?>
+                                <?php //echo $this->getChildHtml('addto')  ?>
+                            </div>
+                        <?php else: ?>
+                            <?php //echo $this->getChildHtml('addto') ?>
+                        <?php endif; ?>
+
+                        <?php if ($_product->getRewardPointProduct()): ?>
+                            <div class="short-description">
+                                <?php echo Mage::helper('rewardpoints')->__("You will earn <b>%s</b> for buying this product", Mage::helper('rewardpoints')->formatPoints($_product->getRewardPointProduct())) ?>
+                            </div>
                         <?php endif; ?>
                     </div>
-                    <?php if ($_product->getShortDescription()): ?>
-                        <div class="short-description">
-    <!--                            <h2><?php //echo $this->__('Quick Overview')   ?></h2>-->
-                            <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                    <div class="col-left">
+                        <div class="product-name">
+                            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                         </div>
-                    <?php endif; ?>
+                        <div class="brand-name">
+                            <?php if ($_brand): ?>
+                                <span><?php echo $this->__('By') ?></span> 
+                                <span><?php echo $_brand->getName(); ?></span>
 
+                            <?php endif; ?>
+                        </div>
+                        <?php if ($_product->getShortDescription()): ?>
+                            <div class="short-description">
+        <!--                            <h2><?php //echo $this->__('Quick Overview')      ?></h2>-->
+                                <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($_product->isSaleable()): ?>
+
+                            <?php if ($this->helper('wishlist')->isAllow() || $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                                <span class="or"><?php echo $this->__('OR') ?></span>
+                            <?php endif; ?>
+                        <?php endif; ?>                        
+
+                        <?php echo $this->getChildHtml('other'); ?>
+
+                        <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                        <?php endif; ?>
+                    </div>
+                <?php else : ?>
+                    <div class="product-name">
+                        <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    </div>                
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php if (!$this->hasOptions()): ?>
+                        <div class="add-to-box add-to-giftcards-box">
+                            <?php if ($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>                
                     <?php echo $this->getChildHtml('other'); ?>
-
-                    <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                    <?php endif; ?>
-                </div>
+                <?php endif; ?>
+                <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php endif; ?>                
 
             </div>
 
@@ -119,7 +146,7 @@ $_brand_image = Mage::getModel('catalog/category')->setData($_brand->getData())-
             <div class="clearer"></div>
             <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
                 <div class="product-container">
-                    <div class="container-title"><?php echo __('Configuration Options')?></div>
+                    <div class="container-title"><?php echo __('Configuration Options') ?></div>
                     <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
                 </div>
             <?php endif; ?>
@@ -208,7 +235,7 @@ $_brand_image = Mage::getModel('catalog/category')->setData($_brand->getData())-
 
     <div class="product-collateral">
 
-        <?php //echo $this->getChildHtml('description')  ?>
+        <?php //echo $this->getChildHtml('description')   ?>
         <?php //echo $this->getChildHtml('additional')  ?>
         <?php //echo $this->getChildHtml('upsell_products')  ?>
         <?php //echo $this->getChildHtml('product_additional_data') ?>
@@ -218,10 +245,19 @@ $_brand_image = Mage::getModel('catalog/category')->setData($_brand->getData())-
     <div id="tabs">
         <ul>
             <li id="tabHeaderActive"><a href="javascript:void(0)" onClick="toggleTab(1,5,null,false)" class="tab first description"><span><?php echo __("Description") ?></span></a></li>
-            <li id="tabHeader2"><a href="javascript:void(0)" onClick="toggleTab(2,5,null,false)" class="tab technical-details"><span><?php echo __("Technical Details") ?></span></a></li>
+            <?php if ($this->getChildHtml('additional')): ?>
+                <li id="tabHeader2"><a href="javascript:void(0)" onClick="toggleTab(2,5,null,false)" class="tab technical-details"><span><?php echo __("Technical Details") ?></span></a></li>
+            <?php else : ?>
+                <li id="tabHeader2" class="hidden"><a href="javascript:void(0)" onClick="toggleTab(2,5,null,false)" class="tab technical-details"><span><?php echo __("Technical Details") ?></span></a></li>
+            <?php endif ?>
             <li id="tabHeader3"><a href="javascript:void(0)" onclick="toggleTab(3,5,null,false)" class="tab documentation"><span><?php echo __("Documentation") ?></span></a></li>
-            <li id="tabHeader4"><a href="javascript:void(0)" onClick="toggleTab(4,5,null,false)" class="tab accompanying-products"><span><?php echo __("Accompanying Products") ?></span></a></li>
-            <li id="tabHeader5"><a href="javascript:void(0)" onclick="toggleTab(5,5,null,false);" class="tab last video"><span><?php echo __("Video") ?></span></a></li>
+            <?php if ($_product->getAwVideo()): ?>
+                <li id="tabHeader4"><a href="javascript:void(0)" onClick="toggleTab(4,5,null,false)" class="tab accompanying-products"><span><?php echo __("Accompanying Products") ?></span></a></li>
+                <li id="tabHeader5"><a href="javascript:void(0)" onclick="toggleTab(5,5,null,false);" class="tab last video"><span><?php echo __("Video") ?></span></a></li>
+            <?php else: ?>
+                <li id="tabHeader4"><a href="javascript:void(0)" onClick="toggleTab(4,5,null,false)" class="tab accompanying-products last"><span><?php echo __("Accompanying Products") ?></span></a></li>
+                <li id="tabHeader5" class="hidden"><a href="javascript:void(0)" onclick="toggleTab(5,5,null,false);" class="tab last video"><span><?php echo __("Video") ?></span></a></li>            
+            <?php endif ?>
         </ul>
         <div id="tabscontent">
             <div id="tabContent1" class="tabContent" style="display:block;">

@@ -989,6 +989,10 @@ input.qty {
     overflow: hidden;
 }
 
+.add-to-giftcards-box .row-box {
+    float: left;
+}
+
 .add-to-cart label {
     color: #000;
     float: none;
@@ -1224,6 +1228,11 @@ input.qty {
     text-transform:uppercase;
     background: yellow;
 }
+
+#tabs li.hidden {
+    display: none;
+}
+
 #tabs a{
     color: #051128;
     float:left;
