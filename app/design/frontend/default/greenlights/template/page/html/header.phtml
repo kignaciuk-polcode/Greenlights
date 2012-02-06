@@ -22,27 +22,27 @@
                     <div class="m">
                         <ul class="menu">
                             <?php $home = (Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') ? 'active' : '' ?>
-                            <li class="first"><a href="<?php echo $this->getUrl('') ?>" class="<?php echo $home ?>"><span><span><span><?php echo __('PRODUCTS') ?></span></span></span></a></li>
+                            <li class="first"><a href="<?php echo $this->getUrl('') ?>" class="<?php echo $home ?>"><span><span><span><?php echo __('Products') ?></span></span></span></a></li>
                             <?php $brands = (strstr($currentUrl, $this->getUrl('brands'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('brands-list') ?>" class="<?php echo $brands ?>"><span><span><span><?php echo __('BRANDS') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('brands-list') ?>" class="<?php echo $brands ?>"><span><span><span><?php echo __('Brands') ?></span></span></span></a></li>
                             <?php $room = (strstr($currentUrl, $this->getUrl('room-list'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('room-list') ?>" class="<?php echo $room ?>"><span><span><span><?php echo __('ROOM') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('room-list') ?>" class="<?php echo $room ?>"><span><span><span><?php echo __('Room') ?></span></span></span></a></li>
                             <?php $gagets = (strstr($currentUrl, $this->getUrl('gagets'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('gagets') ?>" class="<?php echo $gagets ?>"><span><span><span><?php echo __('GAGETS') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('gagets') ?>" class="<?php echo $gagets ?>"><span><span><span><?php echo __('Gadgets') ?></span></span></span></a></li>
                             <?php $sales = (strstr($currentUrl, $this->getUrl('sales'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('sales') ?>" class="<?php echo $sales ?>"><span><span><span><?php echo __('SALES') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('sales') ?>" class="<?php echo $sales ?>"><span><span><span><?php echo __('Sales') ?></span></span></span></a></li>
                             <?php $guaranties = (strstr($currentUrl, $this->getUrl('guaranties'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('guaranties') ?>" class="<?php echo $guaranties ?>"><span><span><span><?php echo __('GUARANTIES') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('guaranties') ?>" class="<?php echo $guaranties ?>"><span><span><span><?php echo __('Guaranties') ?></span></span></span></a></li>
                             <?php $blog = (strstr($currentUrl, $this->getUrl('blog'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('blog') ?>" class="<?php echo $blog ?>"><span><span><span><?php echo __('BLOG') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('blog') ?>" class="<?php echo $blog ?>"><span><span><span><?php echo __('Blog') ?></span></span></span></a></li>
                             <?php $newsletter = (strstr($currentUrl, $this->getUrl('newsletter'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('newsletter') ?>" class="<?php echo $newsletter ?>"><span><span><span><?php echo __('NEWSLETTER') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('newsletter') ?>" class="<?php echo $newsletter ?>"><span><span><span><?php echo __('Newsletter') ?></span></span></span></a></li>
                             <?php $faq = (strstr($currentUrl, $this->getUrl('faq'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('faq') ?>" class="<?php echo $faq ?>"><span><span><span><?php echo __('F.A.Q.') ?></span></span></span></a></li>
+                            <li><a href="<?php echo $this->getUrl('faq') ?>" class="<?php echo $faq ?>"><span><span><span><?php echo __('F.a.q.') ?></span></span></span></a></li>
                             <?php $about = (strstr($currentUrl, $this->getUrl('about'))) ? 'active' : '' ?>
-                            <li><a href="<?php echo $this->getUrl('about') ?>" class="<?php echo $about ?>"><span><span><span><?php echo __('ABOUT US') ?></span></span></span></a></li>                          
+                            <li><a href="<?php echo $this->getUrl('about') ?>" class="<?php echo $about ?>"><span><span><span><?php echo __('About us') ?></span></span></span></a></li>                          
                             <?php $contact = (strstr($currentUrl, $this->getUrl('contacts'))) ? 'active' : '' ?>
-                            <li class="last"><a href="<?php echo $this->getUrl('contacts') ?>" class="<?php echo $contact ?>"><span><span><span><?php echo __('CONTACT') ?></span></span></span></a></li>
+                            <li class="last"><a href="<?php echo $this->getUrl('contacts') ?>" class="<?php echo $contact ?>"><span><span><span><?php echo __('Contact') ?></span></span></span></a></li>
                         </ul>
                         <div class="sub-menu">                            
                             <?php

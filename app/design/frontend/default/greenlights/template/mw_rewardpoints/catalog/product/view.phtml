@@ -34,6 +34,7 @@
 $_helper = $this->helper('catalog/output');
 $_product = $this->getProduct();
 $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
+$_brand_image = Mage::getModel('catalog/category')->setData($_brand->getData())->getImageUrl();
 ?>
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
@@ -50,11 +51,13 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
             <div class="product-shop">
                 <div class="col-right">
                     <div class="brand-image">
-                        <img src="<?php echo Mage::getModel('catalog/category')->setData($_brand->getData())->getImageUrl() ?>" width="142" />                        
+                        <?php if($_brand_image):?>
+                        <img src="<?php echo $_brand_image ?>" width="142" />                        
+                        <?php endif;?>
                     </div>
 
-<?php if ($this->canEmailToFriend()): ?>
-        <!--                    <p class="email-friend"><a href="<?php //echo $this->helper('catalog/product')->getEmailToFriendUrl($_product)   ?>"><?php //echo $this->__('Email to a Friend')   ?></a></p>-->
+                    <?php if ($this->canEmailToFriend()): ?>
+            <!--                    <p class="email-friend"><a href="<?php //echo $this->helper('catalog/product')->getEmailToFriendUrl($_product)    ?>"><?php //echo $this->__('Email to a Friend')    ?></a></p>-->
                     <?php endif; ?>
 
                     <?php //echo $this->getReviewsSummaryHtml($_product, false, true)  ?>
@@ -64,41 +67,41 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
 
                     <?php if (!$this->hasOptions()): ?>
                         <div class="add-to-box">
-                        <?php if ($_product->isSaleable()): ?>
-                            <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php if ($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
                                 <?php //if ($this->helper('wishlist')->isAllow() || $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product)):  ?>
-            <!--                                <span class="or"><?php //echo $this->__('OR')  ?></span>-->
+                <!--                                <span class="or"><?php //echo $this->__('OR')   ?></span>-->
                                 <?php //endif; ?>
                             <?php endif; ?>
                             <?php //echo $this->getChildHtml('addto')  ?>
                         </div>
-                        <?php else: ?>
-                            <?php //echo $this->getChildHtml('addto') ?>
+                    <?php else: ?>
+                        <?php //echo $this->getChildHtml('addto') ?>
                     <?php endif; ?>
 
                     <?php if ($_product->getRewardPointProduct()): ?>
                         <div class="short-description">
-                        <?php echo Mage::helper('rewardpoints')->__("You will earn <b>%s</b> for buying this product", Mage::helper('rewardpoints')->formatPoints($_product->getRewardPointProduct())) ?>
+                            <?php echo Mage::helper('rewardpoints')->__("You will earn <b>%s</b> for buying this product", Mage::helper('rewardpoints')->formatPoints($_product->getRewardPointProduct())) ?>
                         </div>
-                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
                 <div class="col-left">
                     <div class="product-name">
                         <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                     </div>
                     <div class="brand-name">
-<?php if ($_brand): ?>
+                        <?php if ($_brand): ?>
                             <span><?php echo $this->__('By') ?></span> 
                             <span><?php echo $_brand->getName(); ?></span>
 
-<?php endif; ?>
+                        <?php endif; ?>
                     </div>
-                        <?php if ($_product->getShortDescription()): ?>
+                    <?php if ($_product->getShortDescription()): ?>
                         <div class="short-description">
-    <!--                            <h2><?php //echo $this->__('Quick Overview')  ?></h2>-->
+    <!--                            <h2><?php //echo $this->__('Quick Overview')   ?></h2>-->
                             <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
                         </div>
-<?php endif; ?>
+                    <?php endif; ?>
 
                     <?php echo $this->getChildHtml('other'); ?>
 
@@ -110,12 +113,15 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
             </div>
 
             <div class="product-img-box">
-<?php echo $this->getChildHtml('media') ?>
+                <?php echo $this->getChildHtml('media') ?>
             </div>
 
             <div class="clearer"></div>
-<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+            <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                <div class="product-container">
+                    <div class="container-title"><?php echo __('Configuration Options')?></div>
+                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                </div>
             <?php endif; ?>
         </form>
         <script type="text/javascript">
@@ -139,71 +145,71 @@ $_brand = Mage::getModel('catalog/category')->load($_product->getBrandId());
         </script>
     </div>
 
-<div id="added-to-cart-container" title="<?php echo __("Added to cart") ?>">
-    <div class="added-to-cart header">
-        <?php
-            $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize(150, 150).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+    <div id="added-to-cart-container" title="<?php echo __("Added to cart") ?>">
+        <div class="added-to-cart header">
+            <?php
+            $_img = '<img id="image" src="' . $this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize(150, 150) . '" alt="' . $this->htmlEscape($this->getImageLabel()) . '" title="' . $this->htmlEscape($this->getImageLabel()) . '" />';
             echo $_helper->productAttribute($_product, $_img, 'image');
-        ?>
-        <div class="product-name">
-            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+            ?>
+            <div class="product-name">
+                <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+            </div>
+            <p>Quantity: <span id="added-to-cart-quantity">0</span></p>
+            <p><span style="font-weight: bold;">Price:</span> <span id="added-to-cart-price">0</span></p>
+            <button class="button btn-cart validation-passed" onclick="window.location.reload()">
+                <span><span>
+                        <?php echo __('CONTINUE SHOPPING') ?>
+                    </span></span>
+            </button>
+            <button class="button btn-cart validation-passed" onclick="window.location='<?php echo Mage::getUrl('checkout/onepage/') ?>'">
+                <span><span>
+                        <?php echo __('CHECKOUT') ?>
+                    </span></span>
+            </button>
         </div>
-        <p>Quantity: <span id="added-to-cart-quantity">0</span></p>
-        <p><span style="font-weight: bold;">Price:</span> <span id="added-to-cart-price">0</span></p>
-        <button class="button btn-cart validation-passed" onclick="window.location.reload()">
-            <span><span>
-                <?php echo __('CONTINUE SHOPPING') ?>
-            </span></span>
-        </button>
-        <button class="button btn-cart validation-passed" onclick="window.location='<?php echo Mage::getUrl('checkout/onepage/') ?>'">
-            <span><span>
-                <?php echo __('CHECKOUT') ?>
-            </span></span>
-        </button>
-    </div>
         <?php $related = $_product->getRelatedProducts() ?>
         <?php if (count($related)) { ?>
             <span class="item-to-consider-header"><h2><?php echo __('ITEMS TO CONSIDER') ?></h2></span>
-            <?php foreach($_product->getRelatedProducts() as $rel) { ?>
-            <?php $rel->load() ?>
-            <div class="added-to-cart item-to-consider">
-                <table>
-                    <tr>
-                        <td class="image">
-                            <?php
-                            $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($rel, 'image')->keepFrame(false)->resize(100, 100).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
-                            echo $_helper->productAttribute($rel, $_img, 'image');
-                            ?>
-                        </td>
-                        <td>
-                            <p><a href="#">
-                                <?php echo $_helper->productAttribute($rel, $rel->getName(), 'name') ?>
-                            </a></p>
-                            <p><?php echo __('Price: ') ?><span class="price"><?php echo $rel->getPrice() ?></span></p>
-                            <span>
-                                <?php echo $rel->getShortDescription() ?>
-                            </span>
-                            <p><a class="more-info" href=""><?php echo __('More Information') ?></a></p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <?php foreach ($_product->getRelatedProducts() as $rel) { ?>
+                <?php $rel->load() ?>
+                <div class="added-to-cart item-to-consider">
+                    <table>
+                        <tr>
+                            <td class="image">
+                                <?php
+                                $_img = '<img id="image" src="' . $this->helper('catalog/image')->init($rel, 'image')->keepFrame(false)->resize(100, 100) . '" alt="' . $this->htmlEscape($this->getImageLabel()) . '" title="' . $this->htmlEscape($this->getImageLabel()) . '" />';
+                                echo $_helper->productAttribute($rel, $_img, 'image');
+                                ?>
+                            </td>
+                            <td>
+                                <p><a href="#">
+                                        <?php echo $_helper->productAttribute($rel, $rel->getName(), 'name') ?>
+                                    </a></p>
+                                <p><?php echo __('Price: ') ?><span class="price"><?php echo $rel->getPrice() ?></span></p>
+                                <span>
+                                    <?php echo $rel->getShortDescription() ?>
+                                </span>
+                                <p><a class="more-info" href=""><?php echo __('More Information') ?></a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             <?php } ?>
         <?php } ?>
-</div>
-<script type="text/javascript">
-jQuery("#added-to-cart-container").dialog({
-    modal: true,
-    autoOpen: false,
-    width: 500,
-    height: 500
-});
-</script>
+    </div>
+    <script type="text/javascript">
+        jQuery("#added-to-cart-container").dialog({
+            modal: true,
+            autoOpen: false,
+            width: 500,
+            height: 500
+        });
+    </script>
 
     <div class="product-collateral">
 
-<?php //echo $this->getChildHtml('description')  ?>
-<?php //echo $this->getChildHtml('additional')  ?>
+        <?php //echo $this->getChildHtml('description')  ?>
+        <?php //echo $this->getChildHtml('additional')  ?>
         <?php //echo $this->getChildHtml('upsell_products')  ?>
         <?php //echo $this->getChildHtml('product_additional_data') ?>
     </div>
@@ -243,69 +249,69 @@ jQuery("#added-to-cart-container").dialog({
 
     </div>
 
-<?php echo $this->getChildHtml('awRelatedProducts') ?>
+    <?php echo $this->getChildHtml('awRelatedProducts') ?>
 </div>
-    <script type="text/javascript">
-        /*-----------------------------------------------------------
-        Toggles element's display value
-        Input: any number of element id's
-        Output: none 
-        ---------------------------------------------------------*/
-        function toggleDisp() {
-            for (var i=0;i<arguments.length;i++){
-                var d = $(arguments[i]);
-                if (d.style.display == 'none')
-                    d.style.display = 'block';
-                else
-                    d.style.display = 'none';
-            }
+<script type="text/javascript">
+    /*-----------------------------------------------------------
+    Toggles element's display value
+    Input: any number of element id's
+    Output: none 
+    ---------------------------------------------------------*/
+    function toggleDisp() {
+        for (var i=0;i<arguments.length;i++){
+            var d = $(arguments[i]);
+            if (d.style.display == 'none')
+                d.style.display = 'block';
+            else
+                d.style.display = 'none';
         }
-        /*-----------------------------------------------------------
-        Toggles tabs - Closes any open tabs, and then opens current tab
-        Input:     1.The number of the current tab
-                        2.The number of tabs
-                        3.(optional)The number of the tab to leave open
-                        4.(optional)Pass in true or false whether or not to animate the open/close of the tabs
-        Output: none 
-        ---------------------------------------------------------*/
-        function toggleTab(num,numelems,opennum,animate) {
-            if ($('tabContent'+num).style.display == 'none'){
-                for (var i=1;i<=numelems;i++){
-                    if ((opennum == null) || (opennum != i)){
-                        var temph = 'tabHeader'+i;
-                        var h = $(temph);
-                        if (!h){
-                            var h = $('tabHeaderActive');
-                            h.id = temph;
-                        }
-                        var tempc = 'tabContent'+i;
-                        var c = $(tempc);
-                        if(c.style.display != 'none'){
-                            if (animate || typeof animate == 'undefined')
-                                Effect.toggle(tempc,'blind',{duration:0.5, queue:{scope:'menus', limit: 3}});
-                            else
-                                toggleDisp(tempc);
-                        }
+    }
+    /*-----------------------------------------------------------
+    Toggles tabs - Closes any open tabs, and then opens current tab
+    Input:     1.The number of the current tab
+                    2.The number of tabs
+                    3.(optional)The number of the tab to leave open
+                    4.(optional)Pass in true or false whether or not to animate the open/close of the tabs
+    Output: none 
+    ---------------------------------------------------------*/
+    function toggleTab(num,numelems,opennum,animate) {
+        if ($('tabContent'+num).style.display == 'none'){
+            for (var i=1;i<=numelems;i++){
+                if ((opennum == null) || (opennum != i)){
+                    var temph = 'tabHeader'+i;
+                    var h = $(temph);
+                    if (!h){
+                        var h = $('tabHeaderActive');
+                        h.id = temph;
+                    }
+                    var tempc = 'tabContent'+i;
+                    var c = $(tempc);
+                    if(c.style.display != 'none'){
+                        if (animate || typeof animate == 'undefined')
+                            Effect.toggle(tempc,'blind',{duration:0.5, queue:{scope:'menus', limit: 3}});
+                        else
+                            toggleDisp(tempc);
                     }
                 }
-                var h = $('tabHeader'+num);
-                if (h)
-                    h.id = 'tabHeaderActive';
-                h.blur();
-                var c = $('tabContent'+num);
-                c.style.marginTop = '0px';
-                if (animate || typeof animate == 'undefined'){
-                    Effect.toggle('tabContent'+num,'blind',{duration:0.5, queue:{scope:'menus', position:'end', limit: 3}});
-                }else{
-                    toggleDisp('tabContent'+num);
-                }
+            }
+            var h = $('tabHeader'+num);
+            if (h)
+                h.id = 'tabHeaderActive';
+            h.blur();
+            var c = $('tabContent'+num);
+            c.style.marginTop = '0px';
+            if (animate || typeof animate == 'undefined'){
+                Effect.toggle('tabContent'+num,'blind',{duration:0.5, queue:{scope:'menus', position:'end', limit: 3}});
+            }else{
+                toggleDisp('tabContent'+num);
             }
         }
+    }
 
 
-        document.observe("dom:loaded", function() {
-            // initially hide all containers for tab content
-            ///$$('div.overlay').addStyle({zIndex: 1000000});
-        });
+    document.observe("dom:loaded", function() {
+        // initially hide all containers for tab content
+        ///$$('div.overlay').addStyle({zIndex: 1000000});
+    });
 
-    </script>
+</script>
