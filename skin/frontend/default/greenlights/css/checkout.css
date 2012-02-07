@@ -70,7 +70,13 @@
     font-weight: normal;
 }
 
+#checkout-payment-method-load .col-left, #checkout-payment-method-load .col-right {
+    width: 50%;
+}
 
+#checkout-payment-method-load ul li {
+    display: inline;
+}
 
 
 
