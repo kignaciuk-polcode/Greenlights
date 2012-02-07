@@ -106,19 +106,22 @@
             </div>        
         </form>
         <div class="cart-collaterals">
-            <!--            <div class="col2-set">
-            <?php echo $this->getChildHtml('rewardpoints') ?>
-                            <div class="col-1">
-            <?php echo $this->getChildHtml('crosssell') ?>
-                            </div>
-                            <div class="col-2">
-            <?php echo $this->getChildHtml('coupon') ?>
-            <?php echo $this->getChildHtml('credit') ?>
-            
-            <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping');
-            endif; ?>
-                            </div>
-                        </div>-->
+            <div class="col2-set">
+                <?php echo $this->getChildHtml('rewardpoints') ?>
+                <div class="col-1">
+                    <?php echo $this->getChildHtml('crosssell') ?>
+                </div>
+                <div class="col-2">
+                    <?php echo $this->getChildHtml('coupon') ?>
+                    <?php echo $this->getChildHtml('credit') ?>
+
+                    <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping');
+                    endif; ?>
+                </div>
+                <div class="col-1">
+                    <?php echo $this->getChildHtml('giftcards_coupon') ?>
+                </div>                
+            </div>
             <div class="totals">
                 <?php echo $this->getChildHtml('totals'); ?>
             </div>           
@@ -237,3 +240,90 @@
     <div class="clear"></div>
 
 <?php endif; ?>
+
+<div id="cartTabs">
+
+    <div id="cartTabsContent">
+        <div id="cartTabContent1" class="cartTabContent" style="display:block">
+            <div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('shipping_methods')->toHtml(); ?></div>
+            <span class="cartTabTip"></span>
+        </div>
+        <div id="cartTabContent2" class="cartTabContent" style="display:none">
+            <div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('billing')->toHtml(); ?></div>
+            <span class="cartTabTip"></span>
+        </div>
+        <div id="cartTabContent3" class="cartTabContent" style="display:none">
+            <div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('confirmation')->toHtml(); ?></div>
+            <span class="cartTabTip"></span>
+        </div>             
+    </div>    
+
+    <ul>
+        <li id="cartTabHeaderActive"><a href="javascript:void(0)" onClick="toggleTab(1,3,null,false)"><span>1</span><?php echo __("Shipping Methods")?></a></li>
+        <li id="cartTabHeader2"><a href="javascript:void(0)" onClick="toggleTab(2,3,null,false)"><span>2</span><?php echo __("Billing")?></a></li>
+        <li id="cartTabHeader3" class="last"><a href="javascript:void(0)" onClick="toggleTab(3,3,null,false)"><span>3</span><?php echo __("Confirmation")?></a></li>
+    </ul>
+</div>
+    
+<script type="text/javascript">
+    /*-----------------------------------------------------------
+    Toggles element's display value
+    Input: any number of element id's
+    Output: none 
+    ---------------------------------------------------------*/
+    function toggleDisp() {
+        for (var i=0;i<arguments.length;i++){
+            var d = $(arguments[i]);
+            if (d.style.display == 'none')
+                d.style.display = 'block';
+            else
+                d.style.display = 'none';
+        }
+    }
+    /*-----------------------------------------------------------
+    Toggles tabs - Closes any open tabs, and then opens current tab
+    Input:     1.The number of the current tab
+                    2.The number of tabs
+                    3.(optional)The number of the tab to leave open
+                    4.(optional)Pass in true or false whether or not to animate the open/close of the tabs
+    Output: none 
+    ---------------------------------------------------------*/
+    function toggleTab(num,numelems,opennum,animate) {
+        if ($('cartTabContent'+num).style.display == 'none'){
+            for (var i=1;i<=numelems;i++){
+                if ((opennum == null) || (opennum != i)){
+                    var temph = 'cartTabHeader'+i;
+                    var h = $(temph);
+                    if (!h){
+                        var h = $('cartTabHeaderActive');
+                        h.id = temph;
+                    }
+                    var tempc = 'cartTabContent'+i;
+                    var c = $(tempc);
+                    if(c.style.display != 'none'){
+                        if (animate || typeof animate == 'undefined')
+                            Effect.toggle(tempc,'blind',{duration:0.5, queue:{scope:'menus', limit: 3}});
+                        else
+                            toggleDisp(tempc);
+                    }
+                }
+            }
+            var h = $('cartTabHeader'+num);
+            if (h)
+                h.id = 'cartTabHeaderActive';
+            h.blur();
+            var c = $('cartTabContent'+num);
+            c.style.marginTop = '0px';
+            if (animate || typeof animate == 'undefined'){
+                Effect.toggle('cartTabContent'+num,'blind',{duration:0.5, queue:{scope:'menus', position:'end', limit: 3}});
+            }else{
+                toggleDisp('cartTabContent'+num);
+            }
+        }
+    }
+
+
+</script>
+    
+    
+    
